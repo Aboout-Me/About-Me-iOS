@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,11 @@
 		0715A34B260CD1870077882A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34A260CD1870077882A /* Assets.xcassets */; };
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
+		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
+		FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */; };
+		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
+		FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF89606C261606F000CB6492 /* MyProfileViewController.swift */; };
+		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
+		FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerViewController.swift; sourceTree = "<group>"; };
+		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		FF89606C261606F000CB6492 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +74,17 @@
 			isa = PBXGroup;
 			children = (
 				0715A341260CD1860077882A /* AppDelegate.swift */,
+				FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
 				0715A345260CD1860077882A /* ViewController.swift */,
 				0715A347260CD1860077882A /* Main.storyboard */,
 				0715A34A260CD1870077882A /* Assets.xcassets */,
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
 				0715A34F260CD1870077882A /* Info.plist */,
+				FF896061261603FB00CB6492 /* QuestionsViewController.swift */,
+				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
+				FF8960692616066000CB6492 /* SocialViewController.swift */,
+				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 			);
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
@@ -80,7 +95,6 @@
 				ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */,
 				303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,7 +221,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0715A346260CD1860077882A /* ViewController.swift in Sources */,
+				FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */,
+				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
+				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
+				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
+				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -357,8 +376,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S3646H7837;
+				DEVELOPMENT_TEAM = XKA22N2KHA;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,8 +397,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S3646H7837;
+				DEVELOPMENT_TEAM = XKA22N2KHA;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
