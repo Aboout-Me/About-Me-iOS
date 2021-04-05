@@ -13,6 +13,7 @@
 		0715A349260CD1860077882A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A347260CD1860077882A /* Main.storyboard */; };
 		0715A34B260CD1870077882A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34A260CD1870077882A /* Assets.xcassets */; };
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
+		077AFCD1261B5109001B8941 /* AdvisoryAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */; };
@@ -30,6 +31,7 @@
 		0715A34A260CD1870077882A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0715A34D260CD1870077882A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0715A34F260CD1870077882A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerCell.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 		0715A340260CD1860077882A /* About-Me-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				077AFCCF261B50D6001B8941 /* AdvisoryAnswer */,
 				0715A341260CD1860077882A /* AppDelegate.swift */,
 				FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
@@ -82,11 +85,19 @@
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
 				0715A34F260CD1870077882A /* Info.plist */,
 				FF896061261603FB00CB6492 /* QuestionsViewController.swift */,
-				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
 				FF8960692616066000CB6492 /* SocialViewController.swift */,
 				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 			);
 			path = "About-Me-iOS";
+			sourceTree = "<group>";
+		};
+		077AFCCF261B50D6001B8941 /* AdvisoryAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
+				077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */,
+			);
+			path = AdvisoryAnswer;
 			sourceTree = "<group>";
 		};
 		E45D6508C2D62EF6EF67D7BC /* Pods */ = {
@@ -224,6 +235,7 @@
 				FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */,
 				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
+				077AFCD1261B5109001B8941 /* AdvisoryAnswerCell.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
