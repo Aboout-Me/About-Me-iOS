@@ -23,7 +23,7 @@ class AdvisoryAnswerViewController: UIViewController {
     
     // MARK: - Helpers
     
-    func configure() {
+    private func configure() {
         advisoryAnswerTableView.dataSource = self
         advisoryAnswerTableView.delegate = self
     }
@@ -41,6 +41,15 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let questionVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryQuestionVC")
+                as? AdvisoryQuestionViewController else { return }
+        self.navigationController?.pushViewController(questionVC, animated: true)
     }
     
     

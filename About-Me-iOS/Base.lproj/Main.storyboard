@@ -130,7 +130,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-zY-U4z">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-zY-U4z">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -161,6 +161,140 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgJ-Vt-7mq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="19" y="1529"/>
+        </scene>
+        <!--Advisory Question View Controller-->
+        <scene sceneID="wQp-GX-I0w">
+            <objects>
+                <viewController storyboardIdentifier="AdvisoryQuestionVC" modalPresentationStyle="fullScreen" id="MFn-2d-HdF" customClass="AdvisoryQuestionViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jBk-Dn-YeW">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWy-px-RXR">
+                                <rect key="frame" x="171.5" y="94" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mum-cV-2Dc">
+                                <rect key="frame" x="116" y="433" width="82" height="30"/>
+                                <state key="normal" title="질문 수정하기"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmd-pe-QPN">
+                                <rect key="frame" x="242" y="433" width="30" height="30"/>
+                                <state key="normal" title="다음"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wkE-fw-Cqf"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="pWy-px-RXR" firstAttribute="centerX" secondItem="jBk-Dn-YeW" secondAttribute="centerX" id="3Fu-vc-QAz"/>
+                            <constraint firstItem="wmd-pe-QPN" firstAttribute="centerY" secondItem="jBk-Dn-YeW" secondAttribute="centerY" id="3lt-Uf-V9P"/>
+                            <constraint firstItem="pWy-px-RXR" firstAttribute="top" secondItem="wkE-fw-Cqf" secondAttribute="top" constant="50" id="GV1-uf-UVZ"/>
+                            <constraint firstItem="wmd-pe-QPN" firstAttribute="centerX" secondItem="jBk-Dn-YeW" secondAttribute="centerX" constant="50" id="IKp-l6-BZh"/>
+                            <constraint firstItem="Mum-cV-2Dc" firstAttribute="centerY" secondItem="jBk-Dn-YeW" secondAttribute="centerY" id="N8e-4r-n5m"/>
+                            <constraint firstItem="Mum-cV-2Dc" firstAttribute="centerX" secondItem="jBk-Dn-YeW" secondAttribute="centerX" constant="-50" id="XUt-aZ-Rxh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NXM-V6-r3T"/>
+                    <connections>
+                        <outlet property="editQuestionButton" destination="Mum-cV-2Dc" id="EKV-JG-xLk"/>
+                        <outlet property="nextButton" destination="wmd-pe-QPN" id="YLc-N0-dhC"/>
+                        <outlet property="questionNumberLabel" destination="pWy-px-RXR" id="PdZ-vC-rKG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MKB-zm-jKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="1529"/>
+        </scene>
+        <!--Advisory Write Answer View Controller-->
+        <scene sceneID="FSd-zL-Qfa">
+            <objects>
+                <viewController storyboardIdentifier="AdvisoryWriteAnswerVC" id="Oax-b9-7KW" customClass="AdvisoryWriteAnswerViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5we-nt-bwe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wAC-9N-QTL">
+                                <rect key="frame" x="171.5" y="144" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejm-jp-I4O">
+                                <rect key="frame" x="142" y="433" width="30" height="30"/>
+                                <state key="normal" title="완료"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wEk-Z6-s6i">
+                                <rect key="frame" x="229" y="433" width="56" height="30"/>
+                                <state key="normal" title="다음 질문"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="GB6-ae-89N"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ejm-jp-I4O" firstAttribute="centerY" secondItem="5we-nt-bwe" secondAttribute="centerY" id="4Hm-gJ-8XN"/>
+                            <constraint firstItem="wAC-9N-QTL" firstAttribute="centerX" secondItem="5we-nt-bwe" secondAttribute="centerX" id="69J-or-L6E"/>
+                            <constraint firstItem="wEk-Z6-s6i" firstAttribute="centerX" secondItem="5we-nt-bwe" secondAttribute="centerX" constant="50" id="FMi-kn-jHa"/>
+                            <constraint firstItem="wEk-Z6-s6i" firstAttribute="centerY" secondItem="5we-nt-bwe" secondAttribute="centerY" id="Lev-s5-ikV"/>
+                            <constraint firstItem="ejm-jp-I4O" firstAttribute="centerX" secondItem="5we-nt-bwe" secondAttribute="centerX" constant="-50" id="hyt-US-JIs"/>
+                            <constraint firstItem="wAC-9N-QTL" firstAttribute="top" secondItem="GB6-ae-89N" secondAttribute="top" constant="100" id="kJl-Nk-OXW"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="j7I-a3-5YM"/>
+                    <connections>
+                        <outlet property="doneButton" destination="ejm-jp-I4O" id="llZ-fb-PkR"/>
+                        <outlet property="nextButton" destination="wEk-Z6-s6i" id="ioQ-pu-Ba0"/>
+                        <outlet property="questionLabel" destination="wAC-9N-QTL" id="V4W-ku-CKc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="il1-a3-0BS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1894" y="1529"/>
+        </scene>
+        <!--Advisory Edit View Controller-->
+        <scene sceneID="j8r-Yi-TES">
+            <objects>
+                <viewController storyboardIdentifier="AdvisoryEditVC" id="a4e-iD-HJ4" customClass="AdvisoryEditViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="aM0-J5-Uex">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUG-mt-VdE">
+                                <rect key="frame" x="171.5" y="144" width="71" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oSn-AX-eMF">
+                                <rect key="frame" x="142" y="433" width="30" height="30"/>
+                                <state key="normal" title="취소"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHg-0S-g55">
+                                <rect key="frame" x="242" y="433" width="30" height="30"/>
+                                <state key="normal" title="완료"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Oio-BQ-ypM"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fUG-mt-VdE" firstAttribute="top" secondItem="Oio-BQ-ypM" secondAttribute="top" constant="100" id="1hy-gJ-o0e"/>
+                            <constraint firstItem="fUG-mt-VdE" firstAttribute="centerX" secondItem="aM0-J5-Uex" secondAttribute="centerX" id="Gfp-TL-bHB"/>
+                            <constraint firstItem="WHg-0S-g55" firstAttribute="centerY" secondItem="aM0-J5-Uex" secondAttribute="centerY" id="Jmk-2V-Tjn"/>
+                            <constraint firstItem="oSn-AX-eMF" firstAttribute="centerY" secondItem="aM0-J5-Uex" secondAttribute="centerY" id="SQW-Zz-X35"/>
+                            <constraint firstItem="oSn-AX-eMF" firstAttribute="centerX" secondItem="aM0-J5-Uex" secondAttribute="centerX" constant="-50" id="fSA-Hr-rCr"/>
+                            <constraint firstItem="WHg-0S-g55" firstAttribute="centerX" secondItem="aM0-J5-Uex" secondAttribute="centerX" constant="50" id="yzl-u2-hgo"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="oSn-AX-eMF" id="zgw-aA-ld5"/>
+                        <outlet property="doneButton" destination="WHg-0S-g55" id="ZyH-zw-Fkm"/>
+                        <outlet property="questionNumberLabel" destination="fUG-mt-VdE" id="DoV-pQ-GbK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QBe-ZJ-n3r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2809" y="1529"/>
         </scene>
         <!--Social View Controller-->
         <scene sceneID="Gq8-jR-0JL">
