@@ -19,6 +19,7 @@ class SideOnlyViewController: UIViewController {
     }
     
     private func setSideLayoutInit() {
+        self.navigationController?.navigationBar.barTintColor = .black
         self.view.backgroundColor = UIColor.black
         self.questionsButton.setTitle("질문 / 답", for: .normal)
         self.questionsButton.setTitleColor(UIColor.white, for: .normal)
