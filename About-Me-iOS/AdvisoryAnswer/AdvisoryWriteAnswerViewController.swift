@@ -29,23 +29,8 @@ class AdvisoryWriteAnswerViewController: UIViewController {
     
     private func configure() {
         self.questionLabel.text = "\(self.questionNumber)단계 질문..!"
-        
-        self.view.translatesAutoresizingMaskIntoConstraints = false
-        let leftConstraint = self.doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: -50)
-        let rightConstraint = self.doneButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor, constant: 50)
-        
-        if self.questionNumber == 10 {
-            self.nextButton.isHidden = true
-            leftConstraint.isActive = false
-            rightConstraint.isActive = true
-        } else {
-            rightConstraint.isActive = false
-            leftConstraint.isActive = true
-            
-            self.nextButton.isHidden = false
-            self.nextButton.addTarget(self, action: #selector(self.nextButtonDidTap(_:)),
-                                      for: .touchUpInside)
-        }
+        self.nextButton.addTarget(self, action: #selector(self.nextButtonDidTap(_:)),
+                                              for: .touchUpInside)
     }
     
     // MARK: - Selectors
@@ -56,7 +41,6 @@ class AdvisoryWriteAnswerViewController: UIViewController {
         guard let questionVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryQuestionVC")
                 as? AdvisoryQuestionViewController else { return }
         questionVC.questionNumber = self.questionNumber + 1
-//        self.present(questionVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(questionVC, animated: true)
     }
 

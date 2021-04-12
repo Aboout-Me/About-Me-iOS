@@ -43,7 +43,6 @@ class AdvisoryQuestionViewController: UIViewController {
         guard let editVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryEditVC")
                 as? AdvisoryEditViewController else { return }
         editVC.questionNumber = self.questionNumber
-//        self.present(editVC, animated: true, completion: nil)
         self.navigationController?.pushViewController(editVC, animated: true)
     }
     
@@ -53,7 +52,6 @@ class AdvisoryQuestionViewController: UIViewController {
         guard let writeAnswerVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryWriteAnswerVC")
                 as? AdvisoryWriteAnswerViewController else { return }
         writeAnswerVC.questionNumber = self.questionNumber
-        self.present(writeAnswerVC, animated: true, completion: nil)
-//        self.navigationController?.pushViewController(writeAnswerVC, animated: true)
+        self.navigationController?.pushViewController(writeAnswerVC, animated: true)
     }
 }

@@ -26,6 +26,9 @@ class AdvisoryAnswerViewController: UIViewController {
     private func configure() {
         advisoryAnswerTableView.dataSource = self
         advisoryAnswerTableView.delegate = self
+        
+        let nibName = UINib(nibName: "AdvisoryNewAnswerCell", bundle: nil)
+        advisoryAnswerTableView.register(nibName, forCellReuseIdentifier: "newAnswerCell")
     }
     
 }
@@ -36,11 +39,16 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "advisoryAnswerCell", for: indexPath) as? AdvisoryAnswerCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "newAnswerCell", for: indexPath)
+                as? AdvisoryNewAnswerCell else {
             return UITableViewCell()
         }
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 150
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
