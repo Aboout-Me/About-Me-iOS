@@ -8,6 +8,8 @@ target 'About-Me-iOS' do
   pod 'Hero'
   pod 'Alamofire'
   pod 'SideMenu'
+  pod 'naveridlogin-sdk-ios'
+  pod 'KakaoSDK'
 
   # Pods for About-Me-iOS
 
