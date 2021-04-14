@@ -17,8 +17,6 @@
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
 		077AFCD1261B5109001B8941 /* AdvisoryAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
-		07FA86D0261DEE280008D6EA /* AdvisoryWriteAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CF261DEE280008D6EA /* AdvisoryWriteAnswerViewController.swift */; };
-		07FA86D4261E0D3D0008D6EA /* AdvisoryEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86D3261E0D3D0008D6EA /* AdvisoryEditViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */; };
@@ -40,8 +38,6 @@
 		0715A34F260CD1870077882A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerCell.swift; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
-		07FA86CF261DEE280008D6EA /* AdvisoryWriteAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryWriteAnswerViewController.swift; sourceTree = "<group>"; };
-		07FA86D3261E0D3D0008D6EA /* AdvisoryEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryEditViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -107,8 +103,6 @@
 				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
 				077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */,
 				07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */,
-				07FA86CF261DEE280008D6EA /* AdvisoryWriteAnswerViewController.swift */,
-				07FA86D3261E0D3D0008D6EA /* AdvisoryEditViewController.swift */,
 				07044F9D26248DE700539686 /* AdvisoryNewAnswerCell.swift */,
 				07044F9E26248DE700539686 /* AdvisoryNewAnswerCell.xib */,
 			);
@@ -249,12 +243,10 @@
 			files = (
 				0715A346260CD1860077882A /* ViewController.swift in Sources */,
 				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
-				07FA86D0261DEE280008D6EA /* AdvisoryWriteAnswerViewController.swift in Sources */,
 				FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */,
 				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
 				07044F9F26248DE700539686 /* AdvisoryNewAnswerCell.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
-				07FA86D4261E0D3D0008D6EA /* AdvisoryEditViewController.swift in Sources */,
 				077AFCD1261B5109001B8941 /* AdvisoryAnswerCell.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,

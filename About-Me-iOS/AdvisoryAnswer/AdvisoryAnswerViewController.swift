@@ -57,7 +57,10 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let questionVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryQuestionVC")
                 as? AdvisoryQuestionViewController else { return }
-        self.navigationController?.pushViewController(questionVC, animated: true)
+//        self.navigationController?.pushViewController(questionVC, animated: true)
+        questionVC.modalPresentationStyle = .fullScreen
+        self.present(questionVC, animated: false, completion: nil)
+        
     }
     
     
