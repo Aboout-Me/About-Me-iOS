@@ -64,6 +64,7 @@ class SideOnlyViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let MyProfileView = storyboard.instantiateViewController(withIdentifier: "MyProfileVC") as? MyProfileViewController
         guard let MyProfileVC = MyProfileView else { return }
+        
         self.navigationController?.pushViewController(MyProfileVC, animated: true)
     }
     

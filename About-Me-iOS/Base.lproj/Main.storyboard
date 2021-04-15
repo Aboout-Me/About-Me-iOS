@@ -10,6 +10,33 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Home Detail View Controller-->
+        <scene sceneID="rRs-1N-jXw">
+            <objects>
+                <viewController storyboardIdentifier="HomeDetailVC" id="ipg-xg-GOn" customClass="HomeDetailViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eq8-Kd-VzK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubg-mo-lFN">
+                                <rect key="frame" x="82" y="86" width="251" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cDC-Os-u2x"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="detailTitleLabel" destination="ubg-mo-lFN" id="7wo-wq-t0H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rJ6-ct-4bB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="19" y="-1094"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -41,24 +68,111 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cR1-HR-2gb" customClass="Floaty" customModule="Floaty">
+                                <rect key="frame" x="330" y="774" width="59" height="59"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="59" id="3UI-eD-pH0"/>
+                                    <constraint firstAttribute="height" constant="59" id="dW3-4t-pr2"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cR1-HR-2gb" secondAttribute="trailing" constant="25" id="6X3-Bv-R4B"/>
                             <constraint firstItem="bdc-N2-W1n" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="50" id="Enq-ur-bT7"/>
                             <constraint firstItem="bdc-N2-W1n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Slv-rb-13V"/>
                             <constraint firstItem="bdc-N2-W1n" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZJ5-5Z-cpO"/>
                             <constraint firstItem="bdc-N2-W1n" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="g6N-Pq-BlM"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cR1-HR-2gb" secondAttribute="bottom" constant="29" id="y3s-rn-aWE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gvO-8w-i4A"/>
                     <connections>
+                        <outlet property="mainBottomSheet" destination="kZ5-O2-c5o" id="DnY-HD-5Xe"/>
                         <outlet property="mainCollectionView" destination="bdc-N2-W1n" id="Nn6-9d-vdM"/>
+                        <outlet property="mainFloatingButton" destination="cR1-HR-2gb" id="8EA-FE-cpD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="kZ5-O2-c5o" customClass="HomeBottomSheet" customModule="About_Me_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkp-4l-1mK">
+                            <rect key="frame" x="20" y="111" width="284" height="48"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NJI-J3-kAd">
+                            <rect key="frame" x="11" y="143" width="383" height="554"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xff-EY-VYH" customClass="BottomNavigationBar" customModule="About_Me_iOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <items>
+                                <navigationItem title="답하기" id="jLt-PF-pai">
+                                    <leftBarButtonItems>
+                                        <barButtonItem style="plain" id="nH4-Lh-yAH">
+                                            <view key="customView" contentMode="scaleToFill" id="vJF-BY-tjj">
+                                                <rect key="frame" x="20" y="5.5" width="20" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </barButtonItem>
+                                        <barButtonItem style="plain" id="zjN-Jm-Oe7">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uBL-3x-Ln2">
+                                                <rect key="frame" x="48" y="11" width="17" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="delete.png"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </leftBarButtonItems>
+                                    <rightBarButtonItems>
+                                        <barButtonItem style="plain" id="3M9-B6-5YR">
+                                            <view key="customView" contentMode="scaleToFill" id="v6L-bI-Z2S">
+                                                <rect key="frame" x="374" y="5.5" width="20" height="33"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </barButtonItem>
+                                        <barButtonItem style="plain" id="JNC-KI-xP5">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="17A-VT-NnX">
+                                                <rect key="frame" x="346" y="11" width="20" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="check.png"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </rightBarButtonItems>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="3oW-1I-eNg"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Xff-EY-VYH" secondAttribute="trailing" id="13E-f7-7Un"/>
+                        <constraint firstItem="Xff-EY-VYH" firstAttribute="top" secondItem="kZ5-O2-c5o" secondAttribute="top" id="Bsc-KR-c9E"/>
+                        <constraint firstItem="Xff-EY-VYH" firstAttribute="leading" secondItem="kZ5-O2-c5o" secondAttribute="leading" id="M5u-zV-qeZ"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="questionConfirmButton" destination="JNC-KI-xP5" id="FoS-r2-rAp"/>
+                        <outlet property="questionDeleteButton" destination="uBL-3x-Ln2" id="YCm-1g-ycz"/>
+                        <outlet property="questionNavigationBar" destination="Xff-EY-VYH" id="saa-OE-LPa"/>
+                        <outlet property="questionTextView" destination="NJI-J3-kAd" id="iL1-mG-ihC"/>
+                        <outlet property="questionTitleLabel" destination="Kkp-4l-1mK" id="F7k-gj-BYi"/>
+                    </connections>
+                </view>
             </objects>
-            <point key="canvasLocation" x="18.840579710144929" y="75.669642857142847"/>
+            <point key="canvasLocation" x="19" y="76"/>
         </scene>
         <!--Side Only View Controller-->
         <scene sceneID="mhS-c3-T7j">
@@ -180,6 +294,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="check.png" width="20" height="14"/>
+        <image name="delete.png" width="17" height="16"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

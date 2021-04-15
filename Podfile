@@ -8,6 +8,7 @@ target 'About-Me-iOS' do
   pod 'Hero'
   pod 'Alamofire'
   pod 'SideMenu'
+  pod 'Floaty', '~> 4.2.0' 
 
   # Pods for About-Me-iOS
 
