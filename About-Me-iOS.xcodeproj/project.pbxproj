@@ -18,6 +18,8 @@
 		FF68A726262C5DAA007253E0 /* lock@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF68A725262C5DAA007253E0 /* lock@1x.png */; };
 		FF68A729262C5F94007253E0 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = FF68A728262C5F94007253E0 /* heart.png */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
+		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
+		FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */; };
 		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */; };
@@ -48,6 +50,8 @@
 		FF68A725262C5DAA007253E0 /* lock@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@1x.png"; sourceTree = "<group>"; };
 		FF68A728262C5F94007253E0 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
+		FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterCollectionViewCell.xib; sourceTree = "<group>"; };
 		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
 				0715A345260CD1860077882A /* ViewController.swift */,
+				FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */,
 				0715A347260CD1860077882A /* Main.storyboard */,
 				0715A34A260CD1870077882A /* Assets.xcassets */,
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
@@ -110,7 +115,6 @@
 				FF8960692616066000CB6492 /* SocialViewController.swift */,
 				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 				FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */,
-				FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */,
 			);
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
@@ -151,6 +155,8 @@
 			children = (
 				FFFDB824261F235100947C44 /* MainCollectionViewCell.swift */,
 				FFFDB825261F235100947C44 /* MainCollectionViewCell.xib */,
+				FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */,
+				FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */,
 			);
 			path = Mainxib;
 			sourceTree = "<group>";
@@ -224,6 +230,7 @@
 				FFAE74C826287D2B0054CB2D /* icon.png in Resources */,
 				FFAE74C526287CAD0054CB2D /* Vector.png in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
+				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -287,6 +294,7 @@
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
+				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var mainFloatingButton: Floaty!
     @IBOutlet var mainBottomSheet: HomeBottomSheet!
     public var questionTitleText: String = ""
+    public var screenSize = UIScreen.main.bounds.size
     @IBOutlet weak var mainCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,14 +54,23 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainCollectionView.dataSource = self
         self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
         self.mainFloatingButton.addItem("내 피드", icon: UIImage(named: "feed.png"))
-        self.mainFloatingButton.addItem("자문 자답", icon: UIImage(named: "lock.png"))
+        self.mainFloatingButton.addItem("자문 자답", icon: UIImage(named: "lock.png")) { item in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
+            guard let advisoryAnswerVC = advisoryAnswerView else { return }
+            self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
+        }
         self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "heart.png"))
         self.view.backgroundColor = UIColor.red
         self.mainCollectionView.backgroundColor = UIColor.red
     }
     private func mainBottomSheetLayoutInit() {
-        let screenSize = UIScreen.main.bounds.size
-        self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 2)
+        let questionToolBar = UIToolbar()
+        let fiexedButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.toolbarButtonDidTap))
+        questionToolBar.items = [fiexedButton,doneButton]
+        questionToolBar.sizeToFit()
+        self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 2)
         self.mainBottomSheet.questionTitleLabel.text = "Q. \(self.questionTitleText)"
         self.mainBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.mainBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSans-Medium", size: 24)
@@ -68,6 +78,8 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainBottomSheet.questionTextView.delegate = self
         self.mainBottomSheet.questionTextView.text = "당신의 생각을 말해주세요"
         self.mainBottomSheet.questionTextView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
+        self.mainBottomSheet.questionTextView.isScrollEnabled = false
+        self.mainBottomSheet.questionTextView.inputAccessoryView = questionToolBar
         self.mainBottomSheet.layer.cornerRadius = 20
         self.mainBottomSheet.layer.masksToBounds = true
         self.mainBottomSheet.backgroundColor = UIColor.white
@@ -77,14 +89,22 @@ class ViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc
+    private func toolbarButtonDidTap() {
+        self.mainBottomSheet.endEditing(true)
+    }
+    
+    
+    @objc
     private func showQuestionViewDidTap() {
-        let screenSize = UIScreen.main.bounds.size
+        UserDefaults.standard.set(self.mainBottomSheet.questionTextView.text, forKey: "myQuestionText")
+        self.mainBottomSheet.questionTextView.resignFirstResponder()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
+            self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.2)
         })
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
         guard let homeAfterVC = homeAfterView else { return }
+        homeAfterVC.titleText = self.questionTitleText
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
     
