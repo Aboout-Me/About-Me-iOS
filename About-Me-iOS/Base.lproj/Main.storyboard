@@ -164,7 +164,7 @@
                         <constraint firstItem="Xff-EY-VYH" firstAttribute="leading" secondItem="kZ5-O2-c5o" secondAttribute="leading" id="M5u-zV-qeZ"/>
                     </constraints>
                     <connections>
-                        <outlet property="questionConfirmButton" destination="JNC-KI-xP5" id="FoS-r2-rAp"/>
+                        <outlet property="questionConfirmButton" destination="17A-VT-NnX" id="aE6-mX-krq"/>
                         <outlet property="questionDeleteButton" destination="uBL-3x-Ln2" id="YCm-1g-ycz"/>
                         <outlet property="questionNavigationBar" destination="Xff-EY-VYH" id="saa-OE-LPa"/>
                         <outlet property="questionTextView" destination="NJI-J3-kAd" id="iL1-mG-ihC"/>
@@ -173,6 +173,21 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="19" y="76"/>
+        </scene>
+        <!--Home After View Controller-->
+        <scene sceneID="vg7-tn-cu6">
+            <objects>
+                <viewController storyboardIdentifier="HomeAfterVC" id="Bh1-W7-SqU" customClass="HomeAfterViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ct9-9W-GcJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="J2q-hP-uVB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uZK-VR-zkR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="-570"/>
         </scene>
         <!--Side Only View Controller-->
         <scene sceneID="mhS-c3-T7j">

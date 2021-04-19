@@ -52,8 +52,9 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainCollectionView.delegate = self
         self.mainCollectionView.dataSource = self
         self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
-        self.mainFloatingButton.addItem(title: "오늘의 질문 응답하기")
-        self.mainFloatingButton.addItem(title: "자문자답 응답하기")
+        self.mainFloatingButton.addItem("내 피드", icon: UIImage(named: "feed.png"))
+        self.mainFloatingButton.addItem("자문 자답", icon: UIImage(named: "lock.png"))
+        self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "heart.png"))
         self.view.backgroundColor = UIColor.red
         self.mainCollectionView.backgroundColor = UIColor.red
     }
@@ -72,8 +73,20 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainBottomSheet.backgroundColor = UIColor.white
         self.mainBottomSheet.questionNavigationBar.shadowImage = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).imageFormatting()
         self.mainBottomSheet.questionDeleteButton.addTarget(self, action: #selector(self.hiddenBottomSheetDidTap), for: .touchUpInside)
+        self.mainBottomSheet.questionConfirmButton.addTarget(self, action: #selector(self.showQuestionViewDidTap), for: .touchUpInside)
     }
     
+    @objc
+    private func showQuestionViewDidTap() {
+        let screenSize = UIScreen.main.bounds.size
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
+        })
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+        guard let homeAfterVC = homeAfterView else { return }
+        self.navigationController?.pushViewController(homeAfterVC, animated: true)
+    }
     
     @objc
     public func showSideButtonDidTap() {
@@ -92,8 +105,6 @@ class ViewController: UIViewController, UITextViewDelegate {
             self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
         })
     }
-    
-    @objc func keyboard
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -152,7 +163,7 @@ class HomeBottomSheet: UIView {
     
     @IBOutlet weak var questionTitleLabel: UILabel!
     @IBOutlet weak var questionTextView: UITextView!
-    @IBOutlet weak var questionConfirmButton: UIBarButtonItem!
+    @IBOutlet weak var questionConfirmButton: UIButton!
     @IBOutlet weak var questionDeleteButton: UIButton!
     @IBOutlet weak var questionNavigationBar: BottomNavigationBar!
     
