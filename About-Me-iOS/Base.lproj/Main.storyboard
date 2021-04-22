@@ -131,36 +131,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-zY-U4z">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="728"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="advisoryAnswerCell" id="NN8-Fl-Brf" customClass="AdvisoryAnswerCell" customModule="About_Me_iOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NN8-Fl-Brf" id="hch-C2-iVH">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-il-ITp">
+                                <rect key="frame" x="184" y="802" width="46" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="cvA-Ft-Sz0"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FnS-gf-ptK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="wKd-il-ITp" firstAttribute="centerX" secondItem="M28-fB-UaQ" secondAttribute="centerX" id="Gtx-3Q-JAE"/>
+                            <constraint firstItem="wKd-il-ITp" firstAttribute="top" secondItem="Yqz-zY-U4z" secondAttribute="bottom" constant="30" id="PGm-Pg-qhP"/>
+                            <constraint firstItem="wKd-il-ITp" firstAttribute="bottom" secondItem="FnS-gf-ptK" secondAttribute="bottom" constant="-30" id="PoS-sg-elv"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Yqz-zY-U4z" secondAttribute="trailing" id="U5p-PT-o7f"/>
                             <constraint firstItem="Yqz-zY-U4z" firstAttribute="top" secondItem="FnS-gf-ptK" secondAttribute="top" id="jjy-iB-1Vn"/>
-                            <constraint firstItem="FnS-gf-ptK" firstAttribute="bottom" secondItem="Yqz-zY-U4z" secondAttribute="bottom" id="vC9-ZE-OoK"/>
                             <constraint firstItem="Yqz-zY-U4z" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="zha-En-iQS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="advisoryAnswerTableView" destination="Yqz-zY-U4z" id="hbz-gf-Ezc"/>
+                        <outlet property="newButton" destination="wKd-il-ITp" id="9Km-N2-tYD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bgJ-Vt-7mq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19" y="1529"/>
+            <point key="canvasLocation" x="18.840579710144929" y="1528.7946428571429"/>
         </scene>
         <!--Advisory Question View Controller-->
         <scene sceneID="wQp-GX-I0w">
@@ -237,7 +247,6 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="오늘은 어떤 주제로 얘기할까요?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-9Y-Qg7">
                                         <rect key="frame" x="103" y="20.5" width="291" height="19.5"/>
-                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -267,50 +276,8 @@
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wEy-lP-Tv3">
                                 <rect key="frame" x="0.0" y="802" width="414" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HFL-di-lpO">
-                                        <rect key="frame" x="157" y="0.0" width="100" height="30"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="BvA-7I-Aqe"/>
-                                            <constraint firstAttribute="width" constant="100" id="vt5-b4-Joe"/>
-                                        </constraints>
-                                        <state key="normal" title="다음">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QN8-16-KNh">
-                                        <rect key="frame" x="237" y="0.0" width="100" height="30"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="16z-4F-AUU"/>
-                                            <constraint firstAttribute="width" constant="100" id="K1s-C3-bgd"/>
-                                        </constraints>
-                                        <state key="normal" title="다음">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tUP-ec-0fa">
-                                        <rect key="frame" x="77" y="0.0" width="100" height="30"/>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="8KS-NE-apZ"/>
-                                            <constraint firstAttribute="height" constant="30" id="cLT-5A-pEw"/>
-                                        </constraints>
-                                        <state key="normal" title="이전">
-                                            <color key="titleColor" systemColor="labelColor"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="0oH-dP-vLi"/>
-                                    <constraint firstItem="QN8-16-KNh" firstAttribute="centerX" secondItem="wEy-lP-Tv3" secondAttribute="centerX" constant="80" id="0qQ-RZ-K9l"/>
-                                    <constraint firstItem="QN8-16-KNh" firstAttribute="centerY" secondItem="wEy-lP-Tv3" secondAttribute="centerY" id="2qe-UK-Jli"/>
-                                    <constraint firstItem="HFL-di-lpO" firstAttribute="centerX" secondItem="wEy-lP-Tv3" secondAttribute="centerX" id="ApT-Cw-Skw"/>
-                                    <constraint firstItem="tUP-ec-0fa" firstAttribute="centerY" secondItem="wEy-lP-Tv3" secondAttribute="centerY" id="Dei-TA-h09"/>
-                                    <constraint firstItem="HFL-di-lpO" firstAttribute="centerY" secondItem="wEy-lP-Tv3" secondAttribute="centerY" id="Toh-eM-jda"/>
-                                    <constraint firstItem="tUP-ec-0fa" firstAttribute="centerX" secondItem="wEy-lP-Tv3" secondAttribute="centerX" constant="-80" id="iQQ-4H-eoj"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -340,12 +307,10 @@
                     <navigationItem key="navigationItem" id="NXM-V6-r3T"/>
                     <connections>
                         <outlet property="answerTextView" destination="MyJ-mY-gHA" id="rtO-2c-NLo"/>
+                        <outlet property="buttonView" destination="wEy-lP-Tv3" id="VOS-LH-96K"/>
                         <outlet property="closeButton" destination="gVM-4P-dee" id="6J6-P4-cIw"/>
                         <outlet property="levelLabel" destination="S9q-nc-VZ6" id="GOe-bb-Wms"/>
                         <outlet property="limitLabel" destination="QnE-d6-4Ke" id="o4a-qL-ZvZ"/>
-                        <outlet property="nextButton" destination="HFL-di-lpO" id="XkS-JX-TK2"/>
-                        <outlet property="nextTwoButton" destination="QN8-16-KNh" id="rX9-4d-Ia0"/>
-                        <outlet property="previousButton" destination="tUP-ec-0fa" id="UyN-c7-fYD"/>
                         <outlet property="questionLabel" destination="mTF-DX-0ds" id="r6v-T9-QEJ"/>
                         <outlet property="questionTextField" destination="gjE-9Y-Qg7" id="adY-y3-Jsa"/>
                         <outlet property="questionView" destination="pR2-kt-bia" id="DG4-KY-417"/>
