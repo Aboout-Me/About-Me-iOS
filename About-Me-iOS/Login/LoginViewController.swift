@@ -1,27 +1,29 @@
 import Foundation
 import UIKit
-import NaverThirdPartyLogin
+
 import Alamofire
-import KakaoSDKCommon
 import KakaoSDKAuth
+import KakaoSDKCommon
 import KakaoSDKUser
+import NaverThirdPartyLogin
 
 class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate {
     
+    // MARK: - 변수정의(Label, Button ...)
     
-    @IBOutlet var nameLabel: UILabel!
-    @IBOutlet var emailLabel: UILabel!
-    @IBOutlet var id: UILabel!
-    @IBOutlet var tmpImage: UIImageView!
+    @IBOutlet var naverNameLabel: UILabel!
+    @IBOutlet var naverEmailLabel: UILabel!
+    @IBOutlet var naverIdLabel: UILabel!
+    @IBOutlet var kakaoNameLabel: UILabel!
     
-    let img = UIImage(named: "tmp.jpg")
-
-    
-    @IBOutlet var naverloingButton: UIButton!
+    @IBOutlet var naverloginButton: UIButton!
+    @IBOutlet var naverlogoutButton: UIButton!
     @IBOutlet var kakaologinButton: UIButton!
     
-    // 네이버
-    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    @IBOutlet var tmpImage: UIImageView!
+    let img = UIImage(named: "tmp.jpg")
+    
+    // MARK: - viewDidLoad
     
     override func viewDidLoad() {
         loginInstance?.delegate = self
@@ -30,15 +32,19 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         tmpImage.image = img
         
         // 버튼 테두리 설정
-        naverloingButton.layer.cornerRadius = 3
+        naverloginButton.layer.cornerRadius = 3
         kakaologinButton.layer.cornerRadius = 3
         
-        naverloingButton.layer.borderWidth = 2
+        naverloginButton.layer.borderWidth = 2
         kakaologinButton.layer.borderWidth = 2
         
-        naverloingButton.layer.borderColor = UIColor.black.cgColor
+        naverloginButton.layer.borderColor = UIColor.black.cgColor
         kakaologinButton.layer.borderColor = UIColor.black.cgColor
     }
+    
+    // MARK: - 네이버 로그인 파트
+    
+    let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     // 로그인에 성공한 경우 호출
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
@@ -46,7 +52,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         getInfo()
     }
     
-    // referesh token
+    // refresh token
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
         loginInstance?.accessToken
     }
@@ -56,17 +62,16 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         print("log out")
     }
     
-    // 모든 error
+    // error
     func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
         print("error = \(error.localizedDescription)")
     }
     
-    @IBAction func login(_ sender: Any) {
-        
+    @IBAction func naverLoginButtonDidTap(_ sender: Any) {
         loginInstance?.requestThirdPartyLogin()
     }
     
-    @IBAction func logout(_ sender: Any) {
+    @IBAction func naevrLogoutButtonDidTap(_ sender: Any) {
         loginInstance?.requestDeleteToken()
     }
     
@@ -95,25 +100,52 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         guard let email = object["email"] as? String else { return }
         guard let id = object["id"] as? String else {return}
         
-        self.nameLabel.text = "\(name)"
-        self.emailLabel.text = "\(email)"
-        self.id.text = "\(id)"
+        self.naverNameLabel.text = "\(name)"
+        self.naverEmailLabel.text = "\(email)"
+        self.naverIdLabel.text = "\(id)"
       }
     }
     
+    // MARK: - 카카오 로그인 파트
     
-    // 카카오
-    @IBAction func onKakaoLoginByAppTouched(_ sender: Any) {
+    @IBAction func kakaoLoginButtionDidTap(_ sender: Any) {
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error = error {
                     print(error)
                 }
                 else {
                     print("loginWithKakaoAccount() success.")
-
-                    //do something
+                    
+                    // do something
                     _ = oauthToken
+                    
+                    // access token
+                    let accessToken = oauthToken?.accessToken
+                    
+                    // 카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
+                    self.setUserInfo()
                 }
+        }
+    }
+    
+    func setUserInfo() {
+        UserApi.shared.me() {(user, error) in
+            if let error = error {
+                print(error)
+            }
+            else {
+                print("me() success.")
+                
+                //do something
+                _ = user
+                
+                self.kakaoNameLabel.text = user?.kakaoAccount?.profile?.nickname
+                
+//                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
+//                    let data = try? Data(contentsOf: url) {
+//                    self.profileImageView.image = UIImage(data: data)
+//                }
+            }
         }
     }
 }

@@ -1,10 +1,3 @@
-//
-//  LandscapeManager.swift
-//  About-Me-iOS
-//
-//  Created by Apple on 2021/04/07.
-//
-
 import Foundation
 
 class LandscapeManager {

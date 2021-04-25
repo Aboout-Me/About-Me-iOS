@@ -19,6 +19,8 @@
 		185B65B3261DA8020016E2EA /* ConciergeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65B2261DA8020016E2EA /* ConciergeViewController.swift */; };
 		185B65B7261DAA550016E2EA /* LandscapeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65B6261DAA550016E2EA /* LandscapeManager.swift */; };
 		185B65C8261DDF530016E2EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65C7261DDF530016E2EA /* OnboardingViewController.swift */; };
+		189D8843262862630097C4A9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D8842262862630097C4A9 /* TestViewController.swift */; };
+		18B040AA2635EB890018FF12 /* AdditionalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		185B65B2261DA8020016E2EA /* ConciergeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConciergeViewController.swift; sourceTree = "<group>"; };
 		185B65B6261DAA550016E2EA /* LandscapeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeManager.swift; sourceTree = "<group>"; };
 		185B65C7261DDF530016E2EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		189D8842262862630097C4A9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalProfileViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +85,7 @@
 				0715A341260CD1860077882A /* AppDelegate.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
 				0715A34A260CD1870077882A /* Assets.xcassets */,
+				189D8842262862630097C4A9 /* TestViewController.swift */,
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
 				0715A34F260CD1870077882A /* Info.plist */,
 			);
@@ -92,6 +97,7 @@
 			children = (
 				185B6593261D8EFF0016E2EA /* Onboarding.storyboard */,
 				185B65C7261DDF530016E2EA /* OnboardingViewController.swift */,
+				18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -259,8 +265,10 @@
 			files = (
 				185B65C8261DDF530016E2EA /* OnboardingViewController.swift in Sources */,
 				0715A346260CD1860077882A /* LoginViewController.swift in Sources */,
+				189D8843262862630097C4A9 /* TestViewController.swift in Sources */,
 				185B65AF261DA5150016E2EA /* Home_tempViewController.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
+				18B040AA2635EB890018FF12 /* AdditionalProfileViewController.swift in Sources */,
 				185B65B7261DAA550016E2EA /* LandscapeManager.swift in Sources */,
 				185B65B3261DA8020016E2EA /* ConciergeViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,

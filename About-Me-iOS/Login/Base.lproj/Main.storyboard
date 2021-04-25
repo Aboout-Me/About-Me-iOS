@@ -33,7 +33,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="onKakaoLoginByAppTouched:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zbK-Hj-KNr"/>
+                                    <action selector="kakaoLoginButtionDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WrS-qw-E9s"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cB0-VQ-Hud">
@@ -47,7 +47,7 @@
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="login:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7ND-TH-Hck"/>
+                                    <action selector="naverLoginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vJq-F0-bth"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1l8-Fo-IId">
@@ -90,9 +90,17 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="네이버 로그아웃"/>
                                 <connections>
-                                    <action selector="logout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eSZ-Vp-Oyj"/>
+                                    <action selector="naevrLogoutButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rsX-lN-Pga"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="카카오 이름" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EBr-rc-VXJ">
+                                <rect key="frame" x="37" y="133" width="78" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -110,11 +118,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailLabel" destination="oDq-ie-wL6" id="iSg-m7-hMq"/>
-                        <outlet property="id" destination="EFr-AW-IfX" id="Zal-cn-6zo"/>
-                        <outlet property="kakaologinButton" destination="dgh-m0-vZs" id="hwn-oc-SYB"/>
-                        <outlet property="nameLabel" destination="brJ-6u-GqU" id="yFj-rP-1UK"/>
-                        <outlet property="naverloingButton" destination="cB0-VQ-Hud" id="TL2-kQ-DPu"/>
+                        <outlet property="kakaoNameLabel" destination="EBr-rc-VXJ" id="noX-ss-Ngj"/>
+                        <outlet property="kakaologinButton" destination="dgh-m0-vZs" id="ZRR-Df-kky"/>
+                        <outlet property="naverEmailLabel" destination="oDq-ie-wL6" id="IQx-SU-nde"/>
+                        <outlet property="naverIdLabel" destination="EFr-AW-IfX" id="DC4-1G-TDP"/>
+                        <outlet property="naverNameLabel" destination="brJ-6u-GqU" id="IZe-tF-Asv"/>
+                        <outlet property="naverloginButton" destination="cB0-VQ-Hud" id="XEX-YA-L1B"/>
+                        <outlet property="naverlogoutButton" destination="7cW-oa-J99" id="JXr-I1-RXt"/>
                         <outlet property="tmpImage" destination="mo2-PM-K9o" id="bxV-3X-RDp"/>
                     </connections>
                 </viewController>
