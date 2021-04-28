@@ -14,6 +14,7 @@
 		0715A34B260CD1870077882A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34A260CD1870077882A /* Assets.xcassets */; };
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
+		FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */; };
 		FF68A723262C5CDB007253E0 /* feed@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF68A722262C5CDB007253E0 /* feed@1x.png */; };
 		FF68A726262C5DAA007253E0 /* lock@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF68A725262C5DAA007253E0 /* lock@1x.png */; };
 		FF68A729262C5F94007253E0 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = FF68A728262C5F94007253E0 /* heart.png */; };
@@ -46,6 +47,7 @@
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
 		FF68A722262C5CDB007253E0 /* feed@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "feed@1x.png"; sourceTree = "<group>"; };
 		FF68A725262C5DAA007253E0 /* lock@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lock@1x.png"; sourceTree = "<group>"; };
 		FF68A728262C5F94007253E0 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 				FF8960692616066000CB6492 /* SocialViewController.swift */,
 				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 				FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */,
+				FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */,
 			);
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
+				FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
