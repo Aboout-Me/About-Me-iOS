@@ -7,15 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		07044F9F26248DE700539686 /* AdvisoryNewAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07044F9D26248DE700539686 /* AdvisoryNewAnswerCell.swift */; };
-		07044FA026248DE700539686 /* AdvisoryNewAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07044F9E26248DE700539686 /* AdvisoryNewAnswerCell.xib */; };
 		0715A342260CD1860077882A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715A341260CD1860077882A /* AppDelegate.swift */; };
 		0715A344260CD1860077882A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715A343260CD1860077882A /* SceneDelegate.swift */; };
 		0715A346260CD1860077882A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715A345260CD1860077882A /* ViewController.swift */; };
 		0715A349260CD1860077882A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A347260CD1860077882A /* Main.storyboard */; };
 		0715A34B260CD1870077882A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34A260CD1870077882A /* Assets.xcassets */; };
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
-		077AFCD1261B5109001B8941 /* AdvisoryAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */; };
+		0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB37263AC5C20082A20D /* AdvisoryApiService.swift */; };
+		0725AB3C263AC7880082A20D /* AdvisoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB3B263AC7880082A20D /* AdvisoryList.swift */; };
+		0725AB40263AD4A10082A20D /* NoAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB3E263AD4A10082A20D /* NoAnswerCell.swift */; };
+		0725AB41263AD4A10082A20D /* NoAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0725AB3F263AD4A10082A20D /* NoAnswerCell.xib */; };
+		0725AB44263ADB630082A20D /* AdvisoryAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB42263ADB630082A20D /* AdvisoryAnswerCell.swift */; };
+		0725AB45263ADB630082A20D /* AdvisoryAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0725AB43263ADB630082A20D /* AdvisoryAnswerCell.xib */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
@@ -26,8 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		07044F9D26248DE700539686 /* AdvisoryNewAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryNewAnswerCell.swift; sourceTree = "<group>"; };
-		07044F9E26248DE700539686 /* AdvisoryNewAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvisoryNewAnswerCell.xib; sourceTree = "<group>"; };
 		0715A33E260CD1860077882A /* About-Me-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "About-Me-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0715A341260CD1860077882A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0715A343260CD1860077882A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,7 +37,12 @@
 		0715A34A260CD1870077882A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0715A34D260CD1870077882A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0715A34F260CD1870077882A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerCell.swift; sourceTree = "<group>"; };
+		0725AB37263AC5C20082A20D /* AdvisoryApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryApiService.swift; sourceTree = "<group>"; };
+		0725AB3B263AC7880082A20D /* AdvisoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryList.swift; sourceTree = "<group>"; };
+		0725AB3E263AD4A10082A20D /* NoAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnswerCell.swift; sourceTree = "<group>"; };
+		0725AB3F263AD4A10082A20D /* NoAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoAnswerCell.xib; sourceTree = "<group>"; };
+		0725AB42263ADB630082A20D /* AdvisoryAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerCell.swift; sourceTree = "<group>"; };
+		0725AB43263ADB630082A20D /* AdvisoryAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvisoryAnswerCell.xib; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,14 +103,41 @@
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
 		};
+		0725AB39263AC7480082A20D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB37263AC5C20082A20D /* AdvisoryApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0725AB3A263AC7530082A20D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB3B263AC7880082A20D /* AdvisoryList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0725AB3D263AD4830082A20D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB3E263AD4A10082A20D /* NoAnswerCell.swift */,
+				0725AB3F263AD4A10082A20D /* NoAnswerCell.xib */,
+				0725AB42263ADB630082A20D /* AdvisoryAnswerCell.swift */,
+				0725AB43263ADB630082A20D /* AdvisoryAnswerCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		077AFCCF261B50D6001B8941 /* AdvisoryAnswer */ = {
 			isa = PBXGroup;
 			children = (
+				0725AB3A263AC7530082A20D /* Model */,
+				0725AB39263AC7480082A20D /* Service */,
+				0725AB3D263AD4830082A20D /* View */,
 				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
-				077AFCD0261B5109001B8941 /* AdvisoryAnswerCell.swift */,
 				07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */,
-				07044F9D26248DE700539686 /* AdvisoryNewAnswerCell.swift */,
-				07044F9E26248DE700539686 /* AdvisoryNewAnswerCell.xib */,
 			);
 			path = AdvisoryAnswer;
 			sourceTree = "<group>";
@@ -186,8 +219,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
-				07044FA026248DE700539686 /* AdvisoryNewAnswerCell.xib in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
+				0725AB41263AD4A10082A20D /* NoAnswerCell.xib in Resources */,
+				0725AB45263ADB630082A20D /* AdvisoryAnswerCell.xib in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,14 +278,16 @@
 				0715A346260CD1860077882A /* ViewController.swift in Sources */,
 				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
 				FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */,
+				0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */,
+				0725AB40263AD4A10082A20D /* NoAnswerCell.swift in Sources */,
 				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
-				07044F9F26248DE700539686 /* AdvisoryNewAnswerCell.swift in Sources */,
+				0725AB44263ADB630082A20D /* AdvisoryAnswerCell.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
-				077AFCD1261B5109001B8941 /* AdvisoryAnswerCell.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
+				0725AB3C263AC7880082A20D /* AdvisoryList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -400,14 +436,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XKA22N2KHA;
+				DEVELOPMENT_TEAM = S3646H7837;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hyeoni.About-Me-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "hyeonlee.About-Me-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -421,14 +457,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XKA22N2KHA;
+				DEVELOPMENT_TEAM = S3646H7837;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "hyeoni.About-Me-iOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "hyeonlee.About-Me-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
