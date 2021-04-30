@@ -26,6 +26,12 @@
 		FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
 		FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF89606C261606F000CB6492 /* MyProfileViewController.swift */; };
+		FFA7CEE8263C04510021DD29 /* Arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEE7263C04510021DD29 /* Arrow.png */; };
+		FFA7CEEC263C04570021DD29 /* Arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEEA263C04570021DD29 /* Arrow@2x.png */; };
+		FFA7CEED263C04570021DD29 /* Arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEEB263C04570021DD29 /* Arrow@3x.png */; };
+		FFA7CEF0263C109A0021DD29 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEEF263C10990021DD29 /* Settings.png */; };
+		FFA7CEF4263C10A00021DD29 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEF2263C10A00021DD29 /* Settings@2x.png */; };
+		FFA7CEF5263C10A00021DD29 /* Settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEF3263C10A00021DD29 /* Settings@3x.png */; };
 		FFAE74C526287CAD0054CB2D /* Vector.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C426287CAD0054CB2D /* Vector.png */; };
 		FFAE74C826287D2B0054CB2D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C726287D2B0054CB2D /* icon.png */; };
 		FFAE74CB2628AF7C0054CB2D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CA2628AF7C0054CB2D /* check.png */; };
@@ -59,6 +65,12 @@
 		FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerViewController.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		FF89606C261606F000CB6492 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
+		FFA7CEE7263C04510021DD29 /* Arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Arrow.png; sourceTree = "<group>"; };
+		FFA7CEEA263C04570021DD29 /* Arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow@2x.png"; sourceTree = "<group>"; };
+		FFA7CEEB263C04570021DD29 /* Arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Arrow@3x.png"; sourceTree = "<group>"; };
+		FFA7CEEF263C10990021DD29 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
+		FFA7CEF2263C10A00021DD29 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
+		FFA7CEF3263C10A00021DD29 /* Settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@3x.png"; sourceTree = "<group>"; };
 		FFAE74C426287CAD0054CB2D /* Vector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vector.png; sourceTree = "<group>"; };
 		FFAE74C726287D2B0054CB2D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		FFAE74CA2628AF7C0054CB2D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -115,8 +127,8 @@
 				FF896061261603FB00CB6492 /* QuestionsViewController.swift */,
 				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
 				FF8960692616066000CB6492 /* SocialViewController.swift */,
-				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 				FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */,
+				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 				FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */,
 			);
 			path = "About-Me-iOS";
@@ -142,6 +154,12 @@
 		FFAE74C326287CA10054CB2D /* ImgaeFile */ = {
 			isa = PBXGroup;
 			children = (
+				FFA7CEF2263C10A00021DD29 /* Settings@2x.png */,
+				FFA7CEF3263C10A00021DD29 /* Settings@3x.png */,
+				FFA7CEEF263C10990021DD29 /* Settings.png */,
+				FFA7CEEA263C04570021DD29 /* Arrow@2x.png */,
+				FFA7CEEB263C04570021DD29 /* Arrow@3x.png */,
+				FFA7CEE7263C04510021DD29 /* Arrow.png */,
 				FF68A728262C5F94007253E0 /* heart.png */,
 				FF68A725262C5DAA007253E0 /* lock@1x.png */,
 				FF68A722262C5CDB007253E0 /* feed@1x.png */,
@@ -223,17 +241,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFA7CEF0263C109A0021DD29 /* Settings.png in Resources */,
 				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
 				FF68A729262C5F94007253E0 /* heart.png in Resources */,
+				FFA7CEEC263C04570021DD29 /* Arrow@2x.png in Resources */,
 				FF68A723262C5CDB007253E0 /* feed@1x.png in Resources */,
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
+				FFA7CEF4263C10A00021DD29 /* Settings@2x.png in Resources */,
 				FF68A726262C5DAA007253E0 /* lock@1x.png in Resources */,
 				FFAE74CB2628AF7C0054CB2D /* check.png in Resources */,
 				FFAE74C826287D2B0054CB2D /* icon.png in Resources */,
 				FFAE74C526287CAD0054CB2D /* Vector.png in Resources */,
+				FFA7CEED263C04570021DD29 /* Arrow@3x.png in Resources */,
+				FFA7CEE8263C04510021DD29 /* Arrow.png in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
+				FFA7CEF5263C10A00021DD29 /* Settings@3x.png in Resources */,
 				FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

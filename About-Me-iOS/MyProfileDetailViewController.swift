@@ -39,19 +39,34 @@ class MyProfileDetailViewController: UIViewController {
     @IBOutlet weak var myProfileCharacterLevelLabelFive: UILabel!
     @IBOutlet weak var myProfileDayCategoryTitleLabel: UILabel!
     @IBOutlet weak var myProfileDayCategoryContainerView: UIView!
+    @IBOutlet weak var myProfileWeeklyTitleLabel: UILabel!
+    @IBOutlet weak var myProfileWeeklyNextButton: UIButton!
+    @IBOutlet weak var myProfileWeeklyLine: UIView!
+    @IBOutlet weak var myProfileWeeklyPreviousButton: UIButton!
+    @IBOutlet weak var myProfileWeeklyMonImageView: UIImageView!
+    @IBOutlet weak var myProfileWeeklyTueImageView: UIImageView!
+    @IBOutlet weak var myProfileWeeklyWedImageView: UIImageView!
+    @IBOutlet weak var myProfileWeeklyThuImageView: UIImageView!
+    @IBOutlet weak var myProfileWeeklyFriImageView: UIImageView!
+    @IBOutlet weak var myProfileWeeklySatImageView: UIImageView!
+    @IBOutlet weak var myProfileWeeklySunImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setDetailLayoutInit()
+        self.setCategoryViewLayoutInit()
+        self.setWeeklyViewLayoutInit()
         
     }
     
     
-    private func setDetailLayoutInit() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+    private func setCategoryViewLayoutInit() {
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Settings.png"), style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.layoutIfNeeded()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
         self.navigationItem.title = "MY"
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!]
         self.myProfiletTitleLabel.text = "빨간 질문을 많이 답한 당신은..."
@@ -131,6 +146,10 @@ class MyProfileDetailViewController: UIViewController {
         self.myProfileCharacterProgressViewFive.transform = CGAffineTransform(scaleX: 1, y: 1.5)
         self.myProfileCharacterProgressViewFive.tintColor = UIColor(red: 169/255, green: 107/255, blue: 249/255, alpha: 1.0)
         self.myProfileCharacterProgressViewFive.progress = 0.5
+        
+    }
+    
+    private func setWeeklyViewLayoutInit() {
         self.myProfileDayCategoryTitleLabel.text = "요일별 통계"
         self.myProfileDayCategoryTitleLabel.textColor = UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0)
         self.myProfileDayCategoryTitleLabel.textAlignment = .left
@@ -141,5 +160,17 @@ class MyProfileDetailViewController: UIViewController {
         self.myProfileDayCategoryContainerView.layer.shadowRadius = 8
         self.myProfileDayCategoryContainerView.layer.shadowColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1).cgColor
         self.myProfileDayCategoryContainerView.layer.shadowOpacity = 0.8
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy년MM월"
+        let dateString = dateFormatter.string(from: date)
+        self.myProfileWeeklyTitleLabel.text = "\(dateString) 첫째주"
+        self.myProfileWeeklyTitleLabel.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
+        self.myProfileWeeklyTitleLabel.textAlignment = .center
+        self.myProfileWeeklyTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow.png"), for: .normal)
+        self.myProfileWeeklyLine.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        
     }
+    
 }
