@@ -32,6 +32,8 @@
 		FFA7CEF0263C109A0021DD29 /* Settings.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEEF263C10990021DD29 /* Settings.png */; };
 		FFA7CEF4263C10A00021DD29 /* Settings@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEF2263C10A00021DD29 /* Settings@2x.png */; };
 		FFA7CEF5263C10A00021DD29 /* Settings@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEF3263C10A00021DD29 /* Settings@3x.png */; };
+		FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */; };
+		FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */; };
 		FFAE74C526287CAD0054CB2D /* Vector.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C426287CAD0054CB2D /* Vector.png */; };
 		FFAE74C826287D2B0054CB2D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C726287D2B0054CB2D /* icon.png */; };
 		FFAE74CB2628AF7C0054CB2D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CA2628AF7C0054CB2D /* check.png */; };
@@ -71,6 +73,8 @@
 		FFA7CEEF263C10990021DD29 /* Settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Settings.png; sourceTree = "<group>"; };
 		FFA7CEF2263C10A00021DD29 /* Settings@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@2x.png"; sourceTree = "<group>"; };
 		FFA7CEF3263C10A00021DD29 /* Settings@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Settings@3x.png"; sourceTree = "<group>"; };
+		FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
+		FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		FFAE74C426287CAD0054CB2D /* Vector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vector.png; sourceTree = "<group>"; };
 		FFAE74C726287D2B0054CB2D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		FFAE74CA2628AF7C0054CB2D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 			children = (
 				FFAE74C326287CA10054CB2D /* ImgaeFile */,
 				FFFDB823261F233800947C44 /* Mainxib */,
+				FFA7CEF8263C5B690021DD29 /* ProfileXib */,
 				0715A341260CD1860077882A /* AppDelegate.swift */,
 				FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
@@ -149,6 +154,15 @@
 				4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFA7CEF8263C5B690021DD29 /* ProfileXib */ = {
+			isa = PBXGroup;
+			children = (
+				FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */,
+				FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */,
+			);
+			path = ProfileXib;
 			sourceTree = "<group>";
 		};
 		FFAE74C326287CA10054CB2D /* ImgaeFile */ = {
@@ -243,6 +257,7 @@
 			files = (
 				FFA7CEF0263C109A0021DD29 /* Settings.png in Resources */,
 				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
+				FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */,
 				FF68A729262C5F94007253E0 /* heart.png in Resources */,
 				FFA7CEEC263C04570021DD29 /* Arrow@2x.png in Resources */,
 				FF68A723262C5CDB007253E0 /* feed@1x.png in Resources */,
@@ -317,6 +332,7 @@
 				FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */,
 				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
+				FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,

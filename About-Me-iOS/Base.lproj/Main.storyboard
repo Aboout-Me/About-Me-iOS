@@ -398,21 +398,57 @@
                                 <rect key="frame" x="0.0" y="341" width="414" height="521"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uof-sr-v29">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uof-sr-v29">
                                         <rect key="frame" x="39" y="10" width="112" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuz-ak-VZC">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuz-ak-VZC">
                                         <rect key="frame" x="151" y="10" width="112" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ue-QU-muJ">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2ue-QU-muJ">
                                         <rect key="frame" x="263" y="10" width="112" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Button"/>
                                     </button>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LAH-nb-Db0">
+                                        <rect key="frame" x="64" y="48" width="62" height="2"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-sT-erE">
+                                        <rect key="frame" x="0.0" y="109" width="414" height="412"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kMp-w6-qrH">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Phb-vY-PxW">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jzM-VO-LpR">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -422,14 +458,19 @@
                     </view>
                     <connections>
                         <outlet property="detailPushButton" destination="wFj-WB-Xix" id="Z4Q-5m-psT"/>
+                        <outlet property="myProfileBottomLineView" destination="LAH-nb-Db0" id="4mI-jY-LPv"/>
                         <outlet property="myProfileBoxView" destination="CQl-Sg-iUN" id="2qo-Kx-Yi4"/>
                         <outlet property="myProfileCharacterContentLabel" destination="waD-nk-Vj3" id="d9P-pc-4JW"/>
                         <outlet property="myProfileCharacterNameLabel" destination="Idh-lt-lIg" id="I8D-5N-DM3"/>
                         <outlet property="myProfileCharacterTagFirst" destination="c3R-W6-YVQ" id="5cc-8y-DsJ"/>
                         <outlet property="myProfileCharacterTagSecond" destination="yib-gr-B1n" id="AIj-o8-41w"/>
                         <outlet property="myProfileCharacterTagThird" destination="qDG-FE-3sq" id="MA0-hL-sSk"/>
+                        <outlet property="myProfileCollectionView" destination="hRP-sT-erE" id="pYY-cI-vlr"/>
                         <outlet property="myProfileContainerView" destination="2Oj-LL-8OV" id="0m0-D4-yxM"/>
                         <outlet property="myProfileContentContainerView" destination="zhh-u4-2W8" id="pOs-r3-fqa"/>
+                        <outlet property="myProfileMyAnswerButton" destination="uof-sr-v29" id="INK-xP-mtk"/>
+                        <outlet property="myProfileMyLikeButton" destination="fuz-ak-VZC" id="oPS-yw-EzT"/>
+                        <outlet property="myProfileMyScrapButton" destination="2ue-QU-muJ" id="UEc-Hm-Yeh"/>
                         <outlet property="myProfileNickNameLabel" destination="EIm-EQ-lsA" id="9bm-a3-1Ob"/>
                     </connections>
                 </viewController>
