@@ -12,6 +12,7 @@ import Floaty
 
 class ViewController: UIViewController, UITextViewDelegate {
     var sideMenu: SideMenuNavigationController?
+    @IBOutlet weak var mainBackgroundImageView: UIImageView!
     @IBOutlet weak var mainFloatingButton: Floaty!
     @IBOutlet var mainBottomSheet: HomeBottomSheet!
     public var questionTitleText: String = ""
@@ -45,24 +46,30 @@ class ViewController: UIViewController, UITextViewDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let dateString = dateFormatter.string(from: date)
-        self.navigationItem.title = dateString
+        self.navigationController?.navigationBar.topItem?.title = dateString
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        self.navigationController?.hero.isEnabled = true
-        self.navigationController?.navigationBar.tintColor = UIColor.lightGray
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
+        self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
         self.mainCollectionView.delegate = self
+        self.mainCollectionView.backgroundColor = UIColor.clear
         self.mainCollectionView.dataSource = self
         self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
-        self.mainFloatingButton.addItem("내 피드", icon: UIImage(named: "feed.png"))
-        self.mainFloatingButton.addItem("자문 자답", icon: UIImage(named: "lock.png")) { item in
+        self.mainFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.mainFloatingButton.plusColor = UIColor.white
+        self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
+        self.mainFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "heart.png"))
-        self.view.backgroundColor = UIColor.red
-        self.mainCollectionView.backgroundColor = UIColor.red
+        self.mainFloatingButton.addItem("내 피드", icon: UIImage(named: "Feed.png"))
     }
     private func mainBottomSheetLayoutInit() {
         let questionToolBar = UIToolbar()
@@ -73,7 +80,8 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 2)
         self.mainBottomSheet.questionTitleLabel.text = "Q. \(self.questionTitleText)"
         self.mainBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.mainBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSans-Medium", size: 24)
+        self.mainBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        self.mainBottomSheet.questionTitleLabel.numberOfLines = 0
         self.mainBottomSheet.questionTitleLabel.textAlignment = .left
         self.mainBottomSheet.questionTextView.delegate = self
         self.mainBottomSheet.questionTextView.text = "당신의 생각을 말해주세요"
@@ -99,7 +107,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         UserDefaults.standard.set(self.mainBottomSheet.questionTextView.text, forKey: "myQuestionText")
         self.mainBottomSheet.questionTextView.resignFirstResponder()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.2)
+            self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.05)
         })
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
@@ -152,7 +160,9 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! MainCollectionViewCell
         cell.mainTitleLabel.text = "인생의 가장 큰 목표는 무엇인가요?"
         cell.mainCharacterLabel.text = "프로 열정러"
-        
+        cell.mainCharacterTagFirstButton.setTitle("#열정", for: .normal)
+        cell.mainCharacterTagSecondButton.setTitle("#진로", for: .normal)
+        cell.mainCharacterTagThirdButton.setTitle("#미래", for: .normal)
         return cell
     }
     
@@ -164,18 +174,21 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
         window?.addSubview(self.mainBottomSheet)
         self.mainBottomSheetLayoutInit()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height - screenSize.height / 1.2, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+            self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height - screenSize.height / 1.05, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
         })
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 273, height: 548)
+        return CGSize(width: 315, height: 420)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 50, bottom: 0, right: 50)
+    }
 }
 
 
