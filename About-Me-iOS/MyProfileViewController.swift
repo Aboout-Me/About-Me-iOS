@@ -25,6 +25,7 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var myProfileBottomLineView: UIView!
     @IBOutlet weak var myProfileCollectionView: UICollectionView!
     @IBOutlet weak var myProfileImageViewContainer: UIView!
+    @IBOutlet weak var myProfileTagCollectionView: UICollectionView!
     @IBOutlet weak var myProfileImageView: UIImageView!
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
@@ -35,7 +36,6 @@ class MyProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
     }
-    
     
     private func setInitLayout() {
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Settings.png"), style: .plain, target: self, action: nil)
@@ -48,9 +48,14 @@ class MyProfileViewController: UIViewController {
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationItem.title = "MY"
         let nib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
+        let nib2 = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
         self.myProfileCollectionView.register(nib, forCellWithReuseIdentifier: "MyProfileCell")
+        self.myProfileTagCollectionView.register(nib2, forCellWithReuseIdentifier: "MyProfileTagCell")
         self.myProfileCollectionView.delegate = self
         self.myProfileCollectionView.dataSource = self
+        self.myProfileTagCollectionView.delegate = self
+        self.myProfileTagCollectionView.dataSource = self
+        self.myProfileTagCollectionView.showsHorizontalScrollIndicator = false
         self.myProfileContainerView.backgroundColor = UIColor(red: 226/255, green: 49/255, blue: 34/255, alpha: 1.0)
         self.myProfileBoxView.layer.cornerRadius = 15
         self.myProfileBoxView.layer.masksToBounds = false
@@ -214,23 +219,62 @@ class MyProfileViewController: UIViewController {
 
 extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        if collectionView == self.myProfileCollectionView {
+            return 5
+        } else {
+            return 5
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let myProfileCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileCell", for: indexPath) as? MyProfileCollectionViewCell
-        myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
-        myProfileCell?.myProfileQuestionTitleLabel.text = "Q. 당신에게 가족은 어떤 의미인가요?"
-        myProfileCell?.myProfileContentDateLabel.text = "2021.03.19"
-        
-        return myProfileCell!
+        if collectionView == self.myProfileCollectionView {
+            let myProfileCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileCell", for: indexPath) as? MyProfileCollectionViewCell
+            myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
+            myProfileCell?.myProfileQuestionTitleLabel.text = "Q. 당신에게 가족은 어떤 의미인가요?"
+            myProfileCell?.myProfileContentDateLabel.text = "2021.03.19"
+            
+            return myProfileCell!
+        } else {
+            let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
+            if indexPath.item == 0 {
+                myProfileTagCell?.myProfileTagButton.isSelected = true
+                myProfileTagCell?.myProfileTagButton.setTitleColor(.white, for: .selected)
+                myProfileTagCell?.myProfileTagButton.backgroundColor =  UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+            }
+            myProfileTagCell?.myProfileTagButton.setTitle("전체", for: .normal)
+            return myProfileTagCell!
+        }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == self.myProfileCollectionView {
+            // 추가 예정
+            
+        } else {
+            let myProfileTagCell = collectionView.cellForItem(at: indexPath) as? MyProfileTagCollectionViewCell
+            if indexPath.item != 0 {
+                myProfileTagCell?.myProfileTagButton.isSelected = false
+                myProfileTagCell?.myProfileTagButton.setTitleColor(UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), for: .normal)
+                myProfileTagCell?.myProfileTagButton.backgroundColor = .white
+            }
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .right)
+        }
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 335, height: 100)
+        if collectionView == self.myProfileCollectionView {
+            return CGSize(width: 335, height: 100)
+        } else {
+            return CGSize(width: 100, height: 29)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        if collectionView == self.myProfileCollectionView {
+            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else {
+            return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 10)
+        }
     }
     
     

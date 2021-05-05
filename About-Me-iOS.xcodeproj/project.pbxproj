@@ -42,6 +42,8 @@
 		FFFC0FA12641B66600C6372F /* CharacterRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */; };
 		FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9F2641B66600C6372F /* CharacterRed.png */; };
 		FFFC0FA32641B66600C6372F /* CharacterRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */; };
+		FFFC0FA72642C1F800C6372F /* MyProfileTagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFC0FA52642C1F800C6372F /* MyProfileTagCollectionViewCell.swift */; };
+		FFFC0FA82642C1F800C6372F /* MyProfileTagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0FA62642C1F800C6372F /* MyProfileTagCollectionViewCell.xib */; };
 		FFFDB826261F235100947C44 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* MainCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* MainCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -86,6 +88,8 @@
 		FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@3x.png"; sourceTree = "<group>"; };
 		FFFC0F9F2641B66600C6372F /* CharacterRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterRed.png; sourceTree = "<group>"; };
 		FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@2x.png"; sourceTree = "<group>"; };
+		FFFC0FA52642C1F800C6372F /* MyProfileTagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileTagCollectionViewCell.swift; sourceTree = "<group>"; };
+		FFFC0FA62642C1F800C6372F /* MyProfileTagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileTagCollectionViewCell.xib; sourceTree = "<group>"; };
 		FFFDB824261F235100947C44 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFFDB825261F235100947C44 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -167,6 +171,8 @@
 			children = (
 				FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */,
 				FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */,
+				FFFC0FA52642C1F800C6372F /* MyProfileTagCollectionViewCell.swift */,
+				FFFC0FA62642C1F800C6372F /* MyProfileTagCollectionViewCell.xib */,
 			);
 			path = ProfileXib;
 			sourceTree = "<group>";
@@ -273,6 +279,7 @@
 				FFFC0FA32641B66600C6372F /* CharacterRed@2x.png in Resources */,
 				FF68A723262C5CDB007253E0 /* feed@1x.png in Resources */,
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
+				FFFC0FA82642C1F800C6372F /* MyProfileTagCollectionViewCell.xib in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
 				FFA7CEF4263C10A00021DD29 /* Settings@2x.png in Resources */,
 				FF68A726262C5DAA007253E0 /* lock@1x.png in Resources */,
@@ -347,6 +354,7 @@
 				FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
+				FFFC0FA72642C1F800C6372F /* MyProfileTagCollectionViewCell.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
