@@ -24,6 +24,8 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var myProfileMyScrapButton: UIButton!
     @IBOutlet weak var myProfileBottomLineView: UIView!
     @IBOutlet weak var myProfileCollectionView: UICollectionView!
+    @IBOutlet weak var myProfileImageViewContainer: UIView!
+    @IBOutlet weak var myProfileImageView: UIImageView!
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -63,6 +65,10 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterContentLabel.text = "안녕하세요. 저는 다양한 분야에 관심이 많고,  경험하는 것을 좋아하는 프로 열정러입니다!"
         self.myProfileCharacterContentLabel.numberOfLines = 0
         self.myProfileCharacterContentLabel.textColor = UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0)
+        self.myProfileImageViewContainer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.myProfileImageViewContainer.layer.cornerRadius = self.myProfileImageViewContainer.frame.size.width / 2
+        self.myProfileImageViewContainer.layer.masksToBounds = true
+        self.myProfileImageView.image = UIImage(named: "CharacterRed.png")
         self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         self.myProfileCharacterContentLabel.textAlignment = .left
         self.myProfileNickNameLabel.text = "@ dohyun"
@@ -71,9 +77,24 @@ class MyProfileViewController: UIViewController {
         self.myProfileNickNameLabel.textAlignment = .left
         self.detailPushButton.setImage(UIImage(named: "Arrow.png"), for: .normal)
         self.detailPushButton.addTarget(self, action: #selector(self.didTapdetailPushButton), for: .touchUpInside)
-        self.myProfileCharacterTagFirst.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
-        self.myProfileCharacterTagSecond.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
-        self.myProfileCharacterTagThird.backgroundColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0)
+        self.myProfileCharacterTagFirst.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+        self.myProfileCharacterTagFirst.layer.borderWidth = 1
+        self.myProfileCharacterTagFirst.layer.cornerRadius = 3
+        self.myProfileCharacterTagFirst.layer.masksToBounds = true
+        self.myProfileCharacterTagFirst.setTitle("#열정", for: .normal)
+        self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        self.myProfileCharacterTagSecond.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+        self.myProfileCharacterTagSecond.layer.borderWidth = 1
+        self.myProfileCharacterTagSecond.layer.cornerRadius = 3
+        self.myProfileCharacterTagSecond.layer.masksToBounds = true
+        self.myProfileCharacterTagSecond.setTitle("#진로", for: .normal)
+        self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        self.myProfileCharacterTagThird.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
+        self.myProfileCharacterTagThird.layer.borderWidth = 1
+        self.myProfileCharacterTagThird.layer.cornerRadius = 3
+        self.myProfileCharacterTagThird.layer.masksToBounds = true
+        self.myProfileCharacterTagThird.setTitle("#미래", for: .normal)
+        self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
         self.myProfileContentContainerView.layer.cornerRadius = 25
         self.myProfileContentContainerView.layer.masksToBounds = true
         self.myProfileMyAnswerButton.isSelected = true

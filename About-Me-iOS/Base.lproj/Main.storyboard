@@ -347,10 +347,6 @@
                                         <rect key="frame" x="20" y="109" width="374" height="206"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xE5-fq-num">
-                                                <rect key="frame" x="25" y="35" width="70" height="70"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Idh-lt-lIg">
                                                 <rect key="frame" x="115" y="41" width="62" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -388,6 +384,17 @@
                                                 <rect key="frame" x="191" y="164" width="35" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             </button>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="phJ-Ye-TnO">
+                                                <rect key="frame" x="25" y="35" width="70" height="70"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xE5-fq-num">
+                                                        <rect key="frame" x="15" y="15" width="39.5" height="39.5"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </view>
@@ -468,6 +475,8 @@
                         <outlet property="myProfileCollectionView" destination="hRP-sT-erE" id="pYY-cI-vlr"/>
                         <outlet property="myProfileContainerView" destination="2Oj-LL-8OV" id="0m0-D4-yxM"/>
                         <outlet property="myProfileContentContainerView" destination="zhh-u4-2W8" id="pOs-r3-fqa"/>
+                        <outlet property="myProfileImageView" destination="xE5-fq-num" id="STB-CV-6NE"/>
+                        <outlet property="myProfileImageViewContainer" destination="phJ-Ye-TnO" id="sLy-i1-Drw"/>
                         <outlet property="myProfileMyAnswerButton" destination="uof-sr-v29" id="INK-xP-mtk"/>
                         <outlet property="myProfileMyLikeButton" destination="fuz-ak-VZC" id="oPS-yw-EzT"/>
                         <outlet property="myProfileMyScrapButton" destination="2ue-QU-muJ" id="UEc-Hm-Yeh"/>

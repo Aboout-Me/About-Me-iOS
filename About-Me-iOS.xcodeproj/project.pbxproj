@@ -39,6 +39,9 @@
 		FFAE74CB2628AF7C0054CB2D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CA2628AF7C0054CB2D /* check.png */; };
 		FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CD2628B0CE0054CB2D /* delete.png */; };
 		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
+		FFFC0FA12641B66600C6372F /* CharacterRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */; };
+		FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9F2641B66600C6372F /* CharacterRed.png */; };
+		FFFC0FA32641B66600C6372F /* CharacterRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */; };
 		FFFDB826261F235100947C44 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* MainCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* MainCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -80,6 +83,9 @@
 		FFAE74CA2628AF7C0054CB2D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		FFAE74CD2628B0CE0054CB2D /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
+		FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@3x.png"; sourceTree = "<group>"; };
+		FFFC0F9F2641B66600C6372F /* CharacterRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterRed.png; sourceTree = "<group>"; };
+		FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@2x.png"; sourceTree = "<group>"; };
 		FFFDB824261F235100947C44 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFFDB825261F235100947C44 /* MainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -168,6 +174,9 @@
 		FFAE74C326287CA10054CB2D /* ImgaeFile */ = {
 			isa = PBXGroup;
 			children = (
+				FFFC0F9F2641B66600C6372F /* CharacterRed.png */,
+				FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */,
+				FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */,
 				FFA7CEF2263C10A00021DD29 /* Settings@2x.png */,
 				FFA7CEF3263C10A00021DD29 /* Settings@3x.png */,
 				FFA7CEEF263C10990021DD29 /* Settings.png */,
@@ -256,10 +265,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFA7CEF0263C109A0021DD29 /* Settings.png in Resources */,
+				FFFC0FA12641B66600C6372F /* CharacterRed@3x.png in Resources */,
 				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
 				FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */,
 				FF68A729262C5F94007253E0 /* heart.png in Resources */,
 				FFA7CEEC263C04570021DD29 /* Arrow@2x.png in Resources */,
+				FFFC0FA32641B66600C6372F /* CharacterRed@2x.png in Resources */,
 				FF68A723262C5CDB007253E0 /* feed@1x.png in Resources */,
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
@@ -272,6 +283,7 @@
 				FFA7CEE8263C04510021DD29 /* Arrow.png in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
+				FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */,
 				FFA7CEF5263C10A00021DD29 /* Settings@3x.png in Resources */,
 				FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */,
 			);
