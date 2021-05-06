@@ -13,6 +13,14 @@
 		0715A349260CD1860077882A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A347260CD1860077882A /* Main.storyboard */; };
 		0715A34B260CD1870077882A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34A260CD1870077882A /* Assets.xcassets */; };
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
+		0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB37263AC5C20082A20D /* AdvisoryApiService.swift */; };
+		0725AB3C263AC7880082A20D /* AdvisoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB3B263AC7880082A20D /* AdvisoryList.swift */; };
+		0725AB40263AD4A10082A20D /* NoAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB3E263AD4A10082A20D /* NoAnswerCell.swift */; };
+		0725AB41263AD4A10082A20D /* NoAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0725AB3F263AD4A10082A20D /* NoAnswerCell.xib */; };
+		0725AB44263ADB630082A20D /* AdvisoryAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0725AB42263ADB630082A20D /* AdvisoryAnswerCell.swift */; };
+		0725AB45263ADB630082A20D /* AdvisoryAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0725AB43263ADB630082A20D /* AdvisoryAnswerCell.xib */; };
+		0751A66426441545004E635C /* AdvisoryPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0751A66326441545004E635C /* AdvisoryPostList.swift */; };
+		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
 		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
@@ -66,6 +74,14 @@
 		0715A34A260CD1870077882A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0715A34D260CD1870077882A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0715A34F260CD1870077882A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0725AB37263AC5C20082A20D /* AdvisoryApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryApiService.swift; sourceTree = "<group>"; };
+		0725AB3B263AC7880082A20D /* AdvisoryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryList.swift; sourceTree = "<group>"; };
+		0725AB3E263AD4A10082A20D /* NoAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoAnswerCell.swift; sourceTree = "<group>"; };
+		0725AB3F263AD4A10082A20D /* NoAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoAnswerCell.xib; sourceTree = "<group>"; };
+		0725AB42263ADB630082A20D /* AdvisoryAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerCell.swift; sourceTree = "<group>"; };
+		0725AB43263ADB630082A20D /* AdvisoryAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvisoryAnswerCell.xib; sourceTree = "<group>"; };
+		0751A66326441545004E635C /* AdvisoryPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryPostList.swift; sourceTree = "<group>"; };
+		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -148,6 +164,7 @@
 				FFFC0F77264193A800C6372F /* Font */,
 				FFAE74C326287CA10054CB2D /* ImgaeFile */,
 				FFFDB823261F233800947C44 /* Mainxib */,
+				077AFCCF261B50D6001B8941 /* AdvisoryAnswer */,
 				0715A341260CD1860077882A /* AppDelegate.swift */,
 				FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
@@ -165,6 +182,46 @@
 				FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */,
 			);
 			path = "About-Me-iOS";
+			sourceTree = "<group>";
+		};
+		0725AB39263AC7480082A20D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB37263AC5C20082A20D /* AdvisoryApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		0725AB3A263AC7530082A20D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB3B263AC7880082A20D /* AdvisoryList.swift */,
+				0751A66326441545004E635C /* AdvisoryPostList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0725AB3D263AD4830082A20D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB3E263AD4A10082A20D /* NoAnswerCell.swift */,
+				0725AB3F263AD4A10082A20D /* NoAnswerCell.xib */,
+				0725AB42263ADB630082A20D /* AdvisoryAnswerCell.swift */,
+				0725AB43263ADB630082A20D /* AdvisoryAnswerCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		077AFCCF261B50D6001B8941 /* AdvisoryAnswer */ = {
+			isa = PBXGroup;
+			children = (
+				0725AB3A263AC7530082A20D /* Model */,
+				0725AB39263AC7480082A20D /* Service */,
+				0725AB3D263AD4830082A20D /* View */,
+				FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */,
+				07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */,
+			);
+			path = AdvisoryAnswer;
 			sourceTree = "<group>";
 		};
 		E45D6508C2D62EF6EF67D7BC /* Pods */ = {
@@ -320,6 +377,8 @@
 				FFFC0F7C264193CE00C6372F /* GmarketSansBold.otf in Resources */,
 				FFFC0F922641A63400C6372F /* Write.png in Resources */,
 				FFAE74C526287CAD0054CB2D /* Vector.png in Resources */,
+				0725AB41263AD4A10082A20D /* NoAnswerCell.xib in Resources */,
+				0725AB45263ADB630082A20D /* AdvisoryAnswerCell.xib in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
 				FFFC0F902641A63400C6372F /* Write@3x.png in Resources */,
 				FFFC0F7A264193CB00C6372F /* GmarketSansMedium.otf in Resources */,
@@ -386,9 +445,14 @@
 				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				0715A346260CD1860077882A /* ViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* MainCollectionViewCell.swift in Sources */,
+				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
 				FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */,
+				0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */,
+				0725AB40263AD4A10082A20D /* NoAnswerCell.swift in Sources */,
 				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
+				0725AB44263ADB630082A20D /* AdvisoryAnswerCell.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
+				0751A66426441545004E635C /* AdvisoryPostList.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
@@ -396,6 +460,7 @@
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
+				0725AB3C263AC7880082A20D /* AdvisoryList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
