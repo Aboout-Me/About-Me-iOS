@@ -38,9 +38,10 @@ class AdvisoryQuestionViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     
     @IBOutlet weak var titleView: UIView!
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet weak var titleTextView: UITextView!
+    
     @IBOutlet weak var questionView: UIView!
-    @IBOutlet weak var questionTextField: UITextField!
+    @IBOutlet weak var questionTextView: UITextView!
     
     @IBOutlet weak var limitLabel: UILabel!
     @IBOutlet weak var answerTextView: UITextView!
@@ -73,6 +74,8 @@ class AdvisoryQuestionViewController: UIViewController {
         
         self.levelLabel.text = "\(self.questionNumber)/10 단계"
         
+        self.titleTextView.delegate = self
+        self.questionTextView.delegate = self
         self.answerTextView.delegate = self
         
         self.closeButton.addTarget(self, action: #selector(closeButtonDidTap(_:)),
@@ -80,12 +83,15 @@ class AdvisoryQuestionViewController: UIViewController {
         self.saveButton.addTarget(self, action: #selector(saveButtonDidTap(_:)),
                                   for: .touchUpInside)
         
+        self.titleTextView.centerVertically()
+        self.questionTextView.centerVertically()
+        
         if self.advisoryTitle != "" {
-            self.titleTextField.text = self.advisoryTitle
+            self.titleTextView.text = self.advisoryTitle
         }
         
         if let str = self.questionDictionary[self.questionNumber] {
-            self.questionTextField.text = str
+            self.questionTextView.text = str
         }
         
         if let str = self.answerDictionary[self.questionNumber] {
@@ -235,10 +241,10 @@ class AdvisoryQuestionViewController: UIViewController {
     // MARK: - Helpers
     
     private func tempDataWillSave() {
-        self.advisoryTitle = self.titleTextField.text ?? ""
+        self.advisoryTitle = self.titleTextView.text ?? ""
         
         if limitLabel.text != "0/500" {
-            guard let question = questionTextField.text else { return }
+            guard let question = self.questionTextView.text else { return }
             questionDictionary[self.questionNumber] = question
             
             guard let answer = answerTextView.text else { return }
@@ -305,5 +311,15 @@ extension AdvisoryQuestionViewController: UITextViewDelegate {
             textView.text = "답변을 적어주세요 :)"
             textView.textColor = UIColor.systemGray3
         }
+    }
+}
+
+extension UITextView {
+    func centerVertically() {
+        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
+        let size = sizeThatFits(fittingSize)
+        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
+        let positiveTopOffset = max(1, topOffset)
+        contentOffset.y = -positiveTopOffset
     }
 }

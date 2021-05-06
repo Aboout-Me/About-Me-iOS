@@ -27,6 +27,12 @@
 		0751A67026443515004E635C /* advisory@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A66A26443515004E635C /* advisory@2x.png */; };
 		0751A67126443515004E635C /*  alert-circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A66B26443515004E635C /*  alert-circle@2x.png */; };
 		0751A67226443515004E635C /* advisory@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A66C26443515004E635C /* advisory@3x.png */; };
+		0751A67626443779004E635C /*  close.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67326443779004E635C /*  close.png */; };
+		0751A67726443779004E635C /*  close@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67426443779004E635C /*  close@3x.png */; };
+		0751A67826443779004E635C /*  close@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67526443779004E635C /*  close@2x.png */; };
+		0751A67C26443792004E635C /*  check-mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67926443792004E635C /*  check-mark@2x.png */; };
+		0751A67D26443792004E635C /*  check-mark.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67A26443792004E635C /*  check-mark.png */; };
+		0751A67E26443792004E635C /*  check-mark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67B26443792004E635C /*  check-mark@3x.png */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
@@ -94,6 +100,12 @@
 		0751A66A26443515004E635C /* advisory@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "advisory@2x.png"; sourceTree = "<group>"; };
 		0751A66B26443515004E635C /*  alert-circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " alert-circle@2x.png"; sourceTree = "<group>"; };
 		0751A66C26443515004E635C /* advisory@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "advisory@3x.png"; sourceTree = "<group>"; };
+		0751A67326443779004E635C /*  close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " close.png"; sourceTree = "<group>"; };
+		0751A67426443779004E635C /*  close@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " close@3x.png"; sourceTree = "<group>"; };
+		0751A67526443779004E635C /*  close@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " close@2x.png"; sourceTree = "<group>"; };
+		0751A67926443792004E635C /*  check-mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " check-mark@2x.png"; sourceTree = "<group>"; };
+		0751A67A26443792004E635C /*  check-mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " check-mark.png"; sourceTree = "<group>"; };
+		0751A67B26443792004E635C /*  check-mark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " check-mark@3x.png"; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -261,6 +273,12 @@
 				0751A66826443515004E635C /* advisory.png */,
 				0751A66A26443515004E635C /* advisory@2x.png */,
 				0751A66C26443515004E635C /* advisory@3x.png */,
+				0751A67A26443792004E635C /*  check-mark.png */,
+				0751A67926443792004E635C /*  check-mark@2x.png */,
+				0751A67B26443792004E635C /*  check-mark@3x.png */,
+				0751A67326443779004E635C /*  close.png */,
+				0751A67526443779004E635C /*  close@2x.png */,
+				0751A67426443779004E635C /*  close@3x.png */,
 				FF6922BA264315F700B0B533 /* Edit.png */,
 				FF6922BC264315F700B0B533 /* Edit@2x.png */,
 				FF6922BB264315F700B0B533 /* Edit@3x.png */,
@@ -376,6 +394,8 @@
 				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
 				FFFC0F9A2641A68500C6372F /* SelfQuestion@3x.png in Resources */,
 				FFFC0F8A2641A5B900C6372F /* Feed.png in Resources */,
+				0751A67E26443792004E635C /*  check-mark@3x.png in Resources */,
+				0751A67C26443792004E635C /*  check-mark@2x.png in Resources */,
 				FFFC0F912641A63400C6372F /* Write@2x.png in Resources */,
 				FFFC0F73264192E200C6372F /* imgBackgroundRed.png in Resources */,
 				0751A66F26443515004E635C /*  alert-circle.png in Resources */,
@@ -384,6 +404,7 @@
 				FFFC0F892641A5B900C6372F /* Feed@2x.png in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
 				FFFC0F992641A68500C6372F /* SelfQuestion.png in Resources */,
+				0751A67D26443792004E635C /*  check-mark.png in Resources */,
 				FFFC0F982641A68500C6372F /* SelfQuestion@2x.png in Resources */,
 				FF6922B326430BC600B0B533 /* imgBackgroundYellow.png in Resources */,
 				FFFC0F74264192E200C6372F /* imgBackgroundRed@3x.png in Resources */,
@@ -392,6 +413,7 @@
 				FFAE74CB2628AF7C0054CB2D /* check.png in Resources */,
 				FFAE74C826287D2B0054CB2D /* icon.png in Resources */,
 				FFFC0F75264192E200C6372F /* imgBackgroundRed@2x.png in Resources */,
+				0751A67626443779004E635C /*  close.png in Resources */,
 				FFFC0F8326419BEE00C6372F /* FloatingPlus.png in Resources */,
 				FFFC0F7C264193CE00C6372F /* GmarketSansBold.otf in Resources */,
 				FFFC0F922641A63400C6372F /* Write.png in Resources */,
@@ -406,11 +428,13 @@
 				FFFC0F8126419BEE00C6372F /* FloatingPlus@3x.png in Resources */,
 				0751A66E26443515004E635C /* advisory.png in Resources */,
 				FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */,
+				0751A67826443779004E635C /*  close@2x.png in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */,
 				0751A67226443515004E635C /* advisory@3x.png in Resources */,
 				0751A66D26443515004E635C /*  alert-circle@3x.png in Resources */,
 				FF6922B126430BC600B0B533 /* imgBackgroundYellow@2x.png in Resources */,
+				0751A67726443779004E635C /*  close@3x.png in Resources */,
 				FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

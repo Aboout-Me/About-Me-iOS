@@ -549,20 +549,20 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gfX-2a-IAt">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gVM-4P-dee">
-                                                <rect key="frame" x="20" y="19" width="17.5" height="22"/>
+                                                <rect key="frame" x="20" y="23" width="24" height="24"/>
                                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="xmark" catalog="system"/>
+                                                <state key="normal" image=" close.png"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-pB-TLs">
-                                                <rect key="frame" x="375.5" y="19" width="18.5" height="22"/>
+                                                <rect key="frame" x="370" y="23" width="24" height="24"/>
                                                 <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <state key="normal" image="checkmark" catalog="system"/>
+                                                <state key="normal" image=" check-mark.png"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1/10 단계" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S9q-nc-VZ6">
-                                                <rect key="frame" x="173.5" y="19.5" width="67.5" height="21.5"/>
+                                                <rect key="frame" x="173.5" y="24.5" width="67.5" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -573,51 +573,57 @@
                                             <constraint firstAttribute="trailing" secondItem="zjW-pB-TLs" secondAttribute="trailing" constant="20" id="65C-lh-gRQ"/>
                                             <constraint firstItem="S9q-nc-VZ6" firstAttribute="centerY" secondItem="gfX-2a-IAt" secondAttribute="centerY" id="boV-Gh-ybJ"/>
                                             <constraint firstItem="gVM-4P-dee" firstAttribute="centerY" secondItem="gfX-2a-IAt" secondAttribute="centerY" id="cpn-iO-cFr"/>
-                                            <constraint firstAttribute="height" constant="60" id="jKP-3Y-ZzD"/>
+                                            <constraint firstAttribute="height" constant="70" id="jKP-3Y-ZzD"/>
                                             <constraint firstItem="S9q-nc-VZ6" firstAttribute="centerX" secondItem="gfX-2a-IAt" secondAttribute="centerX" id="mla-xz-ADd"/>
                                             <constraint firstItem="zjW-pB-TLs" firstAttribute="centerY" secondItem="gfX-2a-IAt" secondAttribute="centerY" id="s35-xW-VHJ"/>
                                             <constraint firstItem="gVM-4P-dee" firstAttribute="leading" secondItem="gfX-2a-IAt" secondAttribute="leading" constant="20" id="yTE-7i-HkV"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptR-Kj-lrg">
-                                        <rect key="frame" x="0.0" y="60" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="70" width="414" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="(무엇에 대한 고민이신가요?)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="naB-C3-CyP">
-                                                <rect key="frame" x="20" y="20.5" width="374" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="무엇에 대한 고민인가요? e.g. 진로, 직장, 관계" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lNo-GP-cIX">
+                                                <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="systemGray3Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="naB-C3-CyP" firstAttribute="leading" secondItem="ptR-Kj-lrg" secondAttribute="leading" constant="20" id="Ad4-E0-Edu"/>
-                                            <constraint firstItem="naB-C3-CyP" firstAttribute="centerY" secondItem="ptR-Kj-lrg" secondAttribute="centerY" id="UHc-sa-qRK"/>
-                                            <constraint firstAttribute="height" constant="60" id="ZIm-ig-wkQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="naB-C3-CyP" secondAttribute="trailing" constant="20" id="kbA-YM-Sbv"/>
+                                            <constraint firstItem="lNo-GP-cIX" firstAttribute="leading" secondItem="ptR-Kj-lrg" secondAttribute="leading" constant="20" id="3bk-1b-EiN"/>
+                                            <constraint firstItem="lNo-GP-cIX" firstAttribute="top" secondItem="ptR-Kj-lrg" secondAttribute="top" id="45a-xo-vBt"/>
+                                            <constraint firstAttribute="height" constant="50" id="ZIm-ig-wkQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="lNo-GP-cIX" secondAttribute="bottom" id="okI-1s-LOj"/>
+                                            <constraint firstAttribute="trailing" secondItem="lNo-GP-cIX" secondAttribute="trailing" constant="20" id="sTp-QR-Rw0"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pR2-kt-bia">
-                                        <rect key="frame" x="0.0" y="120" width="414" height="60"/>
+                                        <rect key="frame" x="0.0" y="120" width="414" height="50"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="지금 현재 상태는 어떤가요?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gjE-9Y-Qg7">
-                                                <rect key="frame" x="20" y="20.5" width="374" height="19.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="지금 현재 상태는 어떤가요?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kYB-jy-k6x">
+                                                <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <color key="textColor" systemColor="systemGray3Color"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            </textView>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="gjE-9Y-Qg7" firstAttribute="centerY" secondItem="pR2-kt-bia" secondAttribute="centerY" id="QBb-Nw-97H"/>
-                                            <constraint firstAttribute="height" constant="60" id="h2w-8g-vXV"/>
-                                            <constraint firstItem="gjE-9Y-Qg7" firstAttribute="leading" secondItem="pR2-kt-bia" secondAttribute="leading" constant="20" id="j32-du-smQ"/>
-                                            <constraint firstAttribute="trailing" secondItem="gjE-9Y-Qg7" secondAttribute="trailing" constant="20" id="v9h-fN-rxS"/>
+                                            <constraint firstAttribute="trailing" secondItem="kYB-jy-k6x" secondAttribute="trailing" constant="20" id="FzS-io-u3Q"/>
+                                            <constraint firstItem="kYB-jy-k6x" firstAttribute="leading" secondItem="pR2-kt-bia" secondAttribute="leading" constant="20" id="e1R-oY-1A0"/>
+                                            <constraint firstAttribute="height" constant="50" id="h2w-8g-vXV"/>
+                                            <constraint firstItem="kYB-jy-k6x" firstAttribute="top" secondItem="pR2-kt-bia" secondAttribute="top" id="y11-3N-Zy4"/>
+                                            <constraint firstAttribute="bottom" secondItem="kYB-jy-k6x" secondAttribute="bottom" id="zQb-bA-xxK"/>
                                         </constraints>
                                     </view>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="답변을 적어주세요 :)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MyJ-mY-gHA">
-                                        <rect key="frame" x="20" y="180" width="374" height="588"/>
+                                        <rect key="frame" x="20" y="190" width="374" height="578"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="systemGray3Color"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0/500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QnE-d6-4Ke">
@@ -643,7 +649,7 @@
                                     <constraint firstItem="wEy-lP-Tv3" firstAttribute="top" secondItem="QnE-d6-4Ke" secondAttribute="bottom" constant="20" id="Lzr-uj-5LT"/>
                                     <constraint firstItem="MyJ-mY-gHA" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" constant="20" id="PZY-64-ReM"/>
                                     <constraint firstAttribute="trailing" secondItem="gfX-2a-IAt" secondAttribute="trailing" id="UsE-4h-zhs"/>
-                                    <constraint firstItem="MyJ-mY-gHA" firstAttribute="top" secondItem="pR2-kt-bia" secondAttribute="bottom" id="Wla-kQ-9kT"/>
+                                    <constraint firstItem="MyJ-mY-gHA" firstAttribute="top" secondItem="pR2-kt-bia" secondAttribute="bottom" constant="20" id="Wla-kQ-9kT"/>
                                     <constraint firstAttribute="trailing" secondItem="MyJ-mY-gHA" secondAttribute="trailing" constant="20" id="fpb-gU-qiB"/>
                                     <constraint firstAttribute="bottom" secondItem="wEy-lP-Tv3" secondAttribute="bottom" id="kOS-FS-Zqk"/>
                                     <constraint firstItem="ptR-Kj-lrg" firstAttribute="top" secondItem="gfX-2a-IAt" secondAttribute="bottom" id="lf3-HI-npo"/>
@@ -676,11 +682,11 @@
                         <outlet property="closeButton" destination="gVM-4P-dee" id="6J6-P4-cIw"/>
                         <outlet property="levelLabel" destination="S9q-nc-VZ6" id="GOe-bb-Wms"/>
                         <outlet property="limitLabel" destination="QnE-d6-4Ke" id="o4a-qL-ZvZ"/>
-                        <outlet property="questionTextField" destination="gjE-9Y-Qg7" id="adY-y3-Jsa"/>
+                        <outlet property="questionTextView" destination="kYB-jy-k6x" id="QSC-DT-NBp"/>
                         <outlet property="questionView" destination="pR2-kt-bia" id="DG4-KY-417"/>
                         <outlet property="roundView" destination="6Tg-zR-8cQ" id="nWz-pA-ikR"/>
                         <outlet property="saveButton" destination="zjW-pB-TLs" id="RSW-D3-kam"/>
-                        <outlet property="titleTextField" destination="naB-C3-CyP" id="T87-Bi-Suy"/>
+                        <outlet property="titleTextView" destination="lNo-GP-cIX" id="d7n-Z7-nWk"/>
                         <outlet property="titleView" destination="ptR-Kj-lrg" id="PRw-IH-BdZ"/>
                     </connections>
                 </viewController>
@@ -720,10 +726,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name=" check-mark.png" width="24" height="24"/>
+        <image name=" close.png" width="24" height="24"/>
         <image name="check.png" width="20" height="14"/>
-        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="delete.png" width="17" height="16"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
