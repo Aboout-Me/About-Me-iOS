@@ -34,12 +34,22 @@ class AdvisoryAnswerViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let questionVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryQuestionVC")
                 as? AdvisoryQuestionViewController else { return }
-        self.navigationController?.pushViewController(questionVC, animated: true)
+        
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        transition.type = CATransitionType.moveIn
+        transition.subtype = CATransitionSubtype.fromTop
+        self.navigationController?.view.layer.add(transition, forKey: nil)
+        
+        questionVC.modalPresentationStyle = .custom
+        self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
     // MARK: - Helpers
     
     private func configure() {
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "advisory")!)
         let noAnswerNib = UINib(nibName: "NoAnswerCell", bundle: nil)
         advisoryAnswerTableView.register(noAnswerNib, forCellReuseIdentifier: "noAnswerCell")
         let answerNib = UINib(nibName: "AdvisoryAnswerCell", bundle: nil)
@@ -53,16 +63,7 @@ class AdvisoryAnswerViewController: UIViewController {
         advisoryAnswerTableView.dataSource = self
         advisoryAnswerTableView.delegate = self
         
-        let bounds = CGRect(x: self.sectionHeaderView.bounds.minX,
-                            y: self.sectionHeaderView.bounds.minY,
-                            width: self.sectionHeaderView.bounds.width + 14,
-                            height: self.sectionHeaderView.bounds.height)
-        let path = UIBezierPath(roundedRect: bounds,
-                                byRoundingCorners: [UIRectCorner.topLeft, UIRectCorner.topRight],
-                                cornerRadii: CGSize(width: 20, height: 20))
-        let mask = CAShapeLayer()
-        mask.path = path.cgPath
-        self.sectionHeaderView.layer.mask = mask
+        self.sectionHeaderView.roundCorners([.topLeft, .topRight], radius: 20)
         self.sectionHeaderLabel.textColor = UIColor(white: 85.0 / 255.0, alpha: 1.0)
         
         //        self.newButton.setTitle("NEW", for: .normal)
@@ -127,7 +128,7 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
                 cell.finishView.tintColor = UIColor(white: 34.0 / 255.0, alpha: 1.0)
             } else {
                 let attributedString = NSMutableAttributedString(string: rate,
-                                                          attributes: [.foregroundColor: UIColor(white: 34.0 / 255.0, alpha: 1.0)])
+                                                                 attributes: [.foregroundColor: UIColor(white: 34.0 / 255.0, alpha: 1.0)])
                 attributedString.append(NSAttributedString(string: "/10",
                                                            attributes: [.foregroundColor: UIColor(white: 119.0 / 255.0, alpha: 1.0)]))
                 cell.stageLabel.attributedText = attributedString
@@ -156,4 +157,14 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
 
 extension AdvisoryAnswerViewController: UITableViewDelegate {
     
+}
+
+extension UIView {
+    public func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        self.layoutIfNeeded()
+        let path: UIBezierPath = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask: CAShapeLayer = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+    }
 }

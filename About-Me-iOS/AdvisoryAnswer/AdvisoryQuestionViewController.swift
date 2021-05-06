@@ -13,8 +13,7 @@ class CustomButton: UIButton {
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        self.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        self.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         layer.cornerRadius = 5
         backgroundColor = .lightGray
@@ -32,6 +31,8 @@ class AdvisoryQuestionViewController: UIViewController {
     
     // MARK: - Properties
     
+    @IBOutlet weak var roundView: UIView!
+    
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var levelLabel: UILabel!
@@ -39,13 +40,13 @@ class AdvisoryQuestionViewController: UIViewController {
     @IBOutlet weak var titleView: UIView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var questionView: UIView!
-    @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var questionTextField: UITextField!
     
     @IBOutlet weak var limitLabel: UILabel!
     @IBOutlet weak var answerTextView: UITextView!
     
     @IBOutlet weak var buttonView: UIView!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var questionNumber = 1
     
@@ -64,10 +65,13 @@ class AdvisoryQuestionViewController: UIViewController {
     // MARK: - Helpers
     
     private func configure() {
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        self.roundView.roundCorners([.topLeft, .topRight], radius: 20)
         self.navigationController?.isNavigationBarHidden = true
         
         self.levelLabel.text = "\(self.questionNumber)/10 단계"
-        self.questionLabel.text = "질문 \(self.questionNumber)단계"
         
         self.answerTextView.delegate = self
         
@@ -86,7 +90,16 @@ class AdvisoryQuestionViewController: UIViewController {
         
         if let str = self.answerDictionary[self.questionNumber] {
             self.answerTextView.text = str
-            self.limitLabel.text = "\(str.count)/500자"
+            self.answerTextView.textColor = .black
+            let attributedString = NSMutableAttributedString()
+            attributedString.append(NSAttributedString(string: "\(str.count)",
+                                                       attributes: [.foregroundColor: UIColor.black]))
+            attributedString.append(NSAttributedString(string: "/500",
+                                                       attributes: [.foregroundColor: UIColor.lightGray]))
+            self.limitLabel.attributedText = attributedString
+        } else {
+            self.answerTextView.text = "답변을 적어주세요 :)"
+            self.answerTextView.textColor = .systemGray3
         }
         
         for view in buttonView.subviews{
@@ -98,7 +111,8 @@ class AdvisoryQuestionViewController: UIViewController {
             self.view.addSubview(nextButton)
             
             nextButton.translatesAutoresizingMaskIntoConstraints = false
-            nextButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
+            nextButton.leadingAnchor.constraint(equalTo: buttonView.leadingAnchor, constant: 20).isActive = true
+            nextButton.trailingAnchor.constraint(equalTo: buttonView.trailingAnchor, constant: -20).isActive = true
             nextButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
             
             nextButton.addTarget(self, action: #selector(nextButtonDidTap(_:)), for: .touchUpInside)
@@ -107,7 +121,8 @@ class AdvisoryQuestionViewController: UIViewController {
             self.view.addSubview(previousButton)
             
             previousButton.translatesAutoresizingMaskIntoConstraints = false
-            previousButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor).isActive = true
+            previousButton.leadingAnchor.constraint(equalTo: buttonView.leadingAnchor, constant: 20).isActive = true
+            previousButton.trailingAnchor.constraint(equalTo: buttonView.trailingAnchor, constant: -20).isActive = true
             previousButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
             
             previousButton.addTarget(self, action: #selector(previousButtonDidTap(_:)), for: .touchUpInside)
@@ -116,7 +131,6 @@ class AdvisoryQuestionViewController: UIViewController {
             self.view.addSubview(nextButton)
             
             nextButton.translatesAutoresizingMaskIntoConstraints = false
-            nextButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor, constant: 75).isActive = true
             nextButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
             
             nextButton.addTarget(self, action: #selector(nextButtonDidTap(_:)), for: .touchUpInside)
@@ -125,10 +139,14 @@ class AdvisoryQuestionViewController: UIViewController {
             self.view.addSubview(previousButton)
             
             previousButton.translatesAutoresizingMaskIntoConstraints = false
-            previousButton.centerXAnchor.constraint(equalTo: buttonView.centerXAnchor, constant: -75).isActive = true
             previousButton.centerYAnchor.constraint(equalTo: buttonView.centerYAnchor).isActive = true
             
             previousButton.addTarget(self, action: #selector(previousButtonDidTap(_:)), for: .touchUpInside)
+            
+            nextButton.widthAnchor.constraint(equalTo: previousButton.widthAnchor).isActive = true
+            previousButton.leadingAnchor.constraint(equalTo: buttonView.leadingAnchor, constant: 20).isActive = true
+            nextButton.leadingAnchor.constraint(equalTo: previousButton.trailingAnchor, constant: 20).isActive = true
+            nextButton.trailingAnchor.constraint(equalTo: buttonView.trailingAnchor, constant: -20).isActive = true
         }
     }
     
@@ -136,11 +154,11 @@ class AdvisoryQuestionViewController: UIViewController {
     
     @objc
     private func closeButtonDidTap(_ sender: UIButton) {
-        let alert = UIAlertController(title: "작성된 내용이 저장되지 않습니다.", message: "나가시겠습니까?", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "작성중인 내용을\n완료하지 않고 나가시겠습니까?", message: nil, preferredStyle: UIAlertController.Style.alert)
         
-        let cancelAction = UIAlertAction(title: "머물러 있기", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
-        let quitAction = UIAlertAction(title: "나가기", style: .destructive) { _ in
+        let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
             self.closeViewControllers()
         }
         
@@ -152,9 +170,20 @@ class AdvisoryQuestionViewController: UIViewController {
     @objc
     private func saveButtonDidTap(_ sender: UIButton) {
         
-        // SAVE
+        let alert = UIAlertController(title: "글을 저장하시겠어요?", message: nil, preferredStyle: UIAlertController.Style.alert)
         
-        self.closeViewControllers()
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        
+        let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
+            let answerList = self.makeAnswerTemplate()
+            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+                self.closeViewControllers()
+            }
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(quitAction)
+        present(alert, animated: false, completion: nil)
     }
     
     @objc
@@ -164,7 +193,7 @@ class AdvisoryQuestionViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let questionVC = storyboard.instantiateViewController(withIdentifier: "AdvisoryQuestionVC")
                 as? AdvisoryQuestionViewController else { return }
-                
+        
         questionVC.questionNumber = self.questionNumber - 1
         questionVC.advisoryTitle = self.advisoryTitle
         questionVC.questionDictionary = self.questionDictionary
@@ -187,16 +216,34 @@ class AdvisoryQuestionViewController: UIViewController {
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
+    @objc
+    private func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardHeight = keyboardFrame.cgRectValue.height
+            
+            self.bottomConstraint.constant = keyboardHeight
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc
+    private func keyboardWillHide(_ notification: Notification) {
+        self.bottomConstraint.constant = 0
+        self.view.layoutIfNeeded()
+    }
+    
     // MARK: - Helpers
     
     private func tempDataWillSave() {
         self.advisoryTitle = self.titleTextField.text ?? ""
         
-        guard let question = questionTextField.text else { return }
-        questionDictionary[self.questionNumber] = question
-        
-        guard let answer = answerTextView.text else { return }
-        answerDictionary[self.questionNumber] = answer
+        if limitLabel.text != "0/500" {
+            guard let question = questionTextField.text else { return }
+            questionDictionary[self.questionNumber] = question
+            
+            guard let answer = answerTextView.text else { return }
+            answerDictionary[self.questionNumber] = answer
+        }
     }
     
     private func closeViewControllers() {
@@ -208,16 +255,55 @@ class AdvisoryQuestionViewController: UIViewController {
             viewControllers[viewControllers.count - self.questionNumber - 1], animated: false)
     }
     
+    private func makeAnswerTemplate() -> AdvisoryPostList {
+        var answerLists: [AnswerList] = []
+        
+        for (key, value) in questionDictionary {
+            if value != "", let answer = answerDictionary[key], answer != "" {
+                answerLists.append(AnswerList(level: key, question: value, answer: answer))
+            }
+        }
+        
+        return AdvisoryPostList(user: 1, stage: 1, theme: advisoryTitle, answerLists: answerLists)
+    }
+    
 }
 
 extension AdvisoryQuestionViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
-        self.limitLabel.text = "\(textView.text.count)/500자"
+        let attributedString = NSMutableAttributedString()
+        
+        if textView.text.count == 0 {
+            attributedString.append(NSAttributedString(string: "0/500",
+                                                       attributes: [.foregroundColor: UIColor.lightGray]))
+        } else {
+            attributedString.append(NSAttributedString(string: "\(textView.text.count)",
+                                                       attributes: [.foregroundColor: UIColor.black]))
+            attributedString.append(NSAttributedString(string: "/500",
+                                                       attributes: [.foregroundColor: UIColor.lightGray]))
+        }
+        
+        self.limitLabel.attributedText = attributedString
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         guard let str = textView.text else { return true }
         let newLength = str.count + text.count - range.length
         return newLength <= 500
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.systemGray3 {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "답변을 적어주세요 :)"
+            textView.textColor = UIColor.systemGray3
+        }
     }
 }
