@@ -11,6 +11,8 @@ class AdvisoryAnswerViewController: UIViewController {
     
     // MARK: - Properties
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var explanationLabel: UITextView!
     @IBOutlet weak var sectionHeaderView: UIView!
     @IBOutlet weak var sectionHeaderLabel: UILabel!
     @IBOutlet weak var advisoryAnswerTableView: UITableView!
@@ -49,7 +51,9 @@ class AdvisoryAnswerViewController: UIViewController {
     // MARK: - Helpers
     
     private func configure() {
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "advisory")!)
+        self.backgroundImageView.image = UIImage(named: "advisory.png")
+        self.explanationLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        
         let noAnswerNib = UINib(nibName: "NoAnswerCell", bundle: nil)
         advisoryAnswerTableView.register(noAnswerNib, forCellReuseIdentifier: "noAnswerCell")
         let answerNib = UINib(nibName: "AdvisoryAnswerCell", bundle: nil)
@@ -65,6 +69,7 @@ class AdvisoryAnswerViewController: UIViewController {
         
         self.sectionHeaderView.roundCorners([.topLeft, .topRight], radius: 20)
         self.sectionHeaderLabel.textColor = UIColor(white: 85.0 / 255.0, alpha: 1.0)
+        self.sectionHeaderLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
         
         //        self.newButton.setTitle("NEW", for: .normal)
         self.newButton.setTitleColor(UIColor(white: 1.0, alpha: 1.0), for: .normal)

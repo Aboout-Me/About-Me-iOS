@@ -21,6 +21,7 @@ class NoAnswerCell: UITableViewCell {
         
         self.exclamationImage.tintColor = UIColor(white: 153.0 / 255.0, alpha: 1.0)
         self.explanationLabel.textColor = UIColor(white: 119.0 / 255.0, alpha: 1.0)
+        self.explanationLabel.font = UIFont(name: "GmarketSansMedium", size: 15)
     }
     
 }
