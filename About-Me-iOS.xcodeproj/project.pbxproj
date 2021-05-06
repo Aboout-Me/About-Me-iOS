@@ -17,6 +17,15 @@
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
 		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
 		FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */; };
+		FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */; };
+		FF6922B126430BC600B0B533 /* imgBackgroundYellow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922AE26430BC600B0B533 /* imgBackgroundYellow@2x.png */; };
+		FF6922B226430BC600B0B533 /* imgBackgroundYellow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922AF26430BC600B0B533 /* imgBackgroundYellow@3x.png */; };
+		FF6922B326430BC600B0B533 /* imgBackgroundYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922B026430BC600B0B533 /* imgBackgroundYellow.png */; };
+		FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */; };
+		FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */; };
+		FF6922BD264315F700B0B533 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BA264315F700B0B533 /* Edit.png */; };
+		FF6922BE264315F700B0B533 /* Edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BB264315F700B0B533 /* Edit@3x.png */; };
+		FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BC264315F700B0B533 /* Edit@2x.png */; };
 		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF8960672616058D00CB6492 /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */; };
@@ -63,6 +72,15 @@
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
 		FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterCollectionViewCell.xib; sourceTree = "<group>"; };
+		FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAnswerViewController.swift; sourceTree = "<group>"; };
+		FF6922AE26430BC600B0B533 /* imgBackgroundYellow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgBackgroundYellow@2x.png"; sourceTree = "<group>"; };
+		FF6922AF26430BC600B0B533 /* imgBackgroundYellow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imgBackgroundYellow@3x.png"; sourceTree = "<group>"; };
+		FF6922B026430BC600B0B533 /* imgBackgroundYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgBackgroundYellow.png; sourceTree = "<group>"; };
+		FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
+		FF6922BA264315F700B0B533 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
+		FF6922BB264315F700B0B533 /* Edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@3x.png"; sourceTree = "<group>"; };
+		FF6922BC264315F700B0B533 /* Edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@2x.png"; sourceTree = "<group>"; };
 		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		FF8960662616058D00CB6492 /* AdvisoryAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +162,7 @@
 				FF8960692616066000CB6492 /* SocialViewController.swift */,
 				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 				FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */,
+				FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */,
 			);
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
@@ -168,7 +187,13 @@
 		FFAE74C326287CA10054CB2D /* ImgaeFile */ = {
 			isa = PBXGroup;
 			children = (
+				FF6922BA264315F700B0B533 /* Edit.png */,
+				FF6922BC264315F700B0B533 /* Edit@2x.png */,
+				FF6922BB264315F700B0B533 /* Edit@3x.png */,
 				FFFC0F962641A68500C6372F /* SelfQuestion.png */,
+				FF6922B026430BC600B0B533 /* imgBackgroundYellow.png */,
+				FF6922AE26430BC600B0B533 /* imgBackgroundYellow@2x.png */,
+				FF6922AF26430BC600B0B533 /* imgBackgroundYellow@3x.png */,
 				FFFC0F952641A68500C6372F /* SelfQuestion@2x.png */,
 				FFFC0F972641A68500C6372F /* SelfQuestion@3x.png */,
 				FFFC0F8F2641A63400C6372F /* Write.png */,
@@ -207,6 +232,8 @@
 				FFFDB825261F235100947C44 /* MainCollectionViewCell.xib */,
 				FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */,
 				FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */,
+				FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */,
+				FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */,
 			);
 			path = Mainxib;
 			sourceTree = "<group>";
@@ -271,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFFC0F882641A5B900C6372F /* Feed@3x.png in Resources */,
+				FF6922B226430BC600B0B533 /* imgBackgroundYellow@3x.png in Resources */,
 				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
 				FFFC0F9A2641A68500C6372F /* SelfQuestion@3x.png in Resources */,
 				FFFC0F8A2641A5B900C6372F /* Feed.png in Resources */,
@@ -281,7 +309,10 @@
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
 				FFFC0F992641A68500C6372F /* SelfQuestion.png in Resources */,
 				FFFC0F982641A68500C6372F /* SelfQuestion@2x.png in Resources */,
+				FF6922B326430BC600B0B533 /* imgBackgroundYellow.png in Resources */,
 				FFFC0F74264192E200C6372F /* imgBackgroundRed@3x.png in Resources */,
+				FF6922BD264315F700B0B533 /* Edit.png in Resources */,
+				FF6922BE264315F700B0B533 /* Edit@3x.png in Resources */,
 				FFAE74CB2628AF7C0054CB2D /* check.png in Resources */,
 				FFAE74C826287D2B0054CB2D /* icon.png in Resources */,
 				FFFC0F75264192E200C6372F /* imgBackgroundRed@2x.png in Resources */,
@@ -294,8 +325,11 @@
 				FFFC0F7A264193CB00C6372F /* GmarketSansMedium.otf in Resources */,
 				FFFC0F8226419BEE00C6372F /* FloatingPlus@2x.png in Resources */,
 				FFFC0F8126419BEE00C6372F /* FloatingPlus@3x.png in Resources */,
+				FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */,
+				FF6922B126430BC600B0B533 /* imgBackgroundYellow@2x.png in Resources */,
+				FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +382,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */,
 				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				0715A346260CD1860077882A /* ViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* MainCollectionViewCell.swift in Sources */,
@@ -359,6 +394,7 @@
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
+				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

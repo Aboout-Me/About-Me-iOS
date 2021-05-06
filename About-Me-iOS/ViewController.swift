@@ -11,13 +11,14 @@ import Hero
 import Floaty
 
 class ViewController: UIViewController, UITextViewDelegate {
-    var sideMenu: SideMenuNavigationController?
     @IBOutlet weak var mainBackgroundImageView: UIImageView!
     @IBOutlet weak var mainFloatingButton: Floaty!
     @IBOutlet var mainBottomSheet: HomeBottomSheet!
+    @IBOutlet weak var mainCollectionView: UICollectionView!
+    @IBOutlet weak var mainLastAnswerButton: UIButton!
+    public var sideMenu: SideMenuNavigationController?
     public var questionTitleText: String = ""
     public var screenSize = UIScreen.main.bounds.size
-    @IBOutlet weak var mainCollectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setLayoutInit()
@@ -60,6 +61,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainCollectionView.backgroundColor = UIColor.clear
         self.mainCollectionView.dataSource = self
         self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
+        self.mainCollectionView.showsHorizontalScrollIndicator = false
         self.mainFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.mainFloatingButton.plusColor = UIColor.white
         self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
@@ -70,7 +72,16 @@ class ViewController: UIViewController, UITextViewDelegate {
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
         self.mainFloatingButton.addItem("내 피드", icon: UIImage(named: "Feed.png"))
+        self.mainLastAnswerButton.backgroundColor = .white
+        self.mainLastAnswerButton.layer.cornerRadius = 15
+        self.mainLastAnswerButton.layer.masksToBounds = true
+        self.mainLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
+        self.mainLastAnswerButton.setTitleColor(.black, for: .normal)
+        self.mainLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        self.mainLastAnswerButton.addTarget(self, action: #selector(self.showLastAnswerButtonDidTap), for: .touchUpInside)
     }
+    
+    
     private func mainBottomSheetLayoutInit() {
         let questionToolBar = UIToolbar()
         let fiexedButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -132,6 +143,14 @@ class ViewController: UIViewController, UITextViewDelegate {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
         })
+    }
+    
+    @objc func showLastAnswerButtonDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let lastAnswerView = storyboard.instantiateViewController(identifier: "LastAnswerVC") as? LastAnswerViewController
+        guard let lastAnswerVC = lastAnswerView else { return }
+        self.navigationController?.pushViewController(lastAnswerVC, animated: true)
+        
     }
     
     
