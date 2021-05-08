@@ -480,6 +480,11 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nr-5s-nvu" customClass="Floaty" customModule="Floaty">
+                                <rect key="frame" x="354" y="812" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dhP-Rw-bEd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -496,6 +501,7 @@
                         <outlet property="myProfileCollectionView" destination="hRP-sT-erE" id="pYY-cI-vlr"/>
                         <outlet property="myProfileContainerView" destination="2Oj-LL-8OV" id="0m0-D4-yxM"/>
                         <outlet property="myProfileContentContainerView" destination="zhh-u4-2W8" id="pOs-r3-fqa"/>
+                        <outlet property="myProfileFloatingButton" destination="4nr-5s-nvu" id="CF3-LZ-pbR"/>
                         <outlet property="myProfileImageView" destination="xE5-fq-num" id="STB-CV-6NE"/>
                         <outlet property="myProfileImageViewContainer" destination="phJ-Ye-TnO" id="sLy-i1-Drw"/>
                         <outlet property="myProfileMyAnswerButton" destination="uof-sr-v29" id="INK-xP-mtk"/>

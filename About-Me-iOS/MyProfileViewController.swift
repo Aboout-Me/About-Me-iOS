@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Floaty
 
 class MyProfileViewController: UIViewController {
     
@@ -27,6 +28,7 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var myProfileImageViewContainer: UIView!
     @IBOutlet weak var myProfileTagCollectionView: UICollectionView!
     @IBOutlet weak var myProfileImageView: UIImageView!
+    @IBOutlet weak var myProfileFloatingButton: Floaty!
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -67,15 +69,17 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterNameLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileCharacterNameLabel.textAlignment = .left
         self.myProfileCharacterNameLabel.font = UIFont(name: "GmarketSans-Medium", size: 16)
-        self.myProfileCharacterContentLabel.text = "안녕하세요. 저는 다양한 분야에 관심이 많고,  경험하는 것을 좋아하는 프로 열정러입니다!"
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
         self.myProfileCharacterContentLabel.numberOfLines = 0
         self.myProfileCharacterContentLabel.textColor = UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0)
+        self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
+        self.myProfileCharacterContentLabel.textAlignment = .left
+        self.myProfileCharacterContentLabel.attributedText = NSAttributedString(string: "안녕하세요. 저는 다양한 분야에 관심이 많고,  경험하는 것을 좋아하는 프로 열정러입니다!", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         self.myProfileImageViewContainer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileImageViewContainer.layer.cornerRadius = self.myProfileImageViewContainer.frame.size.width / 2
         self.myProfileImageViewContainer.layer.masksToBounds = true
         self.myProfileImageView.image = UIImage(named: "CharacterRed.png")
-        self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
-        self.myProfileCharacterContentLabel.textAlignment = .left
         self.myProfileNickNameLabel.text = "@ dohyun"
         self.myProfileNickNameLabel.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
         self.myProfileNickNameLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
@@ -88,18 +92,21 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterTagFirst.layer.masksToBounds = true
         self.myProfileCharacterTagFirst.setTitle("#열정", for: .normal)
         self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        self.myProfileCharacterTagFirst.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.myProfileCharacterTagSecond.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         self.myProfileCharacterTagSecond.layer.borderWidth = 1
         self.myProfileCharacterTagSecond.layer.cornerRadius = 3
         self.myProfileCharacterTagSecond.layer.masksToBounds = true
         self.myProfileCharacterTagSecond.setTitle("#진로", for: .normal)
         self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        self.myProfileCharacterTagSecond.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.myProfileCharacterTagThird.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         self.myProfileCharacterTagThird.layer.borderWidth = 1
         self.myProfileCharacterTagThird.layer.cornerRadius = 3
         self.myProfileCharacterTagThird.layer.masksToBounds = true
         self.myProfileCharacterTagThird.setTitle("#미래", for: .normal)
         self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        self.myProfileCharacterTagThird.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.myProfileContentContainerView.layer.cornerRadius = 25
         self.myProfileContentContainerView.layer.masksToBounds = true
         self.myProfileMyAnswerButton.isSelected = true
@@ -126,6 +133,16 @@ class MyProfileViewController: UIViewController {
         self.myProfileMyLikeButton.addTarget(self, action: #selector(self.didTapMyLikeButton(_:)), for: .touchUpInside)
         self.myProfileMyScrapButton.addTarget(self, action: #selector(self.didTapMyScrapButton(_:)), for: .touchUpInside)
         self.myProfileMyAnswerButton.addTarget(self, action: #selector(self.didTapMyAnswerButton(_:)), for: .touchUpInside)
+        self.myProfileFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.myProfileFloatingButton.plusColor = UIColor.white
+        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "feed.png"))
+        self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "lock.png")) { item in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
+            guard let advisoryAnswerVC = advisoryAnswerView else { return }
+            self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
+        }
+        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "heart.png"))
     }
     
     @objc
@@ -232,14 +249,17 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
             myProfileCell?.myProfileQuestionTitleLabel.text = "Q. 당신에게 가족은 어떤 의미인가요?"
             myProfileCell?.myProfileContentDateLabel.text = "2021.03.19"
+            myProfileCell?.myProfileContentImageView.image = UIImage(named: "Lock.png")
             
             return myProfileCell!
         } else {
             let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
             if indexPath.item == 0 {
                 myProfileTagCell?.myProfileTagButton.isSelected = true
+                myProfileTagCell?.myProfileTagButton.layer.borderColor = UIColor.clear.cgColor
                 myProfileTagCell?.myProfileTagButton.setTitleColor(.white, for: .selected)
                 myProfileTagCell?.myProfileTagButton.backgroundColor =  UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             }
             myProfileTagCell?.myProfileTagButton.setTitle("전체", for: .normal)
             return myProfileTagCell!

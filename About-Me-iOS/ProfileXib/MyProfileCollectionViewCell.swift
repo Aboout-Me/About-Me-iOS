@@ -11,6 +11,7 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myProfileListContentView: UIView!
     @IBOutlet weak var myProfileContentTitleLabel: UILabel!
     @IBOutlet weak var myProfileContentDateLabel: UILabel!
+    @IBOutlet weak var myProfileContentImageView: UIImageView!
     @IBOutlet weak var myProfileQuestionTitleLabel: UILabel!
     
     override func awakeFromNib() {

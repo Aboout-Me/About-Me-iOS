@@ -41,6 +41,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a9D-cJ-LEC">
+                                <rect key="frame" x="315" y="80" width="10" height="10"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -55,6 +59,7 @@
             </constraints>
             <connections>
                 <outlet property="myProfileContentDateLabel" destination="kla-Le-w0X" id="Viu-Hi-8NU"/>
+                <outlet property="myProfileContentImageView" destination="a9D-cJ-LEC" id="0iK-1T-pkM"/>
                 <outlet property="myProfileContentTitleLabel" destination="gvH-0J-klC" id="Kmz-Gv-AnI"/>
                 <outlet property="myProfileListContentView" destination="rgL-It-9M2" id="NLC-Tf-iTv"/>
                 <outlet property="myProfileQuestionTitleLabel" destination="FzO-WN-Pe1" id="JrS-A8-5Lo"/>
