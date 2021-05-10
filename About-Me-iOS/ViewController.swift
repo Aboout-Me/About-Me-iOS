@@ -19,20 +19,13 @@ class ViewController: UIViewController, UITextViewDelegate {
     private var homeData = [HomeCardListModel]()
     public var sideMenu: SideMenuNavigationController?
     public var questionTitleText: String = ""
-    public var selectIndexPath: Int = 0
+    public let lineSpacing: CGFloat = 40
     public var screenSize = UIScreen.main.bounds.size
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getHomeCardList()
         self.setLayoutInit()
         self.setSideMenuLayoutInit()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.hero.isEnabled = true
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.hero.isEnabled = false
     }
     
     private func setSideMenuLayoutInit() {
@@ -60,11 +53,21 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
         self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+        let cellWidth = floor(view.frame.width * 0.7)
+        let layout = HomeCollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = self.lineSpacing
+        layout.itemSize = CGSize(width: cellWidth, height: 420)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 60)
+        self.mainCollectionView.collectionViewLayout = layout
+        self.mainCollectionView.allowsMultipleSelection = true
         self.mainCollectionView.delegate = self
-        self.mainCollectionView.backgroundColor = UIColor.clear
         self.mainCollectionView.dataSource = self
+        self.mainCollectionView.backgroundColor = UIColor.clear
         self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
         self.mainCollectionView.showsHorizontalScrollIndicator = false
+        self.mainCollectionView.isPagingEnabled = false
+        self.mainCollectionView.decelerationRate = .fast
         self.mainFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.mainFloatingButton.plusColor = UIColor.white
         self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
@@ -164,7 +167,8 @@ class ViewController: UIViewController, UITextViewDelegate {
         })
     }
     
-    @objc func showLastAnswerButtonDidTap() {
+    @objc
+    private func showLastAnswerButtonDidTap() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let lastAnswerView = storyboard.instantiateViewController(identifier: "LastAnswerVC") as? LastAnswerViewController
         guard let lastAnswerVC = lastAnswerView else { return }
@@ -189,7 +193,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     
 }
 
-extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.homeData.count
     }
@@ -199,7 +203,6 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! MainCollectionViewCell
         print("색상 테스트\(self.homeData[indexPath.item].color)")
         if self.homeData[indexPath.item].color == "red" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
             cell.mainCharacterLabel.text = "프로 열정러"
             cell.mainCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
             cell.mainCharacterTagFirstButton.setTitle("#열정", for: .normal)
@@ -208,10 +211,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
             cell.mainCharacterTagThirdButton.setTitle("#미래", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
-        }
-        
-        if self.homeData[indexPath.item].color == "yellow"{
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+        } else if self.homeData[indexPath.item].color == "yellow" {
             cell.mainCharacterLabel.text = "소소한 일상"
             cell.mainCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
             cell.mainCharacterTagFirstButton.setTitle("#일상", for: .normal)
@@ -220,9 +220,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
             cell.mainCharacterTagThirdButton.setTitle("#취향", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
-        }
-        
-        if self.homeData[indexPath.item].color == "green" {
+        } else if self.homeData[indexPath.item].color == "green" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
             cell.mainCharacterLabel.text = "기억상자"
             cell.mainCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
@@ -233,9 +231,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagThirdButton.setTitle("#위로", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
             
-        }
-        
-        if self.homeData[indexPath.item].color == "pink" {
+        } else if self.homeData[indexPath.item].color == "pink" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
             cell.mainCharacterLabel.text = "관계의 미학"
             cell.mainCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
@@ -245,9 +241,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
             cell.mainCharacterTagThirdButton.setTitle("#가치관", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
-        }
-        
-        if self.homeData[indexPath.item].color == "purple" {
+        } else if self.homeData[indexPath.item].color == "purple" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
             cell.mainCharacterLabel.text = "상상 플러스"
             cell.mainCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
@@ -258,9 +252,8 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagThirdButton.setTitle("#희망", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
         }
-        
-        
         cell.mainTitleLabel.text = self.homeData[indexPath.item].question
+        
         return cell
     }
     
@@ -276,23 +269,28 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
         })
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 420)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        let cellWidth : CGFloat = 315.0
-        let numberOfCells = floor(collectionView.frame.size.width / cellWidth)
-        let edgeInsets = (collectionView.frame.size.width - (numberOfCells * cellWidth)) / (numberOfCells + 1)
-        return UIEdgeInsets(top: 0, left: edgeInsets, bottom: 0, right: UIScreen.main.bounds.size.width)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 100
+    func scrollViewDidScroll(_ scrollView:UIScrollView) {
+        let midX:CGFloat = scrollView.bounds.midX
+        let midY:CGFloat = scrollView.bounds.midY
+        let point:CGPoint = CGPoint(x:midX, y:midY)
+        guard let indexPath = self.mainCollectionView.indexPathForItem(at: point) else { return  }
+        let currentPage:Int = indexPath.item
+        print("colletionView point\(point)")
+        if self.homeData[currentPage].color == "red" {
+            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+        } else if self.homeData[currentPage].color == "yellow" {
+            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+        } else if self.homeData[currentPage].color == "green" {
+            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+        } else if self.homeData[currentPage].color == "pink" {
+            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+        } else if self.homeData[currentPage].color == "purple" {
+            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+        }
+        
+        let witdh = scrollView.frame.width - (scrollView.contentInset.left*2)
+        let index = scrollView.contentOffset.x / witdh
+        let roundedIndex = round(index)
     }
 }
 
@@ -320,7 +318,7 @@ class BottomNavigationBar: UINavigationBar {
     override func sizeThatFits(_ size: CGSize) -> CGSize {
         return CGSize(width: UIScreen.main.bounds.width, height: self.customHeight)
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         for subview in self.subviews {
@@ -352,5 +350,28 @@ extension UIColor {
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         return image!
+    }
+}
+
+
+class HomeCollectionViewFlowLayout: UICollectionViewFlowLayout {
+    private var previousOffset: CGFloat = 0
+    private var currentPage: Int = 0
+    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+        guard let collectionView = collectionView else {
+            return super.targetContentOffset(forProposedContentOffset: proposedContentOffset, withScrollingVelocity: velocity)
+        }
+        
+        let itemsCount = collectionView.numberOfItems(inSection: 0)
+        if self.previousOffset > collectionView.contentOffset.x && velocity.x < 0 {
+            self.currentPage = max(self.currentPage - 1, 0)
+        } else if previousOffset < collectionView.contentOffset.x && velocity.x > 0 {
+            self.currentPage = min(self.currentPage + 1, itemsCount - 1)
+        }
+        
+        let updatedOffset = (itemSize.width + minimumLineSpacing) * CGFloat(self.currentPage)
+        self.previousOffset = updatedOffset
+        
+        return CGPoint(x: updatedOffset, y: proposedContentOffset.y)
     }
 }
