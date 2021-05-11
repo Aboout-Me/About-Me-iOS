@@ -27,9 +27,6 @@ class MainCollectionViewCell: UICollectionViewCell {
     }
     
     public func setInitLayout() {
-        
-        let ParagraphStyle = NSMutableParagraphStyle()
-        ParagraphStyle.lineSpacing = 2
         self.mainTitleLineView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.mainContainerView.layer.borderColor = UIColor.clear.cgColor
         self.mainContainerView.layer.cornerRadius = 20
@@ -39,7 +36,6 @@ class MainCollectionViewCell: UICollectionViewCell {
         self.mainTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
         self.mainTitleLabel.numberOfLines = 0
         self.mainTitleLabel.textAlignment = .center
-        self.mainTitleLabel.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
         self.mainCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
         self.mainCharacterLabel.textColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
         self.mainCharacterLabel.textAlignment = .center

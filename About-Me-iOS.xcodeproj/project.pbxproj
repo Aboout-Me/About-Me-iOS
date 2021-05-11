@@ -35,6 +35,7 @@
 		0751A67E26443792004E635C /*  check-mark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A67B26443792004E635C /*  check-mark@3x.png */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
+		FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
 		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
 		FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */; };
@@ -112,6 +113,7 @@
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardSaveList.swift; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
 		FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 			children = (
 				FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */,
 				FFF30AA9264682280076BF44 /* HomeCardList.swift */,
+				FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */,
 			);
 			path = ServerApi;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				0751A66426441545004E635C /* AdvisoryPostList.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
+				FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */,
 				0751A66626442EED004E635C /* AdvisoryAnswerViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,

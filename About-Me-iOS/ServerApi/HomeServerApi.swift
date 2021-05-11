@@ -10,13 +10,12 @@ import UIKit
 
 
 struct HomeServerApi {
-    static func getHomeCardList(userId:Int, completionHandler:@escaping(Result<HomeCardList>) -> ()) {
+    static func getHomeCardList(userId:Int, completionHandler: @escaping(Result<HomeCardList>) -> ()) {
         let urlstring:URL = URL(string: "http://3.36.188.237:8080/Board/dailyColors/\(userId)")!
         AF.request(urlstring, method: .get, encoding: JSONEncoding.prettyPrinted)
             .validate()
             .responseData { response in
                 switch response.result {
-                
                 case let .success(response):
                     do {
                         let jsonObject = try JSONSerialization.jsonObject(with: response, options: [])
@@ -30,30 +29,51 @@ struct HomeServerApi {
                             }
                         }
                     } catch {
-                        let requestFailure = Result<HomeCardList>.ErrorType.requestFailure(error: error)
-                        let result = Result<HomeCardList>.failure(type: requestFailure)
+                        let result = Result<HomeCardList>.failure(error: error.localizedDescription)
                         completionHandler(result)
                     }
                 case let .failure(error):
-                    let requestFailure = Result<HomeCardList>.ErrorType.requestFailure(error: error)
-                    let result = Result<HomeCardList>.failure(type: requestFailure)
+                    let result = Result<HomeCardList>.failure(error: error.localizedDescription)
                     completionHandler(result)
                 }
             }
     }
+    
+    static func postHomecardListSave(parameter: HomeCardSaveParamter, completionHandler: @escaping(Result<HomeCardSaveList>) -> ()) {
+        let urlString:URL = URL(string: "http://3.36.188.237:8080/Board/dailyColors")!
+        AF.request(urlString, method: .post, parameters: parameter, encoder: JSONParameterEncoder.default)
+            .validate(statusCode: 200..<600)
+            .responseData { response in
+                debugPrint(response)
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let jsonObject = try JSONSerialization.jsonObject(with: response, options: [])
+                        if let jsonData = jsonObject as? [String:Any] {
+                            let code = jsonData["code"] as? Int
+                            if code == 200 {
+                                let decoder = JSONDecoder()
+                                let homeSaveList = try decoder.decode(HomeCardSaveList.self, from: response)
+                                let result = Result<HomeCardSaveList>.success(data: homeSaveList)
+                                completionHandler(result)
+                            }
+                        }
+                    } catch {
+                        let result = Result<HomeCardSaveList>.failure(error: error.localizedDescription)
+                        completionHandler(result)
+                    }
+                case let .failure(error):
+                    let result = Result<HomeCardSaveList>.failure(error: error.localizedDescription)
+                    completionHandler(result)
+                }
+            }
+    }
+    
 }
 
 extension HomeServerApi {
     enum Result<T> {
         case success(data: T?)
-        case failure(type: ErrorType)
-    }
-}
-
-extension HomeServerApi.Result {
-    enum ErrorType {
-        case requestFailure(error: Error)
-        case logicalError(code: Int, data:Any?, alertTitle:String?, alertMessage: String?)
-        case sessionEnd(code: Int)
+        case failure(error: String)
     }
 }

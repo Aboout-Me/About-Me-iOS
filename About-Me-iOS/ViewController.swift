@@ -19,7 +19,9 @@ class ViewController: UIViewController, UITextViewDelegate {
     private var homeData = [HomeCardListModel]()
     public var sideMenu: SideMenuNavigationController?
     public var questionTitleText: String = ""
-    public let lineSpacing: CGFloat = 40
+    public let lineSpacing: CGFloat = 15
+    public var currentPage:Int = 0
+    public var selectIndex:Int = 0
     public var screenSize = UIScreen.main.bounds.size
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,12 +55,12 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
         self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-        let cellWidth = floor(view.frame.width * 0.7)
+        let cellWidth = floor(view.frame.width * 0.85)
         let layout = HomeCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = self.lineSpacing
         layout.itemSize = CGSize(width: cellWidth, height: 420)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 60, bottom: 0, right: 60)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         self.mainCollectionView.collectionViewLayout = layout
         self.mainCollectionView.allowsMultipleSelection = true
         self.mainCollectionView.delegate = self
@@ -67,6 +69,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
         self.mainCollectionView.showsHorizontalScrollIndicator = false
         self.mainCollectionView.isPagingEnabled = false
+        self.mainBackgroundImageView.contentMode = .scaleToFill
         self.mainCollectionView.decelerationRate = .fast
         self.mainFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.mainFloatingButton.plusColor = UIColor.white
@@ -95,8 +98,14 @@ class ViewController: UIViewController, UITextViewDelegate {
         questionToolBar.items = [fiexedButton,doneButton]
         questionToolBar.sizeToFit()
         self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 2)
-        self.mainBottomSheet.questionTitleLabel.text = "Q. \(self.questionTitleText)"
+        let ParagraphStyle = NSMutableParagraphStyle()
+        ParagraphStyle.lineSpacing = 4
+        self.mainBottomSheet.questionTitleLabel.attributedText = NSAttributedString(string:"\(self.questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
         self.mainBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.mainBottomSheet.questionQizeTitleLabel.text = "Q. "
+        self.mainBottomSheet.questionQizeTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.mainBottomSheet.questionQizeTitleLabel.textAlignment = .left
+        self.mainBottomSheet.questionQizeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
         self.mainBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
         self.mainBottomSheet.questionTitleLabel.numberOfLines = 0
         self.mainBottomSheet.questionTitleLabel.textAlignment = .left
@@ -120,13 +129,38 @@ class ViewController: UIViewController, UITextViewDelegate {
                 DispatchQueue.main.async {
                     self.homeData = list.dailyLists
                     self.mainCollectionView.reloadData()
+                    if self.homeData[0].lev == "1" {
+                        self.mainLastAnswerButton.isHidden = true
+                    } else {
+                        self.mainLastAnswerButton.isHidden = false
+                    }
                 }
             } else if case let .failure(error) = result {
-                //AlertViewController 추가
+                let alert = UIAlertController(title: "Error Message", message: error, preferredStyle: .alert)
+                let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(alertButton)
+                self.present(alert, animated: true, completion: nil)
                 print(error)
             }
         }
     }
+    
+    private func postHomeCardSave() {
+        let parameter = HomeCardSaveParamter(answer: self.mainBottomSheet.questionTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: "Y", title: self.homeData[self.selectIndex].seq, user: 1)
+        HomeServerApi.postHomecardListSave(parameter: parameter) { result in
+            if case let .success(data) = result, let list = data {
+                print(list)
+                
+            } else if case let .failure(error) = result {
+                let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
+                let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(alertButton)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
     
     
     @objc
@@ -139,6 +173,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     private func showQuestionViewDidTap() {
         UserDefaults.standard.set(self.mainBottomSheet.questionTextView.text, forKey: "myQuestionText")
         self.mainBottomSheet.questionTextView.resignFirstResponder()
+        self.postHomeCardSave()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.05)
         })
@@ -146,6 +181,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
         guard let homeAfterVC = homeAfterView else { return }
         homeAfterVC.titleText = self.questionTitleText
+        homeAfterVC.backgroundColor = self.homeData[self.selectIndex].color
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
     
@@ -161,10 +197,17 @@ class ViewController: UIViewController, UITextViewDelegate {
     
     @objc
     private func hiddenBottomSheetDidTap() {
-        let screenSize = UIScreen.main.bounds.size
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
-        })
+        let alert = UIAlertController(title: "작성중인 내용을 \n완료하지 않고 나가시겠습니까?", message: nil, preferredStyle: .alert)
+        let alertDeleteButton = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
+        let alertConfirmButton = UIAlertAction(title: "네", style: .default) { _ in
+            let screenSize = UIScreen.main.bounds.size
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
+            })
+        }
+        alert.addAction(alertDeleteButton)
+        alert.addAction(alertConfirmButton)
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc
@@ -201,9 +244,11 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! MainCollectionViewCell
+        let ParagraphStyle = NSMutableParagraphStyle()
+        ParagraphStyle.lineSpacing = 4
         print("색상 테스트\(self.homeData[indexPath.item].color)")
         if self.homeData[indexPath.item].color == "red" {
-            cell.mainCharacterLabel.text = "프로 열정러"
+            cell.mainCharacterLabel.text = "열정 충만"
             cell.mainCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
             cell.mainCharacterTagFirstButton.setTitle("#열정", for: .normal)
             cell.mainCharacterTagFirstButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
@@ -241,7 +286,7 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
             cell.mainCharacterTagThirdButton.setTitle("#가치관", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
-        } else if self.homeData[indexPath.item].color == "purple" {
+        } else  {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
             cell.mainCharacterLabel.text = "상상 플러스"
             cell.mainCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
@@ -252,13 +297,15 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
             cell.mainCharacterTagThirdButton.setTitle("#희망", for: .normal)
             cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
         }
+        cell.mainTitleLabel.attributedText = NSAttributedString(string: self.homeData[indexPath.item].question, attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
         cell.mainTitleLabel.text = self.homeData[indexPath.item].question
-        
+        cell.mainTitleLabel.textAlignment = .center
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionViewCell
+        self.selectIndex = indexPath.item
         self.questionTitleText = (cell?.mainTitleLabel.text)!
         let window = UIApplication.shared.windows.first
         let screenSize = UIScreen.main.bounds.size
@@ -274,23 +321,19 @@ extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource,
         let midY:CGFloat = scrollView.bounds.midY
         let point:CGPoint = CGPoint(x:midX, y:midY)
         guard let indexPath = self.mainCollectionView.indexPathForItem(at: point) else { return  }
-        let currentPage:Int = indexPath.item
+        self.currentPage = indexPath.item
         print("colletionView point\(point)")
-        if self.homeData[currentPage].color == "red" {
+        if self.homeData[self.currentPage].color == "red" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-        } else if self.homeData[currentPage].color == "yellow" {
+        } else if self.homeData[self.currentPage].color == "yellow" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-        } else if self.homeData[currentPage].color == "green" {
+        } else if self.homeData[self.currentPage].color == "green" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-        } else if self.homeData[currentPage].color == "pink" {
+        } else if self.homeData[self.currentPage].color == "pink" {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
-        } else if self.homeData[currentPage].color == "purple" {
+        } else {
             self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
         }
-        
-        let witdh = scrollView.frame.width - (scrollView.contentInset.left*2)
-        let index = scrollView.contentOffset.x / witdh
-        let roundedIndex = round(index)
     }
 }
 
@@ -301,6 +344,8 @@ class HomeBottomSheet: UIView {
     @IBOutlet weak var questionTextView: UITextView!
     @IBOutlet weak var questionConfirmButton: UIButton!
     @IBOutlet weak var questionDeleteButton: UIButton!
+    @IBOutlet weak var questionQizeTitleLabel: UILabel!
+    @IBOutlet weak var questionPrivateButton: UIButton!
     @IBOutlet weak var questionNavigationBar: BottomNavigationBar!
     
     
