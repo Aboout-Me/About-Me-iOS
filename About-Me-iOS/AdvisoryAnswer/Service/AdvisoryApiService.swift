@@ -14,8 +14,9 @@ let userId = 1
 
 struct AdvisoryApiService {
     static func getAdvisoryAnswerList(completion: @escaping (AdvisoryList?) -> Void) {
-        let urlComponent = URLComponents(string: "\(API_URL)/Mypage/10Q10A/theme/\(userId)")
+        let urlComponent = URLComponents(string: "\(API_URL)/MyPage/10Q10A/theme/\(userId)")
         guard let url = urlComponent?.url else { return }
+        print(url)
         
         let request = AF.request(url, method: .get)
         request.validate(statusCode: 200...500).responseString { response in
@@ -24,8 +25,14 @@ struct AdvisoryApiService {
                 print(response.value)
                 let stringResponse = String(data: response.data!, encoding: .utf8)
 
-                let data = try! JSONDecoder().decode(AdvisoryList.self, from: Data(stringResponse!.data(using: .utf8)!))
-                completion(data)
+                do {
+                    let data = try JSONDecoder().decode(AdvisoryList.self, from: Data(stringResponse!.data(using: .utf8)!))
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                
             case .failure(let error):
                 print(error)
             }
