@@ -487,6 +487,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="cvA-Ft-Sz0"/>
                                         </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="자문자답 만들러 가기 &gt;"/>
                                     </button>
                                 </subviews>
@@ -582,47 +583,41 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ptR-Kj-lrg">
                                         <rect key="frame" x="0.0" y="70" width="414" height="50"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="무엇에 대한 고민인가요? e.g. 진로, 직장, 관계" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="lNo-GP-cIX">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <color key="textColor" systemColor="systemGray3Color"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="무엇에 대한 고민인가요? e.g. 진로, 직장, 관계" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5cb-eZ-KTM">
+                                                <rect key="frame" x="20" y="14.5" width="374" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="lNo-GP-cIX" firstAttribute="leading" secondItem="ptR-Kj-lrg" secondAttribute="leading" constant="20" id="3bk-1b-EiN"/>
-                                            <constraint firstItem="lNo-GP-cIX" firstAttribute="top" secondItem="ptR-Kj-lrg" secondAttribute="top" id="45a-xo-vBt"/>
+                                            <constraint firstAttribute="trailing" secondItem="5cb-eZ-KTM" secondAttribute="trailing" constant="20" id="J4a-pw-NMZ"/>
                                             <constraint firstAttribute="height" constant="50" id="ZIm-ig-wkQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="lNo-GP-cIX" secondAttribute="bottom" id="okI-1s-LOj"/>
-                                            <constraint firstAttribute="trailing" secondItem="lNo-GP-cIX" secondAttribute="trailing" constant="20" id="sTp-QR-Rw0"/>
+                                            <constraint firstItem="5cb-eZ-KTM" firstAttribute="leading" secondItem="ptR-Kj-lrg" secondAttribute="leading" constant="20" id="oSS-MK-fdj"/>
+                                            <constraint firstItem="5cb-eZ-KTM" firstAttribute="centerY" secondItem="ptR-Kj-lrg" secondAttribute="centerY" id="sqZ-8T-bmo"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pR2-kt-bia">
                                         <rect key="frame" x="0.0" y="120" width="414" height="50"/>
                                         <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="지금 현재 상태는 어떤가요?" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kYB-jy-k6x">
-                                                <rect key="frame" x="20" y="0.0" width="374" height="50"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <color key="textColor" systemColor="systemGray3Color"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="지금 현재 상태는 어떤가요?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cm9-WF-sD0">
+                                                <rect key="frame" x="20" y="14.5" width="374" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            </textView>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="kYB-jy-k6x" secondAttribute="trailing" constant="20" id="FzS-io-u3Q"/>
-                                            <constraint firstItem="kYB-jy-k6x" firstAttribute="leading" secondItem="pR2-kt-bia" secondAttribute="leading" constant="20" id="e1R-oY-1A0"/>
+                                            <constraint firstAttribute="trailing" secondItem="cm9-WF-sD0" secondAttribute="trailing" constant="20" id="Ztw-qk-wAa"/>
+                                            <constraint firstItem="cm9-WF-sD0" firstAttribute="centerY" secondItem="pR2-kt-bia" secondAttribute="centerY" id="Zx6-ng-YHc"/>
                                             <constraint firstAttribute="height" constant="50" id="h2w-8g-vXV"/>
-                                            <constraint firstItem="kYB-jy-k6x" firstAttribute="top" secondItem="pR2-kt-bia" secondAttribute="top" id="y11-3N-Zy4"/>
-                                            <constraint firstAttribute="bottom" secondItem="kYB-jy-k6x" secondAttribute="bottom" id="zQb-bA-xxK"/>
+                                            <constraint firstItem="cm9-WF-sD0" firstAttribute="leading" secondItem="pR2-kt-bia" secondAttribute="leading" constant="20" id="hfn-5Q-6Pq"/>
                                         </constraints>
                                     </view>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="답변을 적어주세요 :)" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MyJ-mY-gHA">
-                                        <rect key="frame" x="20" y="190" width="374" height="578"/>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="MyJ-mY-gHA">
+                                        <rect key="frame" x="17" y="190" width="380" height="578"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <color key="textColor" systemColor="systemGray3Color"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -638,19 +633,27 @@
                                             <constraint firstAttribute="height" constant="50" id="0oH-dP-vLi"/>
                                         </constraints>
                                     </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="답변을 적어주세요:)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V0H-i5-IvG">
+                                        <rect key="frame" x="20" y="197" width="374" height="19.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" systemColor="systemGray3Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="gfX-2a-IAt" firstAttribute="top" secondItem="6Tg-zR-8cQ" secondAttribute="top" id="1X7-8D-K6k"/>
                                     <constraint firstAttribute="trailing" secondItem="ptR-Kj-lrg" secondAttribute="trailing" id="2pV-0R-Z7v"/>
+                                    <constraint firstItem="V0H-i5-IvG" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" constant="20" id="59d-Fa-K4e"/>
                                     <constraint firstItem="ptR-Kj-lrg" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" id="6mP-vO-YzY"/>
                                     <constraint firstItem="pR2-kt-bia" firstAttribute="top" secondItem="ptR-Kj-lrg" secondAttribute="bottom" id="DGk-bW-aE0"/>
                                     <constraint firstItem="wEy-lP-Tv3" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" id="DeG-FT-kaw"/>
                                     <constraint firstItem="wEy-lP-Tv3" firstAttribute="top" secondItem="QnE-d6-4Ke" secondAttribute="bottom" constant="20" id="Lzr-uj-5LT"/>
-                                    <constraint firstItem="MyJ-mY-gHA" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" constant="20" id="PZY-64-ReM"/>
+                                    <constraint firstAttribute="trailing" secondItem="V0H-i5-IvG" secondAttribute="trailing" constant="20" id="MmI-fE-dP1"/>
+                                    <constraint firstItem="MyJ-mY-gHA" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" constant="17" id="PZY-64-ReM"/>
                                     <constraint firstAttribute="trailing" secondItem="gfX-2a-IAt" secondAttribute="trailing" id="UsE-4h-zhs"/>
                                     <constraint firstItem="MyJ-mY-gHA" firstAttribute="top" secondItem="pR2-kt-bia" secondAttribute="bottom" constant="20" id="Wla-kQ-9kT"/>
-                                    <constraint firstAttribute="trailing" secondItem="MyJ-mY-gHA" secondAttribute="trailing" constant="20" id="fpb-gU-qiB"/>
+                                    <constraint firstAttribute="trailing" secondItem="MyJ-mY-gHA" secondAttribute="trailing" constant="17" id="fpb-gU-qiB"/>
                                     <constraint firstAttribute="bottom" secondItem="wEy-lP-Tv3" secondAttribute="bottom" id="kOS-FS-Zqk"/>
                                     <constraint firstItem="ptR-Kj-lrg" firstAttribute="top" secondItem="gfX-2a-IAt" secondAttribute="bottom" id="lf3-HI-npo"/>
                                     <constraint firstItem="wEy-lP-Tv3" firstAttribute="top" secondItem="MyJ-mY-gHA" secondAttribute="bottom" id="qzy-ky-Lhj"/>
@@ -658,6 +661,7 @@
                                     <constraint firstAttribute="trailing" secondItem="wEy-lP-Tv3" secondAttribute="trailing" id="sxK-Hi-ihC"/>
                                     <constraint firstAttribute="trailing" secondItem="pR2-kt-bia" secondAttribute="trailing" id="vqm-41-7B3"/>
                                     <constraint firstAttribute="trailing" secondItem="QnE-d6-4Ke" secondAttribute="trailing" constant="20" id="wBh-rd-3vg"/>
+                                    <constraint firstItem="V0H-i5-IvG" firstAttribute="top" secondItem="pR2-kt-bia" secondAttribute="bottom" constant="27" id="wCU-DL-oul"/>
                                     <constraint firstItem="gfX-2a-IAt" firstAttribute="leading" secondItem="6Tg-zR-8cQ" secondAttribute="leading" id="zFw-bQ-MFC"/>
                                 </constraints>
                             </view>
@@ -676,17 +680,18 @@
                     </view>
                     <navigationItem key="navigationItem" id="NXM-V6-r3T"/>
                     <connections>
+                        <outlet property="answerPlaceholderLabel" destination="V0H-i5-IvG" id="HSP-jy-a16"/>
                         <outlet property="answerTextView" destination="MyJ-mY-gHA" id="rtO-2c-NLo"/>
                         <outlet property="bottomConstraint" destination="kOS-FS-Zqk" id="YTA-gg-bPV"/>
                         <outlet property="buttonView" destination="wEy-lP-Tv3" id="VOS-LH-96K"/>
                         <outlet property="closeButton" destination="gVM-4P-dee" id="6J6-P4-cIw"/>
                         <outlet property="levelLabel" destination="S9q-nc-VZ6" id="GOe-bb-Wms"/>
                         <outlet property="limitLabel" destination="QnE-d6-4Ke" id="o4a-qL-ZvZ"/>
-                        <outlet property="questionTextView" destination="kYB-jy-k6x" id="QSC-DT-NBp"/>
+                        <outlet property="questionTextField" destination="cm9-WF-sD0" id="j38-sG-uRc"/>
                         <outlet property="questionView" destination="pR2-kt-bia" id="DG4-KY-417"/>
                         <outlet property="roundView" destination="6Tg-zR-8cQ" id="nWz-pA-ikR"/>
                         <outlet property="saveButton" destination="zjW-pB-TLs" id="RSW-D3-kam"/>
-                        <outlet property="titleTextView" destination="lNo-GP-cIX" id="d7n-Z7-nWk"/>
+                        <outlet property="titleTextField" destination="5cb-eZ-KTM" id="MBz-8R-t3O"/>
                         <outlet property="titleView" destination="ptR-Kj-lrg" id="PRw-IH-BdZ"/>
                     </connections>
                 </viewController>
