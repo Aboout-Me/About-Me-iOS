@@ -130,14 +130,14 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
             if rate == "10" {
                 cell.stageLabel.text = "10/10"
                 cell.stageLabel.textColor = UIColor(white: 34.0 / 255.0, alpha: 1.0)
-                cell.finishView.tintColor = UIColor(white: 34.0 / 255.0, alpha: 1.0)
+                cell.finishView.image = UIImage(named: "circle-checked.png")
             } else {
                 let attributedString = NSMutableAttributedString(string: rate,
                                                                  attributes: [.foregroundColor: UIColor(white: 34.0 / 255.0, alpha: 1.0)])
                 attributedString.append(NSAttributedString(string: "/10",
                                                            attributes: [.foregroundColor: UIColor(white: 119.0 / 255.0, alpha: 1.0)]))
                 cell.stageLabel.attributedText = attributedString
-                cell.finishView.tintColor = UIColor(white: 119.0 / 255.0, alpha: 1.0)
+                cell.finishView.image = UIImage(named: "ico_common_24_complete_off.png")
             }
             
             return cell
