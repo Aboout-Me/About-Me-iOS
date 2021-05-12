@@ -148,10 +148,10 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
         let parameter = HomeCardSaveParamter(answer: self.homeBeforeBottomSheet.questionTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: "Y", title: self.homeData[self.selectIndex].seq, user: 1)
-        UserDefaults.standard.set(self.homeData[self.selectIndex].seq, forKey: "homeBeforeSeq")
         HomeServerApi.postHomecardListSave(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
-                print(list)
+                print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
+                UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "homeBeforeSeq")
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
