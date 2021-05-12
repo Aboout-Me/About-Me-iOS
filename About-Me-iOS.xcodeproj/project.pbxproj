@@ -504,12 +504,9 @@
 				07EE6C9326457E2900F99643 /*  circle-checked.png in Resources */,
 				0751A67826443779004E635C /*  close@2x.png in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
-<<<<<<< HEAD
 				FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */,
-=======
 				07EE6C9A264AB06300F99643 /* BottomSheetView.xib in Resources */,
 				FFFDB827261F235100947C44 /* MainCollectionViewCell.xib in Resources */,
->>>>>>> feature_AdvisoryAnswer
 				0751A67226443515004E635C /* advisory@3x.png in Resources */,
 				0751A66D26443515004E635C /*  alert-circle@3x.png in Resources */,
 				FF6922B126430BC600B0B533 /* imgBackgroundYellow@2x.png in Resources */,
