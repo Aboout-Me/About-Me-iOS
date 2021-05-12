@@ -19,7 +19,7 @@ class CustomButton: UIButton {
         backgroundColor = .lightGray
         setTitle(text, for: .normal)
         setTitleColor(.black, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        titleLabel?.font = UIFont.systemFont(ofSize: 16)
     }
     
     required init?(coder: NSCoder) {
@@ -38,13 +38,14 @@ class AdvisoryQuestionViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     
     @IBOutlet weak var titleView: UIView!
-    @IBOutlet weak var titleTextView: UITextView!
+    @IBOutlet weak var titleTextField: UITextField!
     
     @IBOutlet weak var questionView: UIView!
-    @IBOutlet weak var questionTextView: UITextView!
+    @IBOutlet weak var questionTextField: UITextField!
     
     @IBOutlet weak var limitLabel: UILabel!
     @IBOutlet weak var answerTextView: UITextView!
+    @IBOutlet weak var answerPlaceholderLabel: UILabel!
     
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -74,8 +75,8 @@ class AdvisoryQuestionViewController: UIViewController {
         
         self.levelLabel.text = "\(self.questionNumber)/10 단계"
         
-        self.titleTextView.delegate = self
-        self.questionTextView.delegate = self
+        self.titleTextField.delegate = self
+        self.questionTextField.delegate = self
         self.answerTextView.delegate = self
         
         self.closeButton.addTarget(self, action: #selector(closeButtonDidTap(_:)),
@@ -83,15 +84,12 @@ class AdvisoryQuestionViewController: UIViewController {
         self.saveButton.addTarget(self, action: #selector(saveButtonDidTap(_:)),
                                   for: .touchUpInside)
         
-        self.titleTextView.centerVertically()
-        self.questionTextView.centerVertically()
-        
         if self.advisoryTitle != "" {
-            self.titleTextView.text = self.advisoryTitle
+            self.titleTextField.text = self.advisoryTitle
         }
         
         if let str = self.questionDictionary[self.questionNumber] {
-            self.questionTextView.text = str
+            self.questionTextField.text = str
         }
         
         if let str = self.answerDictionary[self.questionNumber] {
@@ -103,9 +101,6 @@ class AdvisoryQuestionViewController: UIViewController {
             attributedString.append(NSAttributedString(string: "/500",
                                                        attributes: [.foregroundColor: UIColor.lightGray]))
             self.limitLabel.attributedText = attributedString
-        } else {
-            self.answerTextView.text = "답변을 적어주세요 :)"
-            self.answerTextView.textColor = .systemGray3
         }
         
         for view in buttonView.subviews{
@@ -176,20 +171,24 @@ class AdvisoryQuestionViewController: UIViewController {
     @objc
     private func saveButtonDidTap(_ sender: UIButton) {
         
-        let alert = UIAlertController(title: "글을 저장하시겠어요?", message: nil, preferredStyle: UIAlertController.Style.alert)
-        
-        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
-        
-        let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
-            let answerList = self.makeAnswerTemplate()
-            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
-                self.closeViewControllers()
-            }
-        }
-        
-        alert.addAction(cancelAction)
-        alert.addAction(quitAction)
-        present(alert, animated: false, completion: nil)
+//        let alert = UIAlertController(title: "글을 저장하시겠어요?", message: nil, preferredStyle: UIAlertController.Style.alert)
+//
+//        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+//
+//        let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
+//            let answerList = self.makeAnswerTemplate()
+//            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+//                self.closeViewControllers()
+//            }
+//        }
+//
+//        alert.addAction(cancelAction)
+//        alert.addAction(quitAction)
+//        present(alert, animated: false, completion: nil)
+
+        let bottomSheet = BottomSheetView(nibName: "BottomSheetView", bundle: nil)
+        bottomSheet.modalPresentationStyle = .overCurrentContext
+        self.present(bottomSheet, animated: true, completion: nil)
     }
     
     @objc
@@ -241,10 +240,10 @@ class AdvisoryQuestionViewController: UIViewController {
     // MARK: - Helpers
     
     private func tempDataWillSave() {
-        self.advisoryTitle = self.titleTextView.text ?? ""
+        self.advisoryTitle = self.titleTextField.text ?? ""
         
         if limitLabel.text != "0/500" {
-            guard let question = self.questionTextView.text else { return }
+            guard let question = self.questionTextField.text else { return }
             questionDictionary[self.questionNumber] = question
             
             guard let answer = answerTextView.text else { return }
@@ -280,9 +279,11 @@ extension AdvisoryQuestionViewController: UITextViewDelegate {
         let attributedString = NSMutableAttributedString()
         
         if textView.text.count == 0 {
+            self.answerPlaceholderLabel.isHidden = false
             attributedString.append(NSAttributedString(string: "0/500",
                                                        attributes: [.foregroundColor: UIColor.lightGray]))
         } else {
+            self.answerPlaceholderLabel.isHidden = true
             attributedString.append(NSAttributedString(string: "\(textView.text.count)",
                                                        attributes: [.foregroundColor: UIColor.black]))
             attributedString.append(NSAttributedString(string: "/500",
@@ -293,33 +294,12 @@ extension AdvisoryQuestionViewController: UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard let str = textView.text else { return true }
-        let newLength = str.count + text.count - range.length
-        return newLength <= 500
-    }
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.systemGray3 {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-        
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            textView.text = "답변을 적어주세요 :)"
-            textView.textColor = UIColor.systemGray3
-        }
+            guard let str = textView.text else { return true }
+            let newLength = str.count + text.count - range.length
+            return newLength <= 500
     }
 }
 
-extension UITextView {
-    func centerVertically() {
-        let fittingSize = CGSize(width: bounds.width, height: CGFloat.greatestFiniteMagnitude)
-        let size = sizeThatFits(fittingSize)
-        let topOffset = (bounds.size.height - size.height * zoomScale) / 2
-        let positiveTopOffset = max(1, topOffset)
-        contentOffset.y = -positiveTopOffset
-    }
+extension AdvisoryQuestionViewController: UITextFieldDelegate {
+    
 }

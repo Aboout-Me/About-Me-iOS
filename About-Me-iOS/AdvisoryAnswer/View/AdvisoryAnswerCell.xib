@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,8 +16,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WGP-MG-3hI">
-                        <rect key="frame" x="256" y="25.5" width="24" height="23"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WGP-MG-3hI">
+                        <rect key="frame" x="256" y="25" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="VQl-Sb-Nr2"/>
                             <constraint firstAttribute="width" constant="24" id="lTU-a6-A4F"/>
@@ -73,7 +72,4 @@
             <point key="canvasLocation" x="84" y="58"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
-    </resources>
 </document>
