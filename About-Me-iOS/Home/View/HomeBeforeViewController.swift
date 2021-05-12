@@ -10,12 +10,12 @@ import SideMenu
 import Hero
 import Floaty
 
-class ViewController: UIViewController, UITextViewDelegate {
-    @IBOutlet weak var mainBackgroundImageView: UIImageView!
-    @IBOutlet weak var mainFloatingButton: Floaty!
-    @IBOutlet var mainBottomSheet: HomeBottomSheet!
-    @IBOutlet weak var mainCollectionView: UICollectionView!
-    @IBOutlet weak var mainLastAnswerButton: UIButton!
+class HomeBeforeViewController: UIViewController, UITextViewDelegate {
+    @IBOutlet weak var homeBeforeBackgroundImageView: UIImageView!
+    @IBOutlet weak var homeBeforeFloatingButton: Floaty!
+    @IBOutlet var homeBeforeBottomSheet: HomeBottomSheet!
+    @IBOutlet weak var homeBeforeCollectionView: UICollectionView!
+    @IBOutlet weak var homeBeforeLastAnswerButton: UIButton!
     private var homeData = [HomeCardListModel]()
     public var sideMenu: SideMenuNavigationController?
     public var questionTitleText: String = ""
@@ -40,7 +40,7 @@ class ViewController: UIViewController, UITextViewDelegate {
     private func setLayoutInit() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Vector.png"), style: .plain, target: self, action: #selector(self.showSideButtonDidTap))
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon.png"), style: .plain, target: self, action: #selector(self.showAlarmButtonDidTap))
-        let mainNib = UINib(nibName: "MainCollectionViewCell", bundle: nil)
+        let mainNib = UINib(nibName: "HomeBeforeCollectionViewCell", bundle: nil)
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
@@ -54,72 +54,72 @@ class ViewController: UIViewController, UITextViewDelegate {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
-        self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+        self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
         let cellWidth = floor(view.frame.width * 0.85)
         let layout = HomeCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = self.lineSpacing
         layout.itemSize = CGSize(width: cellWidth, height: 420)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
-        self.mainCollectionView.collectionViewLayout = layout
-        self.mainCollectionView.allowsMultipleSelection = true
-        self.mainCollectionView.delegate = self
-        self.mainCollectionView.dataSource = self
-        self.mainCollectionView.backgroundColor = UIColor.clear
-        self.mainCollectionView.register(mainNib, forCellWithReuseIdentifier: "mainCell")
-        self.mainCollectionView.showsHorizontalScrollIndicator = false
-        self.mainCollectionView.isPagingEnabled = false
-        self.mainBackgroundImageView.contentMode = .scaleToFill
-        self.mainCollectionView.decelerationRate = .fast
-        self.mainFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.mainFloatingButton.plusColor = UIColor.white
-        self.mainFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
-        self.mainFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
+        self.homeBeforeCollectionView.collectionViewLayout = layout
+        self.homeBeforeCollectionView.allowsMultipleSelection = true
+        self.homeBeforeCollectionView.delegate = self
+        self.homeBeforeCollectionView.dataSource = self
+        self.homeBeforeCollectionView.backgroundColor = UIColor.clear
+        self.homeBeforeCollectionView.register(mainNib, forCellWithReuseIdentifier: "homeBeforeCell")
+        self.homeBeforeCollectionView.showsHorizontalScrollIndicator = false
+        self.homeBeforeCollectionView.isPagingEnabled = false
+        self.homeBeforeBackgroundImageView.contentMode = .scaleToFill
+        self.homeBeforeCollectionView.decelerationRate = .fast
+        self.homeBeforeFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.homeBeforeFloatingButton.plusColor = UIColor.white
+        self.homeBeforeFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
+        self.homeBeforeFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.mainFloatingButton.addItem("내 피드", icon: UIImage(named: "Feed.png"))
-        self.mainLastAnswerButton.backgroundColor = .white
-        self.mainLastAnswerButton.layer.cornerRadius = 15
-        self.mainLastAnswerButton.layer.masksToBounds = true
-        self.mainLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
-        self.mainLastAnswerButton.setTitleColor(.black, for: .normal)
-        self.mainLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
-        self.mainLastAnswerButton.addTarget(self, action: #selector(self.showLastAnswerButtonDidTap), for: .touchUpInside)
+        self.homeBeforeFloatingButton.addItem("내 피드", icon: UIImage(named: "Feed.png"))
+        self.homeBeforeLastAnswerButton.backgroundColor = .white
+        self.homeBeforeLastAnswerButton.layer.cornerRadius = 15
+        self.homeBeforeLastAnswerButton.layer.masksToBounds = true
+        self.homeBeforeLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
+        self.homeBeforeLastAnswerButton.setTitleColor(.black, for: .normal)
+        self.homeBeforeLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        self.homeBeforeLastAnswerButton.addTarget(self, action: #selector(self.showLastAnswerButtonDidTap), for: .touchUpInside)
     }
     
     
-    private func mainBottomSheetLayoutInit() {
+    private func homeBeforeBottomSheetLayoutInit() {
         let questionToolBar = UIToolbar()
         let fiexedButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.toolbarButtonDidTap))
         questionToolBar.items = [fiexedButton,doneButton]
         questionToolBar.sizeToFit()
-        self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 2)
+        self.homeBeforeBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 2)
         let ParagraphStyle = NSMutableParagraphStyle()
         ParagraphStyle.lineSpacing = 4
-        self.mainBottomSheet.questionTitleLabel.attributedText = NSAttributedString(string:"\(self.questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
-        self.mainBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.mainBottomSheet.questionQizeTitleLabel.text = "Q. "
-        self.mainBottomSheet.questionQizeTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.mainBottomSheet.questionQizeTitleLabel.textAlignment = .left
-        self.mainBottomSheet.questionQizeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
-        self.mainBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
-        self.mainBottomSheet.questionTitleLabel.numberOfLines = 0
-        self.mainBottomSheet.questionTitleLabel.textAlignment = .left
-        self.mainBottomSheet.questionTextView.delegate = self
-        self.mainBottomSheet.questionTextView.text = "당신의 생각을 말해주세요"
-        self.mainBottomSheet.questionTextView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
-        self.mainBottomSheet.questionTextView.isScrollEnabled = false
-        self.mainBottomSheet.questionTextView.inputAccessoryView = questionToolBar
-        self.mainBottomSheet.layer.cornerRadius = 20
-        self.mainBottomSheet.layer.masksToBounds = true
-        self.mainBottomSheet.backgroundColor = UIColor.white
-        self.mainBottomSheet.questionNavigationBar.shadowImage = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).imageFormatting()
-        self.mainBottomSheet.questionDeleteButton.addTarget(self, action: #selector(self.hiddenBottomSheetDidTap), for: .touchUpInside)
-        self.mainBottomSheet.questionConfirmButton.addTarget(self, action: #selector(self.showQuestionViewDidTap), for: .touchUpInside)
+        self.homeBeforeBottomSheet.questionTitleLabel.attributedText = NSAttributedString(string:"\(self.questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
+        self.homeBeforeBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.homeBeforeBottomSheet.questionQizeTitleLabel.text = "Q. "
+        self.homeBeforeBottomSheet.questionQizeTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.homeBeforeBottomSheet.questionQizeTitleLabel.textAlignment = .left
+        self.homeBeforeBottomSheet.questionQizeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
+        self.homeBeforeBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        self.homeBeforeBottomSheet.questionTitleLabel.numberOfLines = 0
+        self.homeBeforeBottomSheet.questionTitleLabel.textAlignment = .left
+        self.homeBeforeBottomSheet.questionTextView.delegate = self
+        self.homeBeforeBottomSheet.questionTextView.text = "당신의 생각을 말해주세요"
+        self.homeBeforeBottomSheet.questionTextView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
+        self.homeBeforeBottomSheet.questionTextView.isScrollEnabled = false
+        self.homeBeforeBottomSheet.questionTextView.inputAccessoryView = questionToolBar
+        self.homeBeforeBottomSheet.layer.cornerRadius = 20
+        self.homeBeforeBottomSheet.layer.masksToBounds = true
+        self.homeBeforeBottomSheet.backgroundColor = UIColor.white
+        self.homeBeforeBottomSheet.questionNavigationBar.shadowImage = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).imageFormatting()
+        self.homeBeforeBottomSheet.questionDeleteButton.addTarget(self, action: #selector(self.hiddenBottomSheetDidTap), for: .touchUpInside)
+        self.homeBeforeBottomSheet.questionConfirmButton.addTarget(self, action: #selector(self.showQuestionViewDidTap), for: .touchUpInside)
     }
     
     private func getHomeCardList() {
@@ -128,11 +128,11 @@ class ViewController: UIViewController, UITextViewDelegate {
                 print(self.homeData)
                 DispatchQueue.main.async {
                     self.homeData = list.dailyLists
-                    self.mainCollectionView.reloadData()
+                    self.homeBeforeCollectionView.reloadData()
                     if self.homeData[0].lev == "1" {
-                        self.mainLastAnswerButton.isHidden = true
+                        self.homeBeforeLastAnswerButton.isHidden = true
                     } else {
-                        self.mainLastAnswerButton.isHidden = false
+                        self.homeBeforeLastAnswerButton.isHidden = false
                     }
                 }
             } else if case let .failure(error) = result {
@@ -144,13 +144,14 @@ class ViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-    
+        
     private func postHomeCardSave() {
-        let parameter = HomeCardSaveParamter(answer: self.mainBottomSheet.questionTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: "Y", title: self.homeData[self.selectIndex].seq, user: 1)
+        print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
+        let parameter = HomeCardSaveParamter(answer: self.homeBeforeBottomSheet.questionTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: "Y", title: self.homeData[self.selectIndex].seq, user: 1)
+        UserDefaults.standard.set(self.homeData[self.selectIndex].seq, forKey: "homeBeforeSeq")
         HomeServerApi.postHomecardListSave(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list)
-                
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -161,21 +162,19 @@ class ViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    
-    
     @objc
     private func toolbarButtonDidTap() {
-        self.mainBottomSheet.endEditing(true)
+        self.homeBeforeBottomSheet.endEditing(true)
     }
     
     
     @objc
     private func showQuestionViewDidTap() {
-        UserDefaults.standard.set(self.mainBottomSheet.questionTextView.text, forKey: "myQuestionText")
-        self.mainBottomSheet.questionTextView.resignFirstResponder()
+        UserDefaults.standard.set(self.homeBeforeBottomSheet.questionTextView.text, forKey: "myQuestionText")
+        self.homeBeforeBottomSheet.questionTextView.resignFirstResponder()
         self.postHomeCardSave()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.mainBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.05)
+            self.homeBeforeBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.05)
         })
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
@@ -184,6 +183,20 @@ class ViewController: UIViewController, UITextViewDelegate {
         homeAfterVC.backgroundColor = self.homeData[self.selectIndex].color
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
+    
+    // TODO: - KeyBoardEvent
+    
+    @objc
+    public func keyboardWillShow(_ notification: Notification) {
+        
+    }
+    
+    // TODO: - KeyBoardEvent
+    @objc
+    public func keyboardWillHide(_ notification: Notification) {
+        
+    }
+    
     
     @objc
     public func showSideButtonDidTap() {
@@ -202,7 +215,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         let alertConfirmButton = UIAlertAction(title: "네", style: .default) { _ in
             let screenSize = UIScreen.main.bounds.size
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
+                self.homeBeforeBottomSheet.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
             })
         }
         alert.addAction(alertDeleteButton)
@@ -236,103 +249,99 @@ class ViewController: UIViewController, UITextViewDelegate {
     
 }
 
-extension ViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.homeData.count
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mainCell", for: indexPath) as! MainCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeBeforeCell", for: indexPath) as! HomeBeforeCollectionViewCell
         let ParagraphStyle = NSMutableParagraphStyle()
         ParagraphStyle.lineSpacing = 4
         print("색상 테스트\(self.homeData[indexPath.item].color)")
         if self.homeData[indexPath.item].color == "red" {
-            cell.mainCharacterLabel.text = "열정 충만"
-            cell.mainCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
-            cell.mainCharacterTagFirstButton.setTitle("#열정", for: .normal)
-            cell.mainCharacterTagFirstButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagSecondButton.setTitle("#진로", for: .normal)
-            cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagThirdButton.setTitle("#미래", for: .normal)
-            cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterLabel.text = "열정 충만"
+            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+            cell.homeBeforeCharacterTagFirstButton.setTitle("#열정", for: .normal)
+            cell.homeBeforeCharacterTagFirstButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitle("#진로", for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitle("#미래", for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitleColor(UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0), for: .normal)
         } else if self.homeData[indexPath.item].color == "yellow" {
-            cell.mainCharacterLabel.text = "소소한 일상"
-            cell.mainCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
-            cell.mainCharacterTagFirstButton.setTitle("#일상", for: .normal)
-            cell.mainCharacterTagFirstButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagSecondButton.setTitle("#추억", for: .normal)
-            cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagThirdButton.setTitle("#취향", for: .normal)
-            cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterLabel.text = "소소한 일상"
+            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+            cell.homeBeforeCharacterTagFirstButton.setTitle("#일상", for: .normal)
+            cell.homeBeforeCharacterTagFirstButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitle("#추억", for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitle("#취향", for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
         } else if self.homeData[indexPath.item].color == "green" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-            cell.mainCharacterLabel.text = "기억상자"
-            cell.mainCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
-            cell.mainCharacterTagFirstButton.setTitle("#힐링", for: .normal)
-            cell.mainCharacterTagFirstButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagSecondButton.setTitle("#치유", for: .normal)
-            cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagThirdButton.setTitle("#위로", for: .normal)
-            cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterLabel.text = "기억상자"
+            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
+            cell.homeBeforeCharacterTagFirstButton.setTitle("#힐링", for: .normal)
+            cell.homeBeforeCharacterTagFirstButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitle("#치유", for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitle("#위로", for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
             
         } else if self.homeData[indexPath.item].color == "pink" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
-            cell.mainCharacterLabel.text = "관계의 미학"
-            cell.mainCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
-            cell.mainCharacterTagFirstButton.setTitle("#연애", for: .normal)
-            cell.mainCharacterTagFirstButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagSecondButton.setTitle("#사랑", for: .normal)
-            cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagThirdButton.setTitle("#가치관", for: .normal)
-            cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterLabel.text = "관계의 미학"
+            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+            cell.homeBeforeCharacterTagFirstButton.setTitle("#연애", for: .normal)
+            cell.homeBeforeCharacterTagFirstButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitle("#사랑", for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitle("#가치관", for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
         } else  {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
-            cell.mainCharacterLabel.text = "상상 플러스"
-            cell.mainCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
-            cell.mainCharacterTagFirstButton.setTitle("#만약에", for: .normal)
-            cell.mainCharacterTagFirstButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagSecondButton.setTitle("#상상", for: .normal)
-            cell.mainCharacterTagSecondButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
-            cell.mainCharacterTagThirdButton.setTitle("#희망", for: .normal)
-            cell.mainCharacterTagThirdButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterLabel.text = "상상 플러스"
+            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+            cell.homeBeforeCharacterTagFirstButton.setTitle("#만약에", for: .normal)
+            cell.homeBeforeCharacterTagFirstButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitle("#상상", for: .normal)
+            cell.homeBeforeCharacterTagSecondButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitle("#희망", for: .normal)
+            cell.homeBeforeCharacterTagThirdButton.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
         }
-        cell.mainTitleLabel.attributedText = NSAttributedString(string: self.homeData[indexPath.item].question, attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
-        cell.mainTitleLabel.text = self.homeData[indexPath.item].question
-        cell.mainTitleLabel.textAlignment = .center
+        cell.homeBeforeTitleLabel.attributedText = NSAttributedString(string: self.homeData[indexPath.item].question, attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
+        cell.homeBeforeTitleLabel.text = self.homeData[indexPath.item].question
+        cell.homeBeforeTitleLabel.textAlignment = .center
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? MainCollectionViewCell
+        let cell = collectionView.cellForItem(at: indexPath) as? HomeBeforeCollectionViewCell
         self.selectIndex = indexPath.item
-        self.questionTitleText = (cell?.mainTitleLabel.text)!
+        self.questionTitleText = (cell?.homeBeforeTitleLabel.text)!
         let window = UIApplication.shared.windows.first
         let screenSize = UIScreen.main.bounds.size
-        window?.addSubview(self.mainBottomSheet)
-        self.mainBottomSheetLayoutInit()
+        window?.addSubview(self.homeBeforeBottomSheet)
+        self.homeBeforeBottomSheetLayoutInit()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.mainBottomSheet.frame = CGRect(x: 0, y: screenSize.height - screenSize.height / 1.05, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+            self.homeBeforeBottomSheet.frame = CGRect(x: 0, y: screenSize.height - screenSize.height / 1.05, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
         })
     }
-    
+
     func scrollViewDidScroll(_ scrollView:UIScrollView) {
         let midX:CGFloat = scrollView.bounds.midX
         let midY:CGFloat = scrollView.bounds.midY
         let point:CGPoint = CGPoint(x:midX, y:midY)
-        guard let indexPath = self.mainCollectionView.indexPathForItem(at: point) else { return  }
+        guard let indexPath = self.homeBeforeCollectionView.indexPathForItem(at: point) else { return  }
         self.currentPage = indexPath.item
         print("colletionView point\(point)")
         if self.homeData[self.currentPage].color == "red" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
         } else if self.homeData[self.currentPage].color == "yellow" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
         } else if self.homeData[self.currentPage].color == "green" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
         } else if self.homeData[self.currentPage].color == "pink" {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
         } else {
-            self.mainBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
         }
     }
 }

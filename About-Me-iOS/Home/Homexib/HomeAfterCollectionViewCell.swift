@@ -41,5 +41,6 @@ class HomeAfterCollectionViewCell: UICollectionViewCell {
         self.homeAfterTagButton.layer.cornerRadius = 3
         self.homeAfterTagButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         self.homeAfterTagButton.isEnabled = false
+        self.contentView.isUserInteractionEnabled = true
     }
 }

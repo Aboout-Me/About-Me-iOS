@@ -36,10 +36,10 @@
             </objects>
             <point key="canvasLocation" x="19" y="-1094"/>
         </scene>
-        <!--View Controller-->
+        <!--Home Before View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeBeforeViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,7 +68,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o1p-xT-5F3" customClass="MainCollectionViewCell" customModule="About_Me_iOS" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o1p-xT-5F3" customClass="HomeBeforeCollectionViewCell" customModule="About_Me_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5mX-JP-e0p">
@@ -104,11 +104,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="gvO-8w-i4A"/>
                     <connections>
-                        <outlet property="mainBackgroundImageView" destination="Drn-sO-ERf" id="FIE-q1-38f"/>
-                        <outlet property="mainBottomSheet" destination="kZ5-O2-c5o" id="DnY-HD-5Xe"/>
-                        <outlet property="mainCollectionView" destination="bdc-N2-W1n" id="Nn6-9d-vdM"/>
-                        <outlet property="mainFloatingButton" destination="cR1-HR-2gb" id="8EA-FE-cpD"/>
-                        <outlet property="mainLastAnswerButton" destination="oMA-bw-ZdD" id="hW6-KA-Bag"/>
+                        <outlet property="homeBeforeBackgroundImageView" destination="Drn-sO-ERf" id="FIE-q1-38f"/>
+                        <outlet property="homeBeforeBottomSheet" destination="kZ5-O2-c5o" id="DnY-HD-5Xe"/>
+                        <outlet property="homeBeforeCollectionView" destination="bdc-N2-W1n" id="Nn6-9d-vdM"/>
+                        <outlet property="homeBeforeFloatingButton" destination="cR1-HR-2gb" id="8EA-FE-cpD"/>
+                        <outlet property="homeBeforeLastAnswerButton" destination="oMA-bw-ZdD" id="hW6-KA-Bag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -280,6 +280,7 @@
                     <connections>
                         <outlet property="homeAfterBackgroundImageView" destination="B1v-4a-S3M" id="r3F-T1-aMT"/>
                         <outlet property="homeAfterCollectionView" destination="VBr-1W-G1E" id="lfm-Yo-ZvZ"/>
+                        <outlet property="homeAfterEditBottomSheetView" destination="rH8-Uo-Jrg" id="Wkk-Lb-kws"/>
                         <outlet property="homeAfterFloaingButton" destination="dkx-h9-JyS" id="hvv-Oc-IcX"/>
                     </connections>
                 </viewController>
@@ -318,24 +319,35 @@
                                 <color key="titleColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqy-79-EFf">
+                            <rect key="frame" x="187" y="10" width="40" height="5"/>
+                            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="PIe-We-JaC"/>
+                                <constraint firstAttribute="height" constant="5" id="dBY-Y7-9HE"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <viewLayoutGuide key="safeArea" id="7Uv-uU-F35"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="i6O-Z7-RRq" firstAttribute="top" secondItem="HZ1-6G-uUb" secondAttribute="bottom" id="4bC-Aq-LwI"/>
+                        <constraint firstItem="xqy-79-EFf" firstAttribute="top" secondItem="rH8-Uo-Jrg" secondAttribute="top" constant="10" id="7QK-ik-NVz"/>
                         <constraint firstItem="KmZ-9Q-cEr" firstAttribute="trailing" secondItem="7Uv-uU-F35" secondAttribute="trailing" id="M34-ow-gOz"/>
                         <constraint firstItem="KmZ-9Q-cEr" firstAttribute="leading" secondItem="7Uv-uU-F35" secondAttribute="leading" id="Rl0-1M-heG"/>
+                        <constraint firstItem="HZ1-6G-uUb" firstAttribute="top" secondItem="xqy-79-EFf" secondAttribute="bottom" constant="19" id="TRm-TG-5A2"/>
                         <constraint firstItem="KmZ-9Q-cEr" firstAttribute="top" secondItem="i6O-Z7-RRq" secondAttribute="bottom" id="UBO-a7-Mn0"/>
                         <constraint firstItem="HZ1-6G-uUb" firstAttribute="trailing" secondItem="7Uv-uU-F35" secondAttribute="trailing" id="d4L-UV-e5D"/>
                         <constraint firstItem="HZ1-6G-uUb" firstAttribute="leading" secondItem="7Uv-uU-F35" secondAttribute="leading" id="hMc-BE-JIw"/>
                         <constraint firstItem="i6O-Z7-RRq" firstAttribute="trailing" secondItem="7Uv-uU-F35" secondAttribute="trailing" id="lco-aT-7qS"/>
-                        <constraint firstItem="HZ1-6G-uUb" firstAttribute="top" secondItem="rH8-Uo-Jrg" secondAttribute="top" constant="34" id="mme-yO-5HE"/>
                         <constraint firstItem="i6O-Z7-RRq" firstAttribute="leading" secondItem="7Uv-uU-F35" secondAttribute="leading" id="syP-Pq-zYn"/>
+                        <constraint firstItem="xqy-79-EFf" firstAttribute="centerX" secondItem="rH8-Uo-Jrg" secondAttribute="centerX" id="yrC-iZ-z87"/>
                     </constraints>
                     <connections>
                         <outlet property="cancelButton" destination="KmZ-9Q-cEr" id="HUu-Yw-czZ"/>
                         <outlet property="deleteButton" destination="i6O-Z7-RRq" id="sE0-u6-qwS"/>
                         <outlet property="editButton" destination="HZ1-6G-uUb" id="9Qg-3l-Zzi"/>
+                        <outlet property="gestureView" destination="xqy-79-EFf" id="uWo-X7-pra"/>
                     </connections>
                 </view>
             </objects>
