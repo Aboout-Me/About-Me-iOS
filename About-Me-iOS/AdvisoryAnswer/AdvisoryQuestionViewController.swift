@@ -9,17 +9,31 @@ import UIKit
 
 class CustomButton: UIButton {
     
-    init(text: String) {
+    enum ButtonType {
+        case black
+        case white
+    }
+    
+    init(text: String, type: ButtonType) {
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         layer.cornerRadius = 5
-        backgroundColor = .lightGray
         setTitle(text, for: .normal)
-        setTitleColor(.black, for: .normal)
-        titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        layer.cornerRadius = 5
+        titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        if type == .black {
+            setTitleColor(.white, for: .normal)
+            backgroundColor = .black
+        } else {
+            setTitleColor(.black, for: .normal)
+            backgroundColor = .white
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.black.cgColor
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -27,11 +41,17 @@ class CustomButton: UIButton {
     }
 }
 
+protocol AdvisoryDelegate: AnyObject {
+    func saveButtonDidTap(completion: @escaping () -> Void)
+    func closeViewControllersDelegate()
+}
+
 class AdvisoryQuestionViewController: UIViewController {
     
     // MARK: - Properties
     
     @IBOutlet weak var roundView: UIView!
+    @IBOutlet weak var navigationView: UIView!
     
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
@@ -108,7 +128,7 @@ class AdvisoryQuestionViewController: UIViewController {
         }
         
         if self.questionNumber == 1 {
-            let nextButton = CustomButton(text: "다음")
+            let nextButton = CustomButton(text: "다음", type: .black)
             self.view.addSubview(nextButton)
             
             nextButton.translatesAutoresizingMaskIntoConstraints = false
@@ -118,7 +138,7 @@ class AdvisoryQuestionViewController: UIViewController {
             
             nextButton.addTarget(self, action: #selector(nextButtonDidTap(_:)), for: .touchUpInside)
         } else if self.questionNumber == 10 {
-            let previousButton = CustomButton(text: "이전")
+            let previousButton = CustomButton(text: "이전", type: .white)
             self.view.addSubview(previousButton)
             
             previousButton.translatesAutoresizingMaskIntoConstraints = false
@@ -128,7 +148,7 @@ class AdvisoryQuestionViewController: UIViewController {
             
             previousButton.addTarget(self, action: #selector(previousButtonDidTap(_:)), for: .touchUpInside)
         } else {
-            let nextButton = CustomButton(text: "다음")
+            let nextButton = CustomButton(text: "다음", type: .black)
             self.view.addSubview(nextButton)
             
             nextButton.translatesAutoresizingMaskIntoConstraints = false
@@ -136,7 +156,7 @@ class AdvisoryQuestionViewController: UIViewController {
             
             nextButton.addTarget(self, action: #selector(nextButtonDidTap(_:)), for: .touchUpInside)
             
-            let previousButton = CustomButton(text: "이전")
+            let previousButton = CustomButton(text: "이전", type: .white)
             self.view.addSubview(previousButton)
             
             previousButton.translatesAutoresizingMaskIntoConstraints = false
@@ -170,24 +190,11 @@ class AdvisoryQuestionViewController: UIViewController {
     
     @objc
     private func saveButtonDidTap(_ sender: UIButton) {
-        
-//        let alert = UIAlertController(title: "글을 저장하시겠어요?", message: nil, preferredStyle: UIAlertController.Style.alert)
-//
-//        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
-//
-//        let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
-//            let answerList = self.makeAnswerTemplate()
-//            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
-//                self.closeViewControllers()
-//            }
-//        }
-//
-//        alert.addAction(cancelAction)
-//        alert.addAction(quitAction)
-//        present(alert, animated: false, completion: nil)
-
         let bottomSheet = BottomSheetView(nibName: "BottomSheetView", bundle: nil)
         bottomSheet.modalPresentationStyle = .overCurrentContext
+        bottomSheet.mode = .saveAdvisory
+        bottomSheet.delegate = self
+        
         self.present(bottomSheet, animated: true, completion: nil)
     }
     
@@ -302,4 +309,17 @@ extension AdvisoryQuestionViewController: UITextViewDelegate {
 
 extension AdvisoryQuestionViewController: UITextFieldDelegate {
     
+}
+
+extension AdvisoryQuestionViewController: AdvisoryDelegate {
+    func saveButtonDidTap(completion: @escaping () -> Void) {
+        let answerList = self.makeAnswerTemplate()
+        AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+            completion()
+        }
+    }
+    
+    func closeViewControllersDelegate() {
+        self.closeViewControllers()
+    }
 }

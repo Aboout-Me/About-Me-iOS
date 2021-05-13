@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYf-hR-c9e">
-                            <rect key="frame" x="0.0" y="596" width="414" height="60"/>
+                            <rect key="frame" x="0.0" y="584" width="414" height="60"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfP-kG-yVF">
                                     <rect key="frame" x="187" y="10" width="40" height="5"/>
@@ -46,17 +46,19 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-Ci-W0I">
-                            <rect key="frame" x="0.0" y="626" width="414" height="270"/>
+                            <rect key="frame" x="0.0" y="614" width="414" height="282"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6e-Jf-6Lf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="228"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="240" id="xjv-14-o5S"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstItem="y6e-Jf-6Lf" firstAttribute="top" secondItem="GGy-Ci-W0I" secondAttribute="top" id="1hW-UM-Xje"/>
                                 <constraint firstItem="y6e-Jf-6Lf" firstAttribute="leading" secondItem="GGy-Ci-W0I" secondAttribute="leading" id="6sJ-3S-TuS"/>
-                                <constraint firstAttribute="height" constant="270" id="U66-ur-cch"/>
                                 <constraint firstItem="y6e-Jf-6Lf" firstAttribute="bottom" secondItem="GGy-Ci-W0I" secondAttribute="bottomMargin" id="W7A-cE-uJB"/>
                                 <constraint firstAttribute="trailing" secondItem="y6e-Jf-6Lf" secondAttribute="trailing" id="c3w-Gc-r6P"/>
                             </constraints>

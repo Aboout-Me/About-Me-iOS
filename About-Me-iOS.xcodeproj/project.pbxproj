@@ -41,6 +41,11 @@
 		07EE6C9526457E2900F99643 /*  circle-checked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EE6C9226457E2900F99643 /*  circle-checked@3x.png */; };
 		07EE6C99264AB06300F99643 /* BottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EE6C97264AB06300F99643 /* BottomSheetView.swift */; };
 		07EE6C9A264AB06300F99643 /* BottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07EE6C98264AB06300F99643 /* BottomSheetView.xib */; };
+		07F33942264D281900B5CFC0 /* confirm.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F3393F264D281800B5CFC0 /* confirm.png */; };
+		07F33943264D281900B5CFC0 /* confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F33940264D281900B5CFC0 /* confirm@2x.png */; };
+		07F33944264D281900B5CFC0 /* confirm@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F33941264D281900B5CFC0 /* confirm@3x.png */; };
+		07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */; };
+		07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */; };
@@ -127,6 +132,11 @@
 		07EE6C9226457E2900F99643 /*  circle-checked@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " circle-checked@3x.png"; sourceTree = "<group>"; };
 		07EE6C97264AB06300F99643 /* BottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetView.swift; sourceTree = "<group>"; };
 		07EE6C98264AB06300F99643 /* BottomSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetView.xib; sourceTree = "<group>"; };
+		07F3393F264D281800B5CFC0 /* confirm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = confirm.png; sourceTree = "<group>"; };
+		07F33940264D281900B5CFC0 /* confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@2x.png"; sourceTree = "<group>"; };
+		07F33941264D281900B5CFC0 /* confirm@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "confirm@3x.png"; sourceTree = "<group>"; };
+		07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -275,6 +285,8 @@
 			children = (
 				07EE6C97264AB06300F99643 /* BottomSheetView.swift */,
 				07EE6C98264AB06300F99643 /* BottomSheetView.xib */,
+				07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */,
+				07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -335,6 +347,9 @@
 				0751A67326443779004E635C /*  close.png */,
 				0751A67526443779004E635C /*  close@2x.png */,
 				0751A67426443779004E635C /*  close@3x.png */,
+				07F3393F264D281800B5CFC0 /* confirm.png */,
+				07F33940264D281900B5CFC0 /* confirm@2x.png */,
+				07F33941264D281900B5CFC0 /* confirm@3x.png */,
 				FF6922BA264315F700B0B533 /* Edit.png */,
 				FF6922BC264315F700B0B533 /* Edit@2x.png */,
 				FF6922BB264315F700B0B533 /* Edit@3x.png */,
@@ -462,6 +477,7 @@
 			files = (
 				07EE6C8F26457E1A00F99643 /* ico_common_24_complete_off@2x.png in Resources */,
 				FFFC0F882641A5B900C6372F /* Feed@3x.png in Resources */,
+				07F33943264D281900B5CFC0 /* confirm@2x.png in Resources */,
 				FF6922B226430BC600B0B533 /* imgBackgroundYellow@3x.png in Resources */,
 				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
 				FFFC0F9A2641A68500C6372F /* SelfQuestion@3x.png in Resources */,
@@ -470,6 +486,7 @@
 				0751A67C26443792004E635C /*  check-mark@2x.png in Resources */,
 				FFFC0F912641A63400C6372F /* Write@2x.png in Resources */,
 				FFFC0F73264192E200C6372F /* imgBackgroundRed.png in Resources */,
+				07F33942264D281900B5CFC0 /* confirm.png in Resources */,
 				0751A66F26443515004E635C /*  alert-circle.png in Resources */,
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
 				07EE6C8D26457E1A00F99643 /* ico_common_24_complete_off.png in Resources */,
@@ -500,6 +517,7 @@
 				FFFC0F902641A63400C6372F /* Write@3x.png in Resources */,
 				FFFC0F7A264193CB00C6372F /* GmarketSansMedium.otf in Resources */,
 				FFFC0F8226419BEE00C6372F /* FloatingPlus@2x.png in Resources */,
+				07F33944264D281900B5CFC0 /* confirm@3x.png in Resources */,
 				07EE6C9526457E2900F99643 /*  circle-checked@3x.png in Resources */,
 				FFFC0F8126419BEE00C6372F /* FloatingPlus@3x.png in Resources */,
 				0751A66E26443515004E635C /* advisory.png in Resources */,
@@ -582,6 +600,7 @@
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */,
+				07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */,
 				0751A66626442EED004E635C /* AdvisoryAnswerViewController.swift in Sources */,
 				FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
@@ -589,6 +608,7 @@
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
 				FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */,
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
+				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
 				FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
