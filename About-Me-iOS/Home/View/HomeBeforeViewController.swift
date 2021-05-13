@@ -102,13 +102,14 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
         ParagraphStyle.lineSpacing = 4
         self.homeBeforeBottomSheet.questionTitleLabel.attributedText = NSAttributedString(string:"\(self.questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
         self.homeBeforeBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.homeBeforeBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        self.homeBeforeBottomSheet.questionTitleLabel.numberOfLines = 0
+        self.homeBeforeBottomSheet.questionTitleLabel.textAlignment = .left
+        self.homeBeforeBottomSheet.questionTitleLabel.sizeToFit()
         self.homeBeforeBottomSheet.questionQizeTitleLabel.text = "Q. "
         self.homeBeforeBottomSheet.questionQizeTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.homeBeforeBottomSheet.questionQizeTitleLabel.textAlignment = .left
         self.homeBeforeBottomSheet.questionQizeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
-        self.homeBeforeBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
-        self.homeBeforeBottomSheet.questionTitleLabel.numberOfLines = 0
-        self.homeBeforeBottomSheet.questionTitleLabel.textAlignment = .left
         self.homeBeforeBottomSheet.questionTextView.delegate = self
         self.homeBeforeBottomSheet.questionTextView.text = "당신의 생각을 말해주세요"
         self.homeBeforeBottomSheet.questionTextView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
@@ -170,9 +171,9 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
     
     @objc
     private func showQuestionViewDidTap() {
-        UserDefaults.standard.set(self.homeBeforeBottomSheet.questionTextView.text, forKey: "myQuestionText")
         self.homeBeforeBottomSheet.questionTextView.resignFirstResponder()
         self.postHomeCardSave()
+        UserDefaults.standard.set(self.homeBeforeBottomSheet.questionTextView.text, forKey: "myQuestionText")
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.homeBeforeBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.05)
         })

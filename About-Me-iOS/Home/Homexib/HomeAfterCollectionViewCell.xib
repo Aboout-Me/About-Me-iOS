@@ -30,10 +30,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JDt-Tu-ADF">
-                                <rect key="frame" x="40" y="104" width="236" height="207"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="207" id="eX0-oE-1LY"/>
-                                </constraints>
+                                <rect key="frame" x="25" y="109" width="265" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,18 +45,28 @@
                                     <constraint firstAttribute="height" constant="22" id="xwW-Br-Frf"/>
                                 </constraints>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wfD-zO-b5d">
+                                <rect key="frame" x="25" y="71" width="1" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="c3n-pr-sJz"/>
+                                    <constraint firstAttribute="width" constant="1" id="h05-Jd-AxP"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="eTV-g3-SRa" firstAttribute="top" secondItem="rKX-AP-lTH" secondAttribute="top" constant="25" id="82V-f2-DNH"/>
-                            <constraint firstItem="JDt-Tu-ADF" firstAttribute="top" secondItem="YKJ-A8-aAL" secondAttribute="bottom" constant="42" id="KST-AP-90N"/>
+                            <constraint firstItem="YKJ-A8-aAL" firstAttribute="bottom" secondItem="wfD-zO-b5d" secondAttribute="top" constant="-9" id="CcK-Xg-xVL"/>
+                            <constraint firstItem="wfD-zO-b5d" firstAttribute="leading" secondItem="rKX-AP-lTH" secondAttribute="leading" constant="25" id="JEC-OF-xVA"/>
                             <constraint firstAttribute="trailing" secondItem="YKJ-A8-aAL" secondAttribute="trailing" constant="25" id="LlO-hj-kpA"/>
                             <constraint firstItem="YKJ-A8-aAL" firstAttribute="leading" secondItem="rKX-AP-lTH" secondAttribute="leading" constant="25" id="Lrr-gz-jWP"/>
                             <constraint firstAttribute="trailing" secondItem="sju-Bg-Kbb" secondAttribute="trailing" constant="15" id="Q1i-gD-q8H"/>
+                            <constraint firstItem="wfD-zO-b5d" firstAttribute="bottom" secondItem="JDt-Tu-ADF" secondAttribute="top" constant="-8" id="Wcl-ZL-hhj"/>
                             <constraint firstItem="eTV-g3-SRa" firstAttribute="leading" secondItem="rKX-AP-lTH" secondAttribute="leading" constant="25" id="i6f-NF-1oN"/>
                             <constraint firstItem="sju-Bg-Kbb" firstAttribute="top" secondItem="rKX-AP-lTH" secondAttribute="top" constant="20" id="pCX-Bl-1nA"/>
-                            <constraint firstAttribute="trailing" secondItem="JDt-Tu-ADF" secondAttribute="trailing" constant="39" id="pIm-GL-vsL"/>
-                            <constraint firstItem="JDt-Tu-ADF" firstAttribute="leading" secondItem="rKX-AP-lTH" secondAttribute="leading" constant="40" id="unr-GG-ndL"/>
+                            <constraint firstAttribute="trailing" secondItem="JDt-Tu-ADF" secondAttribute="trailing" constant="25" id="pIm-GL-vsL"/>
+                            <constraint firstItem="JDt-Tu-ADF" firstAttribute="leading" secondItem="rKX-AP-lTH" secondAttribute="leading" constant="25" id="unr-GG-ndL"/>
                             <constraint firstItem="YKJ-A8-aAL" firstAttribute="top" secondItem="eTV-g3-SRa" secondAttribute="bottom" constant="15" id="vHT-Ai-PZZ"/>
                         </constraints>
                     </view>
@@ -78,6 +85,7 @@
                 <outlet property="homeAfterSubjectLabel" destination="JDt-Tu-ADF" id="GE8-O2-xGc"/>
                 <outlet property="homeAfterTagButton" destination="eTV-g3-SRa" id="UPn-ER-ki8"/>
                 <outlet property="homeAfterTitleLabel" destination="YKJ-A8-aAL" id="ayf-kb-KWJ"/>
+                <outlet property="homeAfterTitleLineView" destination="wfD-zO-b5d" id="puT-z5-Cjr"/>
             </connections>
             <point key="canvasLocation" x="119.56521739130436" y="87.723214285714278"/>
         </collectionViewCell>

@@ -61,6 +61,7 @@ class HomeAfterViewController: UIViewController {
         }
     }
     
+    
     private func editBottomSheetLayoutInit() {
         self.homeAfterEditBottomSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
         self.homeAfterEditBottomSheetView.gestureView.layer.cornerRadius = 10
@@ -70,6 +71,8 @@ class HomeAfterViewController: UIViewController {
         self.homeAfterEditBottomSheetView.editButton.addTarget(self, action: #selector(self.homeAfterEditButtonDidTap(_:)), for: .touchUpInside)
         self.homeAfterEditBottomSheetView.deleteButton.addTarget(self, action: #selector(self.homeAfterDeleteButtonDidTap(_:)), for: .touchUpInside)
     }
+    
+    
     @objc
     private func showEditBottomSheetDidTap(_ sender: UIButton) {
         let window = UIApplication.shared.windows.first
@@ -79,6 +82,7 @@ class HomeAfterViewController: UIViewController {
             self.homeAfterEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height - 224, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
         })
     }
+    
     
     private func deleteHomeCardList() {
         print(UserDefaults.standard.integer(forKey: "homeBeforeSeq"))
@@ -95,10 +99,18 @@ class HomeAfterViewController: UIViewController {
         }
     }
     
+    // TODO: - APIRequest
+    
+    private func editHomeCardList() {
+
+    }
+    
+    
     @objc
     private func homeAfterEditButtonDidTap(_ sender: UIButton) {
         
     }
+    
     
     @objc
     private func homeAfterDeleteButtonDidTap(_ sender: UIButton) {
