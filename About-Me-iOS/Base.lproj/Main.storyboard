@@ -867,6 +867,7 @@
                         <outlet property="closeButton" destination="gVM-4P-dee" id="6J6-P4-cIw"/>
                         <outlet property="levelLabel" destination="S9q-nc-VZ6" id="GOe-bb-Wms"/>
                         <outlet property="limitLabel" destination="QnE-d6-4Ke" id="o4a-qL-ZvZ"/>
+                        <outlet property="navigationView" destination="gfX-2a-IAt" id="zTR-XA-o5L"/>
                         <outlet property="questionTextField" destination="cm9-WF-sD0" id="j38-sG-uRc"/>
                         <outlet property="questionView" destination="pR2-kt-bia" id="DG4-KY-417"/>
                         <outlet property="roundView" destination="6Tg-zR-8cQ" id="nWz-pA-ikR"/>

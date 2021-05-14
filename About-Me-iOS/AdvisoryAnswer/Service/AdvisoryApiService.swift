@@ -40,7 +40,7 @@ struct AdvisoryApiService {
     }
     
     static func saveAdvisoryAnswerList(answerList: AdvisoryPostList, completion: @escaping () -> Void) {
-        let urlComponent = URLComponents(string:  "\(API_URL)/Mypage/10Q10A/answer")
+        let urlComponent = URLComponents(string:  "\(API_URL)/MyPage/10Q10A/answer")
         guard let url = urlComponent?.url else { return }
         
         let request = AF.request(url, method: .post, parameters: try! answerList.asDictionary(), encoding: JSONEncoding.default)

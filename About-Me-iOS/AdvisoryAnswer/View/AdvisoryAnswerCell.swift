@@ -22,16 +22,16 @@ class AdvisoryAnswerCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.titleLabel.textColor = UIColor(white: 34.0 / 255.0, alpha: 1.0)
+        self.titleLabel.textColor = .gray333
         self.titleLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
-        self.finishView.tintColor = UIColor(white: 34.0 / 255.0, alpha: 1.0)
-        self.stageLabel.textColor = UIColor(white: 34.0 / 255.0, alpha: 1.0)
+        self.finishView.tintColor = .gray333
+        self.stageLabel.textColor = .gray333
         self.stageLabel.font = UIFont(name: "GmarketSansMedium", size: 15)
-        self.createdLabel.textColor = UIColor(white: 153.0 / 255.0, alpha: 1.0)
+        self.createdLabel.textColor = .gray999
         self.createdLabel.font = UIFont(name: "GmarketSansMedium", size: 13)
         
         self.borderView.layer.borderWidth = 0.5
-        self.borderView.layer.borderColor = UIColor(white: 221.0 / 255.0, alpha: 1.0).cgColor
+        self.borderView.layer.borderColor = UIColor.lineDdd.cgColor
         self.borderView.layer.cornerRadius = 5
     }
     
