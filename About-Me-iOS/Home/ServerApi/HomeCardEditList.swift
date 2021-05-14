@@ -21,7 +21,6 @@ struct HomeCardEditList: Codable {
     var message: String
     var user: Int
     var dailyLists: [HomeCardEditListModel]
-    var error: String
 }
 
 struct HomeCardEditListModel: Codable {

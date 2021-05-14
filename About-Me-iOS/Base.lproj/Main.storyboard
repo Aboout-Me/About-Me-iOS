@@ -117,9 +117,8 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kkp-4l-1mK">
-                            <rect key="frame" x="57" y="93" width="293" height="52"/>
+                            <rect key="frame" x="57" y="93" width="293" height="20.5"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="52" id="K22-OL-75h"/>
                                 <constraint firstAttribute="width" constant="293" id="RxV-TM-x3Y"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -132,32 +131,20 @@
                             <items>
                                 <navigationItem title="답하기" id="jLt-PF-pai">
                                     <leftBarButtonItems>
-                                        <barButtonItem style="plain" id="nH4-Lh-yAH">
-                                            <view key="customView" contentMode="scaleToFill" id="vJF-BY-tjj">
-                                                <rect key="frame" x="20" y="5.5" width="20" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </view>
-                                        </barButtonItem>
+                                        <barButtonItem width="10" id="sc0-3Y-i7Q"/>
                                         <barButtonItem style="plain" id="zjN-Jm-Oe7">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="uBL-3x-Ln2">
-                                                <rect key="frame" x="48" y="11" width="17" height="22"/>
+                                                <rect key="frame" x="30" y="11" width="17" height="22"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="delete.png"/>
                                             </button>
                                         </barButtonItem>
                                     </leftBarButtonItems>
                                     <rightBarButtonItems>
-                                        <barButtonItem style="plain" id="3M9-B6-5YR">
-                                            <view key="customView" contentMode="scaleToFill" id="v6L-bI-Z2S">
-                                                <rect key="frame" x="374" y="5.5" width="20" height="33"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                            </view>
-                                        </barButtonItem>
+                                        <barButtonItem width="20" id="W5B-Om-mgp"/>
                                         <barButtonItem style="plain" id="JNC-KI-xP5">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="17A-VT-NnX">
-                                                <rect key="frame" x="342" y="10" width="24" height="24"/>
+                                                <rect key="frame" x="350" y="10" width="24" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="check.png"/>
                                             </button>
@@ -165,7 +152,7 @@
                                         <barButtonItem width="8" id="su0-TO-OPt"/>
                                         <barButtonItem style="plain" id="hDk-UO-V8E">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="cVi-6s-tCS">
-                                                <rect key="frame" x="294" y="10" width="24" height="24"/>
+                                                <rect key="frame" x="302" y="10" width="24" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="02Element01Icon24Lock"/>
                                             </button>
@@ -175,14 +162,14 @@
                             </items>
                         </navigationBar>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NJI-J3-kAd">
-                            <rect key="frame" x="57" y="160" width="306" height="600"/>
+                            <rect key="frame" x="57" y="128.5" width="306" height="631.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <color key="textColor" systemColor="labelColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mVO-r7-sCp">
-                            <rect key="frame" x="23" y="98" width="22" height="18"/>
+                            <rect key="frame" x="23" y="93" width="22" height="18"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="18" id="XHM-jp-Gpw"/>
                                 <constraint firstAttribute="width" constant="22" id="nAT-54-3pC"/>
@@ -205,7 +192,7 @@
                         <constraint firstItem="Kkp-4l-1mK" firstAttribute="leading" secondItem="mVO-r7-sCp" secondAttribute="trailing" constant="12" id="RTZ-1o-GeE"/>
                         <constraint firstItem="NJI-J3-kAd" firstAttribute="trailing" secondItem="3oW-1I-eNg" secondAttribute="trailing" constant="-51" id="dDH-EH-TAg"/>
                         <constraint firstItem="mVO-r7-sCp" firstAttribute="leading" secondItem="3oW-1I-eNg" secondAttribute="leading" constant="23" id="ifW-b2-lqH"/>
-                        <constraint firstItem="mVO-r7-sCp" firstAttribute="top" secondItem="Xff-EY-VYH" secondAttribute="bottom" constant="54" id="sxx-d5-MNW"/>
+                        <constraint firstItem="mVO-r7-sCp" firstAttribute="top" secondItem="Xff-EY-VYH" secondAttribute="bottom" constant="49" id="sxx-d5-MNW"/>
                     </constraints>
                     <connections>
                         <outlet property="questionConfirmButton" destination="17A-VT-NnX" id="aE6-mX-krq"/>
@@ -278,6 +265,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="homeAfterAnswerEditBottomSheetView" destination="ym6-D7-jIZ" id="8Ya-Kh-MTy"/>
                         <outlet property="homeAfterBackgroundImageView" destination="B1v-4a-S3M" id="r3F-T1-aMT"/>
                         <outlet property="homeAfterCollectionView" destination="VBr-1W-G1E" id="lfm-Yo-ZvZ"/>
                         <outlet property="homeAfterEditBottomSheetView" destination="rH8-Uo-Jrg" id="Wkk-Lb-kws"/>
@@ -348,6 +336,98 @@
                         <outlet property="deleteButton" destination="i6O-Z7-RRq" id="sE0-u6-qwS"/>
                         <outlet property="editButton" destination="HZ1-6G-uUb" id="9Qg-3l-Zzi"/>
                         <outlet property="gestureView" destination="xqy-79-EFf" id="uWo-X7-pra"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" id="ym6-D7-jIZ" customClass="AnswerEditBottomSheet" customModule="About_Me_iOS" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-HJ-gEh" customClass="BottomNavigationBar" customModule="About_Me_iOS" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <items>
+                                <navigationItem title="답하기" id="xUf-VV-ozf">
+                                    <leftBarButtonItems>
+                                        <barButtonItem width="10" id="I47-AK-fJs"/>
+                                        <barButtonItem style="plain" id="Xda-Lk-Kdq">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Lvh-Hb-SRX">
+                                                <rect key="frame" x="30" y="11" width="17" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="delete.png"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </leftBarButtonItems>
+                                    <rightBarButtonItems>
+                                        <barButtonItem width="20" id="Wn4-3z-NqW"/>
+                                        <barButtonItem style="plain" id="Xbu-ds-VXS">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9ma-M8-Ji1">
+                                                <rect key="frame" x="354" y="11" width="20" height="22"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="check.png"/>
+                                            </button>
+                                        </barButtonItem>
+                                        <barButtonItem width="8" id="FTJ-ca-Bjy"/>
+                                        <barButtonItem style="plain" id="tAm-r1-eWX">
+                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hSt-1x-nXV">
+                                                <rect key="frame" x="306" y="10" width="24" height="24"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" image="02Element01Icon24Lock"/>
+                                            </button>
+                                        </barButtonItem>
+                                    </rightBarButtonItems>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWJ-rc-SvN">
+                            <rect key="frame" x="23" y="93" width="22" height="18"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="22" id="4pQ-xM-xDF"/>
+                                <constraint firstAttribute="height" constant="18" id="tqn-RO-azh"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NnO-7h-4jA">
+                            <rect key="frame" x="57" y="93" width="293" height="20.5"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="293" id="gRV-AC-WAH"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BV1-8T-6lS">
+                            <rect key="frame" x="57" y="128.5" width="306" height="600"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <color key="textColor" systemColor="labelColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        </textView>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="cAs-vT-pdA"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Cnb-HJ-gEh" secondAttribute="trailing" id="22w-pS-Rv8"/>
+                        <constraint firstItem="cAs-vT-pdA" firstAttribute="trailing" secondItem="BV1-8T-6lS" secondAttribute="trailing" constant="51" id="3jC-fm-X7W"/>
+                        <constraint firstItem="BV1-8T-6lS" firstAttribute="leading" secondItem="cAs-vT-pdA" secondAttribute="leading" constant="57" id="6ll-az-Pw5"/>
+                        <constraint firstItem="ZWJ-rc-SvN" firstAttribute="top" secondItem="Cnb-HJ-gEh" secondAttribute="bottom" constant="49" id="97M-xZ-Yck"/>
+                        <constraint firstItem="BV1-8T-6lS" firstAttribute="top" secondItem="NnO-7h-4jA" secondAttribute="bottom" constant="15" id="Ele-bG-RZd"/>
+                        <constraint firstItem="cAs-vT-pdA" firstAttribute="bottom" secondItem="BV1-8T-6lS" secondAttribute="bottom" constant="31.5" id="Hv8-mu-Hl1"/>
+                        <constraint firstItem="NnO-7h-4jA" firstAttribute="top" secondItem="Cnb-HJ-gEh" secondAttribute="bottom" constant="49" id="SFh-CD-luV"/>
+                        <constraint firstItem="Cnb-HJ-gEh" firstAttribute="leading" secondItem="ym6-D7-jIZ" secondAttribute="leading" id="bJT-W7-hX2"/>
+                        <constraint firstItem="ZWJ-rc-SvN" firstAttribute="leading" secondItem="cAs-vT-pdA" secondAttribute="leading" constant="23" id="h9Q-8M-hsF"/>
+                        <constraint firstItem="Cnb-HJ-gEh" firstAttribute="top" secondItem="ym6-D7-jIZ" secondAttribute="top" id="oD3-k6-CQz"/>
+                        <constraint firstItem="NnO-7h-4jA" firstAttribute="leading" secondItem="ZWJ-rc-SvN" secondAttribute="trailing" constant="12" id="oGY-Ls-q3T"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="answerConfirmButton" destination="9ma-M8-Ji1" id="Ika-Ot-yfu"/>
+                        <outlet property="answerDeleteButton" destination="Lvh-Hb-SRX" id="8YH-4c-jDw"/>
+                        <outlet property="answerEditNavigationBar" destination="Cnb-HJ-gEh" id="09T-ca-r2h"/>
+                        <outlet property="answerShareButton" destination="hSt-1x-nXV" id="CgU-Zy-P9l"/>
+                        <outlet property="answerTextView" destination="BV1-8T-6lS" id="5et-lZ-hmp"/>
+                        <outlet property="answerTitleLabel" destination="NnO-7h-4jA" id="2UQ-lg-KKP"/>
+                        <outlet property="answerTitleQuestionLabel" destination="ZWJ-rc-SvN" id="Ss4-Eh-tBA"/>
                     </connections>
                 </view>
             </objects>
