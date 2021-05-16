@@ -31,6 +31,9 @@ class MyProfileViewController: UIViewController {
     @IBOutlet weak var myProfileFloatingButton: Floaty!
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
+    private var tagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setInitLayout()
@@ -239,7 +242,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         if collectionView == self.myProfileCollectionView {
             return 5
         } else {
-            return 5
+            return self.tagNameList.count
         }
     }
     
@@ -261,7 +264,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                 myProfileTagCell?.myProfileTagButton.backgroundColor =  UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
                 collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
             }
-            myProfileTagCell?.myProfileTagButton.setTitle("전체", for: .normal)
+            myProfileTagCell?.myProfileTagButton.setTitle(self.tagNameList[indexPath.item], for: .normal)
             return myProfileTagCell!
         }
     }
@@ -286,7 +289,8 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         if collectionView == self.myProfileCollectionView {
             return CGSize(width: 335, height: 100)
         } else {
-            return CGSize(width: 100, height: 29)
+            let myTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
+            return CGSize(width: (myTextCell?.myProfileTagButton.intrinsicContentSize.width)!, height: 30)
         }
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
