@@ -7,12 +7,14 @@
 
 import UIKit
 
-class MyProfileDetailViewController: UIViewController {
+class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     
-    @IBOutlet weak var myProfiletTitleLabel: UILabel!
+    @IBOutlet weak var myProfileBackgroundImageView: UIImageView!
+    @IBOutlet weak var myProfileTitleLabel: UILabel!
     @IBOutlet weak var myProfileSubTitleLabel: UILabel!
     @IBOutlet weak var myProfileCategoryTitleLabel: UILabel!
     @IBOutlet weak var myProfileCategoryContainerView: UIView!
+    @IBOutlet weak var myProfileScrollView: UIScrollView!
     @IBOutlet weak var myProfileCharacterImageView: UIImageView!
     @IBOutlet weak var myProfileCharacterTitleLabel: UILabel!
     @IBOutlet weak var myProfileCharacterProgressView: UIProgressView!
@@ -52,6 +54,7 @@ class MyProfileDetailViewController: UIViewController {
     @IBOutlet weak var myProfileWeeklySunImageView: UIImageView!
     private var categoryData = [CategoryProgressModel]()
     private var weeklyData = [WeeklyProgressListModel]()
+    public var sequence: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getWeeklyList()
@@ -62,22 +65,30 @@ class MyProfileDetailViewController: UIViewController {
     
     
     private func setCategoryViewLayoutInit() {
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Settings.png"), style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Settings"), style: .plain, target: self, action: nil)
         self.navigationController?.view.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = "MY"
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!]
         self.view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
-        self.myProfiletTitleLabel.text = "빨간 질문을 많이 답한 당신은..."
-        self.myProfiletTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 13)
-        self.myProfiletTitleLabel.textColor = UIColor.black
-        self.myProfiletTitleLabel.textAlignment = .center
+        self.myProfileScrollView.delegate = self
+        self.myProfileScrollView.contentInsetAdjustmentBehavior = .never
+        self.myProfileScrollView.automaticallyAdjustsScrollIndicatorInsets = false
+        self.myProfileScrollView.bounces = false
+        self.myProfileBackgroundImageView.image = UIImage(named: "bgRed")
+        self.myProfileBackgroundImageView.contentMode = .scaleToFill
+        self.myProfileBackgroundImageView.layer.cornerRadius = 30
+        self.myProfileBackgroundImageView.layer.masksToBounds = true
+        self.myProfileTitleLabel.text = "빨간 질문을 많이 답한 당신은..."
+        self.myProfileTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileTitleLabel.textColor = UIColor.white
+        self.myProfileTitleLabel.textAlignment = .center
         self.myProfileSubTitleLabel.text = "현재 열정이 넘치시는군요!"
         self.myProfileSubTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
-        self.myProfileSubTitleLabel.textColor = UIColor.black
+        self.myProfileSubTitleLabel.textColor = UIColor.white
         self.myProfileSubTitleLabel.textAlignment = .center
         self.myProfileCategoryTitleLabel.text = "카테고리별 통계"
         self.myProfileCategoryTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
@@ -160,9 +171,11 @@ class MyProfileDetailViewController: UIViewController {
         self.myProfileWeeklyTitleLabel.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
         self.myProfileWeeklyTitleLabel.textAlignment = .center
         self.myProfileWeeklyTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
-        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow.png"), for: .normal)
+        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow"), for: .normal)
+        self.myProfileWeeklyNextButton.addTarget(self, action: #selector(self.weeklyNextButtonDidTap(_:)), for: .touchUpInside)
         self.myProfileWeeklyLine.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
-        
+        self.myProfileWeeklyPreviousButton.setImage(UIImage(named: "PreviousArrow"), for: .normal)
+        self.myProfileWeeklyPreviousButton.addTarget(self, action: #selector(self.weeklyPreviousButtonDidTap(_:)), for: .touchUpInside)
     }
     
     private func getCategoryList() {
@@ -171,14 +184,13 @@ class MyProfileDetailViewController: UIViewController {
                 DispatchQueue.main.async {
                     self.categoryData = list
                     if self.categoryData.isEmpty == false {
-                        self.setServerProcessDidFinsh()
+                        self.setCategoryServerProcessDidFinsh()
                     }
                 }
-            } else if case let .failure(error) = result {
             }
         }
     }
-    private func setServerProcessDidFinsh() {
+    private func setCategoryServerProcessDidFinsh() {
         self.myProfileCharacterProgressView.progress = self.categoryData[0].experience
         self.myProfileCharacterLevelLabel.text = "lv.\(self.categoryData[0].level)"
         self.myProfileCharacterProgressViewTwo.progress = self.categoryData[1].experience
@@ -194,11 +206,64 @@ class MyProfileDetailViewController: UIViewController {
     private func getWeeklyList(){
         ProfileServerApi.getWeeklyProgress(userId: 1) { result in
             if case let .success(data) = result, let list = data {
-                list.weeklyProgressingList.forEach { result in
-                    self.weeklyData = result
+                self.weeklyData = list.weeklyProgressingList[0]
+                print("test color",self.weeklyData)
+                DispatchQueue.main.async {
+                    self.setWeeklyServerProcessDidFinsh()
                 }
-                print("day",self.weeklyData[0].day)
+            }
+        }
+    }
+    private func setWeeklyServerProcessDidFinsh() {
+        if self.weeklyData[0].day == "월" && self.weeklyData[0].isWritten == true {
+            self.myProfileWeeklyMonImageView.image = UIImage(named: "WeeklyMon")
+        } else if self.weeklyData[1].day == "화" && self.weeklyData[1].isWritten == true {
+            self.myProfileWeeklyTueImageView.image = UIImage(named: "WeeklyTue")
+        } else if self.weeklyData[2].day == "수" && self.weeklyData[2].isWritten == true {
+            self.myProfileWeeklyWedImageView.image = UIImage(named: "WeeklyWed")
+        } else if self.weeklyData[3].day == "목" && self.weeklyData[3].isWritten == true {
+            self.myProfileWeeklyThuImageView.image = UIImage(named: "WeeklyThu")
+        } else if self.weeklyData[4].day == "금" && self.weeklyData[4].isWritten == true {
+            self.myProfileWeeklyFriImageView.image = UIImage(named: "WeeklyFri")
+        } else if self.weeklyData[5].day == "토" && self.weeklyData[5].isWritten == true {
+            self.myProfileWeeklySatImageView.image = UIImage(named: "WeeklySat")
+        } else if self.weeklyData[6].day == "일" && self.weeklyData[6].isWritten == true {
+            self.myProfileWeeklySunImageView.image = UIImage(named: "WeeklySun")
+        }
+    }
+    
+    @objc
+    private func weeklyNextButtonDidTap(_ sender: UIButton) {
+        ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
+            if case let .success(data) = result, let list = data {
+                self.sequence += 1
+                if self.sequence == 2 {
+                    self.myProfileWeeklyNextButton.isEnabled = false
+                }
+                self.weeklyData = list.weeklyProgressingList[sequence]
+                print("data\(self.sequence)" ,self.weeklyData)
+                DispatchQueue.main.async {
+                    self.setWeeklyServerProcessDidFinsh()
+                }
+            }
+        }
+    }
+    
+    @objc
+    private func weeklyPreviousButtonDidTap(_ sender: UIButton) {
+        ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
+            if case let .success(data) = result, let list = data {
+                self.sequence -= 1
+                if self.sequence == 0 {
+                    self.myProfileWeeklyPreviousButton.isEnabled = false
+                }
+                self.weeklyData = list.weeklyProgressingList[sequence]
+                DispatchQueue.main.async {
+                    self.setWeeklyServerProcessDidFinsh()
+                }
+                print("data\(self.sequence)" ,self.weeklyData)
             }
         }
     }
 }
+
