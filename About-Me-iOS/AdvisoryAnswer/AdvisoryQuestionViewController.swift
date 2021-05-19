@@ -76,6 +76,14 @@ class AdvisoryQuestionViewController: UIViewController {
     var questionDictionary: [Int: String] = [:]
     var answerDictionary: [Int: String] = [:]
     
+    enum Mode {
+        case new
+        case ongoing
+    }
+    
+    var mode: Mode = .new
+    var stackNumber = 1
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -115,6 +123,11 @@ class AdvisoryQuestionViewController: UIViewController {
         if let str = self.answerDictionary[self.questionNumber] {
             self.answerTextView.text = str
             self.answerTextView.textColor = .black
+            if str != "" {
+                self.answerPlaceholderLabel.isHidden = true
+            } else {
+                self.answerPlaceholderLabel.isHidden = false
+            }
             let attributedString = NSMutableAttributedString()
             attributedString.append(NSAttributedString(string: "\(str.count)",
                                                        attributes: [.foregroundColor: UIColor.black]))
@@ -210,6 +223,7 @@ class AdvisoryQuestionViewController: UIViewController {
         questionVC.advisoryTitle = self.advisoryTitle
         questionVC.questionDictionary = self.questionDictionary
         questionVC.answerDictionary = self.answerDictionary
+        questionVC.stackNumber = self.stackNumber + 1
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
@@ -225,6 +239,7 @@ class AdvisoryQuestionViewController: UIViewController {
         questionVC.advisoryTitle = self.advisoryTitle
         questionVC.questionDictionary = self.questionDictionary
         questionVC.answerDictionary = self.answerDictionary
+        questionVC.stackNumber = self.stackNumber + 1
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
@@ -259,12 +274,16 @@ class AdvisoryQuestionViewController: UIViewController {
     }
     
     private func closeViewControllers() {
-        self.navigationController?.isNavigationBarHidden = false
+        if self.mode == .ongoing {
+            self.navigationController?.isNavigationBarHidden = true
+        } else {
+            self.navigationController?.isNavigationBarHidden = false
+        }
         
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers
         
         self.navigationController?.popToViewController(
-            viewControllers[viewControllers.count - self.questionNumber - 1], animated: false)
+            viewControllers[viewControllers.count - self.stackNumber - 1], animated: false)
     }
     
     private func makeAnswerTemplate() -> AdvisoryPostList {
@@ -314,8 +333,13 @@ extension AdvisoryQuestionViewController: UITextFieldDelegate {
 extension AdvisoryQuestionViewController: AdvisoryDelegate {
     func saveButtonDidTap(completion: @escaping () -> Void) {
         let answerList = self.makeAnswerTemplate()
-        AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
-            completion()
+        
+        if self.mode == .new {
+            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+                completion()
+            }
+        } else {
+            
         }
     }
     
