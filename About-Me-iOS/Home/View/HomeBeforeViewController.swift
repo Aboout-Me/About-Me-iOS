@@ -98,9 +98,9 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
         questionToolBar.items = [fiexedButton,doneButton]
         questionToolBar.sizeToFit()
         self.homeBeforeBottomSheet.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 2)
-        let ParagraphStyle = NSMutableParagraphStyle()
-        ParagraphStyle.lineSpacing = 4
-        self.homeBeforeBottomSheet.questionTitleLabel.attributedText = NSAttributedString(string:"\(self.questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        self.homeBeforeBottomSheet.questionTitleLabel.attributedText = NSAttributedString(string:"\(self.questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         self.homeBeforeBottomSheet.questionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.homeBeforeBottomSheet.questionTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
         self.homeBeforeBottomSheet.questionTitleLabel.numberOfLines = 0
@@ -118,7 +118,9 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
         self.homeBeforeBottomSheet.layer.cornerRadius = 20
         self.homeBeforeBottomSheet.layer.masksToBounds = true
         self.homeBeforeBottomSheet.backgroundColor = UIColor.white
+        self.homeBeforeBottomSheet.questionConfirmButton.isEnabled = false
         self.homeBeforeBottomSheet.questionNavigationBar.shadowImage = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).imageFormatting()
+        self.homeBeforeBottomSheet.questionNavigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!]
         self.homeBeforeBottomSheet.questionDeleteButton.addTarget(self, action: #selector(self.hiddenBottomSheetDidTap), for: .touchUpInside)
         self.homeBeforeBottomSheet.questionConfirmButton.addTarget(self, action: #selector(self.showQuestionViewDidTap), for: .touchUpInside)
     }
@@ -152,6 +154,7 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
         HomeServerApi.postHomecardListSave(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
+                UserDefaults.standard.set(list.dailyLists[0].level, forKey: "homeBeforeLevel")
                 UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "homeBeforeSeq")
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
@@ -182,6 +185,7 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
         guard let homeAfterVC = homeAfterView else { return }
         homeAfterVC.titleText = self.questionTitleText
         homeAfterVC.backgroundColor = self.homeData[self.selectIndex].color
+        homeAfterVC.answerLevel = self.homeData[self.selectIndex].lev
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
     
@@ -235,19 +239,24 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
     
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
         if textView.textColor == UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0) {
+            self.homeBeforeBottomSheet.questionConfirmButton.isEnabled = true
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textAlignment = .left
+            textView.typingAttributes = [NSAttributedString.Key.paragraphStyle : paragraphStyle, NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 16),NSAttributedString.Key.foregroundColor:UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)]
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
+            self.homeBeforeBottomSheet.questionConfirmButton.isEnabled = false
             textView.text = "당신의 생각을 말해주세요"
             textView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
         }
     }
-    
+        
 }
 
 extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
