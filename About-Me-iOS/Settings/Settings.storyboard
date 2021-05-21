@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="SettingsViewController" id="Y6W-OH-hqX" customClass="SettingsViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ya2-tJ-Ilg">
+                                <rect key="frame" x="0.0" y="90" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="Wyj-6F-L2c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="    프로필편집">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljj-eh-A1P">
+                                <rect key="frame" x="0.0" y="160" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="x9T-MQ-O63"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="    알림설정">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aSr-47-EZ1">
+                                <rect key="frame" x="0.0" y="230" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="dwi-pw-My4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="    문의하기">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nfs-K8-RmU">
+                                <rect key="frame" x="0.0" y="370" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="nf7-C6-Axf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="    버전정보">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5U-IN-r2Y">
+                                <rect key="frame" x="0.0" y="300" width="414" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="8Rf-Eg-Vvq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="    공지사항">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Nfs-K8-RmU" secondAttribute="trailing" id="0hb-uc-ea2"/>
+                            <constraint firstItem="U5U-IN-r2Y" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="8VO-9H-CG4"/>
+                            <constraint firstItem="aSr-47-EZ1" firstAttribute="top" secondItem="Ljj-eh-A1P" secondAttribute="bottom" id="EUc-xJ-BMd"/>
+                            <constraint firstItem="Nfs-K8-RmU" firstAttribute="top" secondItem="U5U-IN-r2Y" secondAttribute="bottom" id="LQ6-uq-aac"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ljj-eh-A1P" secondAttribute="trailing" id="LS6-Na-8nH"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="aSr-47-EZ1" secondAttribute="trailing" id="OVi-dH-VbJ"/>
+                            <constraint firstItem="aSr-47-EZ1" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="bS4-I1-MMK"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="U5U-IN-r2Y" secondAttribute="trailing" id="chi-wm-rqM"/>
+                            <constraint firstItem="U5U-IN-r2Y" firstAttribute="top" secondItem="aSr-47-EZ1" secondAttribute="bottom" id="f3c-fE-VAJ"/>
+                            <constraint firstItem="ya2-tJ-Ilg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="46" id="f8V-mC-lq6"/>
+                            <constraint firstItem="ya2-tJ-Ilg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="jyI-mG-v43"/>
+                            <constraint firstItem="Ljj-eh-A1P" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="psK-VZ-MdN"/>
+                            <constraint firstItem="Nfs-K8-RmU" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="rIk-R6-ueA"/>
+                            <constraint firstItem="Ljj-eh-A1P" firstAttribute="top" secondItem="ya2-tJ-Ilg" secondAttribute="bottom" id="sin-Ph-ios"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ya2-tJ-Ilg" secondAttribute="trailing" id="uh1-mq-4nF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="yhX-l4-tDZ"/>
+                    <connections>
+                        <outlet property="alaramsettingsButton" destination="Ljj-eh-A1P" id="Vyr-Tp-fUN"/>
+                        <outlet property="editprofileButton" destination="ya2-tJ-Ilg" id="ei1-QI-MRj"/>
+                        <outlet property="noticesButton" destination="U5U-IN-r2Y" id="YRR-Vs-iAs"/>
+                        <outlet property="quetstionsButton" destination="aSr-47-EZ1" id="0aT-76-Nym"/>
+                        <outlet property="versioninfoButton" destination="Nfs-K8-RmU" id="Q4j-3P-6xC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939.13043478260875" y="69.642857142857139"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

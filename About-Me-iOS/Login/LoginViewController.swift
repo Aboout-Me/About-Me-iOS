@@ -1,3 +1,4 @@
+import AuthenticationServices
 import Foundation
 import UIKit
 
@@ -11,35 +12,44 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     
     // MARK: - 변수정의(Label, Button ...)
     
-    @IBOutlet var naverNameLabel: UILabel!
-    @IBOutlet var naverEmailLabel: UILabel!
-    @IBOutlet var naverIdLabel: UILabel!
-    @IBOutlet var kakaoNameLabel: UILabel!
-    
     @IBOutlet var naverloginButton: UIButton!
-    @IBOutlet var naverlogoutButton: UIButton!
     @IBOutlet var kakaologinButton: UIButton!
-    
-    @IBOutlet var tmpImage: UIImageView!
-    let img = UIImage(named: "tmp.jpg")
-    
+    @IBOutlet var appleloginButton: UIButton!
+    @IBOutlet weak var logoDescription: UILabel!
+    @IBOutlet var logoImage: UIImageView!
+    let img = UIImage(named: "logoImage.png")
+
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
+//        addButton()
         loginInstance?.delegate = self
         
-        // 이미지 설정
-        tmpImage.image = img
+        self.view.backgroundColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
         
-        // 버튼 테두리 설정
-        naverloginButton.layer.cornerRadius = 3
-        kakaologinButton.layer.cornerRadius = 3
+        logoDescription.text = "간편한 로그인으로\n 다양한 질문을 받아보세요!"
+        let attrString = NSMutableAttributedString(string: logoDescription.text!)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 15
+        attrString.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attrString.length))
+        logoDescription.attributedText = attrString
+        logoDescription.textAlignment = .center
         
-        naverloginButton.layer.borderWidth = 2
-        kakaologinButton.layer.borderWidth = 2
+        logoImage.image = img
         
-        naverloginButton.layer.borderColor = UIColor.black.cgColor
-        kakaologinButton.layer.borderColor = UIColor.black.cgColor
+        logoDescription.font = UIFont(name: "GmarketSansTTFMedium", size: 18)
+        
+        kakaologinButton.setImage(UIImage(named: "kakaologinImage.png"), for: .normal)
+        naverloginButton.setImage(UIImage(named: "naverloginImage.png"), for: .normal)
+        appleloginButton.setImage(UIImage(named: "appleloginImage.png"), for: .normal)
+        
+        // 네비게이션바 설정
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.navigationBar.topItem?.title = ""
     }
     
     // MARK: - 네이버 로그인 파트
@@ -100,9 +110,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         guard let email = object["email"] as? String else { return }
         guard let id = object["id"] as? String else {return}
         
-        self.naverNameLabel.text = "\(name)"
-        self.naverEmailLabel.text = "\(email)"
-        self.naverIdLabel.text = "\(id)"
+//        self.naverNameLabel.text = "\(name)"
+//        self.naverEmailLabel.text = "\(email)"
+//        self.naverIdLabel.text = "\(id)"
       }
     }
     
@@ -139,13 +149,48 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                 //do something
                 _ = user
                 
-                self.kakaoNameLabel.text = user?.kakaoAccount?.profile?.nickname
+//                self.kakaoNameLabel.text = user?.kakaoAccount?.profile?.nickname
                 
 //                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
 //                    let data = try? Data(contentsOf: url) {
 //                    self.profileImageView.image = UIImage(data: data)
 //                }
             }
+         }
+    }
+}
+
+// MARK: - 애플 로그인 파트
+extension LoginViewController: ASAuthorizationControllerDelegate {
+    
+//    func addButton() {
+//        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+//        button.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
+//        appleLogin.addSubview(button)
+//        let image: UIImage = UIImage(named: "appleloginImage.png")!
+//        appleLogin.back
+//    }
+    @objc func handleAppleSignInButton() {
+        let request = ASAuthorizationAppleIDProvider().createRequest()
+        request.requestedScopes = [.fullName, .email]
+        let controller = ASAuthorizationController(authorizationRequests: [request])
+        controller.delegate = self as? ASAuthorizationControllerDelegate
+        controller.presentationContextProvider = self as? ASAuthorizationControllerPresentationContextProviding
+        controller.performRequests()
+    }
+    
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+     
+        if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            let user = credential.user
+            print("User: \(user)")
+            guard let email = credential.email else { return }
+            print("Email: \(email)")
         }
     }
+ 
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        print("Apple login error : \(error)")
+    }
+    
 }

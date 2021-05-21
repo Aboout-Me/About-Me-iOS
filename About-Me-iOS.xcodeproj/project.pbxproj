@@ -13,7 +13,6 @@
 		0715A349260CD1860077882A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A347260CD1860077882A /* Main.storyboard */; };
 		0715A34B260CD1870077882A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34A260CD1870077882A /* Assets.xcassets */; };
 		0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0715A34C260CD1870077882A /* LaunchScreen.storyboard */; };
-		185B6594261D8EFF0016E2EA /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185B6593261D8EFF0016E2EA /* Onboarding.storyboard */; };
 		185B65AB261DA4C30016E2EA /* Home_temp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185B65AA261DA4C30016E2EA /* Home_temp.storyboard */; };
 		185B65AF261DA5150016E2EA /* Home_tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65AE261DA5150016E2EA /* Home_tempViewController.swift */; };
 		185B65B3261DA8020016E2EA /* ConciergeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65B2261DA8020016E2EA /* ConciergeViewController.swift */; };
@@ -21,6 +20,9 @@
 		185B65C8261DDF530016E2EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65C7261DDF530016E2EA /* OnboardingViewController.swift */; };
 		189D8843262862630097C4A9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D8842262862630097C4A9 /* TestViewController.swift */; };
 		18B040AA2635EB890018FF12 /* AdditionalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */; };
+		18BB4BA52656827700800127 /* GmarketSansTTFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18BB4BA42656827700800127 /* GmarketSansTTFMedium.ttf */; };
+		18D02F6E264318A70015E1C5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D02F6D264318A70015E1C5 /* Settings.storyboard */; };
+		18D02F70264318B50015E1C5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D02F6F264318B50015E1C5 /* SettingsViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +35,6 @@
 		0715A34A260CD1870077882A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0715A34D260CD1870077882A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0715A34F260CD1870077882A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		185B6593261D8EFF0016E2EA /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		185B65AA261DA4C30016E2EA /* Home_temp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home_temp.storyboard; sourceTree = "<group>"; };
 		185B65AE261DA5150016E2EA /* Home_tempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home_tempViewController.swift; sourceTree = "<group>"; };
 		185B65B2261DA8020016E2EA /* ConciergeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConciergeViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +42,10 @@
 		185B65C7261DDF530016E2EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		189D8842262862630097C4A9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalProfileViewController.swift; sourceTree = "<group>"; };
+		18B040AC26383A1A0018FF12 /* About-Me-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "About-Me-iOS.entitlements"; sourceTree = "<group>"; };
+		18BB4BA42656827700800127 /* GmarketSansTTFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GmarketSansTTFMedium.ttf; path = ../../../../../Downloads/GmarketSansTTF/GmarketSansTTFMedium.ttf; sourceTree = "<group>"; };
+		18D02F6D264318A70015E1C5 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
+		18D02F6F264318B50015E1C5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
@@ -79,27 +84,19 @@
 		0715A340260CD1860077882A /* About-Me-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				18BB4BA02656822700800127 /* Font */,
+				18B040AC26383A1A0018FF12 /* About-Me-iOS.entitlements */,
 				185B65A9261DA4AF0016E2EA /* Home_temp */,
 				185B6592261D81200016E2EA /* Login */,
-				185B6591261D81150016E2EA /* Onboarding */,
 				0715A341260CD1860077882A /* AppDelegate.swift */,
 				0715A343260CD1860077882A /* SceneDelegate.swift */,
 				0715A34A260CD1870077882A /* Assets.xcassets */,
 				189D8842262862630097C4A9 /* TestViewController.swift */,
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
 				0715A34F260CD1870077882A /* Info.plist */,
+				18D02F6C264318930015E1C5 /* Settings */,
 			);
 			path = "About-Me-iOS";
-			sourceTree = "<group>";
-		};
-		185B6591261D81150016E2EA /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				185B6593261D8EFF0016E2EA /* Onboarding.storyboard */,
-				185B65C7261DDF530016E2EA /* OnboardingViewController.swift */,
-				18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */,
-			);
-			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		185B6592261D81200016E2EA /* Login */ = {
@@ -107,6 +104,8 @@
 			children = (
 				185B65BC261DCEF40016E2EA /* LandscapeManager */,
 				0715A347260CD1860077882A /* Main.storyboard */,
+				18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */,
+				185B65C7261DDF530016E2EA /* OnboardingViewController.swift */,
 				0715A345260CD1860077882A /* LoginViewController.swift */,
 				185B65B2261DA8020016E2EA /* ConciergeViewController.swift */,
 			);
@@ -128,6 +127,23 @@
 				185B65B6261DAA550016E2EA /* LandscapeManager.swift */,
 			);
 			path = LandscapeManager;
+			sourceTree = "<group>";
+		};
+		18BB4BA02656822700800127 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				18BB4BA42656827700800127 /* GmarketSansTTFMedium.ttf */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		18D02F6C264318930015E1C5 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				18D02F6D264318A70015E1C5 /* Settings.storyboard */,
+				18D02F6F264318B50015E1C5 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		E45D6508C2D62EF6EF67D7BC /* Pods */ = {
@@ -207,10 +223,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
-				185B6594261D8EFF0016E2EA /* Onboarding.storyboard in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
 				185B65AB261DA4C30016E2EA /* Home_temp.storyboard in Resources */,
+				18D02F6E264318A70015E1C5 /* Settings.storyboard in Resources */,
+				18BB4BA52656827700800127 /* GmarketSansTTFMedium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,6 +283,7 @@
 				185B65C8261DDF530016E2EA /* OnboardingViewController.swift in Sources */,
 				0715A346260CD1860077882A /* LoginViewController.swift in Sources */,
 				189D8843262862630097C4A9 /* TestViewController.swift in Sources */,
+				18D02F70264318B50015E1C5 /* SettingsViewController.swift in Sources */,
 				185B65AF261DA5150016E2EA /* Home_tempViewController.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				18B040AA2635EB890018FF12 /* AdditionalProfileViewController.swift in Sources */,
@@ -419,8 +437,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "About-Me-iOS/About-Me-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S3646H7837;
+				DEVELOPMENT_TEAM = 3YTL39LSBC;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -439,8 +458,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "About-Me-iOS/About-Me-iOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = S3646H7837;
+				DEVELOPMENT_TEAM = 3YTL39LSBC;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
