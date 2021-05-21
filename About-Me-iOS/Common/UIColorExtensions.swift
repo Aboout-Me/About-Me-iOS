@@ -35,4 +35,7 @@ extension UIColor {
     @nonobjc class var lineCcc: UIColor {
         return UIColor(white: 204.0 / 255.0, alpha: 1.0)
     }
+    @nonobjc class var whiteTwo: UIColor {
+        return UIColor(white: 247.0 / 255.0, alpha: 1.0)
+      }
 }
