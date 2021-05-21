@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0705C8CA2658267D00E71E8E /* AdvisoryUpdateList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705C8C92658267D00E71E8E /* AdvisoryUpdateList.swift */; };
 		0715A342260CD1860077882A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715A341260CD1860077882A /* AppDelegate.swift */; };
 		0715A344260CD1860077882A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715A343260CD1860077882A /* SceneDelegate.swift */; };
 		0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0715A345260CD1860077882A /* HomeBeforeViewController.swift */; };
@@ -107,6 +108,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0705C8C92658267D00E71E8E /* AdvisoryUpdateList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryUpdateList.swift; sourceTree = "<group>"; };
 		0715A33E260CD1860077882A /* About-Me-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "About-Me-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0715A341260CD1860077882A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0715A343260CD1860077882A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				0725AB3B263AC7880082A20D /* AdvisoryList.swift */,
 				0751A66326441545004E635C /* AdvisoryPostList.swift */,
 				07688E05265502860058A1BE /* AdvisoryDetailList.swift */,
+				0705C8C92658267D00E71E8E /* AdvisoryUpdateList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */,
 				07688E06265502860058A1BE /* AdvisoryDetailList.swift in Sources */,
 				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
+				0705C8CA2658267D00E71E8E /* AdvisoryUpdateList.swift in Sources */,
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,
 				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
