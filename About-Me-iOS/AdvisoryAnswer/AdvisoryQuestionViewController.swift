@@ -72,6 +72,7 @@ class AdvisoryQuestionViewController: UIViewController {
     
     var questionNumber = 1
     
+    var advisoryBeforeTitle = ""
     var advisoryTitle = ""
     var questionDictionary: [Int: String] = [:]
     var answerDictionary: [Int: String] = [:]
@@ -82,6 +83,8 @@ class AdvisoryQuestionViewController: UIViewController {
     }
     
     var mode: Mode = .new
+    var editList: [Int] = []
+    var stage: Int = 0
     var stackNumber = 1
     
     // MARK: - Lifecycle
@@ -224,6 +227,10 @@ class AdvisoryQuestionViewController: UIViewController {
         questionVC.questionDictionary = self.questionDictionary
         questionVC.answerDictionary = self.answerDictionary
         questionVC.stackNumber = self.stackNumber + 1
+        questionVC.advisoryBeforeTitle = self.advisoryBeforeTitle
+        questionVC.mode = self.mode
+        questionVC.stage = self.stage
+        questionVC.editList = self.editList
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
@@ -240,6 +247,10 @@ class AdvisoryQuestionViewController: UIViewController {
         questionVC.questionDictionary = self.questionDictionary
         questionVC.answerDictionary = self.answerDictionary
         questionVC.stackNumber = self.stackNumber + 1
+        questionVC.advisoryBeforeTitle = self.advisoryBeforeTitle
+        questionVC.mode = self.mode
+        questionVC.stage = self.stage
+        questionVC.editList = self.editList
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
@@ -290,12 +301,17 @@ class AdvisoryQuestionViewController: UIViewController {
         var answerLists: [AnswerList] = []
         
         for (key, value) in questionDictionary {
-            if value != "", let answer = answerDictionary[key], answer != "" {
+            if value != "", let answer = answerDictionary[key], answer != "", !self.editList.contains(key) {
                 answerLists.append(AnswerList(level: key, question: value, answer: answer))
             }
         }
         
         return AdvisoryPostList(user: 1, stage: 1, theme: advisoryTitle, answerLists: answerLists)
+    }
+    
+    private func makeUpdateTemplate(level: Int) -> AdvisoryUpdateList {
+        let answerList = AnswerList(level: level, question: questionDictionary[level]!, answer: answerDictionary[level]!)
+        return AdvisoryUpdateList(user: 1, stage: self.stage, theme: advisoryBeforeTitle, theme_new: advisoryTitle, answerLists: [answerList])
     }
     
 }
@@ -332,14 +348,31 @@ extension AdvisoryQuestionViewController: UITextFieldDelegate {
 
 extension AdvisoryQuestionViewController: AdvisoryDelegate {
     func saveButtonDidTap(completion: @escaping () -> Void) {
-        let answerList = self.makeAnswerTemplate()
+        self.tempDataWillSave()
         
-        if self.mode == .new {
+        if self.mode == .ongoing {
+            for level in editList {
+                print("======\(level)=======")
+                let template = self.makeUpdateTemplate(level: level)
+                
+                print(template)
+                AdvisoryApiService.updateOneAdvisoryAnswer(answerList: template) {
+//                    completion()
+                }
+            }
+            
+            let answerList = self.makeAnswerTemplate()
+            print(answerList)
             AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
                 completion()
             }
         } else {
+            let answerList = self.makeAnswerTemplate()
+            print(answerList)
             
+            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+                completion()
+            }
         }
     }
     
