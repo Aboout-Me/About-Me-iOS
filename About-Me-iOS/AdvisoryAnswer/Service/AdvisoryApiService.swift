@@ -57,6 +57,41 @@ struct AdvisoryApiService {
             }
         }
     }
+
+    
+    static func editAdvisoryAnswerList(answerList: AdvisoryPostList, completion: @escaping () -> Void) {
+        let urlComponent = URLComponents(string:  "\(API_URL)/MyPage/10Q10A/updateAnswer")
+        guard let url = urlComponent?.url else { return }
+        
+        let request = AF.request(url, method: .put, parameters: try! answerList.asDictionary(), encoding: JSONEncoding.default)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print(response.value)
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                completion()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func updateOneAdvisoryAnswer(answerList: AdvisoryUpdateList, completion: @escaping () -> Void) {
+        let urlComponent = URLComponents(string:  "\(API_URL)/MyPage/10Q10A/updateAnswer")
+        guard let url = urlComponent?.url else { return }
+        
+        let request = AF.request(url, method: .put, parameters: try! answerList.asDictionary(), encoding: JSONEncoding.default)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print(response.value)
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                completion()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
 
 extension Encodable {
