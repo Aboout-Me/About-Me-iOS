@@ -72,20 +72,9 @@ class AdvisoryQuestionViewController: UIViewController {
     
     var questionNumber = 1
     
-    var advisoryBeforeTitle = ""
     var advisoryTitle = ""
     var questionDictionary: [Int: String] = [:]
     var answerDictionary: [Int: String] = [:]
-    
-    enum Mode {
-        case new
-        case ongoing
-    }
-    
-    var mode: Mode = .new
-    var editList: [Int] = []
-    var stage: Int = 0
-    var stackNumber = 1
     
     // MARK: - Lifecycle
     
@@ -126,11 +115,6 @@ class AdvisoryQuestionViewController: UIViewController {
         if let str = self.answerDictionary[self.questionNumber] {
             self.answerTextView.text = str
             self.answerTextView.textColor = .black
-            if str != "" {
-                self.answerPlaceholderLabel.isHidden = true
-            } else {
-                self.answerPlaceholderLabel.isHidden = false
-            }
             let attributedString = NSMutableAttributedString()
             attributedString.append(NSAttributedString(string: "\(str.count)",
                                                        attributes: [.foregroundColor: UIColor.black]))
@@ -226,11 +210,6 @@ class AdvisoryQuestionViewController: UIViewController {
         questionVC.advisoryTitle = self.advisoryTitle
         questionVC.questionDictionary = self.questionDictionary
         questionVC.answerDictionary = self.answerDictionary
-        questionVC.stackNumber = self.stackNumber + 1
-        questionVC.advisoryBeforeTitle = self.advisoryBeforeTitle
-        questionVC.mode = self.mode
-        questionVC.stage = self.stage
-        questionVC.editList = self.editList
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
@@ -246,11 +225,6 @@ class AdvisoryQuestionViewController: UIViewController {
         questionVC.advisoryTitle = self.advisoryTitle
         questionVC.questionDictionary = self.questionDictionary
         questionVC.answerDictionary = self.answerDictionary
-        questionVC.stackNumber = self.stackNumber + 1
-        questionVC.advisoryBeforeTitle = self.advisoryBeforeTitle
-        questionVC.mode = self.mode
-        questionVC.stage = self.stage
-        questionVC.editList = self.editList
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
@@ -285,33 +259,24 @@ class AdvisoryQuestionViewController: UIViewController {
     }
     
     private func closeViewControllers() {
-        if self.mode == .ongoing {
-            self.navigationController?.isNavigationBarHidden = true
-        } else {
-            self.navigationController?.isNavigationBarHidden = false
-        }
+        self.navigationController?.isNavigationBarHidden = false
         
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers
         
         self.navigationController?.popToViewController(
-            viewControllers[viewControllers.count - self.stackNumber - 1], animated: false)
+            viewControllers[viewControllers.count - self.questionNumber - 1], animated: false)
     }
     
     private func makeAnswerTemplate() -> AdvisoryPostList {
         var answerLists: [AnswerList] = []
         
         for (key, value) in questionDictionary {
-            if value != "", let answer = answerDictionary[key], answer != "", !self.editList.contains(key) {
+            if value != "", let answer = answerDictionary[key], answer != "" {
                 answerLists.append(AnswerList(level: key, question: value, answer: answer))
             }
         }
         
         return AdvisoryPostList(user: 1, stage: 1, theme: advisoryTitle, answerLists: answerLists)
-    }
-    
-    private func makeUpdateTemplate(level: Int) -> AdvisoryUpdateList {
-        let answerList = AnswerList(level: level, question: questionDictionary[level]!, answer: answerDictionary[level]!)
-        return AdvisoryUpdateList(user: 1, stage: self.stage, theme: advisoryBeforeTitle, theme_new: advisoryTitle, answerLists: [answerList])
     }
     
 }
@@ -348,31 +313,9 @@ extension AdvisoryQuestionViewController: UITextFieldDelegate {
 
 extension AdvisoryQuestionViewController: AdvisoryDelegate {
     func saveButtonDidTap(completion: @escaping () -> Void) {
-        self.tempDataWillSave()
-        
-        if self.mode == .ongoing {
-            for level in editList {
-                print("======\(level)=======")
-                let template = self.makeUpdateTemplate(level: level)
-                
-                print(template)
-                AdvisoryApiService.updateOneAdvisoryAnswer(answerList: template) {
-//                    completion()
-                }
-            }
-            
-            let answerList = self.makeAnswerTemplate()
-            print(answerList)
-            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
-                completion()
-            }
-        } else {
-            let answerList = self.makeAnswerTemplate()
-            print(answerList)
-            
-            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
-                completion()
-            }
+        let answerList = self.makeAnswerTemplate()
+        AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+            completion()
         }
     }
     

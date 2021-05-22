@@ -29,12 +29,6 @@ class AdvisoryAnswerViewController: UIViewController {
         getAnswerList()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        getAnswerList()
-    }
-    
     // MARK: - Selectors
     
     @objc
@@ -92,11 +86,11 @@ class AdvisoryAnswerViewController: UIViewController {
                 self.answerLists = list.themeLists
                 if list.themeLists.count == 0 {
                     self.advisoryAnswerTableView.alwaysBounceVertical = false
-                    self.newButton.setTitle("첫 번째 자문자답 만들러 가기 >",
+                    self.newButton.setTitle("첫 번째 \(self.newButton.titleLabel!.text!)",
                                             for: .normal)
                 } else {
                     self.advisoryAnswerTableView.alwaysBounceVertical = true
-                    self.newButton.setTitle("새로운 자문자답 만들러 가기 >",
+                    self.newButton.setTitle("새로운 \(self.newButton.titleLabel!.text!)",
                                             for: .normal)
                 }
                 self.advisoryAnswerTableView.reloadData()
@@ -159,9 +153,7 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        let stageVC = AdvisoryStageViewController(nibName: "AdvisoryStageViewController", bundle: nil)
-        stageVC.themeList = answerLists[indexPath.row]
-        self.navigationController?.pushViewController(stageVC, animated: true)
+        
     }
     
     

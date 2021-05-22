@@ -29,10 +29,4 @@ extension UIColor {
   @nonobjc class var lineEee: UIColor {
     return UIColor(white: 238.0 / 255.0, alpha: 1.0)
   }
-    @nonobjc class var solidF9F9F9: UIColor {
-        return UIColor(white: 249.0 / 255.0, alpha: 1.0)
-    }
-    @nonobjc class var lineCcc: UIColor {
-        return UIColor(white: 204.0 / 255.0, alpha: 1.0)
-    }
 }
