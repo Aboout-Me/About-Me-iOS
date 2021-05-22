@@ -101,6 +101,12 @@
 		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		FFFC0FA12641B66600C6372F /* CharacterRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */; };
+		FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9F2641B66600C6372F /* CharacterRed.png */; };
+		FFFC0FA32641B66600C6372F /* CharacterRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */; };
+>>>>>>> parent of e706662 (MyProfileDetailViewController UI set or Image Asset update)
 =======
 		FFFC0FA12641B66600C6372F /* CharacterRed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */; };
 		FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F9F2641B66600C6372F /* CharacterRed.png */; };
@@ -236,6 +242,12 @@
 		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@3x.png"; sourceTree = "<group>"; };
+		FFFC0F9F2641B66600C6372F /* CharacterRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterRed.png; sourceTree = "<group>"; };
+		FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@2x.png"; sourceTree = "<group>"; };
+>>>>>>> parent of e706662 (MyProfileDetailViewController UI set or Image Asset update)
 =======
 		FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CharacterRed@3x.png"; sourceTree = "<group>"; };
 		FFFC0F9F2641B66600C6372F /* CharacterRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CharacterRed.png; sourceTree = "<group>"; };
@@ -472,6 +484,12 @@
 			children = (
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				FFFC0F9F2641B66600C6372F /* CharacterRed.png */,
+				FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */,
+				FFFC0F9E2641B66500C6372F /* CharacterRed@3x.png */,
+>>>>>>> parent of e706662 (MyProfileDetailViewController UI set or Image Asset update)
 =======
 				FFFC0F9F2641B66600C6372F /* CharacterRed.png */,
 				FFFC0FA02641B66600C6372F /* CharacterRed@2x.png */,
@@ -718,6 +736,10 @@
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */,
+>>>>>>> parent of e706662 (MyProfileDetailViewController UI set or Image Asset update)
 =======
 				FFFC0FA22641B66600C6372F /* CharacterRed.png in Resources */,
 >>>>>>> parent of e706662 (MyProfileDetailViewController UI set or Image Asset update)
