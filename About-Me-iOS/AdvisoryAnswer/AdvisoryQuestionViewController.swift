@@ -285,16 +285,17 @@ class AdvisoryQuestionViewController: UIViewController {
     }
     
     private func closeViewControllers() {
-        if self.mode == .ongoing {
-            self.navigationController?.isNavigationBarHidden = true
-        } else {
-            self.navigationController?.isNavigationBarHidden = false
-        }
-        
         let viewControllers: [UIViewController] = self.navigationController!.viewControllers
         
-        self.navigationController?.popToViewController(
-            viewControllers[viewControllers.count - self.stackNumber - 1], animated: false)
+        if self.mode == .ongoing {
+            self.navigationController?.isNavigationBarHidden = true
+            self.navigationController?.popToViewController(
+                viewControllers[viewControllers.count - self.stackNumber - 2], animated: false)
+        } else {
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationController?.popToViewController(
+                viewControllers[viewControllers.count - self.stackNumber - 1], animated: false)
+        }
     }
     
     private func makeAnswerTemplate() -> AdvisoryPostList {
