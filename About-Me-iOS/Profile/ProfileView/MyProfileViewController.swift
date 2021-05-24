@@ -138,14 +138,14 @@ class MyProfileViewController: UIViewController {
         self.myProfileMyAnswerButton.addTarget(self, action: #selector(self.didTapMyAnswerButton(_:)), for: .touchUpInside)
         self.myProfileFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileFloatingButton.plusColor = UIColor.white
-        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "feed.png"))
-        self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "lock.png")) { item in
+        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "Write.png"))
+        self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "heart.png"))
+        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Feed.png"))
     }
     
     @objc

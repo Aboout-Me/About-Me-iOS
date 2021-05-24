@@ -340,9 +340,13 @@ extension AdvisoryQuestionViewController: UITextFieldDelegate {
 }
 
 extension AdvisoryQuestionViewController: AdvisoryDelegate {
+    func closeViewControllersDelegate() {
+        self.closeViewControllers()
+    }
+    
     func saveButtonDidTap(completion: @escaping () -> Void) {
         let answerList = self.makeAnswerTemplate()
-        AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+        AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) { [self] in
             completion()
         self.tempDataWillSave()
         
@@ -372,8 +376,5 @@ extension AdvisoryQuestionViewController: AdvisoryDelegate {
 
         }
     }
-    
-    func closeViewControllersDelegate() {
-        self.closeViewControllers()
     }
 }

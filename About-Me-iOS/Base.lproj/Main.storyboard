@@ -1078,7 +1078,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ve2-9m-EBz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="18.840579710144929" y="2986.6071428571427"/>
-<<<<<<< HEAD
         </scene>
         <!--My Profile Detail View Controller-->
         <scene sceneID="rZU-XC-1L9">
@@ -1423,8 +1422,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1W-Et-ZaU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="811.59420289855075" y="2986.2723214285711"/>
-=======
->>>>>>> feature_Home
         </scene>
     </scenes>
     <resources>
