@@ -119,7 +119,11 @@ class AdvisoryStageViewController: UIViewController {
 
 extension AdvisoryStageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lastStage
+        if let detailList = self.detailList {
+            return detailList.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

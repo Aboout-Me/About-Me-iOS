@@ -301,12 +301,18 @@ class AdvisoryQuestionViewController: UIViewController {
         var answerLists: [AnswerList] = []
         
         for (key, value) in questionDictionary {
-            if value != "", let answer = answerDictionary[key], answer != "", !self.editList.contains(key) {
+            if value != "", let answer = answerDictionary[key], answer != "" {
                 answerLists.append(AnswerList(level: key, question: value, answer: answer))
             }
         }
         
-        return AdvisoryPostList(user: 1, stage: 1, theme: advisoryTitle, answerLists: answerLists)
+        var themeNew = ""
+        if advisoryBeforeTitle == "" {
+            advisoryBeforeTitle = advisoryTitle
+        } else if advisoryTitle != advisoryBeforeTitle {
+            themeNew = advisoryTitle
+        }
+        return AdvisoryPostList(user: 1, stage: 1, theme: advisoryBeforeTitle, theme_new: themeNew, answerLists: answerLists)
     }
     
     private func makeUpdateTemplate(level: Int) -> AdvisoryUpdateList {
@@ -350,28 +356,40 @@ extension AdvisoryQuestionViewController: AdvisoryDelegate {
     func saveButtonDidTap(completion: @escaping () -> Void) {
         self.tempDataWillSave()
         
-        if self.mode == .ongoing {
-            for level in editList {
-                print("======\(level)=======")
-                let template = self.makeUpdateTemplate(level: level)
-                
-                print(template)
-                AdvisoryApiService.updateOneAdvisoryAnswer(answerList: template) {
-//                    completion()
-                }
-            }
-            
-            let answerList = self.makeAnswerTemplate()
-            print(answerList)
-            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+//        if self.mode == .ongoing {
+//            for level in editList {
+//                print("======\(level)=======")
+//                let template = self.makeUpdateTemplate(level: level)
+//
+//                print(template)
+//                AdvisoryApiService.updateOneAdvisoryAnswer(answerList: template) {
+////                    completion()
+//                }
+//            }
+//
+//            let answerList = self.makeAnswerTemplate()
+//            print(answerList)
+//            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+//                completion()
+//            }
+//        } else {
+//            let answerList = self.makeAnswerTemplate()
+//            print(answerList)
+//
+//            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
+//                completion()
+//            }
+//        }
+        
+        let answerList = self.makeAnswerTemplate()
+        print("answerList: \(answerList)")
+        
+        AdvisoryApiService.saveAndUpdateAdvisoryAnswerList(answerList: answerList) { response in
+            print(response)
+            if response.code == 200 {
                 completion()
-            }
-        } else {
-            let answerList = self.makeAnswerTemplate()
-            print(answerList)
-            
-            AdvisoryApiService.saveAdvisoryAnswerList(answerList: answerList) {
-                completion()
+            } else {
+                // TODO
             }
         }
     }
