@@ -13,6 +13,7 @@ class SocialViewController: UIViewController {
     // MARK: - Properties
     
     public var sideMenu: SideMenuNavigationController?
+    @IBOutlet weak var collectionView: UICollectionView!
     
     // MARK: - Lifecycle
     
@@ -47,6 +48,15 @@ class SocialViewController: UIViewController {
         
         self.title = "공감하는 이야기"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 18)]
+        
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        
+        let socialHeaderNib = UINib(nibName: "SocialHeaderCell", bundle: nil)
+        self.collectionView.register(socialHeaderNib, forCellWithReuseIdentifier: "socialHeaderCell")
+        
+        let socialContentViewNib = UINib(nibName: "SocialContentViewCell", bundle: nil)
+        self.collectionView.register(socialContentViewNib, forCellWithReuseIdentifier: "socialContentViewCell")
     }
     
     private func setSideMenuLayoutInit() {
@@ -54,5 +64,36 @@ class SocialViewController: UIViewController {
         let sideOnlyViewController: SideOnlyViewController = storyboard.instantiateViewController(withIdentifier: "SideOnlyViewController") as! SideOnlyViewController
         self.sideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
         self.sideMenu?.leftSide = true
+    }
+}
+
+extension SocialViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 6
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
+            cell.titleLabel.text = "최신순"
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
+            cell.titleLabel.text = "인기순"
+            return cell
+        } else if indexPath.row == 4 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
+            cell.titleLabel.text = "취향순"
+            return cell
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath)
+            return cell
+        }
+    }
+}
+
+extension SocialViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 40)
     }
 }
