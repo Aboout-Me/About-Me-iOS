@@ -7,6 +7,7 @@
 
 import UIKit
 import Floaty
+import Alamofire
 
 class MyProfileViewController: UIViewController {
     
@@ -32,11 +33,14 @@ class MyProfileViewController: UIViewController {
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
     private var tagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
-    
+    public var myProfileColor = "red"
+    public var myProfileData: MyProfilePage? = nil
+    public var myProfileSubData = [MyProfilePageModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setInitLayout()
+        self.getMyProfileList()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
@@ -147,6 +151,22 @@ class MyProfileViewController: UIViewController {
         }
         self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Feed.png"))
     }
+    
+    private func getMyProfileList() {
+        let Paramter = [
+            "color": self.myProfileColor
+        ]
+        
+        ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:Paramter ) { result in
+            if case let .success(data) = result, let list = data {
+                self.myProfileData = list
+                self.myProfileSubData = list.postList
+                print(self.myProfileData)
+            }
+        }
+    }
+    
+    
     
     @objc
     private func didTapMyLikeButton(_ sender: UIButton) {

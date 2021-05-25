@@ -71,7 +71,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
-        self.navigationItem.title = "MY"
+        self.navigationItem.title = "프로필"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!]
         self.view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
         self.myProfileScrollView.delegate = self
@@ -81,7 +81,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileBackgroundImageView.image = UIImage(named: "bgRed")
         self.myProfileBackgroundImageView.contentMode = .scaleToFill
         self.myProfileBackgroundImageView.layer.cornerRadius = 30
-        self.myProfileBackgroundImageView.layer.masksToBounds = true
+        self.myProfileBackgroundImageView.layer.maskedCorners = [.layerMaxXMaxYCorner,.layerMinXMaxYCorner]
         self.myProfileTitleLabel.text = "빨간 질문을 많이 답한 당신은..."
         self.myProfileTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 13)
         self.myProfileTitleLabel.textColor = UIColor.white
@@ -121,7 +121,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCharacterLevelLabelTwo.textAlignment = .left
         self.myProfileCharacterLineTwo.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileCharacterTitleLabelThird.text = "기억상자"
-        self.myProfileCharacterTitleLabelThird.font = UIFont(name: "GmarketSans-Medium", size: 14)
+        self.myProfileCharacterTitleLabelThird.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileCharacterTitleLabelThird.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileCharacterTitleLabelThird.textAlignment = .left
         self.myProfileCharacterLevelLabelThird.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
@@ -132,7 +132,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCharacterLineThird.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileCharacterTitleLabelFour.text = "관계의 미학"
         self.myProfileCharacterTitleLabelFour.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.myProfileCharacterTitleLabelFour.font = UIFont(name: "GmarketSansMedium", size: 10)
+        self.myProfileCharacterTitleLabelFour.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileCharacterTitleLabelFour.textAlignment = .left
         self.myProfileCharacterLevelLabelFour.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
         self.myProfileCharacterLevelLabelFour.textAlignment = .left
@@ -142,7 +142,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCharacterLineFive.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileCharacterTitleLabelFive.text = "상상플러스"
         self.myProfileCharacterTitleLabelFive.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.myProfileCharacterTitleLabelFive.font = UIFont(name: "GmarketSansMedium", size: 10)
+        self.myProfileCharacterTitleLabelFive.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileCharacterTitleLabelFive.textAlignment = .left
         self.myProfileCharacterLevelLabelFive.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
         self.myProfileCharacterLevelLabelFive.textAlignment = .left

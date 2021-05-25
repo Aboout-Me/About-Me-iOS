@@ -47,7 +47,7 @@ struct ProfileServerApi {
         let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/WeeklyProgressing/\(userId)")!
         AF.request(urlString, method: .get, encoding: JSONEncoding.default)
             .validate()
-            .responseData { (response) in
+            .responseData { response in
                 debugPrint(response)
                 switch response.result {
                 
@@ -76,6 +76,35 @@ struct ProfileServerApi {
                     }
                 }
                 
+            }
+    }
+    
+    static func getMyProfilePage(userId: Int,colorParameter: Parameters,completionHandler: @escaping(Result<MyProfilePage>) -> ()) {
+        let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/\(userId)/")!
+        AF.request(urlString, method: .get, parameters: colorParameter, encoding: URLEncoding.default)
+            .validate()
+            .responseData { response in
+                debugPrint(response)
+                
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let jsonObject = try JSONSerialization.jsonObject(with: response, options: [])
+                        if let jsonData = jsonObject as? [String:Any] {
+                            let code = jsonData["code"] as? Int
+                            if code == 200 {
+                                let decoder = JSONDecoder()
+                                let myProfileList = try decoder.decode(MyProfilePage.self, from: response)
+                                let result = Result<MyProfilePage>.success(data: myProfileList)
+                                completionHandler(result)
+                            }
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
             }
     }
 }
