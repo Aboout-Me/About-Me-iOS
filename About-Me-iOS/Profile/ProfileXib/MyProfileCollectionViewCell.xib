@@ -20,9 +20,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgL-It-9M2">
                         <rect key="frame" x="0.0" y="0.0" width="335" height="100"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvH-0J-klC">
-                                <rect key="frame" x="20" y="15" width="51" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvH-0J-klC">
+                                <rect key="frame" x="20" y="15" width="41.5" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="7We-EB-TZd"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,9 +36,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FzO-WN-Pe1">
-                                <rect key="frame" x="20" y="40" width="271" height="18"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FzO-WN-Pe1">
+                                <rect key="frame" x="20" y="40" width="271" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="271" id="ORx-dy-nqz"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -47,6 +51,12 @@
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FzO-WN-Pe1" firstAttribute="top" secondItem="gvH-0J-klC" secondAttribute="bottom" constant="7" id="2z1-om-wud"/>
+                            <constraint firstItem="gvH-0J-klC" firstAttribute="top" secondItem="rgL-It-9M2" secondAttribute="top" constant="15" id="7Tr-Cx-XRM"/>
+                            <constraint firstItem="FzO-WN-Pe1" firstAttribute="leading" secondItem="rgL-It-9M2" secondAttribute="leading" constant="20" id="Nfu-YL-ViJ"/>
+                            <constraint firstItem="gvH-0J-klC" firstAttribute="leading" secondItem="rgL-It-9M2" secondAttribute="leading" constant="20" id="k8Z-xO-XBh"/>
+                        </constraints>
                     </view>
                 </subviews>
             </view>

@@ -79,7 +79,7 @@ struct ProfileServerApi {
             }
     }
     
-    static func getMyProfilePage(userId: Int,colorParameter: Parameters,completionHandler: @escaping(Result<MyProfilePage>) -> ()) {
+    static func getMyProfilePage(userId: Int,colorParameter: Parameters?,completionHandler: @escaping(Result<MyProfilePage>) -> ()) {
         let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/\(userId)/")!
         AF.request(urlString, method: .get, parameters: colorParameter, encoding: URLEncoding.default)
             .validate()

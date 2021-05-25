@@ -28,6 +28,7 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
         self.myProfileQuestionTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileQuestionTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
         self.myProfileQuestionTitleLabel.textAlignment = .left
+        self.myProfileQuestionTitleLabel.numberOfLines = 0
         self.myProfileContentDateLabel.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
         self.myProfileContentDateLabel.textAlignment = .left
         self.myProfileContentDateLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)

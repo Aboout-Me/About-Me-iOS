@@ -39,8 +39,8 @@ class MyProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setInitLayout()
         self.getMyProfileList()
+        self.setInitLayout()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
@@ -157,11 +157,14 @@ class MyProfileViewController: UIViewController {
             "color": self.myProfileColor
         ]
         
-        ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:Paramter ) { result in
+        ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:nil ) { result in
             if case let .success(data) = result, let list = data {
-                self.myProfileData = list
-                self.myProfileSubData = list.postList
-                print(self.myProfileData)
+                DispatchQueue.main.async {
+                    self.myProfileData = list
+                    self.myProfileSubData = list.postList
+                    self.myProfileCollectionView.reloadData()
+                    print(self.myProfileData)
+                }
             }
         }
     }
@@ -260,7 +263,7 @@ class MyProfileViewController: UIViewController {
 extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.myProfileCollectionView {
-            return 5
+            return self.myProfileSubData.count
         } else {
             return self.tagNameList.count
         }
@@ -269,10 +272,29 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.myProfileCollectionView {
             let myProfileCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileCell", for: indexPath) as? MyProfileCollectionViewCell
-            myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
-            myProfileCell?.myProfileQuestionTitleLabel.text = "Q. 당신에게 가족은 어떤 의미인가요?"
-            myProfileCell?.myProfileContentDateLabel.text = "2021.03.19"
-            myProfileCell?.myProfileContentImageView.image = UIImage(named: "Lock.png")
+            if self.myProfileSubData[indexPath.item].color == "red" {
+                myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
+                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+            } else if self.myProfileSubData[indexPath.item].color == "yellow" {
+                myProfileCell?.myProfileContentTitleLabel.text = "# 소소한 일상"
+                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+            } else if self.myProfileSubData[indexPath.item].color == "pink" {
+                myProfileCell?.myProfileContentTitleLabel.text = "# 관계의 미학"
+                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+            } else if self.myProfileSubData[indexPath.item].color == "green" {
+                myProfileCell?.myProfileContentTitleLabel.text = "# 기억상자"
+                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 42/255, green: 212/255, blue: 141/255, alpha: 1.0)
+            } else {
+                myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
+                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+            }
+            if self.myProfileSubData[indexPath.item].shareYN == "Y" {
+                myProfileCell?.myProfileContentImageView.image = UIImage(named: "Lock.png")
+            } else {
+                myProfileCell?.myProfileContentImageView.image = UIImage(named: "UnLock.png")
+            }
+            myProfileCell?.myProfileQuestionTitleLabel.text = "Q. \(self.myProfileSubData[indexPath.item].question)"
+            myProfileCell?.myProfileContentDateLabel.text = self.myProfileSubData[indexPath.item].writtenDate
             
             return myProfileCell!
         } else {
