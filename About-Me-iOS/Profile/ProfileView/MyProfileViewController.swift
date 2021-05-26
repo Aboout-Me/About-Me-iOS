@@ -12,7 +12,7 @@ import Alamofire
 class MyProfileViewController: UIViewController {
     
     @IBOutlet weak var detailPushButton: UIButton!
-    @IBOutlet weak var myProfileContainerView: UIView!
+    @IBOutlet weak var myProfileBackgroundImageView: UIImageView!
     @IBOutlet weak var myProfileBoxView: UIView!
     @IBOutlet weak var myProfileCharacterNameLabel: UILabel!
     @IBOutlet weak var myProfileCharacterContentLabel: UILabel!
@@ -36,6 +36,7 @@ class MyProfileViewController: UIViewController {
     public var myProfileColor = "red"
     public var myProfileData: MyProfilePage? = nil
     public var myProfileSubData = [MyProfilePageModel]()
+    public var myProfileTagIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,8 +65,9 @@ class MyProfileViewController: UIViewController {
         self.myProfileCollectionView.dataSource = self
         self.myProfileTagCollectionView.delegate = self
         self.myProfileTagCollectionView.dataSource = self
+        self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+        self.myProfileBackgroundImageView.contentMode = .scaleToFill
         self.myProfileTagCollectionView.showsHorizontalScrollIndicator = false
-        self.myProfileContainerView.backgroundColor = UIColor(red: 226/255, green: 49/255, blue: 34/255, alpha: 1.0)
         self.myProfileBoxView.layer.cornerRadius = 15
         self.myProfileBoxView.layer.masksToBounds = false
         self.myProfileBoxView.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -116,6 +118,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterTagThird.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.myProfileContentContainerView.layer.cornerRadius = 25
         self.myProfileContentContainerView.layer.masksToBounds = true
+        self.myProfileContentContainerView.layer.maskedCorners =  [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         self.myProfileMyAnswerButton.isSelected = true
         self.myProfileMyAnswerButton.setTitle("내가 한 답", for: .selected)
         self.myProfileMyAnswerButton.titleLabel?.font = UIFont(name: "GmarketSans-Medium", size: 14)
@@ -156,14 +159,26 @@ class MyProfileViewController: UIViewController {
         let Paramter = [
             "color": self.myProfileColor
         ]
-        
-        ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:nil ) { result in
-            if case let .success(data) = result, let list = data {
-                DispatchQueue.main.async {
-                    self.myProfileData = list
-                    self.myProfileSubData = list.postList
-                    self.myProfileCollectionView.reloadData()
-                    print(self.myProfileData)
+        if self.myProfileTagIndex == 0 {
+            ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:nil ) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        self.myProfileData = list
+                        self.myProfileSubData = list.postList
+                        self.myProfileCollectionView.reloadData()
+                        print(self.myProfileData)
+                    }
+                }
+            }
+        } else {
+            ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:Paramter ) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        self.myProfileData = list
+                        self.myProfileSubData = list.postList
+                        self.myProfileCollectionView.reloadData()
+                        print(self.myProfileData)
+                    }
                 }
             }
         }
@@ -293,9 +308,9 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             } else {
                 myProfileCell?.myProfileContentImageView.image = UIImage(named: "UnLock.png")
             }
-            myProfileCell?.myProfileQuestionTitleLabel.text = "Q. \(self.myProfileSubData[indexPath.item].question)"
+            myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileSubData[indexPath.item].question)"
             myProfileCell?.myProfileContentDateLabel.text = self.myProfileSubData[indexPath.item].writtenDate
-            
+            myProfileCell?.myProfileAnswerTitleLabel.text = self.myProfileSubData[indexPath.item].answer
             return myProfileCell!
         } else {
             let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
@@ -313,14 +328,26 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.myProfileCollectionView {
-            // 추가 예정
+            // TO-DO
             
         } else {
             let myProfileTagCell = collectionView.cellForItem(at: indexPath) as? MyProfileTagCollectionViewCell
-            if indexPath.item != 0 {
-                myProfileTagCell?.myProfileTagButton.isSelected = false
-                myProfileTagCell?.myProfileTagButton.setTitleColor(UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), for: .normal)
-                myProfileTagCell?.myProfileTagButton.backgroundColor = .white
+            self.myProfileTagIndex = indexPath.item
+            if indexPath.item == 1 {
+                self.myProfileColor = "red"
+                self.getMyProfileList()
+            } else if indexPath.item == 2 {
+                self.myProfileColor = "yellow"
+                self.getMyProfileList()
+            } else if indexPath.item == 3 {
+                self.myProfileColor = "green"
+                self.getMyProfileList()
+            } else if indexPath.item == 4 {
+                self.myProfileColor = "pink"
+                self.getMyProfileList()
+            } else {
+                self.myProfileColor = "purple"
+                self.getMyProfileList()
             }
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .right)
         }
