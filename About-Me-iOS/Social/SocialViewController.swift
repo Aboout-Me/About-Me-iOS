@@ -33,7 +33,9 @@ class SocialViewController: UIViewController {
     
     @objc
     private func searchIconDidTap(_ sender: UIBarButtonItem) {
-        print("@@@@")
+        self.navigationController?.isNavigationBarHidden = true
+        let searchVC = SocialSearchViewController(nibName: "SocialSearchViewController", bundle: nil)
+        self.navigationController?.pushViewController(searchVC, animated: true)
     }
     
     // MARK: - Helpers
@@ -77,16 +79,30 @@ extension SocialViewController: UICollectionViewDataSource {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
             cell.titleLabel.text = "최신순"
             return cell
-        } else if indexPath.row == 2 {
+        }
+        else if indexPath.row == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
+            cell.getData(.latest)
+            return cell
+        }
+        else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
             cell.titleLabel.text = "인기순"
             return cell
-        } else if indexPath.row == 4 {
+        }
+        else if indexPath.row == 3 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
+            cell.getData(.popular)
+            return cell
+        }
+        else if indexPath.row == 4 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
             cell.titleLabel.text = "취향순"
             return cell
-        } else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath)
+        }
+        else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
+            cell.getData(.category)
             return cell
         }
     }
@@ -94,6 +110,10 @@ extension SocialViewController: UICollectionViewDataSource {
 
 extension SocialViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 40)
+        if indexPath.row % 2 == 0 {
+            return CGSize(width: collectionView.frame.width, height: 40)
+        } else {
+            return CGSize(width: collectionView.frame.width, height: 300)
+        }
     }
 }

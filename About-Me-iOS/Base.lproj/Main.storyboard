@@ -918,7 +918,7 @@
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h1p-Rl-vfm"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Fib-R1-f7C" firstAttribute="top" secondItem="h1p-Rl-vfm" secondAttribute="top" id="1bf-MZ-p23"/>
                             <constraint firstItem="h1p-Rl-vfm" firstAttribute="bottom" secondItem="Fib-R1-f7C" secondAttribute="bottom" id="2Gj-jQ-ySt"/>
