@@ -33,7 +33,6 @@ class SettingsViewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
         self.navigationController?.navigationBar.tintColor = .black
-        self.navigationController?.navigationBar.topItem?.title = ""
         self.title = "설정"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
 

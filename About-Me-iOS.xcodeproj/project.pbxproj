@@ -18,9 +18,15 @@
 		185B65B3261DA8020016E2EA /* ConciergeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65B2261DA8020016E2EA /* ConciergeViewController.swift */; };
 		185B65B7261DAA550016E2EA /* LandscapeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65B6261DAA550016E2EA /* LandscapeManager.swift */; };
 		185B65C8261DDF530016E2EA /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185B65C7261DDF530016E2EA /* OnboardingViewController.swift */; };
+		18996FF9265F8C0A00AEC402 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18996FF8265F8C0A00AEC402 /* EditProfileViewController.swift */; };
+		18996FFB265F8C8400AEC402 /* AlertSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18996FFA265F8C8400AEC402 /* AlertSettingsViewController.swift */; };
+		18996FFD265F8C9500AEC402 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18996FFC265F8C9500AEC402 /* QuestionsViewController.swift */; };
+		18996FFF265F8CB400AEC402 /* NoticesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18996FFE265F8CB400AEC402 /* NoticesViewController.swift */; };
 		189D8843262862630097C4A9 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189D8842262862630097C4A9 /* TestViewController.swift */; };
 		18B040AA2635EB890018FF12 /* AdditionalProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */; };
 		18BB4BA52656827700800127 /* GmarketSansTTFMedium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 18BB4BA42656827700800127 /* GmarketSansTTFMedium.ttf */; };
+		18BB4BA8265D512F00800127 /* AdditionalProfileApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB4BA7265D512F00800127 /* AdditionalProfileApiService.swift */; };
+		18BB4BAA265D557400800127 /* AdditionalProfileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB4BA9265D557400800127 /* AdditionalProfileList.swift */; };
 		18D02F6E264318A70015E1C5 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D02F6D264318A70015E1C5 /* Settings.storyboard */; };
 		18D02F70264318B50015E1C5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D02F6F264318B50015E1C5 /* SettingsViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
@@ -40,10 +46,16 @@
 		185B65B2261DA8020016E2EA /* ConciergeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConciergeViewController.swift; sourceTree = "<group>"; };
 		185B65B6261DAA550016E2EA /* LandscapeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandscapeManager.swift; sourceTree = "<group>"; };
 		185B65C7261DDF530016E2EA /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		18996FF8265F8C0A00AEC402 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		18996FFA265F8C8400AEC402 /* AlertSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingsViewController.swift; sourceTree = "<group>"; };
+		18996FFC265F8C9500AEC402 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
+		18996FFE265F8CB400AEC402 /* NoticesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticesViewController.swift; sourceTree = "<group>"; };
 		189D8842262862630097C4A9 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalProfileViewController.swift; sourceTree = "<group>"; };
 		18B040AC26383A1A0018FF12 /* About-Me-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "About-Me-iOS.entitlements"; sourceTree = "<group>"; };
 		18BB4BA42656827700800127 /* GmarketSansTTFMedium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = GmarketSansTTFMedium.ttf; path = ../../../../../Downloads/GmarketSansTTF/GmarketSansTTFMedium.ttf; sourceTree = "<group>"; };
+		18BB4BA7265D512F00800127 /* AdditionalProfileApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalProfileApiService.swift; sourceTree = "<group>"; };
+		18BB4BA9265D557400800127 /* AdditionalProfileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalProfileList.swift; sourceTree = "<group>"; };
 		18D02F6D264318A70015E1C5 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		18D02F6F264318B50015E1C5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +114,7 @@
 		185B6592261D81200016E2EA /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				18BB4BA6265D50D700800127 /* Service */,
 				185B65BC261DCEF40016E2EA /* LandscapeManager */,
 				0715A347260CD1860077882A /* Main.storyboard */,
 				18B040A92635EB890018FF12 /* AdditionalProfileViewController.swift */,
@@ -137,11 +150,24 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		18BB4BA6265D50D700800127 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18BB4BA7265D512F00800127 /* AdditionalProfileApiService.swift */,
+				18BB4BA9265D557400800127 /* AdditionalProfileList.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		18D02F6C264318930015E1C5 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				18D02F6D264318A70015E1C5 /* Settings.storyboard */,
 				18D02F6F264318B50015E1C5 /* SettingsViewController.swift */,
+				18996FF8265F8C0A00AEC402 /* EditProfileViewController.swift */,
+				18996FFA265F8C8400AEC402 /* AlertSettingsViewController.swift */,
+				18996FFC265F8C9500AEC402 /* QuestionsViewController.swift */,
+				18996FFE265F8CB400AEC402 /* NoticesViewController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -280,14 +306,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18996FF9265F8C0A00AEC402 /* EditProfileViewController.swift in Sources */,
 				185B65C8261DDF530016E2EA /* OnboardingViewController.swift in Sources */,
 				0715A346260CD1860077882A /* LoginViewController.swift in Sources */,
 				189D8843262862630097C4A9 /* TestViewController.swift in Sources */,
 				18D02F70264318B50015E1C5 /* SettingsViewController.swift in Sources */,
 				185B65AF261DA5150016E2EA /* Home_tempViewController.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
+				18BB4BA8265D512F00800127 /* AdditionalProfileApiService.swift in Sources */,
 				18B040AA2635EB890018FF12 /* AdditionalProfileViewController.swift in Sources */,
+				18BB4BAA265D557400800127 /* AdditionalProfileList.swift in Sources */,
+				18996FFF265F8CB400AEC402 /* NoticesViewController.swift in Sources */,
 				185B65B7261DAA550016E2EA /* LandscapeManager.swift in Sources */,
+				18996FFD265F8C9500AEC402 /* QuestionsViewController.swift in Sources */,
+				18996FFB265F8C8400AEC402 /* AlertSettingsViewController.swift in Sources */,
 				185B65B3261DA8020016E2EA /* ConciergeViewController.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
 			);
