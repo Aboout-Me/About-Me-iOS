@@ -10,7 +10,6 @@ import Floaty
 import Alamofire
 
 class MyProfileViewController: UIViewController {
-    
     @IBOutlet weak var detailPushButton: UIButton!
     @IBOutlet weak var myProfileBackgroundImageView: UIImageView!
     @IBOutlet weak var myProfileBoxView: UIView!
@@ -56,7 +55,7 @@ class MyProfileViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.navigationItem.title = "MY"
+        self.navigationItem.title = "프로필"
         let nib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
         let nib2 = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
         self.myProfileCollectionView.register(nib, forCellWithReuseIdentifier: "MyProfileCell")
@@ -101,6 +100,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterTagFirst.layer.masksToBounds = true
         self.myProfileCharacterTagFirst.setTitle("#열정", for: .normal)
         self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        self.myProfileCharacterTagFirst.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         self.myProfileCharacterTagFirst.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.myProfileCharacterTagSecond.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         self.myProfileCharacterTagSecond.layer.borderWidth = 1
@@ -109,6 +109,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterTagSecond.setTitle("#진로", for: .normal)
         self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
         self.myProfileCharacterTagSecond.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        self.myProfileCharacterTagSecond.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         self.myProfileCharacterTagThird.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         self.myProfileCharacterTagThird.layer.borderWidth = 1
         self.myProfileCharacterTagThird.layer.cornerRadius = 3
@@ -116,6 +117,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterTagThird.setTitle("#미래", for: .normal)
         self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
         self.myProfileCharacterTagThird.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        self.myProfileCharacterTagThird.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         self.myProfileContentContainerView.layer.cornerRadius = 25
         self.myProfileContentContainerView.layer.masksToBounds = true
         self.myProfileContentContainerView.layer.maskedCorners =  [.layerMaxXMinYCorner,.layerMinXMinYCorner]
@@ -155,6 +157,60 @@ class MyProfileViewController: UIViewController {
         self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Feed.png"))
     }
     
+    private func setProfileServerProcessDidFinsh() {
+        if self.myProfileData?.color == "red" {
+            self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
+            self.myProfileImageView.image = UIImage(named: "CharacterRed")
+            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed")
+            self.myProfileCharacterTagFirst.setTitle("#열정", for: .normal)
+            self.myProfileCharacterTagSecond.setTitle("#진로", for: .normal)
+            self.myProfileCharacterTagThird.setTitle("#미래", for: .normal)
+            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+        } else if self.myProfileData?.color == "yellow" {
+            self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
+            self.myProfileImageView.image = UIImage(named: "characterYellow")
+            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundYellow")
+            self.myProfileCharacterTagFirst.setTitle("#일상", for: .normal)
+            self.myProfileCharacterTagSecond.setTitle("#추억", for: .normal)
+            self.myProfileCharacterTagThird.setTitle("#취향", for: .normal)
+            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+        } else if self.myProfileData?.color == "green" {
+            self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
+            self.myProfileImageView.image = UIImage(named: "CharacterGreen")
+            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundGreen")
+            self.myProfileCharacterTagFirst.setTitle("#힐링", for: .normal)
+            self.myProfileCharacterTagSecond.setTitle("#치유", for: .normal)
+            self.myProfileCharacterTagThird.setTitle("#위로", for: .normal)
+            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+        } else if self.myProfileData?.color == "pink" {
+            self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
+            self.myProfileImageView.image = UIImage(named: "CharacterPink")
+            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundPink")
+            self.myProfileCharacterTagFirst.setTitle("#연애", for: .normal)
+            self.myProfileCharacterTagSecond.setTitle("#사랑", for: .normal)
+            self.myProfileCharacterTagThird.setTitle("#가치관", for: .normal)
+            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+        } else {
+            self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
+            self.myProfileImageView.image = UIImage(named: "CharacterVilolet")
+            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundViolet")
+            self.myProfileCharacterTagFirst.setTitle("#만약에", for: .normal)
+            self.myProfileCharacterTagSecond.setTitle("#상상", for: .normal)
+            self.myProfileCharacterTagThird.setTitle("#희망", for: .normal)
+            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+        }
+    }
+    
     private func getMyProfileList() {
         let Paramter = [
             "color": self.myProfileColor
@@ -165,6 +221,7 @@ class MyProfileViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.myProfileData = list
                         self.myProfileSubData = list.postList
+                        self.setProfileServerProcessDidFinsh()
                         self.myProfileCollectionView.reloadData()
                         print(self.myProfileData)
                     }
@@ -176,6 +233,7 @@ class MyProfileViewController: UIViewController {
                     DispatchQueue.main.async {
                         self.myProfileData = list
                         self.myProfileSubData = list.postList
+                        self.setProfileServerProcessDidFinsh()
                         self.myProfileCollectionView.reloadData()
                         print(self.myProfileData)
                     }
@@ -190,7 +248,6 @@ class MyProfileViewController: UIViewController {
     private func didTapMyLikeButton(_ sender: UIButton) {
         
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
-            
             if self.myProfileBottomLineView.frame.origin.x > self.myProfileMyLikeButton.frame.origin.x {
                 self.myProfileBottomLineView.layoutIfNeeded()
                 let transition = CATransition()
@@ -262,7 +319,7 @@ class MyProfileViewController: UIViewController {
                 self.myProfileBottomLineView.layer.removeAnimation(forKey: "push")
             }
         }
-
+        
     }
     
     @objc
@@ -315,11 +372,10 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         } else {
             let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
             if indexPath.item == 0 {
-                myProfileTagCell?.myProfileTagButton.isSelected = true
-                myProfileTagCell?.myProfileTagButton.layer.borderColor = UIColor.clear.cgColor
-                myProfileTagCell?.myProfileTagButton.setTitleColor(.white, for: .selected)
-                myProfileTagCell?.myProfileTagButton.backgroundColor =  UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-                collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+                myProfileTagCell?.isSelected = false
+                myProfileTagCell?.myProfileTagButton.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+                myProfileTagCell?.myProfileTagButton.setTitleColor(UIColor.white, for: .normal)
+                collectionView.selectItem(at: [0,myProfileTagIndex], animated: false, scrollPosition: .init())
             }
             myProfileTagCell?.myProfileTagButton.setTitle(self.tagNameList[indexPath.item], for: .normal)
             return myProfileTagCell!
@@ -333,7 +389,9 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         } else {
             let myProfileTagCell = collectionView.cellForItem(at: indexPath) as? MyProfileTagCollectionViewCell
             self.myProfileTagIndex = indexPath.item
-            if indexPath.item == 1 {
+            if indexPath.item == 0 {
+                self.getMyProfileList()
+            } else if indexPath.item == 1 {
                 self.myProfileColor = "red"
                 self.getMyProfileList()
             } else if indexPath.item == 2 {
@@ -370,5 +428,8 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
-    
 }
+
+
+
+
