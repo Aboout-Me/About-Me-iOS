@@ -65,6 +65,20 @@
 		07432F5D266374DF008786B0 /* ico_common_20_delete_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F5A266374DF008786B0 /* ico_common_20_delete_line@2x.png */; };
 		07432F602663A64B008786B0 /* SocialNoContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07432F5E2663A64B008786B0 /* SocialNoContentCell.swift */; };
 		07432F612663A64B008786B0 /* SocialNoContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07432F5F2663A64B008786B0 /* SocialNoContentCell.xib */; };
+		07432F642663BBA6008786B0 /* SocialMoreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07432F622663BBA6008786B0 /* SocialMoreContentViewController.swift */; };
+		07432F652663BBA6008786B0 /* SocialMoreContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07432F632663BBA6008786B0 /* SocialMoreContentViewController.xib */; };
+		07432F682663C4AD008786B0 /* SocialTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07432F662663C4AD008786B0 /* SocialTagCell.swift */; };
+		07432F6C2663D477008786B0 /* SocialMoreContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07432F6A2663D477008786B0 /* SocialMoreContentCell.swift */; };
+		07432F6D2663D477008786B0 /* SocialMoreContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07432F6B2663D477008786B0 /* SocialMoreContentCell.xib */; };
+		07432F712663D735008786B0 /* bookmark_off_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F6E2663D735008786B0 /* bookmark_off_dark@2x.png */; };
+		07432F722663D735008786B0 /* bookmark_off_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F6F2663D735008786B0 /* bookmark_off_dark@3x.png */; };
+		07432F732663D735008786B0 /* bookmark_off_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F702663D735008786B0 /* bookmark_off_dark.png */; };
+		07432F772663D9F2008786B0 /* like_off_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F742663D9F2008786B0 /* like_off_dark@3x.png */; };
+		07432F782663D9F2008786B0 /* like_off_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F752663D9F2008786B0 /* like_off_dark.png */; };
+		07432F792663D9F2008786B0 /* like_off_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F762663D9F2008786B0 /* like_off_dark@2x.png */; };
+		07432F7D2663D9FF008786B0 /* ico_common_24_message_off_dark@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F7A2663D9FF008786B0 /* ico_common_24_message_off_dark@3x.png */; };
+		07432F7E2663D9FF008786B0 /* ico_common_24_message_off_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F7B2663D9FF008786B0 /* ico_common_24_message_off_dark.png */; };
+		07432F7F2663D9FF008786B0 /* ico_common_24_message_off_dark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F7C2663D9FF008786B0 /* ico_common_24_message_off_dark@2x.png */; };
 		0751A66426441545004E635C /* AdvisoryPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0751A66326441545004E635C /* AdvisoryPostList.swift */; };
 		0751A66626442EED004E635C /* AdvisoryAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0751A66526442EED004E635C /* AdvisoryAnswerViewController.swift */; };
 		0751A66D26443515004E635C /*  alert-circle@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0751A66726443515004E635C /*  alert-circle@3x.png */; };
@@ -221,6 +235,20 @@
 		07432F5A266374DF008786B0 /* ico_common_20_delete_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_20_delete_line@2x.png"; sourceTree = "<group>"; };
 		07432F5E2663A64B008786B0 /* SocialNoContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNoContentCell.swift; sourceTree = "<group>"; };
 		07432F5F2663A64B008786B0 /* SocialNoContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialNoContentCell.xib; sourceTree = "<group>"; };
+		07432F622663BBA6008786B0 /* SocialMoreContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMoreContentViewController.swift; sourceTree = "<group>"; };
+		07432F632663BBA6008786B0 /* SocialMoreContentViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialMoreContentViewController.xib; sourceTree = "<group>"; };
+		07432F662663C4AD008786B0 /* SocialTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialTagCell.swift; sourceTree = "<group>"; };
+		07432F6A2663D477008786B0 /* SocialMoreContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMoreContentCell.swift; sourceTree = "<group>"; };
+		07432F6B2663D477008786B0 /* SocialMoreContentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialMoreContentCell.xib; sourceTree = "<group>"; };
+		07432F6E2663D735008786B0 /* bookmark_off_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark_off_dark@2x.png"; sourceTree = "<group>"; };
+		07432F6F2663D735008786B0 /* bookmark_off_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bookmark_off_dark@3x.png"; sourceTree = "<group>"; };
+		07432F702663D735008786B0 /* bookmark_off_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookmark_off_dark.png; sourceTree = "<group>"; };
+		07432F742663D9F2008786B0 /* like_off_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like_off_dark@3x.png"; sourceTree = "<group>"; };
+		07432F752663D9F2008786B0 /* like_off_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like_off_dark.png; sourceTree = "<group>"; };
+		07432F762663D9F2008786B0 /* like_off_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like_off_dark@2x.png"; sourceTree = "<group>"; };
+		07432F7A2663D9FF008786B0 /* ico_common_24_message_off_dark@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_24_message_off_dark@3x.png"; sourceTree = "<group>"; };
+		07432F7B2663D9FF008786B0 /* ico_common_24_message_off_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_common_24_message_off_dark.png; sourceTree = "<group>"; };
+		07432F7C2663D9FF008786B0 /* ico_common_24_message_off_dark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_24_message_off_dark@2x.png"; sourceTree = "<group>"; };
 		0751A66326441545004E635C /* AdvisoryPostList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryPostList.swift; sourceTree = "<group>"; };
 		0751A66526442EED004E635C /* AdvisoryAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryAnswerViewController.swift; sourceTree = "<group>"; };
 		0751A66726443515004E635C /*  alert-circle@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = " alert-circle@3x.png"; sourceTree = "<group>"; };
@@ -345,6 +373,11 @@
 				078BCF5F265E9D3400303BB2 /* SocialSearchViewController.xib */,
 				07432F5E2663A64B008786B0 /* SocialNoContentCell.swift */,
 				07432F5F2663A64B008786B0 /* SocialNoContentCell.xib */,
+				07432F622663BBA6008786B0 /* SocialMoreContentViewController.swift */,
+				07432F632663BBA6008786B0 /* SocialMoreContentViewController.xib */,
+				07432F662663C4AD008786B0 /* SocialTagCell.swift */,
+				07432F6A2663D477008786B0 /* SocialMoreContentCell.swift */,
+				07432F6B2663D477008786B0 /* SocialMoreContentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -514,6 +547,15 @@
 		FFAE74C326287CA10054CB2D /* ImgaeFile */ = {
 			isa = PBXGroup;
 			children = (
+				07432F7B2663D9FF008786B0 /* ico_common_24_message_off_dark.png */,
+				07432F7C2663D9FF008786B0 /* ico_common_24_message_off_dark@2x.png */,
+				07432F7A2663D9FF008786B0 /* ico_common_24_message_off_dark@3x.png */,
+				07432F752663D9F2008786B0 /* like_off_dark.png */,
+				07432F762663D9F2008786B0 /* like_off_dark@2x.png */,
+				07432F742663D9F2008786B0 /* like_off_dark@3x.png */,
+				07432F702663D735008786B0 /* bookmark_off_dark.png */,
+				07432F6E2663D735008786B0 /* bookmark_off_dark@2x.png */,
+				07432F6F2663D735008786B0 /* bookmark_off_dark@3x.png */,
 				07432F59266374DF008786B0 /* ico_common_20_delete_line.png */,
 				07432F5A266374DF008786B0 /* ico_common_20_delete_line@2x.png */,
 				07432F58266374DF008786B0 /* ico_common_20_delete_line@3x.png */,
@@ -732,6 +774,7 @@
 				0751A66F26443515004E635C /*  alert-circle.png in Resources */,
 				0714AE83265D3261005C3C6E /* like_on@3x.png in Resources */,
 				075B1CDF2652AE4D00CEEE7B /* arrow-left@2x.png in Resources */,
+				07432F7E2663D9FF008786B0 /* ico_common_24_message_off_dark.png in Resources */,
 				0715A34E260CD1870077882A /* LaunchScreen.storyboard in Resources */,
 				07EE6C8D26457E1A00F99643 /* ico_common_24_complete_off.png in Resources */,
 				0751A67026443515004E635C /* advisory@2x.png in Resources */,
@@ -746,12 +789,15 @@
 				07EE6C8E26457E1A00F99643 /* ico_common_24_complete_off@3x.png in Resources */,
 				0714AE75265D2FE3005C3C6E /* SocialContentCell.xib in Resources */,
 				FF6922B326430BC600B0B533 /* imgBackgroundYellow.png in Resources */,
+				07432F7F2663D9FF008786B0 /* ico_common_24_message_off_dark@2x.png in Resources */,
 				07432F5726637464008786B0 /* SocialSearchCell.xib in Resources */,
 				078BCF66265E9E2600303BB2 /* ico_common_20_search@3x.png in Resources */,
 				075B1CE32652B65B00CEEE7B /* checked_solid@3x.png in Resources */,
 				0705C8D6265BE06A00E71E8E /* arrow.png in Resources */,
 				FFFC0F74264192E200C6372F /* imgBackgroundRed@3x.png in Resources */,
 				FF6922BD264315F700B0B533 /* Edit.png in Resources */,
+				07432F792663D9F2008786B0 /* like_off_dark@2x.png in Resources */,
+				07432F782663D9F2008786B0 /* like_off_dark.png in Resources */,
 				0714AE86265D3261005C3C6E /* like_on@2x.png in Resources */,
 				FF6922BE264315F700B0B533 /* Edit@3x.png in Resources */,
 				075B1CE92652B7FB00CEEE7B /* AdvisoryStageCell.xib in Resources */,
@@ -762,6 +808,7 @@
 				07EE6C9426457E2900F99643 /*  circle-checked@2x.png in Resources */,
 				FFAE74C826287D2B0054CB2D /* icon.png in Resources */,
 				FFFC0F75264192E200C6372F /* imgBackgroundRed@2x.png in Resources */,
+				07432F652663BBA6008786B0 /* SocialMoreContentViewController.xib in Resources */,
 				0751A67626443779004E635C /*  close.png in Resources */,
 				0705C8EF265BE93F00E71E8E /* s_card_pink@3x.png in Resources */,
 				FFFC0F8326419BEE00C6372F /* FloatingPlus.png in Resources */,
@@ -770,6 +817,7 @@
 				0705C8F4265BE93F00E71E8E /* s_card_green.png in Resources */,
 				0714AE8C265D326C005C3C6E /* bookmark_off.png in Resources */,
 				FFFC0F922641A63400C6372F /* Write.png in Resources */,
+				07432F732663D735008786B0 /* bookmark_off_dark.png in Resources */,
 				07432F5B266374DF008786B0 /* ico_common_20_delete_line@3x.png in Resources */,
 				077BC10126569467001AE876 /* menu@3x.png in Resources */,
 				0751A67126443515004E635C /*  alert-circle@2x.png in Resources */,
@@ -777,7 +825,9 @@
 				078BCF61265E9D3400303BB2 /* SocialSearchViewController.xib in Resources */,
 				0705C8E9265BE93F00E71E8E /* s_card_pink@2x.png in Resources */,
 				0705C8E8265BE93F00E71E8E /* s_card_green@2x.png in Resources */,
+				07432F772663D9F2008786B0 /* like_off_dark@3x.png in Resources */,
 				0705C8D7265BE06A00E71E8E /* arrow@3x.png in Resources */,
+				07432F6D2663D477008786B0 /* SocialMoreContentCell.xib in Resources */,
 				FFAE74C526287CAD0054CB2D /* Vector.png in Resources */,
 				0725AB41263AD4A10082A20D /* NoAnswerCell.xib in Resources */,
 				0725AB45263ADB630082A20D /* AdvisoryAnswerCell.xib in Resources */,
@@ -795,13 +845,16 @@
 				0705C8F5265BE93F00E71E8E /* s_card_pink.png in Resources */,
 				FFFC0F8126419BEE00C6372F /* FloatingPlus@3x.png in Resources */,
 				0751A66E26443515004E635C /* advisory.png in Resources */,
+				07432F722663D735008786B0 /* bookmark_off_dark@3x.png in Resources */,
 				078BCF67265E9E2600303BB2 /* ico_common_20_search@2x.png in Resources */,
 				FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */,
 				0705C8D8265BE06A00E71E8E /* arrow@2x.png in Resources */,
 				07EE6C9326457E2900F99643 /*  circle-checked.png in Resources */,
 				0705C8EB265BE93F00E71E8E /* s_card_violet@2x.png in Resources */,
 				0751A67826443779004E635C /*  close@2x.png in Resources */,
+				07432F7D2663D9FF008786B0 /* ico_common_24_message_off_dark@3x.png in Resources */,
 				0714AE79265D3256005C3C6E /* ico_common_24_message_off.png in Resources */,
+				07432F712663D735008786B0 /* bookmark_off_dark@2x.png in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */,
 				07EE6C9A264AB06300F99643 /* BottomSheetView.xib in Resources */,
@@ -872,6 +925,8 @@
 				0705C8CA2658267D00E71E8E /* AdvisoryUpdateList.swift in Sources */,
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,
+				07432F642663BBA6008786B0 /* SocialMoreContentViewController.swift in Sources */,
+				07432F6C2663D477008786B0 /* SocialMoreContentCell.swift in Sources */,
 				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
 				075B1CE82652B7FB00CEEE7B /* AdvisoryStageCell.swift in Sources */,
 				0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */,
@@ -893,6 +948,7 @@
 				FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */,
 				07432F5626637464008786B0 /* SocialSearchCell.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
+				07432F682663C4AD008786B0 /* SocialTagCell.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
 				0714AE94265D47C6005C3C6E /* SocialListResponse.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,

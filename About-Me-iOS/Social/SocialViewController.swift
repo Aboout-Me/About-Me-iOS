@@ -32,6 +32,12 @@ class SocialViewController: UIViewController {
         
         self.configure()
         self.setSideMenuLayoutInit()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.configureNavigation()
         self.getApis()
     }
     
@@ -51,8 +57,7 @@ class SocialViewController: UIViewController {
     
     // MARK: - Helpers
     
-    private func configure() {
-        view.backgroundColor = .whiteTwo
+    private func configureNavigation() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
@@ -61,6 +66,10 @@ class SocialViewController: UIViewController {
         
         self.title = "공감하는 이야기"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 18)]
+    }
+    
+    private func configure() {
+        view.backgroundColor = .whiteTwo
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
@@ -117,15 +126,6 @@ class SocialViewController: UIViewController {
                 }
             }
         }
-//        SocialApiService.getSocialList(state: self.state.rawValue, color: nil) { socialList in
-//            print("socialList: \(socialList)")
-//            if let socialList = socialList {
-//                self.socialList = socialList
-//                self.collectionView.reloadData()
-//            } else {
-//                completion()
-//            }
-//        }
     }
 }
 
@@ -202,14 +202,20 @@ extension SocialViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("ind: \(indexPath.row)")
-        if indexPath.row == 1, latestList.count > 0 {
-            
+        if indexPath.row == 0, latestList.count > 0 {
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.title = "최신순"
+            self.navigationController?.pushViewController(moreVC, animated: true)
         }
-        if indexPath.row == 3, popularList.count > 0 {
-            
+        if indexPath.row == 2, popularList.count > 0 {
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.title = "인기순"
+            self.navigationController?.pushViewController(moreVC, animated: true)
         }
-        if indexPath.row == 5, categoryList.count > 0 {
-            
+        if indexPath.row == 4, categoryList.count > 0 {
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.title = "취향순"
+            self.navigationController?.pushViewController(moreVC, animated: true)
         }
     }
 }
