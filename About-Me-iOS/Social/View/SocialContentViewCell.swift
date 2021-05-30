@@ -8,18 +8,11 @@
 import UIKit
 
 class SocialContentViewCell: UICollectionViewCell {
-    
-    enum Social: String {
-        case latest = "latestList"
-        case popular = "currentHotList"
-        case category = "latestList/Category"
-        case none = ""
-    }
 
     // MARK: - Properties
     
     @IBOutlet weak var collectionView: UICollectionView!
-    var state: Social = .none
+    var socialList: [SocialPostList] = []
     
     // MARK: - Lifecycle
     
@@ -46,28 +39,34 @@ class SocialContentViewCell: UICollectionViewCell {
         self.collectionView.register(socialContentNib, forCellWithReuseIdentifier: "socialContentCell")
     }
     
-    func getData(_ state: Social) {
-        self.state = state
-        print(self.state)
-        SocialApiService.getSocialList(state: self.state.rawValue, color: nil) { socialList in
-            print("socialList: \(socialList)")
-        }
+    func setData(_ list: [SocialPostList]) {
+        self.socialList = list
+        self.collectionView.reloadData()
     }
 }
 
 extension SocialContentViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return self.socialList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentCell", for: indexPath) as! SocialContentCell
+        let social = self.socialList[indexPath.row]
+        cell.backgroundImageView.image = UIImage(named: "s_card_\(social.color)")
+        cell.nicknameLabel.text = social.nickname
+        cell.questionLabel.text = social.question
+        cell.answerLabel.text = social.answer
+        cell.likeLabel.text = "\(social.likes)"
+        cell.commentLabel.text = "\(social.comments)"
         return cell
     }
 }
 
 extension SocialContentViewCell: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("$$: \(indexPath.row)")
+    }
 }
 
 extension SocialContentViewCell: UICollectionViewDelegateFlowLayout {

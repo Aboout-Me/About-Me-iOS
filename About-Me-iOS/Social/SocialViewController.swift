@@ -10,10 +10,20 @@ import SideMenu
 
 class SocialViewController: UIViewController {
     
+    enum Social: String {
+        case latest = "latestList"
+        case popular = "currentHotList"
+        case category = "latestList/Category"
+        case none = ""
+    }
+    
     // MARK: - Properties
     
     public var sideMenu: SideMenuNavigationController?
     @IBOutlet weak var collectionView: UICollectionView!
+    private var latestList: [SocialPostList] = []
+    private var popularList: [SocialPostList] = []
+    private var categoryList: [SocialPostList] = []
     
     // MARK: - Lifecycle
     
@@ -22,6 +32,7 @@ class SocialViewController: UIViewController {
         
         self.configure()
         self.setSideMenuLayoutInit()
+        self.getApis()
     }
     
     // MARK: - Selectors
@@ -59,6 +70,9 @@ class SocialViewController: UIViewController {
         
         let socialContentViewNib = UINib(nibName: "SocialContentViewCell", bundle: nil)
         self.collectionView.register(socialContentViewNib, forCellWithReuseIdentifier: "socialContentViewCell")
+        
+        let socialNoContentViewNib = UINib(nibName: "SocialNoContentCell", bundle: nil)
+        self.collectionView.register(socialNoContentViewNib, forCellWithReuseIdentifier: "socialNoContentCell")
     }
     
     private func setSideMenuLayoutInit() {
@@ -66,6 +80,52 @@ class SocialViewController: UIViewController {
         let sideOnlyViewController: SideOnlyViewController = storyboard.instantiateViewController(withIdentifier: "SideOnlyViewController") as! SideOnlyViewController
         self.sideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
         self.sideMenu?.leftSide = true
+    }
+    
+    private func getApis() {
+        let concurrentQueue = DispatchQueue.init(label: "concurrent", attributes: .concurrent)
+        concurrentQueue.async {
+            SocialApiService.getSocialList(state: Social.latest.rawValue, color: nil) { socialList in
+                print("socialList: \(socialList)")
+                if let socialList = socialList {
+                    self.latestList = socialList
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+        concurrentQueue.async {
+            SocialApiService.getSocialList(state: Social.popular.rawValue, color: nil) { socialList in
+                print("socialList: \(socialList)")
+                if let socialList = socialList {
+                    self.popularList = socialList
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+        concurrentQueue.async {
+            SocialApiService.getSocialList(state: Social.category.rawValue, color: nil) { socialList in
+                print("socialList: \(socialList)")
+                if let socialList = socialList {
+                    self.categoryList = socialList
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                }
+            }
+        }
+//        SocialApiService.getSocialList(state: self.state.rawValue, color: nil) { socialList in
+//            print("socialList: \(socialList)")
+//            if let socialList = socialList {
+//                self.socialList = socialList
+//                self.collectionView.reloadData()
+//            } else {
+//                completion()
+//            }
+//        }
     }
 }
 
@@ -78,32 +138,78 @@ extension SocialViewController: UICollectionViewDataSource {
         if indexPath.row == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
             cell.titleLabel.text = "최신순"
+            if latestList.count > 0 {
+                cell.arrowImageView.tintColor = .black
+            } else {
+                cell.arrowImageView.tintColor = .gray777
+            }
             return cell
         }
         else if indexPath.row == 1 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
-            cell.getData(.latest)
-            return cell
+            if latestList.count > 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
+                cell.setData(latestList)
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialNoContentCell", for: indexPath) as! SocialNoContentCell
+                cell.titleLabel.text = "아직 최신순 글이 없습니다."
+                return cell
+            }
         }
         else if indexPath.row == 2 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
             cell.titleLabel.text = "인기순"
+            if popularList.count > 0 {
+                cell.arrowImageView.tintColor = .black
+            } else {
+                cell.arrowImageView.tintColor = .gray777
+            }
             return cell
         }
         else if indexPath.row == 3 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
-            cell.getData(.popular)
-            return cell
+            if popularList.count > 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
+                cell.setData(popularList)
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialNoContentCell", for: indexPath) as! SocialNoContentCell
+                cell.titleLabel.text = "아직 인기순 글이 없습니다."
+                return cell
+            }
         }
         else if indexPath.row == 4 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialHeaderCell", for: indexPath) as! SocialHeaderCell
             cell.titleLabel.text = "취향순"
+            if categoryList.count > 0 {
+                cell.arrowImageView.tintColor = .black
+            } else {
+                cell.arrowImageView.tintColor = .gray777
+            }
             return cell
         }
         else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
-            cell.getData(.category)
-            return cell
+            if categoryList.count > 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
+                cell.setData(categoryList)
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialNoContentCell", for: indexPath) as! SocialNoContentCell
+                cell.titleLabel.text = "아직 취향순 글이 없습니다."
+                return cell
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("ind: \(indexPath.row)")
+        if indexPath.row == 1, latestList.count > 0 {
+            
+        }
+        if indexPath.row == 3, popularList.count > 0 {
+            
+        }
+        if indexPath.row == 5, categoryList.count > 0 {
+            
         }
     }
 }
@@ -113,6 +219,15 @@ extension SocialViewController: UICollectionViewDelegateFlowLayout {
         if indexPath.row % 2 == 0 {
             return CGSize(width: collectionView.frame.width, height: 40)
         } else {
+            if indexPath.row == 1, latestList.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 44)
+            }
+            if indexPath.row == 3, popularList.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 44)
+            }
+            if indexPath.row == 5, categoryList.count == 0 {
+                return CGSize(width: collectionView.frame.width, height: 44)
+            }
             return CGSize(width: collectionView.frame.width, height: 300)
         }
     }

@@ -14,6 +14,7 @@ class SocialSearchViewController: UIViewController {
     @IBOutlet weak var searchInputView: UIView!
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchTableView: UITableView!
+    var searchArray: [String] = []
     
     // MARK: - Lifecycle
     
@@ -40,12 +41,21 @@ class SocialSearchViewController: UIViewController {
         self.searchInputView.layer.cornerRadius = 20
         self.searchInputView.layer.borderWidth = 1
         self.searchInputView.layer.borderColor = UIColor.lineDdd.cgColor
+        
+        let socialSearchNib = UINib(nibName: "SocialSearchCell", bundle: nil)
+        self.searchTableView.register(socialSearchNib, forCellReuseIdentifier: "socialSearchCell")
+        
+        searchArray = UserDefaults.standard.array(forKey: "SearchArray") as? [String] ?? []
     }
 }
 
 extension SocialSearchViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.searchTextField.resignFirstResponder()
+        if let text = textField.text, text != "" {
+            self.searchArray.append(text)
+            UserDefaults.standard.setValue(self.searchArray, forKey: "SearchArray")
+        }
         return true
     }
     
@@ -74,11 +84,12 @@ extension SocialSearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return searchArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "socialSearchCell", for: indexPath) as! SocialSearchCell
+        return cell
     }
 }
 

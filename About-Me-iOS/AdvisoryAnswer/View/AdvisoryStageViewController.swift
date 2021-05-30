@@ -42,6 +42,7 @@ class AdvisoryStageViewController: UIViewController {
     
     @objc
     private func backButtonDidTap(_ sender: UIButton) {
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     
