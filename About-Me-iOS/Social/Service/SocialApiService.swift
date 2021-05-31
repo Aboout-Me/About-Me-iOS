@@ -10,7 +10,7 @@ import Alamofire
 struct SocialApiService {
     static func getSocialList(state: String, color: String?, completion: @escaping ([SocialPostList]?) -> Void) {
         var urlString = "\(API_URL)/Board/\(state)/\(userId)"
-        if let color = color {
+        if let color = color, color != "" {
             urlString.append("?color=\(color)")
         }
         

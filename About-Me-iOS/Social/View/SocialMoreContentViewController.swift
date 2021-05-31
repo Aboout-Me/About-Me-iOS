@@ -14,7 +14,9 @@ class SocialMoreContentViewController: UIViewController {
     @IBOutlet weak var headerCollectionView: UICollectionView!
     @IBOutlet weak var bodyCollectionView: UICollectionView!
     
-    let tags = ["전체", "열정충만", "소소한일상", "기억상자", "관계의미학", "상상플러스"]
+    private let tags = [("전체", ""), ("열정충만", "red"), ("소소한일상", "yellow"), ("기억상자", "green"), ("관계의미학", "pink"), ("상상플러스", "purple")]
+    var state: Social = .none
+    private var postList: [SocialPostList] = []
     
     // MARK: - Lifecycle
     
@@ -27,6 +29,13 @@ class SocialMoreContentViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.configureNavigation()
+        SocialApiService.getSocialList(state: self.state.rawValue, color: nil) { socialList in
+            print("socialList: \(socialList)")
+            if let socialList = socialList {
+                self.postList = socialList
+                self.bodyCollectionView.reloadData()
+            }
+        }
     }
     
     // MARK: - Selectors
@@ -91,7 +100,7 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == headerCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialTagCell", for: indexPath) as! SocialTagCell
-            cell.titleLabel.text = tags[indexPath.row]
+            cell.titleLabel.text = tags[indexPath.row].0
             cell.tagNumber = indexPath.row
             return cell
         } else {
@@ -103,6 +112,16 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == headerCollectionView {
             print("indexpath: \(indexPath.section) \(indexPath.row)")
+            SocialApiService.getSocialList(state: self.state.rawValue, color: tags[indexPath.row].1) { socialList in
+                print("socialList: \(socialList)")
+                if let socialList = socialList {
+                    self.postList = socialList
+                    self.bodyCollectionView.reloadData()
+                }
+            }
+        } else {
+            let detailVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
+            self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }
 }
@@ -115,7 +134,7 @@ extension SocialMoreContentViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == headerCollectionView {
             let label = UILabel()
-            label.text = tags[indexPath.row]
+            label.text = tags[indexPath.row].0
             label.font = UIFont.systemFont(ofSize: 15)
             return CGSize(width: label.intrinsicContentSize.width + 40, height: 40)
         } else {

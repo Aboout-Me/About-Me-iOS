@@ -58,6 +58,7 @@ class AdvisoryAnswerViewController: UIViewController {
     
     private func configure() {
         self.backgroundImageView.image = UIImage(named: "advisory.png")
+        self.backgroundImageView.contentMode = .scaleAspectFill
         self.explanationLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
         
         let noAnswerNib = UINib(nibName: "NoAnswerCell", bundle: nil)
