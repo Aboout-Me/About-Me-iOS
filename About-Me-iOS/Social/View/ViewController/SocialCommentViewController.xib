@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialCommentViewController" customModule="About_Me_iOS" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraint" destination="Z5j-qh-6qi" id="emG-ER-Y9h"/>
                 <outlet property="bottomView" destination="31G-Op-Ytc" id="Cgk-8X-ERN"/>
                 <outlet property="commentButton" destination="7pw-V7-xX8" id="51C-fP-5m5"/>
                 <outlet property="commentTableView" destination="DNg-Up-my0" id="uRQ-CS-QGc"/>

@@ -119,6 +119,8 @@
 		078BCF65265E9E2600303BB2 /* ico_common_20_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 078BCF62265E9E2600303BB2 /* ico_common_20_search.png */; };
 		078BCF66265E9E2600303BB2 /* ico_common_20_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 078BCF63265E9E2600303BB2 /* ico_common_20_search@3x.png */; };
 		078BCF67265E9E2600303BB2 /* ico_common_20_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 078BCF64265E9E2600303BB2 /* ico_common_20_search@2x.png */; };
+		07B05726266687CA002085B7 /* SocialCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B05724266687CA002085B7 /* SocialCommentCell.swift */; };
+		07B05727266687CA002085B7 /* SocialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B05725266687CA002085B7 /* SocialCommentCell.xib */; };
 		07EE6C8D26457E1A00F99643 /* ico_common_24_complete_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EE6C8A26457E1A00F99643 /* ico_common_24_complete_off.png */; };
 		07EE6C8E26457E1A00F99643 /* ico_common_24_complete_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EE6C8B26457E1A00F99643 /* ico_common_24_complete_off@3x.png */; };
 		07EE6C8F26457E1A00F99643 /* ico_common_24_complete_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07EE6C8C26457E1A00F99643 /* ico_common_24_complete_off@2x.png */; };
@@ -296,6 +298,8 @@
 		078BCF62265E9E2600303BB2 /* ico_common_20_search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_common_20_search.png; sourceTree = "<group>"; };
 		078BCF63265E9E2600303BB2 /* ico_common_20_search@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_20_search@3x.png"; sourceTree = "<group>"; };
 		078BCF64265E9E2600303BB2 /* ico_common_20_search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_20_search@2x.png"; sourceTree = "<group>"; };
+		07B05724266687CA002085B7 /* SocialCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialCommentCell.swift; sourceTree = "<group>"; };
+		07B05725266687CA002085B7 /* SocialCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialCommentCell.xib; sourceTree = "<group>"; };
 		07EE6C8A26457E1A00F99643 /* ico_common_24_complete_off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ico_common_24_complete_off.png; sourceTree = "<group>"; };
 		07EE6C8B26457E1A00F99643 /* ico_common_24_complete_off@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_24_complete_off@3x.png"; sourceTree = "<group>"; };
 		07EE6C8C26457E1A00F99643 /* ico_common_24_complete_off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_24_complete_off@2x.png"; sourceTree = "<group>"; };
@@ -391,6 +395,8 @@
 				07432F662663C4AD008786B0 /* SocialTagCell.swift */,
 				07432F6A2663D477008786B0 /* SocialMoreContentCell.swift */,
 				07432F6B2663D477008786B0 /* SocialMoreContentCell.xib */,
+				07B05724266687CA002085B7 /* SocialCommentCell.swift */,
+				07B05725266687CA002085B7 /* SocialCommentCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -825,6 +831,7 @@
 				075B1CE32652B65B00CEEE7B /* checked_solid@3x.png in Resources */,
 				0705C8D6265BE06A00E71E8E /* arrow.png in Resources */,
 				FFFC0F74264192E200C6372F /* imgBackgroundRed@3x.png in Resources */,
+				07B05727266687CA002085B7 /* SocialCommentCell.xib in Resources */,
 				FF6922BD264315F700B0B533 /* Edit.png in Resources */,
 				07432F792663D9F2008786B0 /* like_off_dark@2x.png in Resources */,
 				07432F782663D9F2008786B0 /* like_off_dark.png in Resources */,
@@ -994,6 +1001,7 @@
 				0705C8CD265BDC5800E71E8E /* SocialHeaderCell.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
+				07B05726266687CA002085B7 /* SocialCommentCell.swift in Sources */,
 				FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
 				0725AB3C263AC7880082A20D /* AdvisoryList.swift in Sources */,
