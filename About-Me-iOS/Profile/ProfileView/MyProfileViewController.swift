@@ -35,11 +35,15 @@ class MyProfileViewController: UIViewController {
     public var myProfileColor = "red"
     public var myProfileData: MyProfilePage? = nil
     public var myProfileSubData = [MyProfilePageModel]()
+    public var myProfileLikeScrapData: MyProfileLikeScrapList? = nil
+    public var myProfileLikeScrapSubData = [MyProfileLikeScrapModelBody]()
     public var myProfileTagIndex = 0
+    public var myProfileisFlag = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getMyProfileList()
+        self.getMyLikeScrapList()
         self.setInitLayout()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -242,6 +246,21 @@ class MyProfileViewController: UIViewController {
         }
     }
     
+    private func getMyLikeScrapList() {
+        let likeParamter = [
+            "color" : self.myProfileColor
+        ]
+        ProfileServerApi.getMyProfileLikeList(userId: 1, crush: "likes", crushParameter: likeParamter) { result in
+            if case let .success(data) = result, let list = data {
+                DispatchQueue.main.async {
+                    self.myProfileLikeScrapData = list
+                    self.myProfileLikeScrapSubData = list.postList[0].body
+                    print(self.myProfileLikeScrapData)
+                }
+            }
+        }
+    }
+    
     
     
     @objc
@@ -371,7 +390,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             return myProfileCell!
         } else {
             let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
-            if indexPath.item == 0 {
+            if indexPath.item == 0 && self.myProfileisFlag == true {
                 myProfileTagCell?.isSelected = false
                 myProfileTagCell?.myProfileTagButton.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
                 myProfileTagCell?.myProfileTagButton.setTitleColor(UIColor.white, for: .normal)
@@ -394,18 +413,23 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             } else if indexPath.item == 1 {
                 self.myProfileColor = "red"
                 self.getMyProfileList()
+                self.myProfileisFlag = false
             } else if indexPath.item == 2 {
                 self.myProfileColor = "yellow"
                 self.getMyProfileList()
+                self.myProfileisFlag = false
             } else if indexPath.item == 3 {
                 self.myProfileColor = "green"
                 self.getMyProfileList()
+                self.myProfileisFlag = false
             } else if indexPath.item == 4 {
                 self.myProfileColor = "pink"
                 self.getMyProfileList()
+                self.myProfileisFlag = false
             } else {
                 self.myProfileColor = "purple"
                 self.getMyProfileList()
+                self.myProfileisFlag = false
             }
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .right)
         }

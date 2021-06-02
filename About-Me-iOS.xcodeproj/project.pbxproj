@@ -67,6 +67,7 @@
 		FF6922BE264315F700B0B533 /* Edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BB264315F700B0B533 /* Edit@3x.png */; };
 		FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BC264315F700B0B533 /* Edit@2x.png */; };
 		FF72B9E1265CFFFC00A7A5E4 /* MyProfilePageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF72B9E0265CFFFC00A7A5E4 /* MyProfilePageList.swift */; };
+		FF77DA9926669CBB00D7808D /* MyProfileLikeScrapList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF77DA9826669CBB00D7808D /* MyProfileLikeScrapList.swift */; };
 		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
@@ -173,6 +174,7 @@
 		FF6922BB264315F700B0B533 /* Edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@3x.png"; sourceTree = "<group>"; };
 		FF6922BC264315F700B0B533 /* Edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@2x.png"; sourceTree = "<group>"; };
 		FF72B9E0265CFFFC00A7A5E4 /* MyProfilePageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfilePageList.swift; sourceTree = "<group>"; };
+		FF77DA9826669CBB00D7808D /* MyProfileLikeScrapList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileLikeScrapList.swift; sourceTree = "<group>"; };
 		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				FF3BECCF26518760006C585A /* CategoryProgressList.swift */,
 				FF3BECD626519A13006C585A /* WeeklyProgressList.swift */,
 				FF72B9E0265CFFFC00A7A5E4 /* MyProfilePageList.swift */,
+				FF77DA9826669CBB00D7808D /* MyProfileLikeScrapList.swift */,
 				FF3BECD326518832006C585A /* ProfileServerApi.swift */,
 			);
 			path = ProfileServer;
@@ -681,6 +684,7 @@
 				0751A66426441545004E635C /* AdvisoryPostList.swift in Sources */,
 				07EE6C99264AB06300F99643 /* BottomSheetView.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
+				FF77DA9926669CBB00D7808D /* MyProfileLikeScrapList.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */,
 				07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */,

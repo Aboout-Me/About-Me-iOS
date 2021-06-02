@@ -15,6 +15,7 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myProfileContentImageView: UIImageView!
     @IBOutlet weak var myProfileQuestionTitleLabel: UILabel!
     @IBOutlet weak var myProfileAnswerTitleLabel: UILabel!
+    @IBOutlet weak var myProfileAnswerImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -49,5 +50,7 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
         self.myProfileContentTitleLabel.textColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
         self.myProfileContentTitleLabel.textAlignment = .left
         self.myProfileContentTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        self.myProfileAnswerImageView.image = UIImage(named: "slice")
+        self.myProfileAnswerImageView.contentMode = .scaleToFill
     }
 }

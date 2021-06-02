@@ -107,6 +107,35 @@ struct ProfileServerApi {
                 }
             }
     }
+    
+    static func getMyProfileLikeList(userId: Int,crush: String,crushParameter: Parameters?, completionHandler: @escaping(Result<MyProfileLikeScrapList>) -> ()) {
+        let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/CrushList/\(userId)/\(crush)")!
+        AF.request(urlString, method: .get, parameters: crushParameter, encoding: URLEncoding.default)
+            .validate()
+            .responseData { response in
+                debugPrint(response)
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let jsonObject = try JSONSerialization.jsonObject(with: response, options: [])
+                        if let jsonData = jsonObject as? [String:Any] {
+                            let code = jsonData["code"] as? Int
+                            if code == 200 {
+                                let decoder = JSONDecoder()
+                                let myProfileLikeList = try decoder.decode(MyProfileLikeScrapList.self, from: response)
+                                let result = Result<MyProfileLikeScrapList>.success(data: myProfileLikeList)
+                                completionHandler(result)
+                            }
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
 }
 
 
