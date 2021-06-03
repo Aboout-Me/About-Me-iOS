@@ -34,6 +34,7 @@ class MyProfileViewController: UIViewController {
     private var tagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
     public var myProfileColor = "red"
     public var myProfileData: MyProfilePage? = nil
+    public var myProfileFlag = "answer"
     public var myProfileSubData = [MyProfilePageModel]()
     public var myProfileLikeScrapData: MyProfileLikeScrapList? = nil
     public var myProfileLikeScrapSubData = [MyProfileLikeScrapModelBody]()
@@ -43,7 +44,7 @@ class MyProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getMyProfileList()
-        self.getMyLikeScrapList()
+//        self.getMyScrapList()
         self.setInitLayout()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -60,10 +61,12 @@ class MyProfileViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationItem.title = "프로필"
-        let nib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
-        let nib2 = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
-        self.myProfileCollectionView.register(nib, forCellWithReuseIdentifier: "MyProfileCell")
-        self.myProfileTagCollectionView.register(nib2, forCellWithReuseIdentifier: "MyProfileTagCell")
+        let mainNib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
+        let tagNib = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
+        let emptyNib = UINib(nibName: "MyProfileEmptyCollectionViewCell", bundle: nil)
+        self.myProfileCollectionView.register(mainNib, forCellWithReuseIdentifier: "MyProfileCell")
+        self.myProfileTagCollectionView.register(tagNib, forCellWithReuseIdentifier: "MyProfileTagCell")
+        self.myProfileCollectionView.register(emptyNib, forCellWithReuseIdentifier: "MyProfileEmptyCell")
         self.myProfileCollectionView.delegate = self
         self.myProfileCollectionView.dataSource = self
         self.myProfileTagCollectionView.delegate = self
@@ -84,18 +87,17 @@ class MyProfileViewController: UIViewController {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         self.myProfileCharacterContentLabel.numberOfLines = 0
-        self.myProfileCharacterContentLabel.textColor = UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0)
+        self.myProfileCharacterContentLabel.textColor = .gray777
         self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         self.myProfileCharacterContentLabel.textAlignment = .left
-        self.myProfileCharacterContentLabel.attributedText = NSAttributedString(string: "안녕하세요. 저는 다양한 분야에 관심이 많고,  경험하는 것을 좋아하는 프로 열정러입니다!", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        self.myProfileCharacterContentLabel.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         self.myProfileImageViewContainer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileImageViewContainer.layer.cornerRadius = self.myProfileImageViewContainer.frame.size.width / 2
         self.myProfileImageViewContainer.layer.masksToBounds = true
         self.myProfileImageView.image = UIImage(named: "CharacterRed.png")
-        self.myProfileNickNameLabel.text = "@ dohyun"
-        self.myProfileNickNameLabel.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
-        self.myProfileNickNameLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
-        self.myProfileNickNameLabel.textAlignment = .left
+        self.myProfileNickNameLabel.textColor = .gray999
+        self.myProfileNickNameLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 11)
+        self.myProfileNickNameLabel.textAlignment = .center
         self.detailPushButton.setImage(UIImage(named: "Arrow.png"), for: .normal)
         self.detailPushButton.addTarget(self, action: #selector(self.didTapdetailPushButton), for: .touchUpInside)
         self.myProfileCharacterTagFirst.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
@@ -163,6 +165,8 @@ class MyProfileViewController: UIViewController {
     
     private func setProfileServerProcessDidFinsh() {
         if self.myProfileData?.color == "red" {
+            self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
+            self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterRed")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed")
@@ -173,6 +177,8 @@ class MyProfileViewController: UIViewController {
             self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
             self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
         } else if self.myProfileData?.color == "yellow" {
+            self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
+            self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "characterYellow")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundYellow")
@@ -183,6 +189,8 @@ class MyProfileViewController: UIViewController {
             self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
             self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
         } else if self.myProfileData?.color == "green" {
+            self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
+            self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterGreen")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundGreen")
@@ -193,6 +201,8 @@ class MyProfileViewController: UIViewController {
             self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
             self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
         } else if self.myProfileData?.color == "pink" {
+            self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
+            self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterPink")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundPink")
@@ -203,6 +213,8 @@ class MyProfileViewController: UIViewController {
             self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
             self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
         } else {
+            self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
+            self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterVilolet")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundViolet")
@@ -216,9 +228,11 @@ class MyProfileViewController: UIViewController {
     }
     
     private func getMyProfileList() {
-        let Paramter = [
+
+        let Parameter = [
             "color": self.myProfileColor
         ]
+        self.myProfileFlag = "answer"
         if self.myProfileTagIndex == 0 {
             ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:nil ) { result in
                 if case let .success(data) = result, let list = data {
@@ -227,45 +241,92 @@ class MyProfileViewController: UIViewController {
                         self.myProfileSubData = list.postList
                         self.setProfileServerProcessDidFinsh()
                         self.myProfileCollectionView.reloadData()
-                        print(self.myProfileData)
+                        print("Answer All Data: [\(self.myProfileData)]")
                     }
                 }
             }
         } else {
-            ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:Paramter ) { result in
+            ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:Parameter ) { result in
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileData = list
                         self.myProfileSubData = list.postList
                         self.setProfileServerProcessDidFinsh()
                         self.myProfileCollectionView.reloadData()
-                        print(self.myProfileData)
+                        print("Answer Sub Data : [\(self.myProfileSubData)]")
                     }
                 }
             }
         }
     }
     
-    private func getMyLikeScrapList() {
-        let likeParamter = [
+    private func getMyLikeList() {
+        let likeParameter = [
             "color" : self.myProfileColor
         ]
-        ProfileServerApi.getMyProfileLikeList(userId: 1, crush: "likes", crushParameter: likeParamter) { result in
-            if case let .success(data) = result, let list = data {
-                DispatchQueue.main.async {
-                    self.myProfileLikeScrapData = list
-                    self.myProfileLikeScrapSubData = list.postList[0].body
-                    print(self.myProfileLikeScrapData)
+        self.myProfileFlag = "likes"
+        if self.myProfileTagIndex == 0 {
+            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: nil) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        self.myProfileLikeScrapData = list
+                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        print("Like All Data : [\(self.myProfileLikeScrapData)]")
+                        self.myProfileCollectionView.reloadData()
+                    }
+                }
+            }
+        } else {
+            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: likeParameter) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        print("Likes Sub Data :  {\(self.myProfileLikeScrapSubData)}")
+                        self.myProfileLikeScrapData = list
+                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        self.myProfileCollectionView.reloadData()
+                    }
                 }
             }
         }
     }
     
     
+    private func getMyScrapList() {
+        let scrapParameter = [
+            "color" : self.myProfileColor
+        ]
+        self.myProfileFlag = "scrap"
+        if self.myProfileTagIndex == 0 {
+            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: nil) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        self.myProfileLikeScrapData = list
+                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        print("Scrap All Data : [\(self.myProfileLikeScrapSubData)]")
+                        self.myProfileCollectionView.reloadData()
+                    }
+                }
+            }
+        } else {
+            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: scrapParameter) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        self.myProfileLikeScrapData = list
+                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        print("Scrap Sub Data : {\(self.myProfileLikeScrapSubData)}")
+                        self.myProfileCollectionView.reloadData()
+                    }
+                }
+            }
+        }
+        
+    }
+    
+    
     
     @objc
     private func didTapMyLikeButton(_ sender: UIButton) {
-        
+        self.getMyLikeList()
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
             if self.myProfileBottomLineView.frame.origin.x > self.myProfileMyLikeButton.frame.origin.x {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -295,6 +356,7 @@ class MyProfileViewController: UIViewController {
     
     @objc
     private func didTapMyScrapButton(_ sender: UIButton) {
+        self.getMyScrapList()
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
             self.myProfileBottomLineView.layoutIfNeeded()
             let transition = CATransition()
@@ -313,6 +375,7 @@ class MyProfileViewController: UIViewController {
     
     @objc
     private func didTapMyAnswerButton(_ sender: UIButton) {
+        self.getMyProfileList()
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
             if self.myProfileBottomLineView.frame.origin.x > self.myProfileMyAnswerButton.frame.origin.x {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -354,6 +417,28 @@ class MyProfileViewController: UIViewController {
 extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == self.myProfileCollectionView {
+            switch self.myProfileFlag {
+            case "answer":
+                if self.myProfileSubData.count == 0 {
+                    return 1
+                } else {
+                    return self.myProfileSubData.count
+                }
+            case "likes":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    return 1
+                } else {
+                    return self.myProfileLikeScrapSubData.count
+                }
+            case "scrap":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    return 1
+                } else {
+                    return self.myProfileLikeScrapSubData.count
+                }
+            default:
+                break
+            }
             return self.myProfileSubData.count
         } else {
             return self.tagNameList.count
@@ -363,31 +448,103 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == self.myProfileCollectionView {
             let myProfileCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileCell", for: indexPath) as? MyProfileCollectionViewCell
-            if self.myProfileSubData[indexPath.item].color == "red" {
-                myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
-                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
-            } else if self.myProfileSubData[indexPath.item].color == "yellow" {
-                myProfileCell?.myProfileContentTitleLabel.text = "# 소소한 일상"
-                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
-            } else if self.myProfileSubData[indexPath.item].color == "pink" {
-                myProfileCell?.myProfileContentTitleLabel.text = "# 관계의 미학"
-                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
-            } else if self.myProfileSubData[indexPath.item].color == "green" {
-                myProfileCell?.myProfileContentTitleLabel.text = "# 기억상자"
-                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 42/255, green: 212/255, blue: 141/255, alpha: 1.0)
-            } else {
-                myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
-                myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+            switch self.myProfileFlag {
+            case "answer":
+                if self.myProfileSubData.count == 0 {
+                    let myProfileEmptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileEmptyCell", for: indexPath) as? MyProfileEmptyCollectionViewCell
+                    return myProfileEmptyCell!
+                } else {
+                    if self.myProfileSubData[indexPath.item].color == "red" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                    } else if self.myProfileSubData[indexPath.item].color == "yellow" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 소소한 일상"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+                    } else if self.myProfileSubData[indexPath.item].color == "pink" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 관계의 미학"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+                    } else if self.myProfileSubData[indexPath.item].color == "green" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 기억상자"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 42/255, green: 212/255, blue: 141/255, alpha: 1.0)
+                    } else {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+                    }
+                    if self.myProfileSubData[indexPath.item].shareYN == "Y" {
+                        myProfileCell?.myProfileContentImageView.image = UIImage(named: "Lock.png")
+                    } else {
+                        myProfileCell?.myProfileContentImageView.image = UIImage(named: "UnLock.png")
+                    }
+                    myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileSubData[indexPath.item].question)"
+                    myProfileCell?.myProfileContentDateLabel.text = self.myProfileSubData[indexPath.item].writtenDate
+                    myProfileCell?.myProfileAnswerTitleLabel.text = self.myProfileSubData[indexPath.item].answer
+                    return myProfileCell!
+                }
+            case "likes":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    let myProfileEmptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileEmptyCell", for: indexPath) as? MyProfileEmptyCollectionViewCell
+                    return myProfileEmptyCell!
+                } else {
+                    if self.myProfileLikeScrapSubData[indexPath.item].color == "red" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                    } else if self.myProfileLikeScrapSubData[indexPath.item].color == "yellow" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 소소한 일상"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+                    } else if self.myProfileLikeScrapSubData[indexPath.item].color == "pink" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 관계의 미학"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+                    } else if self.myProfileLikeScrapSubData[indexPath.item].color == "green" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 기억상자"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 42/255, green: 212/255, blue: 141/255, alpha: 1.0)
+                    } else {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+                    }
+                    if self.myProfileLikeScrapSubData[indexPath.item].likes == 1 {
+                        myProfileCell?.myProfileContentImageView.image = UIImage(named: "LikeOn.png")
+                    } else {
+                        myProfileCell?.myProfileContentImageView.image = UIImage(named: "LikeOff.png")
+                    }
+                    myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileLikeScrapSubData[indexPath.item].question)"
+                    myProfileCell?.myProfileContentDateLabel.text = self.myProfileLikeScrapSubData[indexPath.item].updateDate
+                    myProfileCell?.myProfileAnswerTitleLabel.text = self.myProfileLikeScrapSubData[indexPath.item].answer
+                    return myProfileCell!
+                }
+            case "scrap":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    let myProfileEmptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileEmptyCell", for: indexPath) as? MyProfileEmptyCollectionViewCell
+                    return myProfileEmptyCell!
+                } else {
+                    if self.myProfileLikeScrapSubData[indexPath.item].color == "red" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 열정충만"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                    } else if self.myProfileLikeScrapSubData[indexPath.item].color == "yellow" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 소소한 일상"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+                    } else if self.myProfileLikeScrapSubData[indexPath.item].color == "pink" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 관계의 미학"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+                    } else if self.myProfileLikeScrapSubData[indexPath.item].color == "green" {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 기억상자"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 42/255, green: 212/255, blue: 141/255, alpha: 1.0)
+                    } else {
+                        myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
+                        myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+                    }
+                    if self.myProfileLikeScrapSubData[indexPath.item].scraps == 1 {
+                        myProfileCell?.myProfileContentImageView.image = UIImage(named: "ScrapsOn.png")
+                    } else {
+                        myProfileCell?.myProfileContentImageView.image = UIImage(named: "ScrapsOff.png")
+                    }
+                    myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileLikeScrapSubData[indexPath.item].question)"
+                    myProfileCell?.myProfileContentDateLabel.text = self.myProfileLikeScrapSubData[indexPath.item].updateDate
+                    myProfileCell?.myProfileAnswerTitleLabel.text = self.myProfileLikeScrapSubData[indexPath.item].answer
+                    return myProfileCell!
+                }
+            default:
+                return UICollectionViewCell()
             }
-            if self.myProfileSubData[indexPath.item].shareYN == "Y" {
-                myProfileCell?.myProfileContentImageView.image = UIImage(named: "Lock.png")
-            } else {
-                myProfileCell?.myProfileContentImageView.image = UIImage(named: "UnLock.png")
-            }
-            myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileSubData[indexPath.item].question)"
-            myProfileCell?.myProfileContentDateLabel.text = self.myProfileSubData[indexPath.item].writtenDate
-            myProfileCell?.myProfileAnswerTitleLabel.text = self.myProfileSubData[indexPath.item].answer
-            return myProfileCell!
         } else {
             let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
             if indexPath.item == 0 && self.myProfileisFlag == true {
@@ -408,28 +565,91 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         } else {
             let myProfileTagCell = collectionView.cellForItem(at: indexPath) as? MyProfileTagCollectionViewCell
             self.myProfileTagIndex = indexPath.item
-            if indexPath.item == 0 {
-                self.getMyProfileList()
-            } else if indexPath.item == 1 {
-                self.myProfileColor = "red"
-                self.getMyProfileList()
-                self.myProfileisFlag = false
-            } else if indexPath.item == 2 {
-                self.myProfileColor = "yellow"
-                self.getMyProfileList()
-                self.myProfileisFlag = false
-            } else if indexPath.item == 3 {
-                self.myProfileColor = "green"
-                self.getMyProfileList()
-                self.myProfileisFlag = false
-            } else if indexPath.item == 4 {
-                self.myProfileColor = "pink"
-                self.getMyProfileList()
-                self.myProfileisFlag = false
-            } else {
-                self.myProfileColor = "purple"
-                self.getMyProfileList()
-                self.myProfileisFlag = false
+            
+            switch indexPath.item {
+            case 0:
+                if self.myProfileFlag == "answer" {
+                    self.getMyProfileList()
+                    self.myProfileisFlag = false
+                } else if self.myProfileFlag == "likes" {
+                    self.getMyLikeList()
+                    self.myProfileisFlag = false
+                } else {
+                    self.getMyScrapList()
+                    self.myProfileisFlag = false
+                }
+            case 1:
+                if self.myProfileFlag == "answer" {
+                    self.myProfileColor = "red"
+                    self.getMyProfileList()
+                    self.myProfileisFlag = false
+                } else if self.myProfileFlag == "likes" {
+                    self.myProfileColor = "red"
+                    self.getMyLikeList()
+                    self.myProfileisFlag = false
+                } else {
+                    self.myProfileColor = "red"
+                    self.getMyScrapList()
+                    self.myProfileisFlag = false
+                }
+            case 2:
+                if self.myProfileFlag == "answer" {
+                    self.myProfileColor = "yellow"
+                    self.getMyProfileList()
+                    self.myProfileisFlag = false
+                } else if self.myProfileFlag == "likes" {
+                    self.myProfileColor = "yellow"
+                    self.getMyLikeList()
+                    self.myProfileisFlag = false
+                } else {
+                    self.myProfileColor = "yellow"
+                    self.getMyScrapList()
+                    self.myProfileisFlag = false
+                }
+            case 3:
+                if self.myProfileFlag == "answer" {
+                    self.myProfileColor = "green"
+                    self.getMyProfileList()
+                    self.myProfileisFlag = false
+                } else if self.myProfileFlag == "likes" {
+                    self.myProfileColor = "green"
+                    self.getMyLikeList()
+                    self.myProfileisFlag = false
+                } else {
+                    self.myProfileColor = "green"
+                    self.getMyScrapList()
+                    self.myProfileisFlag = false
+                }
+            case 4:
+                if self.myProfileFlag == "answer" {
+                    self.myProfileColor = "pink"
+                    self.getMyProfileList()
+                    self.myProfileisFlag = false
+                } else if self.myProfileFlag == "likes" {
+                    self.myProfileColor = "pink"
+                    self.getMyLikeList()
+                    self.myProfileisFlag = false
+                } else {
+                    self.myProfileColor = "pink"
+                    self.getMyScrapList()
+                    self.myProfileisFlag = false
+                }
+            case 5:
+                if self.myProfileFlag == "answer" {
+                    self.myProfileColor = "purple"
+                    self.getMyProfileList()
+                    self.myProfileisFlag = false
+                } else if self.myProfileFlag == "likes" {
+                    self.myProfileColor = "purple"
+                    self.getMyLikeList()
+                    self.myProfileisFlag = false
+                } else {
+                    self.myProfileColor = "purple"
+                    self.getMyScrapList()
+                    self.myProfileisFlag = false
+                }
+            default:
+                break
             }
             collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .right)
         }
@@ -438,7 +658,31 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == self.myProfileCollectionView {
-            return CGSize(width: 335, height: 100)
+            switch self.myProfileFlag {
+            
+            case "answer":
+                if self.myProfileSubData.count == 0 {
+                    return CGSize(width: self.myProfileCollectionView.frame.size.width, height: self.myProfileCollectionView.frame.size.height)
+                } else {
+                    return CGSize(width: 335, height: 100)
+                }
+                
+            case "likes":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    return CGSize(width: self.myProfileCollectionView.frame.size.width, height: 150)
+                } else {
+                    return CGSize(width: 335, height: 100)
+                }
+                
+            case "scrap":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    return CGSize(width: self.myProfileCollectionView.frame.size.width, height: 150)
+                } else {
+                    return CGSize(width: 335, height: 100)
+                }
+            default:
+                return CGSize()
+            }
         } else {
             let myTextCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
             return CGSize(width: (myTextCell?.myProfileTagButton.intrinsicContentSize.width)!, height: 30)
@@ -446,7 +690,31 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == self.myProfileCollectionView {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            switch self.myProfileFlag {
+            
+            case "answer":
+                if self.myProfileSubData.count == 0 {
+                    return UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+                } else {
+                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }
+                
+            case "likes":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    return UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+                } else {
+                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }
+                
+            case "scrap":
+                if self.myProfileLikeScrapSubData.count == 0 {
+                    return UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+                } else {
+                    return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+                }
+            default:
+                return UIEdgeInsets()
+            }
         } else {
             return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 10)
         }

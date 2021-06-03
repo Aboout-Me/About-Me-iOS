@@ -50,6 +50,8 @@
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
 		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
 		FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */; };
+		FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF351A9D2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift */; };
+		FF351AA02668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF351A9E2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib */; };
 		FF3BECD026518760006C585A /* CategoryProgressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3BECCF26518760006C585A /* CategoryProgressList.swift */; };
 		FF3BECD426518832006C585A /* ProfileServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3BECD326518832006C585A /* ProfileServerApi.swift */; };
 		FF3BECD726519A13006C585A /* WeeklyProgressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3BECD626519A13006C585A /* WeeklyProgressList.swift */; };
@@ -157,6 +159,8 @@
 		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
+		FF351A9D2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEmptyCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF351A9E2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileEmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		FF3BECCF26518760006C585A /* CategoryProgressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryProgressList.swift; sourceTree = "<group>"; };
 		FF3BECD326518832006C585A /* ProfileServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServerApi.swift; sourceTree = "<group>"; };
 		FF3BECD626519A13006C585A /* WeeklyProgressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressList.swift; sourceTree = "<group>"; };
@@ -396,6 +400,8 @@
 				FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */,
 				FFFC0FA52642C1F800C6372F /* MyProfileTagCollectionViewCell.swift */,
 				FFFC0FA62642C1F800C6372F /* MyProfileTagCollectionViewCell.xib */,
+				FF351A9D2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift */,
+				FF351A9E2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib */,
 			);
 			path = ProfileXib;
 			sourceTree = "<group>";
@@ -599,6 +605,7 @@
 				FFFC0F8226419BEE00C6372F /* FloatingPlus@2x.png in Resources */,
 				07F33944264D281900B5CFC0 /* confirm@3x.png in Resources */,
 				07EE6C9526457E2900F99643 /*  circle-checked@3x.png in Resources */,
+				FF351AA02668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib in Resources */,
 				FFFC0F8126419BEE00C6372F /* FloatingPlus@3x.png in Resources */,
 				0751A66E26443515004E635C /* advisory.png in Resources */,
 				FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */,
@@ -697,6 +704,7 @@
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
 				FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
+				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
 				FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
