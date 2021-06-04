@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyProfileEmptyCell" id="gTV-IL-0wX" customClass="MyProfileEmptyCollectionViewCell" customModule="About_Me_iOS" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fvE-Bn-Jlh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="150"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image=" alert-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="zU3-Hk-Suf">
+                                <rect key="frame" x="140" y="40" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mo1-yn-nx4"/>
+                                    <constraint firstAttribute="width" constant="40" id="sGg-DY-VzS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터가 없습니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3RL-gb-Yag">
+                                <rect key="frame" x="106" y="95" width="108" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="zU3-Hk-Suf" firstAttribute="top" secondItem="fvE-Bn-Jlh" secondAttribute="top" constant="40" id="2rw-Nu-ybJ"/>
+                            <constraint firstItem="3RL-gb-Yag" firstAttribute="centerX" secondItem="fvE-Bn-Jlh" secondAttribute="centerX" id="FAC-zQ-aHp"/>
+                            <constraint firstItem="zU3-Hk-Suf" firstAttribute="centerX" secondItem="fvE-Bn-Jlh" secondAttribute="centerX" id="HiN-sA-vLg"/>
+                            <constraint firstAttribute="bottom" secondItem="3RL-gb-Yag" secondAttribute="bottom" constant="37" id="W0H-Ip-ITi"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="fvE-Bn-Jlh" secondAttribute="trailing" id="16i-hr-CBw"/>
+                <constraint firstItem="fvE-Bn-Jlh" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="enP-dC-TMm"/>
+                <constraint firstItem="fvE-Bn-Jlh" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="iFt-6d-YLW"/>
+                <constraint firstAttribute="bottom" secondItem="fvE-Bn-Jlh" secondAttribute="bottom" id="rgZ-pd-BwL"/>
+            </constraints>
+            <size key="customSize" width="324" height="183"/>
+            <connections>
+                <outlet property="myProfileEmptyImageView" destination="zU3-Hk-Suf" id="j3K-IX-1Lm"/>
+                <outlet property="myProfileEmptyTitleLabel" destination="3RL-gb-Yag" id="MpI-ne-YJs"/>
+            </connections>
+            <point key="canvasLocation" x="-279.71014492753625" y="53.571428571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name=" alert-circle.png" width="50" height="50"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
