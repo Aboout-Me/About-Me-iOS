@@ -91,9 +91,9 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         self.myProfileCharacterContentLabel.textAlignment = .left
         self.myProfileCharacterContentLabel.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        self.myProfileImageViewContainer.layer.masksToBounds = true
         self.myProfileImageViewContainer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileImageViewContainer.layer.cornerRadius = self.myProfileImageViewContainer.frame.size.width / 2
-        self.myProfileImageViewContainer.layer.masksToBounds = true
         self.myProfileImageView.image = UIImage(named: "CharacterRed.png")
         self.myProfileNickNameLabel.textColor = .gray999
         self.myProfileNickNameLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 11)

@@ -15,6 +15,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var myProfileCategoryTitleLabel: UILabel!
     @IBOutlet weak var myProfileCategoryContainerView: UIView!
     @IBOutlet weak var myProfileScrollView: UIScrollView!
+    @IBOutlet weak var myProfileCharacterBackgroundView: UIView!
     @IBOutlet weak var myProfileCharacterImageView: UIImageView!
     @IBOutlet weak var myProfileCharacterTitleLabel: UILabel!
     @IBOutlet weak var myProfileCharacterProgressView: UIProgressView!
@@ -100,6 +101,9 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCategoryContainerView.layer.shadowRadius = 8
         self.myProfileCategoryContainerView.layer.shadowColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1).cgColor
         self.myProfileCategoryContainerView.layer.shadowOpacity = 0.8
+        self.myProfileCharacterBackgroundView.layer.masksToBounds = true
+        self.myProfileCharacterBackgroundView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.myProfileCharacterBackgroundView.layer.cornerRadius = self.myProfileCharacterBackgroundView.frame.size.width / 2
         self.myProfileCharacterTitleLabel.text = "열정충만"
         self.myProfileCharacterTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileCharacterTitleLabel.textAlignment = .left
