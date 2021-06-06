@@ -65,6 +65,7 @@ class AdvisoryAnswerViewController: UIViewController {
         let answerNib = UINib(nibName: "AdvisoryAnswerCell", bundle: nil)
         advisoryAnswerTableView.register(answerNib, forCellReuseIdentifier: "advisoryAnswerCell")
 
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
