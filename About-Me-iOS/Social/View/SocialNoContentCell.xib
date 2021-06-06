@@ -16,23 +16,44 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아직 최신순 글이 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P0K-fI-RdL">
-                        <rect key="frame" x="80.5" y="13" width="159" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XnA-nF-HSZ">
+                        <rect key="frame" x="91" y="-42" width="138" height="128"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image=" alert-circle.png" translatesAutoresizingMaskIntoConstraints="NO" id="MjH-Hk-1h4">
+                                <rect key="frame" x="0.0" y="54" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="2tu-lO-1Iz"/>
+                                    <constraint firstAttribute="width" constant="20" id="UaG-Ye-cJW"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="데이터가 없습니다." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aE4-y9-fD1">
+                                <rect key="frame" x="25" y="55" width="113" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.46666666666666667" green="0.46666666666666667" blue="0.46666666666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MjH-Hk-1h4" firstAttribute="leading" secondItem="XnA-nF-HSZ" secondAttribute="leading" id="3Cl-Pu-OMh"/>
+                            <constraint firstAttribute="trailing" secondItem="aE4-y9-fD1" secondAttribute="trailing" id="GHx-co-A0f"/>
+                            <constraint firstItem="aE4-y9-fD1" firstAttribute="leading" secondItem="MjH-Hk-1h4" secondAttribute="trailing" constant="5" id="LRr-dJ-KcO"/>
+                            <constraint firstItem="MjH-Hk-1h4" firstAttribute="centerY" secondItem="XnA-nF-HSZ" secondAttribute="centerY" id="f0T-vg-K0x"/>
+                            <constraint firstItem="aE4-y9-fD1" firstAttribute="centerY" secondItem="XnA-nF-HSZ" secondAttribute="centerY" id="jvp-8q-L5o"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="P0K-fI-RdL" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="CzL-cc-Z3R"/>
-                <constraint firstItem="P0K-fI-RdL" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="SkE-Y5-4tW"/>
+                <constraint firstItem="XnA-nF-HSZ" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="OiK-4t-0Ye"/>
+                <constraint firstItem="XnA-nF-HSZ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="-42" id="UNX-Nk-PVf"/>
+                <constraint firstItem="XnA-nF-HSZ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="fxh-vS-r59"/>
             </constraints>
-            <connections>
-                <outlet property="titleLabel" destination="P0K-fI-RdL" id="rak-R1-uBG"/>
-            </connections>
             <point key="canvasLocation" x="71.014492753623188" y="50.892857142857139"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name=" alert-circle.png" width="50" height="50"/>
+    </resources>
 </document>

@@ -15,6 +15,7 @@
                 <outlet property="commentButton" destination="7pw-V7-xX8" id="51C-fP-5m5"/>
                 <outlet property="commentTableView" destination="DNg-Up-my0" id="uRQ-CS-QGc"/>
                 <outlet property="commentTextField" destination="Hqb-dc-1qo" id="j0r-BN-hSu"/>
+                <outlet property="headerLabel" destination="Syf-IE-V5G" id="Mso-lN-dcY"/>
                 <outlet property="headerView" destination="1bp-Gg-BO9" id="C00-cX-3d7"/>
                 <outlet property="roundView" destination="STm-ib-ISZ" id="z05-6z-2oM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -79,6 +80,9 @@
                             <state key="normal" title="입력">
                                 <color key="titleColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="commentButtonDidTap:" destination="-1" eventType="touchUpInside" id="laL-eY-YzN"/>
+                            </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="댓글로 공감해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hqb-dc-1qo">
                             <rect key="frame" x="20" y="10" width="301" height="42"/>

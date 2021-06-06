@@ -14,7 +14,7 @@ class SocialMoreContentViewController: UIViewController {
     @IBOutlet weak var headerCollectionView: UICollectionView!
     @IBOutlet weak var bodyCollectionView: UICollectionView!
     
-    private let tags = [("전체", ""), ("열정충만", "red"), ("소소한일상", "yellow"), ("기억상자", "green"), ("관계의미학", "pink"), ("상상플러스", "purple")]
+    private let tags = [("전체", "", UIColor.clear), ("열정충만", "red", UIColor.primaryRed), ("소소한일상", "yellow", UIColor.primaryYellow), ("기억상자", "green", UIColor.primaryGreen), ("관계의미학", "pink", UIColor.primaryPink), ("상상플러스", "purple", UIColor.primaryPurple)]
     var state: Social = .none
     private var postList: [SocialPostList] = []
     
@@ -93,7 +93,7 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
         if collectionView == headerCollectionView {
             return tags.count
         } else {
-            return 1
+            return self.postList.count
         }
     }
     
@@ -105,6 +105,18 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialMoreContentCell", for: indexPath) as! SocialMoreContentCell
+            let post = self.postList[indexPath.row]
+            tags.forEach { tagText, tagColorText, tagColor in
+                if post.color == tagColorText {
+                    cell.tagView.backgroundColor = tagColor
+                    cell.tagLabel.text = tagText
+                }
+            }
+            cell.nicknameLabel.text = post.nickname
+            cell.questionLabel.text = post.question
+            cell.answerLabel.text = post.answer
+            cell.likeLabel.text = "\(post.likes)"
+            cell.commentLabel.text = "\(post.comments)"
             return cell
         }
     }
@@ -116,11 +128,17 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
                 print("socialList: \(socialList)")
                 if let socialList = socialList {
                     self.postList = socialList
-                    self.bodyCollectionView.reloadData()
+                } else {
+                    self.postList = []
                 }
+                self.bodyCollectionView.reloadData()
             }
         } else {
             let detailVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
+            let post = self.postList[indexPath.row]
+            detailVC.title = post.nickname
+            detailVC.authorId = post.userId
+            detailVC.answerId = post.answerId
             self.navigationController?.pushViewController(detailVC, animated: true)
         }
     }

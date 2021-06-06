@@ -8,10 +8,6 @@
 import UIKit
 
 class SocialNoContentCell: UICollectionViewCell {
-
-    // MARK: - Properties
-    
-    @IBOutlet weak var titleLabel: UILabel!
     
     // MARK: - Lifecycle
     

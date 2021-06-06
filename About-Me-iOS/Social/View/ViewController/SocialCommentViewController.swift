@@ -13,6 +13,7 @@ class SocialCommentViewController: UIViewController {
     
     @IBOutlet weak var roundView: UIView!
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var commentTableView: UITableView!
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var commentTextField: UITextField!
@@ -23,6 +24,10 @@ class SocialCommentViewController: UIViewController {
     var originalPosition: CGPoint?
     var currentPositionTouched: CGPoint?
     private var pullControl = UIRefreshControl()
+    
+    var answerId: Int?
+    var authorId: Int?
+    var comments: [SocialComment]?
     
     // MARK: - Lifecycle
     
@@ -79,33 +84,22 @@ class SocialCommentViewController: UIViewController {
         }
     }
     
-    // MARK: - Helpers
-    
-    private func configure() {
-        self.roundView.layer.cornerRadius = 10
-        
-        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(_:)))
-//        self.commentTableView.addGestureRecognizer(panGestureRecognizer!)
-        self.commentTableView.dataSource = self
-        self.commentTableView.delegate = self
-        self.pullControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
-        self.commentTableView.refreshControl = pullControl
-        
-        self.bottomView.layer.borderWidth = 1
-        self.bottomView.layer.borderColor = UIColor.whiteTwo.cgColor
-        
-        self.commentButton.layer.borderWidth = 1
-        self.commentButton.layer.borderColor = UIColor.gray333.cgColor
-        self.commentButton.layer.cornerRadius = 15
-        
-        let socialCommentNib = UINib(nibName: "SocialCommentCell", bundle: nil)
-        self.commentTableView.register(socialCommentNib, forCellReuseIdentifier: "socialCommentCell")
-        
-        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    @IBAction func commentButtonDidTap(_ sender: Any) {
+        if let comment = commentTextField.text, comment != "",
+           let answerId = self.answerId, let authorId = self.authorId {
+            commentTextField.text = ""
+            commentTextField.resignFirstResponder()
+            SocialApiService.saveSocialComment(answerId: answerId, comment: comment) {
+                //
+                SocialApiService.getSocialDetail(answerId: answerId, authorId: authorId) { detailResponse in
+                    if let detail = detailResponse {
+                        self.comments = detail.comments
+                        self.commentTableView.reloadData()
+                    }
+                }
+            }
+        }
     }
-    
-    // MARK: - Selectors
     
     @objc
     private func keyboardWillShow(_ notification: Notification) {
@@ -122,15 +116,59 @@ class SocialCommentViewController: UIViewController {
         self.bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
+    
+    // MARK: - Helpers
+    
+    private func configure() {
+        if let comments = self.comments {
+            self.headerLabel.text = "댓글 \(String(describing: comments.count))"
+        }
+        self.roundView.layer.cornerRadius = 10
+        
+        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(_:)))
+        self.commentTableView.addGestureRecognizer(panGestureRecognizer!)
+        self.commentTableView.dataSource = self
+        self.commentTableView.delegate = self
+        self.pullControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
+        //        self.commentTableView.refreshControl = pullControl
+        
+        self.bottomView.layer.borderWidth = 1
+        self.bottomView.layer.borderColor = UIColor.whiteTwo.cgColor
+        
+        self.commentButton.layer.borderWidth = 1
+        self.commentButton.layer.borderColor = UIColor.gray333.cgColor
+        self.commentButton.layer.cornerRadius = 15
+        
+        let socialCommentNib = UINib(nibName: "SocialCommentCell", bundle: nil)
+        self.commentTableView.register(socialCommentNib, forCellReuseIdentifier: "socialCommentCell")
+        let noNib = UINib(nibName: "SocialNoContentTableViewCell", bundle: nil)
+        self.commentTableView.register(noNib, forCellReuseIdentifier: "noNibCell")
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
 }
 
 extension SocialCommentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        guard let comments = self.comments else { return 1 }
+        return comments.count == 0 ? 1 : comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "socialCommentCell", for: indexPath)
+        guard let comments = self.comments else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "noNibCell", for: indexPath) as! SocialNoContentTableViewCell
+            return cell
+        }
+        
+        if comments.count == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "noNibCell", for: indexPath) as! SocialNoContentTableViewCell
+            return cell
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "socialCommentCell", for: indexPath) as! SocialCommentCell
+        cell.nicknameLabel.text = comments[indexPath.row].nickname
+        cell.commentLabel.text =  comments[indexPath.row].comment
+        cell.timeLabel.text = comments[indexPath.row].writtenDate
         return cell
     }
 }

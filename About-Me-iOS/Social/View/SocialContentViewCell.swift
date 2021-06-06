@@ -13,6 +13,7 @@ class SocialContentViewCell: UICollectionViewCell {
     
     @IBOutlet weak var collectionView: UICollectionView!
     var socialList: [SocialPostList] = []
+    var vcClosure: ((SocialDetailViewController) -> Void)?
     
     // MARK: - Lifecycle
     
@@ -65,7 +66,13 @@ extension SocialContentViewCell: UICollectionViewDataSource {
 
 extension SocialContentViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("$$: \(indexPath.row)")
+        let detailVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
+        let socialList = self.socialList[indexPath.row]
+        detailVC.title = socialList.nickname
+        detailVC.authorId = socialList.userId
+        detailVC.answerId = socialList.answerId
+//        self.navigationController?.pushViewController(detailVC, animated: true)
+        vcClosure!(detailVC)
     }
 }
 

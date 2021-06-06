@@ -149,10 +149,12 @@ extension SocialViewController: UICollectionViewDataSource {
             if latestList.count > 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
                 cell.setData(latestList)
+                cell.vcClosure = { [weak self] vc in
+                    self?.navigationController?.pushViewController(vc, animated: false)
+                }
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialNoContentCell", for: indexPath) as! SocialNoContentCell
-                cell.titleLabel.text = "아직 최신순 글이 없습니다."
                 return cell
             }
         }
@@ -170,10 +172,12 @@ extension SocialViewController: UICollectionViewDataSource {
             if popularList.count > 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
                 cell.setData(popularList)
+                cell.vcClosure = { [weak self] vc in
+                    self?.navigationController?.pushViewController(vc, animated: false)
+                }
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialNoContentCell", for: indexPath) as! SocialNoContentCell
-                cell.titleLabel.text = "아직 인기순 글이 없습니다."
                 return cell
             }
         }
@@ -191,10 +195,12 @@ extension SocialViewController: UICollectionViewDataSource {
             if categoryList.count > 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentViewCell", for: indexPath) as! SocialContentViewCell
                 cell.setData(categoryList)
+                cell.vcClosure = { [weak self] vc in
+                    self?.navigationController?.pushViewController(vc, animated: false)
+                }
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialNoContentCell", for: indexPath) as! SocialNoContentCell
-                cell.titleLabel.text = "아직 취향순 글이 없습니다."
                 return cell
             }
         }

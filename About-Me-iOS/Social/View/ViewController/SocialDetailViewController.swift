@@ -26,6 +26,11 @@ class SocialDetailViewController: UIViewController {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var commentLabel: UILabel!
     
+    var answerId: Int?
+    var authorId: Int?
+    var comments: [SocialComment]?
+    private let tags = [("전체", "", UIColor.clear), ("열정충만", "red", UIColor.primaryRed), ("소소한일상", "yellow", UIColor.primaryYellow), ("기억상자", "green", UIColor.primaryGreen), ("관계의미학", "pink", UIColor.primaryPink), ("상상플러스", "purple", UIColor.primaryPurple)]
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -38,6 +43,10 @@ class SocialDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         self.configureNavigation()
+        self.getApi { detailResponse in
+            self.comments = detailResponse.comments
+            self.setPost(post: detailResponse.post)
+        }
     }
     
     // MARK: - Selectors
@@ -51,6 +60,9 @@ class SocialDetailViewController: UIViewController {
     private func bottomViewDidTap(_ sender: UITapGestureRecognizer) {
         let commentVC = SocialCommentViewController(nibName: "SocialCommentViewController", bundle: nil)
         commentVC.modalPresentationStyle = .overCurrentContext
+        commentVC.answerId = self.answerId
+        commentVC.authorId = self.authorId
+        commentVC.comments = self.comments
         self.present(commentVC, animated: true, completion: nil)
     }
     
@@ -71,5 +83,34 @@ class SocialDetailViewController: UIViewController {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(bottomViewDidTap))
         self.bottomRoundView.addGestureRecognizer(gesture)
+    }
+    
+    private func getApi(completion: @escaping (SocialDetailResponse) -> Void) {
+        if let answerId = self.answerId, let authorId = self.authorId {
+            SocialApiService.getSocialDetail(answerId: answerId, authorId: authorId) { detailResponse in
+                if let detail = detailResponse {
+                    completion(detail)
+                }
+            }
+        }
+    }
+    
+    private func setPost(post: SocialPost) {
+        tags.forEach { tagText, tagColorText, tagColor in
+            if post.color == tagColorText {
+                backgroundImageView.image = UIImage(named: "img_background_\(post.color).png")
+                tagView.backgroundColor = tagColor
+                tagLabel.text = tagText
+            }
+            questionLabel.text = post.question
+            answerTextView.text = post.answer
+            likeButton.setImage(post.hasLiked ? UIImage(named: "like_on_dark.png") : UIImage(named: "like_off_dark.png"),
+                                for: .normal)
+            likeLabel.text = "\(post.likes)"
+            scrapButton.setImage(post.hasScrapped ? UIImage(named: "bookmark_on_dark.png") : UIImage(named: "bookmark_off_dark.png"),
+                                 for: .normal)
+            scrapLabel.text = "\(post.scraps)"
+            commentLabel.text = "\(post.comments)"
+        }
     }
 }
