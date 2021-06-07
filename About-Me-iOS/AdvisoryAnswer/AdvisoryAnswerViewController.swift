@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SideMenu
 
 class AdvisoryAnswerViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class AdvisoryAnswerViewController: UIViewController {
     @IBOutlet weak var advisoryAnswerTableView: UITableView!
     @IBOutlet weak var newButton: UIButton!
     
+    public var sideMenu: SideMenuNavigationController?
     private var answerLists: [ThemeList] = []
     
     // MARK: - Lifecycle
@@ -26,6 +28,7 @@ class AdvisoryAnswerViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        setSideMenuLayoutInit()
         getAnswerList()
     }
     
@@ -33,6 +36,7 @@ class AdvisoryAnswerViewController: UIViewController {
         super.viewWillAppear(animated)
         
         getAnswerList()
+        configureNavigation()
     }
     
     // MARK: - Selectors
@@ -52,6 +56,11 @@ class AdvisoryAnswerViewController: UIViewController {
         
         questionVC.modalPresentationStyle = .custom
         self.navigationController?.pushViewController(questionVC, animated: false)
+    }
+    
+    @objc
+    public func menuIconDidTap() {
+        self.present(sideMenu!, animated: true, completion: nil)
     }
     
     // MARK: - Helpers
@@ -85,6 +94,22 @@ class AdvisoryAnswerViewController: UIViewController {
         self.newButton.layer.cornerRadius = 5
         //        let nibName = UINib(nibName: "AdvisoryNewAnswerCell", bundle: nil)
         //        advisoryAnswerTableView.register(nibName, forCellReuseIdentifier: "newAnswerCell")
+    }
+    
+    private func configureNavigation() {
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.tintColor = .white
+        
+        self.title = "자문자답"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+    }
+    
+    private func setSideMenuLayoutInit() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let sideOnlyViewController: SideOnlyViewController = storyboard.instantiateViewController(withIdentifier: "SideOnlyViewController") as! SideOnlyViewController
+        self.sideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
+        self.sideMenu?.leftSide = true
     }
     
     private func getAnswerList() {
