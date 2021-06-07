@@ -278,14 +278,14 @@ class AdvisoryQuestionViewController: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
             
-            self.bottomConstraint.constant = keyboardHeight
+            self.bottomConstraint.constant = keyboardHeight + 10
             self.view.layoutIfNeeded()
         }
     }
     
     @objc
     private func keyboardWillHide(_ notification: Notification) {
-        self.bottomConstraint.constant = 0
+        self.bottomConstraint.constant = 10
         self.view.layoutIfNeeded()
     }
     
@@ -321,8 +321,17 @@ class AdvisoryQuestionViewController: UIViewController {
         var answerLists: [AnswerList] = []
         
         for (key, value) in questionDictionary {
-            if value != "", let answer = answerDictionary[key], answer != "" {
-                answerLists.append(AnswerList(level: key, question: value, answer: answer))
+            if let answer = answerDictionary[key] {
+                var question: String = ""
+                if value == "" {
+                    question = questionPlaceholder[key - 1]
+                    if answer == "" {
+                        break
+                    }
+                } else {
+                    question = value
+                }
+                answerLists.append(AnswerList(level: key, question: question, answer: answer))
             }
         }
         
