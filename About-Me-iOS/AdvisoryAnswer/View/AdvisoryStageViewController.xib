@@ -50,7 +50,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-rN-UlH">
-                    <rect key="frame" x="0.0" y="812" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="802" width="414" height="50"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NZ-Pl-QwA">
                             <rect key="frame" x="20" y="0.0" width="374" height="50"/>
@@ -69,7 +69,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vsw-Ka-nBf">
-                    <rect key="frame" x="0.0" y="94" width="414" height="718"/>
+                    <rect key="frame" x="0.0" y="94" width="414" height="708"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
             </subviews>
@@ -82,7 +82,7 @@
                 <constraint firstItem="IUg-rN-UlH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="MGE-Vl-Tel"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IUg-rN-UlH" secondAttribute="trailing" id="Oc5-Az-KUW"/>
                 <constraint firstItem="y2I-2j-1QT" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="TJw-rH-y1q"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="IUg-rN-UlH" secondAttribute="bottom" id="ZAg-Ho-A9z"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="IUg-rN-UlH" secondAttribute="bottom" constant="10" id="ZAg-Ho-A9z"/>
                 <constraint firstItem="vsw-Ka-nBf" firstAttribute="top" secondItem="y2I-2j-1QT" secondAttribute="bottom" id="dGM-WE-Xzp"/>
                 <constraint firstItem="vsw-Ka-nBf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="pdu-ZV-oAF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="vsw-Ka-nBf" secondAttribute="trailing" id="yRx-1O-Shy"/>
