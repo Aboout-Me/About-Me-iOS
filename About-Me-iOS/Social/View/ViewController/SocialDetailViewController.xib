@@ -71,14 +71,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="답변답변답변" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1Y-kh-RQA">
-                            <rect key="frame" x="25" y="140" width="324" height="255"/>
+                            <rect key="frame" x="25" y="145" width="324" height="250"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <color key="textColor" systemColor="labelColor"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TzV-yv-TcR">
-                            <rect key="frame" x="25" y="105" width="1" height="30"/>
+                            <rect key="frame" x="25" y="110" width="1" height="30"/>
                             <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="Kfo-cH-m0f"/>
@@ -93,7 +93,7 @@
                         <constraint firstAttribute="bottom" secondItem="J1Y-kh-RQA" secondAttribute="bottom" constant="25" id="JLQ-Cm-nth"/>
                         <constraint firstItem="jCc-we-eyh" firstAttribute="top" secondItem="nto-VF-7xG" secondAttribute="bottom" constant="15" id="LxJ-jb-xiM"/>
                         <constraint firstItem="TzV-yv-TcR" firstAttribute="leading" secondItem="FCO-Cy-cFU" secondAttribute="leading" constant="25" id="Mjy-Yf-VBg"/>
-                        <constraint firstItem="TzV-yv-TcR" firstAttribute="top" secondItem="jCc-we-eyh" secondAttribute="bottom" constant="5" id="Xtt-Cs-leS"/>
+                        <constraint firstItem="TzV-yv-TcR" firstAttribute="top" secondItem="jCc-we-eyh" secondAttribute="bottom" constant="10" id="Xtt-Cs-leS"/>
                         <constraint firstItem="J1Y-kh-RQA" firstAttribute="top" secondItem="TzV-yv-TcR" secondAttribute="bottom" constant="5" id="Ylp-8n-e7g"/>
                         <constraint firstAttribute="height" constant="420" id="bMz-aU-ARP"/>
                         <constraint firstAttribute="trailing" secondItem="jCc-we-eyh" secondAttribute="trailing" constant="25" id="c0I-IO-01T"/>
@@ -211,9 +211,6 @@
         <image name="ico_common_24_message_off_dark.png" width="16" height="16"/>
         <image name="imgBackgroundRed.png" width="375" height="812"/>
         <image name="like_off_dark.png" width="16" height="16"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

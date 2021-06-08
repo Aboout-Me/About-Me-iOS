@@ -54,12 +54,24 @@ extension SocialContentViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "socialContentCell", for: indexPath) as! SocialContentCell
         let social = self.socialList[indexPath.row]
+        print("social::: \(social)")
         cell.backgroundImageView.image = UIImage(named: "s_card_\(social.color)")
         cell.nicknameLabel.text = social.nickname
         cell.questionLabel.text = social.question
         cell.answerLabel.text = social.answer
         cell.likeLabel.text = "\(social.likes)"
         cell.commentLabel.text = "\(social.comments)"
+        cell.likeButton.setImage(social.hasLiked ? UIImage(named: "like_on.png") : UIImage(named: "like_off.png"), for: .normal)
+        var liked = social.hasLiked
+        var likes = social.likes
+        cell.likeButtonTapClosure = {
+            SocialApiService.postLikeButton(questId: social.answerId, authorId: social.userId) {
+                liked = !liked
+                cell.likeButton.setImage(liked ? UIImage(named: "like_on.png") : UIImage(named: "like_off.png"), for: .normal)
+                likes = liked ? likes + 1 : likes - 1
+                cell.likeLabel.text = "\(likes)"
+            }
+        }
         return cell
     }
 }

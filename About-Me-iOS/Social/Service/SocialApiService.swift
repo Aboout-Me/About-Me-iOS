@@ -90,4 +90,28 @@ struct SocialApiService {
             }
         }
     }
+    
+    static func postLikeButton(questId: Int, authorId: Int, completion: @escaping () -> Void) {
+        let urlComponent = URLComponents(string:  "\(API_URL)/Board/likes")
+        let parameters: [String: Any] = [
+            "questId": questId,
+            "authorId": authorId,
+            "userId": userId
+        ]
+        guard let url = urlComponent?.url else { return }
+        
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print(response.value)
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+
+//                let data = try! JSONDecoder().decode(AdvisoryList.self, from: Data(stringResponse!.data(using: .utf8)!))
+                completion()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

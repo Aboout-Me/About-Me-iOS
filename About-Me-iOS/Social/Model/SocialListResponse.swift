@@ -22,7 +22,9 @@ struct SocialPostList: Codable {
     let answer: String
     let level: Int
     let likes: Int
+    let hasLiked: Bool
     let scraps: Int
+    let hasScrapped: Bool
     let comments: Int
     let regDate: String
     let writtenDate: String
