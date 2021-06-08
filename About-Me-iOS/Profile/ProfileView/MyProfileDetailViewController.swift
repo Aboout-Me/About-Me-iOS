@@ -16,6 +16,10 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var myProfileCategoryContainerView: UIView!
     @IBOutlet weak var myProfileScrollView: UIScrollView!
     @IBOutlet weak var myProfileCharacterBackgroundView: UIView!
+    @IBOutlet weak var myProfileYellowCharacterBackgroundView: UIView!
+    @IBOutlet weak var myProfileGreenCharacterBackgroundView: UIView!
+    @IBOutlet weak var myProfilePinkCharacterBackgroundView: UIView!
+    @IBOutlet weak var myProfilePurpleCharacterBackgroundView: UIView!
     @IBOutlet weak var myProfileCharacterImageView: UIImageView!
     @IBOutlet weak var myProfileCharacterTitleLabel: UILabel!
     @IBOutlet weak var myProfileCharacterProgressView: UIProgressView!
@@ -46,13 +50,15 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var myProfileWeeklyNextButton: UIButton!
     @IBOutlet weak var myProfileWeeklyLine: UIView!
     @IBOutlet weak var myProfileWeeklyPreviousButton: UIButton!
-    @IBOutlet weak var myProfileWeeklyMonImageView: UIImageView!
-    @IBOutlet weak var myProfileWeeklyTueImageView: UIImageView!
-    @IBOutlet weak var myProfileWeeklyWedImageView: UIImageView!
-    @IBOutlet weak var myProfileWeeklyThuImageView: UIImageView!
-    @IBOutlet weak var myProfileWeeklyFriImageView: UIImageView!
-    @IBOutlet weak var myProfileWeeklySatImageView: UIImageView!
-    @IBOutlet weak var myProfileWeeklySunImageView: UIImageView!
+    @IBOutlet weak var myProfileMonthButton: UIButton!
+    @IBOutlet weak var myProfileTuesdayButton: UIButton!
+    @IBOutlet weak var myProfileWednesdayButton: UIButton!
+    @IBOutlet weak var myProfileThursdayButton: UIButton!
+    @IBOutlet weak var myProfileFridayButton: UIButton!
+    @IBOutlet weak var myProfileSaturdayButton: UIButton!
+    @IBOutlet weak var myProfileSundayButton: UIButton!
+    @IBOutlet weak var myProfileMonthleadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var myProfileFridayleadingConstraint: NSLayoutConstraint!
     private var categoryData = [CategoryProgressModel]()
     private var weeklyData = [WeeklyProgressListModel]()
     public var sequence: Int = 0
@@ -62,6 +68,9 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.getCategoryList()
         self.setCategoryViewLayoutInit()
         self.setWeeklyViewLayoutInit()
+        // 11 size :  414
+        // 12 mini
+        print("Device Size : \(UIScreen.main.bounds.size.width)")
     }
     
     
@@ -104,6 +113,20 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCharacterBackgroundView.layer.masksToBounds = true
         self.myProfileCharacterBackgroundView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileCharacterBackgroundView.layer.cornerRadius = self.myProfileCharacterBackgroundView.frame.size.width / 2
+        self.myProfileYellowCharacterBackgroundView.layer.masksToBounds = true
+        self.myProfileYellowCharacterBackgroundView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.myProfileYellowCharacterBackgroundView.layer.cornerRadius = self.myProfileYellowCharacterBackgroundView.frame.size.width / 2
+        
+        self.myProfileGreenCharacterBackgroundView.layer.masksToBounds = true
+        self.myProfileGreenCharacterBackgroundView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.myProfileGreenCharacterBackgroundView.layer.cornerRadius = self.myProfileGreenCharacterBackgroundView.frame.size.width / 2
+        
+        self.myProfilePinkCharacterBackgroundView.layer.masksToBounds = true
+        self.myProfilePinkCharacterBackgroundView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.myProfilePinkCharacterBackgroundView.layer.cornerRadius = self.myProfilePinkCharacterBackgroundView.frame.size.width / 2
+        self.myProfilePurpleCharacterBackgroundView.layer.masksToBounds = true
+        self.myProfilePurpleCharacterBackgroundView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        self.myProfilePurpleCharacterBackgroundView.layer.cornerRadius = self.myProfilePurpleCharacterBackgroundView.frame.size.width / 2
         self.myProfileCharacterTitleLabel.text = "열정충만"
         self.myProfileCharacterTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileCharacterTitleLabel.textAlignment = .left
@@ -153,6 +176,13 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCharacterLevelLabelFive.font = UIFont(name: "GmarketSansMedium", size: 10)
         self.myProfileCharacterProgressViewFive.transform = CGAffineTransform(scaleX: 1, y: 1.5)
         self.myProfileCharacterProgressViewFive.tintColor = UIColor(red: 169/255, green: 107/255, blue: 249/255, alpha: 1.0)
+        self.myProfileMonthButton.setAttributedTitle(NSAttributedString(string: "월", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileTuesdayButton.setAttributedTitle(NSAttributedString(string: "화", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileWednesdayButton.setAttributedTitle(NSAttributedString(string: "수", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileThursdayButton.setAttributedTitle(NSAttributedString(string: "목", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileFridayButton.setAttributedTitle(NSAttributedString(string: "금", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileSaturdayButton.setAttributedTitle(NSAttributedString(string: "토", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileSundayButton.setAttributedTitle(NSAttributedString(string: "일", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
         
     }
     
@@ -180,6 +210,12 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileWeeklyLine.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileWeeklyPreviousButton.setImage(UIImage(named: "PreviousArrow"), for: .normal)
         self.myProfileWeeklyPreviousButton.addTarget(self, action: #selector(self.weeklyPreviousButtonDidTap(_:)), for: .touchUpInside)
+        if UIScreen.main.bounds.size.width < 414 {
+            self.myProfileMonthleadingConstraint.constant = 40
+            self.myProfileFridayleadingConstraint.constant = 79
+            self.view.layoutIfNeeded()
+        }
+        
     }
     
     private func getCategoryList() {
@@ -220,19 +256,19 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     }
     private func setWeeklyServerProcessDidFinsh() {
         if self.weeklyData[0].day == "월" && self.weeklyData[0].isWritten == true {
-            self.myProfileWeeklyMonImageView.image = UIImage(named: "WeeklyMon")
+            
         } else if self.weeklyData[1].day == "화" && self.weeklyData[1].isWritten == true {
-            self.myProfileWeeklyTueImageView.image = UIImage(named: "WeeklyTue")
+            
         } else if self.weeklyData[2].day == "수" && self.weeklyData[2].isWritten == true {
-            self.myProfileWeeklyWedImageView.image = UIImage(named: "WeeklyWed")
+            
         } else if self.weeklyData[3].day == "목" && self.weeklyData[3].isWritten == true {
-            self.myProfileWeeklyThuImageView.image = UIImage(named: "WeeklyThu")
+            
         } else if self.weeklyData[4].day == "금" && self.weeklyData[4].isWritten == true {
-            self.myProfileWeeklyFriImageView.image = UIImage(named: "WeeklyFri")
+            
         } else if self.weeklyData[5].day == "토" && self.weeklyData[5].isWritten == true {
-            self.myProfileWeeklySatImageView.image = UIImage(named: "WeeklySat")
+            
         } else if self.weeklyData[6].day == "일" && self.weeklyData[6].isWritten == true {
-            self.myProfileWeeklySunImageView.image = UIImage(named: "WeeklySun")
+            
         }
     }
     
