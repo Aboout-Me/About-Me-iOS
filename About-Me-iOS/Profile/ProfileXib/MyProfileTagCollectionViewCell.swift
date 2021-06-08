@@ -15,13 +15,13 @@ class MyProfileTagCollectionViewCell: UICollectionViewCell {
             if isSelected == true {
                 self.myProfileTagButton.isSelected = true
                 self.myProfileTagButton.setTitleColor(UIColor.white, for: .selected)
-                self.myProfileTagButton.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
+                self.myProfileTagButton.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
             } else {
                 self.myProfileTagButton.isSelected = false
-                self.myProfileTagButton.setTitleColor(UIColor(red: 119/255, green: 119/255, blue: 119/255, alpha: 1.0), for: .normal)
+                self.myProfileTagButton.setTitleColor(.gray777, for: .normal)
+                self.myProfileTagButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
                 self.myProfileTagButton.backgroundColor = UIColor.white
             }
-            self.myProfileTagButton.layer.borderColor = isSelected ? UIColor.clear.cgColor :  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         }
     }
     
