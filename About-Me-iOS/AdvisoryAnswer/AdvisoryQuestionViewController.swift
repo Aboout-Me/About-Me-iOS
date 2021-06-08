@@ -343,6 +343,7 @@ class AdvisoryQuestionViewController: UIViewController {
         } else if advisoryTitle != advisoryBeforeTitle {
             themeNew = advisoryTitle
         }
+        answerLists = answerLists.sorted(by: { $0.level < $1.level })
         return AdvisoryPostList(user: 1, stage: 1, theme: advisoryBeforeTitle, theme_new: themeNew, answerLists: answerLists)
     }
     
