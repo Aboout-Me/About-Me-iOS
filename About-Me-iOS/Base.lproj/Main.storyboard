@@ -772,10 +772,10 @@
                                         <rect key="frame" x="0.0" y="70" width="414" height="2"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZWY-9c-7NZ">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="2"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="2"/>
                                                 <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="50" id="HLB-XD-Glk"/>
+                                                    <constraint firstAttribute="width" constant="20" id="HLB-XD-Glk"/>
                                                     <constraint firstAttribute="height" constant="2" id="IxD-A5-hDZ"/>
                                                 </constraints>
                                             </view>
@@ -905,6 +905,7 @@
                         <outlet property="saveButton" destination="zjW-pB-TLs" id="RSW-D3-kam"/>
                         <outlet property="titleTextField" destination="5cb-eZ-KTM" id="MBz-8R-t3O"/>
                         <outlet property="titleView" destination="ptR-Kj-lrg" id="PRw-IH-BdZ"/>
+                        <outlet property="widthConstraint" destination="HLB-XD-Glk" id="XFU-pY-P66"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKB-zm-jKf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

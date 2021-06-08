@@ -69,6 +69,7 @@ class AdvisoryQuestionViewController: UIViewController {
     
     @IBOutlet weak var buttonView: UIView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var widthConstraint: NSLayoutConstraint!
     
     var questionNumber = 1
     
@@ -120,6 +121,7 @@ class AdvisoryQuestionViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = true
         
         self.levelLabel.text = "\(self.questionNumber)/10 단계"
+        self.widthConstraint.constant = self.view.frame.width * CGFloat(self.questionNumber) / 10.0
         
         self.titleView.addBottomBorderWithColor(color: .black10, width: 0.5)
         self.questionView.addBottomBorderWithColor(color: .black10, width: 0.5)
