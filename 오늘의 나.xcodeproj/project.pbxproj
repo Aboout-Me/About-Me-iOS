@@ -86,6 +86,9 @@
 		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
 		FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */; };
 		FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */; };
+		FFEFA9E72670F5E70097591F /* LikeProgressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEFA9E62670F5E70097591F /* LikeProgressList.swift */; };
+		FFEFA9EF267109190097591F /* ShareProgressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEFA9EE267109190097591F /* ShareProgressList.swift */; };
+		FFEFA9F326714BE90097591F /* ScrapProgressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEFA9F226714BE70097591F /* ScrapProgressList.swift */; };
 		FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */; };
 		FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF30AA9264682280076BF44 /* HomeCardList.swift */; };
 		FFFC0F73264192E200C6372F /* imgBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F70264192E200C6372F /* imgBackgroundRed.png */; };
@@ -195,6 +198,9 @@
 		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
 		FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardDeleteList.swift; sourceTree = "<group>"; };
 		FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardEditList.swift; sourceTree = "<group>"; };
+		FFEFA9E62670F5E70097591F /* LikeProgressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeProgressList.swift; sourceTree = "<group>"; };
+		FFEFA9EE267109190097591F /* ShareProgressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareProgressList.swift; sourceTree = "<group>"; };
+		FFEFA9F226714BE70097591F /* ScrapProgressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrapProgressList.swift; sourceTree = "<group>"; };
 		FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServerApi.swift; sourceTree = "<group>"; };
 		FFF30AA9264682280076BF44 /* HomeCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardList.swift; sourceTree = "<group>"; };
 		FFFC0F70264192E200C6372F /* imgBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgBackgroundRed.png; sourceTree = "<group>"; };
@@ -367,7 +373,10 @@
 				FF3BECD626519A13006C585A /* WeeklyProgressList.swift */,
 				FF72B9E0265CFFFC00A7A5E4 /* MyProfilePageList.swift */,
 				FF77DA9826669CBB00D7808D /* MyProfileLikeScrapList.swift */,
+				FFEFA9E62670F5E70097591F /* LikeProgressList.swift */,
+				FFEFA9EE267109190097591F /* ShareProgressList.swift */,
 				FF3BECD326518832006C585A /* ProfileServerApi.swift */,
+				FFEFA9F226714BE70097591F /* ScrapProgressList.swift */,
 			);
 			path = ProfileServer;
 			sourceTree = "<group>";
@@ -681,6 +690,7 @@
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,
 				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
+				FFEFA9E72670F5E70097591F /* LikeProgressList.swift in Sources */,
 				0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */,
 				0725AB40263AD4A10082A20D /* NoAnswerCell.swift in Sources */,
 				FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */,
@@ -693,6 +703,7 @@
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FF77DA9926669CBB00D7808D /* MyProfileLikeScrapList.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
+				FFEFA9EF267109190097591F /* ShareProgressList.swift in Sources */,
 				FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */,
 				07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */,
 				0751A66626442EED004E635C /* AdvisoryAnswerViewController.swift in Sources */,
@@ -705,6 +716,7 @@
 				FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
+				FFEFA9F326714BE90097591F /* ScrapProgressList.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
 				FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,

@@ -12,11 +12,15 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var myProfileListContentView: UIView!
     @IBOutlet weak var myProfileContentTitleLabel: UILabel!
     @IBOutlet weak var myProfileContentDateLabel: UILabel!
-    @IBOutlet weak var myProfileContentImageView: UIImageView!
+    @IBOutlet weak var myProfileContentButton: UIButton!
     @IBOutlet weak var myProfileQuestionTitleLabel: UILabel!
     @IBOutlet weak var myProfileAnswerTitleLabel: UILabel!
     @IBOutlet weak var myProfileAnswerImageView: UIImageView!
-    
+    public var shareButtonClouser: (() -> ())?
+    public var likesButtonClouser: (() -> ())?
+    public var scrapButtonClouser: (() -> ())?
+    public var selectIndex = 0
+    public var CategoryFlag = ""
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -52,5 +56,21 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
         self.myProfileContentTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.myProfileAnswerImageView.image = UIImage(named: "slice")
         self.myProfileAnswerImageView.contentMode = .scaleToFill
+        self.myProfileContentButton.addTarget(self, action: #selector(didTapMyProfileShareButton(_:)), for: .touchUpInside)
+    }
+    
+    
+    @objc
+    public func didTapMyProfileShareButton(_ sender: UIButton) {
+        switch self.CategoryFlag {
+        case "answer":
+            shareButtonClouser!()
+        case "likes":
+            likesButtonClouser!()
+        case "scrap":
+            scrapButtonClouser!()
+        default:
+            break
+        }
     }
 }
