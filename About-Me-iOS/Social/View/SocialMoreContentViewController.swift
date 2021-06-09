@@ -117,6 +117,20 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
             cell.answerLabel.text = post.answer
             cell.likeLabel.text = "\(post.likes)"
             cell.commentLabel.text = "\(post.comments)"
+            
+            cell.likeButton.setImage(post.hasLiked ? UIImage(named: "like_on_dark.png") : UIImage(named: "like_off_dark.png"), for: .normal)
+            cell.likeButtonTapClosure = {
+                SocialApiService.postLikeButton(questId: post.answerId, authorId: post.userId) {
+                    self.viewWillAppear(false)
+                }
+            }
+            
+            cell.bookmarkButton.setImage(post.hasScrapped ? UIImage(named: "bookmark_on_dark.png") : UIImage(named: "bookmark_off_dark.png"), for: .normal)
+            cell.bookmarkButtonTapClosure = {
+                SocialApiService.postScrapButton(questId: post.answerId, authorId: post.userId) {
+                    self.viewWillAppear(false)
+                }
+            }
             return cell
         }
     }

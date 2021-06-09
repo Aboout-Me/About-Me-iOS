@@ -121,6 +121,9 @@
                                 <constraint firstAttribute="width" constant="20" id="a8n-dG-aCT"/>
                             </constraints>
                             <state key="normal" image="like_off_dark.png"/>
+                            <connections>
+                                <action selector="likeButtonDidTap:" destination="-1" eventType="touchUpInside" id="44X-qg-Ke9"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="130" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhI-Yf-wKq">
                             <rect key="frame" x="43" y="20" width="26" height="20"/>
@@ -156,6 +159,9 @@
                                 <constraint firstAttribute="height" constant="20" id="VgR-1c-2CD"/>
                             </constraints>
                             <state key="normal" image="bookmark_off_dark.png"/>
+                            <connections>
+                                <action selector="bookmarkButtonDidTap:" destination="-1" eventType="touchUpInside" id="a4T-66-IeG"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZg-Mw-GDL">
                             <rect key="frame" x="341" y="20" width="20" height="20"/>

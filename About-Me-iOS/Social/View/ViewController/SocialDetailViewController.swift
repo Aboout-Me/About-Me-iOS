@@ -29,6 +29,7 @@ class SocialDetailViewController: UIViewController {
     var answerId: Int?
     var authorId: Int?
     var comments: [SocialComment]?
+    var post: SocialPost?
     private let tags = [("전체", "", UIColor.clear), ("열정충만", "red", UIColor.primaryRed), ("소소한일상", "yellow", UIColor.primaryYellow), ("기억상자", "green", UIColor.primaryGreen), ("관계의미학", "pink", UIColor.primaryPink), ("상상플러스", "purple", UIColor.primaryPurple)]
 
     // MARK: - Lifecycle
@@ -66,6 +67,20 @@ class SocialDetailViewController: UIViewController {
         self.present(commentVC, animated: true, completion: nil)
     }
     
+    @IBAction func likeButtonDidTap(_ sender: Any) {
+        guard let post = post else { return }
+        SocialApiService.postLikeButton(questId: post.answerId, authorId: post.userId) {
+            self.viewWillAppear(false)
+        }
+    }
+    
+    @IBAction func bookmarkButtonDidTap(_ sender: Any) {
+        guard let post = post else { return }
+        SocialApiService.postScrapButton(questId: post.answerId, authorId: post.userId) {
+            self.viewWillAppear(false)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func configureNavigation() {
@@ -96,6 +111,8 @@ class SocialDetailViewController: UIViewController {
     }
     
     private func setPost(post: SocialPost) {
+        self.post = post
+        print("post: \(post)")
         tags.forEach { tagText, tagColorText, tagColor in
             if post.color == tagColorText {
                 backgroundImageView.image = UIImage(named: "img_background_\(post.color).png")
