@@ -32,6 +32,7 @@ class HomeBeforeCollectionViewCell: UICollectionViewCell {
         self.homeBeforeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
         self.homeBeforeTitleLabel.numberOfLines = 0
         self.homeBeforeTitleLabel.textAlignment = .center
+        self.homeBeforeTitleLabel.lineBreakMode = .byWordWrapping
         self.homeBeforeCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
         self.homeBeforeCharacterLabel.textColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
         self.homeBeforeCharacterLabel.textAlignment = .center
