@@ -503,7 +503,6 @@
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
 				0715A34F260CD1870077882A /* Info.plist */,
 				FF896061261603FB00CB6492 /* QuestionsViewController.swift */,
-				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 			);
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
