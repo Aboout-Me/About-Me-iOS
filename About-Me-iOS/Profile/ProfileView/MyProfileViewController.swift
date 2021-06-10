@@ -645,6 +645,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                             if case let .success(data) = result, let _ = data {
                                 self.isscrapFlag = !self.isscrapFlag
                                 let scrpaFlag = self.myProfileLikeScrapSubData[indexPath.item].scraps
+                                
                                 if scrpaFlag == 1 {
                                     myProfileCell?.myProfileContentButton.setBackgroundImage(self.isscrapFlag ? UIImage(named: "ScrapsOn.png") : UIImage(named: "ScrapsOff.png"), for: .normal)
                                 } else {
