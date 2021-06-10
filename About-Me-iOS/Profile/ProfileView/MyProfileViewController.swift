@@ -7,7 +7,6 @@
 
 import UIKit
 import Floaty
-import SideMenu
 import Alamofire
 
 class MyProfileViewController: UIViewController {
