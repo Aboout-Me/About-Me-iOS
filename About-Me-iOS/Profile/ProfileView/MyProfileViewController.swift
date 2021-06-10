@@ -177,8 +177,7 @@ class MyProfileViewController: UIViewController {
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "Write.png"))
-        
+        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Feed.png"))
     }
     
     private func setProfileServerProcessDidFinsh() {
