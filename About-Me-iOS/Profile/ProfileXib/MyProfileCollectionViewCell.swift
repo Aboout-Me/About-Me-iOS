@@ -57,6 +57,7 @@ class MyProfileCollectionViewCell: UICollectionViewCell {
         self.myProfileAnswerImageView.image = UIImage(named: "slice")
         self.myProfileAnswerImageView.contentMode = .scaleToFill
         self.myProfileContentButton.addTarget(self, action: #selector(didTapMyProfileShareButton(_:)), for: .touchUpInside)
+        
     }
     
     
