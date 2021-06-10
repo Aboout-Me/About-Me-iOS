@@ -74,6 +74,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
         self.myProfileBackgroundImageView.contentMode = .scaleToFill
         self.myProfileTagCollectionView.showsHorizontalScrollIndicator = false
+        self.myProfileTagCollectionView.allowsMultipleSelection = false
         self.myProfileBoxView.layer.cornerRadius = 15
         self.myProfileBoxView.layer.masksToBounds = false
         self.myProfileBoxView.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -128,7 +129,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileContentContainerView.layer.masksToBounds = true
         self.myProfileContentContainerView.layer.maskedCorners =  [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         self.myProfileMyAnswerButton.isSelected = true
-        self.myProfileMyAnswerButton.setTitle("내가 한 답", for: .selected)
+        self.myProfileMyAnswerButton.setTitle("내가 한 답", for: .normal)
         self.myProfileMyAnswerButton.titleLabel?.font = UIFont(name: "GmarketSans-Medium", size: 14)
         self.myProfileMyAnswerButton.titleLabel?.textAlignment = .center
         self.myProfileMyAnswerButton.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0), for: .selected)
@@ -326,7 +327,15 @@ class MyProfileViewController: UIViewController {
     
     @objc
     private func didTapMyLikeButton(_ sender: UIButton) {
+        self.myProfileTagIndex = 0
+        self.myProfileTagCollectionView.selectItem(at: IndexPath(item: self.myProfileTagIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         self.getMyLikeList()
+        if self.myProfileMyScrapButton.isSelected == true {
+            self.myProfileMyScrapButton.isSelected = false
+        } else {
+            self.myProfileMyAnswerButton.isSelected = false
+            self.myProfileMyAnswerButton.titleLabel?.textColor = UIColor.gray555
+        }
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
             if self.myProfileBottomLineView.frame.origin.x > self.myProfileMyLikeButton.frame.origin.x {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -335,6 +344,8 @@ class MyProfileViewController: UIViewController {
                 transition.type = CATransitionType(rawValue: "push")
                 transition.subtype = .fromRight
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
+                self.myProfileMyLikeButton.isSelected = true
+                self.myProfileMyLikeButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX - 15
                 self.myProfileBottomLineView.updateConstraints()
             } else {
@@ -343,6 +354,9 @@ class MyProfileViewController: UIViewController {
                 transition.duration = 0.1
                 transition.type = CATransitionType(rawValue: "push")
                 transition.subtype = .fromLeft
+                self.myProfileMyLikeButton.isSelected = true
+                self.myProfileMyAnswerButton.setTitleColor(.gray555, for: .normal)
+                self.myProfileMyLikeButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
                 self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX - 15
                 self.myProfileBottomLineView.updateConstraints()
@@ -356,13 +370,23 @@ class MyProfileViewController: UIViewController {
     
     @objc
     private func didTapMyScrapButton(_ sender: UIButton) {
+        self.myProfileTagIndex = 0
+        self.myProfileTagCollectionView.selectItem(at: IndexPath(item: self.myProfileTagIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         self.getMyScrapList()
+        if self.myProfileMyLikeButton.isSelected == true {
+            self.myProfileMyLikeButton.isSelected = false
+        } else {
+            self.myProfileMyAnswerButton.isSelected = false
+            self.myProfileMyAnswerButton.setTitleColor(.gray555, for: .normal)
+        }
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
             self.myProfileBottomLineView.layoutIfNeeded()
             let transition = CATransition()
             transition.duration = 0.1
             transition.type = CATransitionType(rawValue: "push")
             transition.subtype = .fromLeft
+            self.myProfileMyScrapButton.isSelected = true
+            self.myProfileMyScrapButton.setTitleColor(UIColor.black, for: .selected)
             self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
             self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyScrapButton.frame.minX - 15
             self.myProfileBottomLineView.updateConstraints()
@@ -375,7 +399,14 @@ class MyProfileViewController: UIViewController {
     
     @objc
     private func didTapMyAnswerButton(_ sender: UIButton) {
+        self.myProfileTagIndex = 0
+        self.myProfileTagCollectionView.selectItem(at: IndexPath(item: self.myProfileTagIndex, section: 0), animated: true, scrollPosition: .centeredHorizontally)
         self.getMyProfileList()
+        if self.myProfileMyLikeButton.isSelected == true {
+            self.myProfileMyLikeButton.isSelected = false
+        } else {
+            self.myProfileMyScrapButton.isSelected = false
+        }
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveLinear) {
             if self.myProfileBottomLineView.frame.origin.x > self.myProfileMyAnswerButton.frame.origin.x {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -383,6 +414,8 @@ class MyProfileViewController: UIViewController {
                 transition.duration = 0.1
                 transition.type = CATransitionType(rawValue: "push")
                 transition.subtype = .fromRight
+                self.myProfileMyAnswerButton.isSelected = true
+                self.myProfileMyAnswerButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
                 self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX - 15
                 self.myProfileBottomLineView.updateConstraints()
@@ -392,6 +425,8 @@ class MyProfileViewController: UIViewController {
                 transition.duration = 0.1
                 transition.type = CATransitionType(rawValue: "push")
                 transition.subtype = .fromLeft
+                self.myProfileMyAnswerButton.isSelected = true
+                self.myProfileMyAnswerButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
                 self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX - 15
                 self.myProfileBottomLineView.updateConstraints()
@@ -548,9 +583,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         } else {
             let myProfileTagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
             if indexPath.item == 0 && self.myProfileisFlag == true {
-                myProfileTagCell?.isSelected = false
-                myProfileTagCell?.myProfileTagButton.backgroundColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-                myProfileTagCell?.myProfileTagButton.setTitleColor(UIColor.white, for: .normal)
+                myProfileTagCell?.isSelected = true
                 collectionView.selectItem(at: [0,myProfileTagIndex], animated: false, scrollPosition: .init())
             }
             myProfileTagCell?.myProfileTagButton.setTitle(self.tagNameList[indexPath.item], for: .normal)
@@ -651,7 +684,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             default:
                 break
             }
-            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .right)
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
         }
     }
     
