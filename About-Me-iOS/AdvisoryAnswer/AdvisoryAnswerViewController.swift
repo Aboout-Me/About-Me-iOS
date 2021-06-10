@@ -171,7 +171,7 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
                 cell.stageLabel.attributedText = attributedString
                 cell.finishView.image = UIImage(named: "ico_common_24_complete_off.png")
             }
-             
+            
             return cell
         }
     }
