@@ -82,6 +82,8 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = "프로필"
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(didTapNavigationButton))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
         self.myProfileScrollView.delegate = self
@@ -253,6 +255,11 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
                 self.weeklyData = list.weeklyProgressingList[0]
                 print("test color",self.weeklyData)
                 print("test Data \(self.weeklyData[0])")
+                if list.weeklyProgressingList.count == 1 {
+                    self.myProfileWeeklyNextButton.isEnabled = false
+                } else {
+                    self.myProfileWeeklyNextButton.isEnabled = true
+                }
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
                 }
@@ -390,7 +397,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
                 if self.sequence == 2 {
                     self.myProfileWeeklyNextButton.isEnabled = false
                 }
-                self.weeklyData = list.weeklyProgressingList[2]
+                self.weeklyData = list.weeklyProgressingList[sequence]
                 print("data\(self.sequence)" ,self.weeklyData)
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
@@ -414,6 +421,10 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
                 print("data\(self.sequence)" ,self.weeklyData)
             }
         }
+    }
+    @objc
+    public func didTapNavigationButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

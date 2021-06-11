@@ -42,7 +42,6 @@ class AdvisoryStageViewController: UIViewController {
     
     @objc
     private func backButtonDidTap(_ sender: UIButton) {
-        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -120,11 +119,7 @@ class AdvisoryStageViewController: UIViewController {
 
 extension AdvisoryStageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let detailList = self.detailList {
-            return detailList.count
-        } else {
-            return 0
-        }
+        return lastStage
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

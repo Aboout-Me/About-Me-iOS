@@ -177,7 +177,8 @@ class MyProfileViewController: UIViewController {
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Feed.png"))
+        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "Write.png"))
+        
     }
     
     private func setProfileServerProcessDidFinsh() {
@@ -644,7 +645,6 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                             if case let .success(data) = result, let _ = data {
                                 self.isscrapFlag = !self.isscrapFlag
                                 let scrpaFlag = self.myProfileLikeScrapSubData[indexPath.item].scraps
-                                
                                 if scrpaFlag == 1 {
                                     myProfileCell?.myProfileContentButton.setBackgroundImage(self.isscrapFlag ? UIImage(named: "ScrapsOn.png") : UIImage(named: "ScrapsOff.png"), for: .normal)
                                 } else {

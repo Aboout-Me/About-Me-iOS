@@ -59,31 +59,6 @@ struct AdvisoryApiService {
     }
 
     
-    static func saveAndUpdateAdvisoryAnswerList(answerList: AdvisoryPostList, completion: @escaping (AdvisoryResponse) -> Void) {
-        let urlComponent = URLComponents(string: "\(API_URL)/MyPage/10Q10A/answer2")
-        guard let url = urlComponent?.url else { return }
-        
-        let request = AF.request(url, method: .post, parameters: try! answerList.asDictionary(), encoding: JSONEncoding.default)
-        request.validate(statusCode: 200...500).responseString { response in
-            switch response.result {
-            case .success:
-                print(response.value)
-                let stringResponse = String(data: response.data!, encoding: .utf8)
-
-                do {
-                    let data = try JSONDecoder().decode(AdvisoryResponse.self, from: Data(stringResponse!.data(using: .utf8)!))
-                    completion(data)
-                } catch {
-                    print(error.localizedDescription)
-                }
-                
-                
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
     static func editAdvisoryAnswerList(answerList: AdvisoryPostList, completion: @escaping () -> Void) {
         let urlComponent = URLComponents(string:  "\(API_URL)/MyPage/10Q10A/updateAnswer")
         guard let url = urlComponent?.url else { return }
