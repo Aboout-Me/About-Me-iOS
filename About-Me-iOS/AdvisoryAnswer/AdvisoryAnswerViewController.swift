@@ -28,7 +28,14 @@ class AdvisoryAnswerViewController: UIViewController {
         configure()
         getAnswerList()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getAnswerList()
+    }
     
+
     // MARK: - Selectors
     
     @objc

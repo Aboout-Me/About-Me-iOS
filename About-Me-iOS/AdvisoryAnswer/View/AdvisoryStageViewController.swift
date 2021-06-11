@@ -62,30 +62,42 @@ class AdvisoryStageViewController: UIViewController {
         
         var questionDictionary: [Int: String] = [:]
         var answerDictionary: [Int: String] = [:]
+
         var editList: [Int] = []
+
         
         for (index, detail) in detailList!.enumerated() {
             questionDictionary[index + 1] = detail.question
             answerDictionary[index + 1] = detail.answer
+
             editList.append(index + 1)
         }
         
         questionVC.questionNumber = detailList!.count
         questionVC.advisoryBeforeTitle = themeList!.stage_name
+
+        }
+        
+        questionVC.questionNumber = detailList!.count
+
         questionVC.advisoryTitle = themeList!.stage_name
         questionVC.questionDictionary = questionDictionary
         questionVC.answerDictionary = answerDictionary
         questionVC.mode = .ongoing
+
         questionVC.stage = Int(themeList!.stage_num)!
         questionVC.editList = editList
+
         
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     // MARK: - Helpers
     
     private func configure() {
+
         self.navigationController?.isNavigationBarHidden = true
         
+
         let stageNib = UINib(nibName: "AdvisoryStageCell", bundle: nil)
         self.contentTableView.register(stageNib, forCellReuseIdentifier: "advisoryStageCell")
         

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0LJ-Nu-5KP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0LJ-Nu-5KP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -39,7 +39,7 @@
         <!--Home Before View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeBeforeViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeVC" automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="HomeBeforeViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -68,7 +68,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o1p-xT-5F3" customClass="HomeBeforeCollectionViewCell" customModule="__________" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="o1p-xT-5F3" customClass="HomeBeforeCollectionViewCell" customModule="About_Me_iOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5mX-JP-e0p">
@@ -125,7 +125,7 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xff-EY-VYH" customClass="BottomNavigationBar" customModule="__________" customModuleProvider="target">
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xff-EY-VYH" customClass="BottomNavigationBar" customModule="About_Me_iOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <items>
@@ -273,7 +273,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZK-VR-zkR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="rH8-Uo-Jrg" customClass="EditBottomSheet" customModule="__________" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="rH8-Uo-Jrg" customClass="EditBottomSheet" customModule="About_Me_iOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="184"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
@@ -338,11 +338,11 @@
                         <outlet property="gestureView" destination="xqy-79-EFf" id="uWo-X7-pra"/>
                     </connections>
                 </view>
-                <view contentMode="scaleToFill" id="ym6-D7-jIZ" customClass="AnswerEditBottomSheet" customModule="__________" customModuleProvider="target">
+                <view contentMode="scaleToFill" id="ym6-D7-jIZ" customClass="AnswerEditBottomSheet" customModule="About_Me_iOS" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="760"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-HJ-gEh" customClass="BottomNavigationBar" customModule="__________" customModuleProvider="target">
+                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cnb-HJ-gEh" customClass="BottomNavigationBar" customModule="About_Me_iOS" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <items>
@@ -476,7 +476,7 @@
         <!--Last Answer View Controller-->
         <scene sceneID="oun-eJ-bB4">
             <objects>
-                <viewController storyboardIdentifier="LastAnswerVC" id="n2m-wZ-L8R" customClass="LastAnswerViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LastAnswerVC" id="n2m-wZ-L8R" customClass="LastAnswerViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jFT-ng-OMY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -580,14 +580,11 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-zY-U4z">
-                                <rect key="frame" x="0.0" y="290" width="414" height="436"/>
+                                <rect key="frame" x="0.0" y="290" width="414" height="502"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="436" id="10d-c4-Yaf"/>
-                                </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="advisoryAnswerCell" id="NN8-Fl-Brf" customClass="AdvisoryAnswerCell" customModule="__________" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="advisoryAnswerCell" id="NN8-Fl-Brf" customClass="AdvisoryAnswerCell" customModule="About_Me_iOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="NN8-Fl-Brf" id="hch-C2-iVH">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
@@ -596,6 +593,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjM-Rf-7W8">
+                                <rect key="frame" x="0.0" y="846" width="414" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="oeE-pY-4RS"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zj7-Tm-R9C">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="290"/>
                                 <subviews>
@@ -622,7 +626,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rlq-5h-4j2">
                                                 <rect key="frame" x="0.0" y="52" width="414" height="170"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="현재 나의 고민을 10단계로 생각해보아요!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzZ-nh-qPV">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="현재 나의 고민을10단계로 생각해보아요!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzZ-nh-qPV">
                                                         <rect key="frame" x="0.0" y="40" width="414" height="90"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="90" id="JoW-vN-bSy"/>
@@ -660,7 +664,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOz-WG-OcQ">
-                                <rect key="frame" x="0.0" y="726" width="414" height="170"/>
+                                <rect key="frame" x="0.0" y="792" width="414" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-il-ITp">
                                         <rect key="frame" x="20" y="20" width="374" height="50"/>
@@ -675,6 +679,7 @@
                                 <constraints>
                                     <constraint firstItem="wKd-il-ITp" firstAttribute="leading" secondItem="DOz-WG-OcQ" secondAttribute="leading" constant="20" id="OPU-aR-7rt"/>
                                     <constraint firstItem="wKd-il-ITp" firstAttribute="top" secondItem="DOz-WG-OcQ" secondAttribute="top" constant="20" id="QEI-VP-GkO"/>
+                                    <constraint firstAttribute="height" constant="70" id="gnx-To-4yj"/>
                                     <constraint firstAttribute="trailing" secondItem="wKd-il-ITp" secondAttribute="trailing" constant="20" id="voY-Z2-bUu"/>
                                 </constraints>
                             </view>
@@ -684,16 +689,19 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Oxb-Ib-Bsi" secondAttribute="bottom" id="2cq-Pk-rpH"/>
                             <constraint firstItem="Zj7-Tm-R9C" firstAttribute="top" secondItem="M28-fB-UaQ" secondAttribute="top" id="Au0-02-9o1"/>
+                            <constraint firstItem="FnS-gf-ptK" firstAttribute="bottom" secondItem="DOz-WG-OcQ" secondAttribute="bottom" id="DaQ-do-EmD"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Zj7-Tm-R9C" secondAttribute="trailing" id="EVT-aC-Ugu"/>
                             <constraint firstItem="DOz-WG-OcQ" firstAttribute="top" secondItem="Yqz-zY-U4z" secondAttribute="bottom" id="IuR-FH-7Iw"/>
                             <constraint firstItem="Yqz-zY-U4z" firstAttribute="top" secondItem="Zj7-Tm-R9C" secondAttribute="bottom" id="MgW-AV-Sjo"/>
                             <constraint firstItem="Oxb-Ib-Bsi" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="N8u-jC-1cK"/>
+                            <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="zjM-Rf-7W8" secondAttribute="trailing" id="QSR-yd-hec"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Yqz-zY-U4z" secondAttribute="trailing" id="U5p-PT-o7f"/>
+                            <constraint firstItem="zjM-Rf-7W8" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="Uy2-6S-jhe"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="DOz-WG-OcQ" secondAttribute="trailing" id="V81-WU-J4O"/>
+                            <constraint firstAttribute="bottom" secondItem="zjM-Rf-7W8" secondAttribute="bottom" id="VwE-QB-6ZB"/>
                             <constraint firstItem="Oxb-Ib-Bsi" firstAttribute="top" secondItem="M28-fB-UaQ" secondAttribute="top" id="Wce-eB-lh5"/>
                             <constraint firstItem="Zj7-Tm-R9C" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="g76-6R-AV9"/>
                             <constraint firstItem="DOz-WG-OcQ" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="o9D-4c-uVc"/>
-                            <constraint firstAttribute="bottom" secondItem="DOz-WG-OcQ" secondAttribute="bottom" id="qoG-pO-hiA"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Oxb-Ib-Bsi" secondAttribute="trailing" id="xHF-8t-1Td"/>
                             <constraint firstItem="Yqz-zY-U4z" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="zha-En-iQS"/>
                         </constraints>
@@ -714,7 +722,7 @@
         <!--Advisory Question View Controller-->
         <scene sceneID="wQp-GX-I0w">
             <objects>
-                <viewController storyboardIdentifier="AdvisoryQuestionVC" modalPresentationStyle="fullScreen" id="MFn-2d-HdF" customClass="AdvisoryQuestionViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdvisoryQuestionVC" modalPresentationStyle="fullScreen" id="MFn-2d-HdF" customClass="AdvisoryQuestionViewController" customModule="About_Me_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jBk-Dn-YeW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
