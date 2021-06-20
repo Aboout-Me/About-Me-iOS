@@ -9,6 +9,8 @@ import UIKit
 
 class QuestionsViewController: UIViewController {
 
+    @IBOutlet weak var chooseQuestionsButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,18 +21,17 @@ class QuestionsViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .black
         self.title = "문의하기"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-        // Do any additional setup after loading the view.
+        
+        chooseQuestionsButton.layer.borderWidth = 0.25
+        chooseQuestionsButton.layer.borderColor = UIColor.lightGray.cgColor
+        chooseQuestionsButton.layer.cornerRadius = 5.0;
+        chooseQuestionsButton.backgroundColor = UIColor.white
+        chooseQuestionsButton.setTitleColor(UIColor.lightGray, for: .normal)
+        
+//        let bottomSheet = BottomSheetView(nibName: "BottomSheetView", bundle: nil)
+//        bottomSheet.modalPresentationStyle = .overCurrentContext
+//        self.present(bottomSheet, animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -17,17 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cB0-VQ-Hud">
-                                <rect key="frame" x="30" y="598" width="354" height="60"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cB0-VQ-Hud">
+                                <rect key="frame" x="57" y="637" width="300" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="UUz-aP-x4x"/>
-                                    <constraint firstAttribute="width" secondItem="cB0-VQ-Hud" secondAttribute="height" multiplier="295:50" id="UtJ-TK-d11"/>
+                                    <constraint firstAttribute="width" secondItem="cB0-VQ-Hud" secondAttribute="height" multiplier="5:1" id="UtJ-TK-d11"/>
                                 </constraints>
                                 <state key="normal" image="naverloginImage">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="naverLoginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vJq-F0-bth"/>
+                                    <action selector="naverLoginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4pD-rs-uGz"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1l8-Fo-IId">
@@ -46,19 +46,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-m0-vZs">
-                                <rect key="frame" x="30" y="668" width="354" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="dgh-m0-vZs" secondAttribute="height" multiplier="295:50" id="EtS-F5-9f9"/>
-                                    <constraint firstAttribute="height" constant="60" id="oVS-oO-D2n"/>
-                                </constraints>
-                                <state key="normal" image="kakaologinImage">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="kakaoLoginButtionDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WrS-qw-E9s"/>
-                                </connections>
-                            </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mo2-PM-K9o">
                                 <rect key="frame" x="152" y="208" width="110" height="110"/>
                                 <constraints>
@@ -76,41 +63,58 @@
                                     <segue destination="HhR-2h-rfU" kind="show" identifier="Settings" destinationCreationSelector="Settings" id="KQj-it-OTn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h1y-2g-1Qb">
-                                <rect key="frame" x="30" y="738" width="354" height="60"/>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-m0-vZs">
+                                <rect key="frame" x="57" y="707" width="300" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="h1y-2g-1Qb" secondAttribute="height" multiplier="295:50" id="i2y-3Z-GSg"/>
-                                    <constraint firstAttribute="height" constant="60" id="u22-7t-Dmj"/>
+                                    <constraint firstAttribute="width" secondItem="dgh-m0-vZs" secondAttribute="height" multiplier="5:1" id="EtS-F5-9f9"/>
+                                    <constraint firstAttribute="height" constant="60" id="oVS-oO-D2n"/>
                                 </constraints>
-                                <state key="normal" image="appleloginImage"/>
+                                <state key="normal" image="kakaologinImage">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
+                                </state>
+                                <connections>
+                                    <action selector="kakaoLoginButtionDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ucc-9e-qpQ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZhJ-ew-ysR">
+                                <rect key="frame" x="57" y="777" width="300" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="gRn-WU-sgR"/>
+                                </constraints>
+                                <state key="normal" image="appleloginImage">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
+                                </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1Qt-Xq-kqa"/>
-                            <constraint firstItem="h1y-2g-1Qb" firstAttribute="top" secondItem="dgh-m0-vZs" secondAttribute="bottom" constant="10" id="1hg-FA-DOX"/>
                             <constraint firstItem="dgh-m0-vZs" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="8JF-KA-g1f"/>
                             <constraint firstItem="cB0-VQ-Hud" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="Ay9-kF-tob"/>
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Hkj-wh-KYg"/>
-                            <constraint firstItem="h1y-2g-1Qb" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="IQo-ug-R4b"/>
+                            <constraint firstItem="ZhJ-ew-ysR" firstAttribute="width" secondItem="ZhJ-ew-ysR" secondAttribute="height" multiplier="5:1" id="HvW-mu-YIH"/>
                             <constraint firstItem="dgh-m0-vZs" firstAttribute="top" secondItem="cB0-VQ-Hud" secondAttribute="bottom" constant="10" id="Kle-4M-KgK"/>
                             <constraint firstItem="0xp-dw-avY" firstAttribute="top" secondItem="1l8-Fo-IId" secondAttribute="bottom" id="OTP-XB-MhM"/>
                             <constraint firstItem="1l8-Fo-IId" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Po5-Xw-PMo"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZhJ-ew-ysR" secondAttribute="bottom" constant="25" id="RE5-Xg-xbZ"/>
+                            <constraint firstItem="ZhJ-ew-ysR" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="StE-s4-DBZ"/>
                             <constraint firstItem="1l8-Fo-IId" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="TKz-Pb-qMF"/>
+                            <constraint firstItem="ZhJ-ew-ysR" firstAttribute="top" secondItem="dgh-m0-vZs" secondAttribute="bottom" constant="10" id="ctO-Yy-p66"/>
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="ejB-FM-52A"/>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="top" secondItem="mo2-PM-K9o" secondAttribute="bottom" constant="30" id="iqZ-AF-cGp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="h1y-2g-1Qb" secondAttribute="bottom" constant="64" id="odV-lw-oZ7"/>
                             <constraint firstItem="0xp-dw-avY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="yZJ-qv-a87"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OnO-xV-qsf"/>
                     <connections>
-                        <outlet property="appleloginButton" destination="h1y-2g-1Qb" id="4kX-Yw-ldV"/>
-                        <outlet property="kakaologinButton" destination="dgh-m0-vZs" id="ZRR-Df-kky"/>
+                        <outlet property="appleloginButton" destination="ZhJ-ew-ysR" id="t4B-2Z-PIz"/>
+                        <outlet property="kakaologinButton" destination="dgh-m0-vZs" id="BVd-Dy-cGP"/>
                         <outlet property="logoDescription" destination="XEy-sZ-Srf" id="upv-Vb-0Sn"/>
                         <outlet property="logoImage" destination="mo2-PM-K9o" id="TUr-bp-U51"/>
-                        <outlet property="naverloginButton" destination="cB0-VQ-Hud" id="XEX-YA-L1B"/>
+                        <outlet property="naverloginButton" destination="cB0-VQ-Hud" id="9NY-da-PSf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

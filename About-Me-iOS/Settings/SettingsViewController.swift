@@ -9,13 +9,13 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
-    @IBOutlet weak var editprofileButton: UIButton!
-    @IBOutlet weak var alaramsettingsButton: UIButton!
+    @IBOutlet weak var editProfileButton: UIButton!
+    @IBOutlet weak var alertSettingsButton: UIButton!
     @IBOutlet weak var quetstionsButton: UIButton!
     @IBOutlet weak var noticesButton: UIButton!
     @IBOutlet weak var versioninfoButton: UIButton!
-    lazy var buttonArray = [editprofileButton,
-                       alaramsettingsButton,
+    lazy var buttonArray = [editProfileButton,
+                       alertSettingsButton,
                        quetstionsButton,
                        noticesButton,
                        versioninfoButton ]
@@ -43,21 +43,10 @@ class SettingsViewController: UIViewController {
         for i in 0..<buttonArray.count {
             let thickness: CGFloat = 0.25
             let bottomBorder = CALayer()
-            bottomBorder.frame = CGRect(x:0, y: self.editprofileButton.frame.size.height - thickness, width: self.editprofileButton.frame.size.width, height:thickness)
+            bottomBorder.frame = CGRect(x:0, y: self.editProfileButton.frame.size.height - thickness, width: self.editProfileButton.frame.size.width, height:thickness)
             bottomBorder.backgroundColor = UIColor.lightGray.cgColor
         
             buttonArray[i]?.layer.addSublayer(bottomBorder)
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

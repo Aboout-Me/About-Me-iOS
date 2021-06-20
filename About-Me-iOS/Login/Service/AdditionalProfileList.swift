@@ -8,9 +8,9 @@
 import Foundation
 
 struct AdditionalProfileList: Codable {
-    let email: String
-    let nickname: String
-    let birthday: String
-    let gender: String
-    let introduce: String
+    var email: String
+    var nickname: String
+    var birthday: String
+    var gender: String
+    var introduce: String
 }

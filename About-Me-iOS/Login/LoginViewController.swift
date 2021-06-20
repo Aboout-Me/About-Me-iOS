@@ -39,9 +39,10 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         
         logoDescription.font = UIFont(name: "GmarketSansTTFMedium", size: 18)
         
-        kakaologinButton.setImage(UIImage(named: "kakaologinImage.png"), for: .normal)
-        naverloginButton.setImage(UIImage(named: "naverloginImage.png"), for: .normal)
-        appleloginButton.setImage(UIImage(named: "appleloginImage.png"), for: .normal)
+        kakaologinButton.setBackgroundImage(UIImage(named: "kakaologinImage.png"), for: UIControl.State.normal)
+        naverloginButton.setBackgroundImage(UIImage(named: "naverloginImage.png"), for: UIControl.State.normal)
+        appleloginButton.setBackgroundImage(UIImage(named: "appleloginImage.png"), for: UIControl.State.normal)
+        appleloginButton.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
         
         // 네비게이션바 설정
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -81,7 +82,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         loginInstance?.requestThirdPartyLogin()
     }
     
-    @IBAction func naevrLogoutButtonDidTap(_ sender: Any) {
+    @IBAction func naverLogoutButtonDidTap(_ sender: Any) {
         loginInstance?.requestDeleteToken()
     }
     
@@ -131,7 +132,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                     
                     // access token
                     let accessToken = oauthToken?.accessToken
-                    
+                    print("\n [AT : ", accessToken, "]")
                     // 카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
                     self.setUserInfo()
                 }
@@ -166,10 +167,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 //    func addButton() {
 //        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
 //        button.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
-//        appleLogin.addSubview(button)
-//        let image: UIImage = UIImage(named: "appleloginImage.png")!
-//        appleLogin.back
+//        appleloginView.addArrangedSubview(button)
 //    }
+    
     @objc func handleAppleSignInButton() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
