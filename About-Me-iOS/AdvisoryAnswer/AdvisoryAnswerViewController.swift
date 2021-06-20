@@ -6,18 +6,18 @@
 //
 
 import UIKit
+import SideMenu
 
 class AdvisoryAnswerViewController: UIViewController {
     
     // MARK: - Properties
     
     @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var explanationLabel: UITextView!
     @IBOutlet weak var sectionHeaderView: UIView!
-    @IBOutlet weak var sectionHeaderLabel: UILabel!
     @IBOutlet weak var advisoryAnswerTableView: UITableView!
     @IBOutlet weak var newButton: UIButton!
     
+    public var sideMenu: SideMenuNavigationController?
     private var answerLists: [ThemeList] = []
     
     // MARK: - Lifecycle
@@ -26,16 +26,17 @@ class AdvisoryAnswerViewController: UIViewController {
         super.viewDidLoad()
         
         configure()
+        setSideMenuLayoutInit()
         getAnswerList()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         getAnswerList()
+        configureNavigation()
     }
     
-
     // MARK: - Selectors
     
     @objc
@@ -55,17 +56,23 @@ class AdvisoryAnswerViewController: UIViewController {
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     
+    @objc
+    public func menuIconDidTap() {
+        self.present(sideMenu!, animated: true, completion: nil)
+    }
+    
     // MARK: - Helpers
     
     private func configure() {
         self.backgroundImageView.image = UIImage(named: "advisory.png")
-        self.explanationLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        self.backgroundImageView.contentMode = .scaleAspectFill
         
         let noAnswerNib = UINib(nibName: "NoAnswerCell", bundle: nil)
         advisoryAnswerTableView.register(noAnswerNib, forCellReuseIdentifier: "noAnswerCell")
         let answerNib = UINib(nibName: "AdvisoryAnswerCell", bundle: nil)
         advisoryAnswerTableView.register(answerNib, forCellReuseIdentifier: "advisoryAnswerCell")
 
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -75,8 +82,6 @@ class AdvisoryAnswerViewController: UIViewController {
         advisoryAnswerTableView.delegate = self
         
         self.sectionHeaderView.roundCorners([.topLeft, .topRight], radius: 20)
-        self.sectionHeaderLabel.textColor = .gray555
-        self.sectionHeaderLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
         
         self.newButton.setTitleColor(.white, for: .normal)
         self.newButton.backgroundColor = .gray333
@@ -86,6 +91,22 @@ class AdvisoryAnswerViewController: UIViewController {
         //        advisoryAnswerTableView.register(nibName, forCellReuseIdentifier: "newAnswerCell")
     }
     
+    private func configureNavigation() {
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.tintColor = .white
+        
+        self.title = "자문자답"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+    }
+    
+    private func setSideMenuLayoutInit() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let sideOnlyViewController: SideOnlyViewController = storyboard.instantiateViewController(withIdentifier: "SideOnlyViewController") as! SideOnlyViewController
+        self.sideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
+        self.sideMenu?.leftSide = true
+    }
+    
     private func getAnswerList() {
         AdvisoryApiService.getAdvisoryAnswerList { list in
             if let list = list {
@@ -93,11 +114,11 @@ class AdvisoryAnswerViewController: UIViewController {
                 self.answerLists = list.themeLists
                 if list.themeLists.count == 0 {
                     self.advisoryAnswerTableView.alwaysBounceVertical = false
-                    self.newButton.setTitle("첫 번째 \(self.newButton.titleLabel!.text!)",
+                    self.newButton.setTitle("첫 번째 자문자답 만들러 가기 >",
                                             for: .normal)
                 } else {
                     self.advisoryAnswerTableView.alwaysBounceVertical = true
-                    self.newButton.setTitle("새로운 \(self.newButton.titleLabel!.text!)",
+                    self.newButton.setTitle("새로운 자문자답 만들러 가기 >",
                                             for: .normal)
                 }
                 self.advisoryAnswerTableView.reloadData()
@@ -145,7 +166,7 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
                 cell.stageLabel.attributedText = attributedString
                 cell.finishView.image = UIImage(named: "ico_common_24_complete_off.png")
             }
-            
+             
             return cell
         }
     }
@@ -160,7 +181,9 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        
+        let stageVC = AdvisoryStageViewController(nibName: "AdvisoryStageViewController", bundle: nil)
+        stageVC.themeList = answerLists[indexPath.row]
+        self.navigationController?.pushViewController(stageVC, animated: true)
     }
     
     
