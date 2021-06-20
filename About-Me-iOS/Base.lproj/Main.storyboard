@@ -580,11 +580,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yqz-zY-U4z">
-<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="290" width="414" height="512"/>
-=======
-                                <rect key="frame" x="0.0" y="290" width="414" height="436"/>
->>>>>>> feature_MyProfile
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="436" id="10d-c4-Yaf"/>
@@ -664,11 +660,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DOz-WG-OcQ">
-<<<<<<< HEAD
-                                <rect key="frame" x="0.0" y="802" width="414" height="50"/>
-=======
                                 <rect key="frame" x="0.0" y="726" width="414" height="170"/>
->>>>>>> feature_MyProfile
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-il-ITp">
                                         <rect key="frame" x="20" y="0.0" width="374" height="50"/>
@@ -682,12 +674,8 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="wKd-il-ITp" firstAttribute="leading" secondItem="DOz-WG-OcQ" secondAttribute="leading" constant="20" id="OPU-aR-7rt"/>
-<<<<<<< HEAD
                                     <constraint firstItem="wKd-il-ITp" firstAttribute="top" secondItem="DOz-WG-OcQ" secondAttribute="top" id="QEI-VP-GkO"/>
                                     <constraint firstAttribute="height" constant="50" id="gnx-To-4yj"/>
-=======
-                                    <constraint firstItem="wKd-il-ITp" firstAttribute="top" secondItem="DOz-WG-OcQ" secondAttribute="top" constant="20" id="QEI-VP-GkO"/>
->>>>>>> feature_MyProfile
                                     <constraint firstAttribute="trailing" secondItem="wKd-il-ITp" secondAttribute="trailing" constant="20" id="voY-Z2-bUu"/>
                                 </constraints>
                             </view>
@@ -697,10 +685,7 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Oxb-Ib-Bsi" secondAttribute="bottom" id="2cq-Pk-rpH"/>
                             <constraint firstItem="Zj7-Tm-R9C" firstAttribute="top" secondItem="M28-fB-UaQ" secondAttribute="top" id="Au0-02-9o1"/>
-<<<<<<< HEAD
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="bottom" secondItem="DOz-WG-OcQ" secondAttribute="bottom" constant="10" id="DaQ-do-EmD"/>
-=======
->>>>>>> feature_MyProfile
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Zj7-Tm-R9C" secondAttribute="trailing" id="EVT-aC-Ugu"/>
                             <constraint firstItem="DOz-WG-OcQ" firstAttribute="top" secondItem="Yqz-zY-U4z" secondAttribute="bottom" id="IuR-FH-7Iw"/>
                             <constraint firstItem="Yqz-zY-U4z" firstAttribute="top" secondItem="Zj7-Tm-R9C" secondAttribute="bottom" id="MgW-AV-Sjo"/>

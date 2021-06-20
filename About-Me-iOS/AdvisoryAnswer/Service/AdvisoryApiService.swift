@@ -39,6 +39,33 @@ struct AdvisoryApiService {
         }
     }
     
+    static func getAdvisoryDetailList(stage: Int, theme: String, completion: @escaping (AdvisoryDetailList) -> Void) {
+        let urlString = "\(API_URL)/MyPage/10Q10A/listDetail/\(userId)/\(stage)/\(theme)"
+        let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let url = URL(string: encodedString) else { return }
+        print(url)
+        
+        let request = AF.request(url, method: .get)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print(response.value)
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+
+                do {
+                    let data = try JSONDecoder().decode(AdvisoryDetailList.self, from: Data(stringResponse!.data(using: .utf8)!))
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
     static func saveAdvisoryAnswerList(answerList: AdvisoryPostList, completion: @escaping () -> Void) {
         let urlComponent = URLComponents(string:  "\(API_URL)/MyPage/10Q10A/answer")
         guard let url = urlComponent?.url else { return }
@@ -57,7 +84,6 @@ struct AdvisoryApiService {
             }
         }
     }
-
     
     static func saveAndUpdateAdvisoryAnswerList(answerList: AdvisoryPostList, completion: @escaping (AdvisoryResponse) -> Void) {
         let urlComponent = URLComponents(string: "\(API_URL)/MyPage/10Q10A/answer2")
