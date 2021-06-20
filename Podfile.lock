@@ -1,13 +1,48 @@
 PODS:
-  - Alamofire (5.4.1)
+  - Alamofire (5.4.3)
   - Floaty (4.2.0)
   - Hero (1.6.1)
+  - KakaoSDK (2.5.3):
+    - KakaoSDKAuth (= 2.5.3)
+    - KakaoSDKCommon (= 2.5.3)
+    - KakaoSDKLink (= 2.5.3)
+    - KakaoSDKNavi (= 2.5.3)
+    - KakaoSDKStory (= 2.5.3)
+    - KakaoSDKTalk (= 2.5.3)
+    - KakaoSDKTemplate (= 2.5.3)
+    - KakaoSDKUser (= 2.5.3)
+  - KakaoSDKAuth (2.5.3):
+    - KakaoSDKCommon (= 2.5.3)
+  - KakaoSDKCommon (2.5.3):
+    - KakaoSDKCommon/Common (= 2.5.3)
+    - KakaoSDKCommon/Network (= 2.5.3)
+  - KakaoSDKCommon/Common (2.5.3)
+  - KakaoSDKCommon/Network (2.5.3):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.5.3)
+  - KakaoSDKLink (2.5.3):
+    - KakaoSDKCommon (= 2.5.3)
+    - KakaoSDKTemplate (= 2.5.3)
+  - KakaoSDKNavi (2.5.3):
+    - KakaoSDKCommon/Common (= 2.5.3)
+  - KakaoSDKStory (2.5.3):
+    - KakaoSDKUser (= 2.5.3)
+  - KakaoSDKTalk (2.5.3):
+    - KakaoSDKTemplate (= 2.5.3)
+    - KakaoSDKUser (= 2.5.3)
+  - KakaoSDKTemplate (2.5.3):
+    - KakaoSDKCommon/Common (= 2.5.3)
+  - KakaoSDKUser (2.5.3):
+    - KakaoSDKAuth (= 2.5.3)
+  - naveridlogin-sdk-ios (4.1.3)
   - SideMenu (6.5.0)
 
 DEPENDENCIES:
   - Alamofire
   - Floaty (~> 4.2.0)
   - Hero
+  - KakaoSDK
+  - naveridlogin-sdk-ios
   - SideMenu
 
 SPEC REPOS:
@@ -15,14 +50,34 @@ SPEC REPOS:
     - Alamofire
     - Floaty
     - Hero
+    - KakaoSDK
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKLink
+    - KakaoSDKNavi
+    - KakaoSDKStory
+    - KakaoSDKTalk
+    - KakaoSDKTemplate
+    - KakaoSDKUser
+    - naveridlogin-sdk-ios
     - SideMenu
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
+  KakaoSDK: 61f5d72d4c90188bf3d6567ffeef42d2827e9f77
+  KakaoSDKAuth: b1a0b9a84c21c967c4139d221edce83a7f15cdfe
+  KakaoSDKCommon: 08548932f6f570215ea038241a98157c0b3f7a8b
+  KakaoSDKLink: 4d35879b0abd90fbd0bc0de56dbb06097e9b31d3
+  KakaoSDKNavi: 31fd6ad030cf7200d546202cbe22f7a8b38eb983
+  KakaoSDKStory: 6d666f665fbe4b8453ce19959b9bb9e3bf38a5df
+  KakaoSDKTalk: 58cf9c530cc8024ae2ed3839d40acd992ecaf909
+  KakaoSDKTemplate: 5939681de6c24fd81e93bf824982e979e794f87e
+  KakaoSDKUser: 5d2de71fe070455bbaaad6a37af3eb500fbc8972
+  naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
-PODFILE CHECKSUM: 207246d15d41a3811fc5289d15fbe34a62b46c7b
+PODFILE CHECKSUM: 24284b626b791a54943131a498283ebfed6f86b2
 
-COCOAPODS: 1.10.0
+COCOAPODS: 1.10.1
