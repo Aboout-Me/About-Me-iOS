@@ -43,9 +43,6 @@ class MyProfileViewController: UIViewController {
     public var myProfileLikeScrapSubData = [MyProfileLikeScrapModelBody]()
     public var myProfileTagIndex = 0
     public var myProfileisFlag = true
-    public var isshareFlag = false
-    public var islikeFlag = false
-    public var isscrapFlag = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,7 +96,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileCharacterNameLabel.text = "열정충만"
         self.myProfileCharacterNameLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileCharacterNameLabel.textAlignment = .left
-        self.myProfileCharacterNameLabel.font = UIFont(name: "GmarketSans-Medium", size: 16)
+        self.myProfileCharacterNameLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         self.myProfileCharacterContentLabel.numberOfLines = 0
@@ -114,7 +111,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileNickNameLabel.textColor = .gray999
         self.myProfileNickNameLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 11)
         self.myProfileNickNameLabel.textAlignment = .center
-        self.detailPushButton.setImage(UIImage(named: "Arrow.png"), for: .normal)
+        self.detailPushButton.setImage(UIImage(named: "Arrow_Profile.png"), for: .normal)
         self.detailPushButton.addTarget(self, action: #selector(self.didTapdetailPushButton), for: .touchUpInside)
         self.myProfileCharacterTagFirst.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
         self.myProfileCharacterTagFirst.layer.borderWidth = 1
@@ -288,7 +285,12 @@ class MyProfileViewController: UIViewController {
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileLikeScrapData = list
-                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        if list.postList[0].errorCode == "404" {
+                            self.myProfileLikeScrapSubData = []
+                        } else {
+                            self.myProfileLikeScrapSubData = list.postList[0].body!
+                        }
+
                         print("Like All Data : [\(self.myProfileLikeScrapData)]")
                         self.myProfileCollectionView.reloadData()
                     }
@@ -300,7 +302,11 @@ class MyProfileViewController: UIViewController {
                     DispatchQueue.main.async {
                         print("Likes Sub Data :  {\(self.myProfileLikeScrapSubData)}")
                         self.myProfileLikeScrapData = list
-                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        if list.postList[0].errorCode == "404" {
+                            self.myProfileLikeScrapSubData = []
+                        } else {
+                            self.myProfileLikeScrapSubData = list.postList[0].body!
+                        }
                         self.myProfileCollectionView.reloadData()
                     }
                 }
@@ -319,7 +325,11 @@ class MyProfileViewController: UIViewController {
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileLikeScrapData = list
-                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        if list.postList[0].errorCode == "404" {
+                            self.myProfileLikeScrapSubData = []
+                        } else {
+                            self.myProfileLikeScrapSubData = list.postList[0].body!
+                        }
                         print("Scrap All Data : [\(self.myProfileLikeScrapSubData)]")
                         self.myProfileCollectionView.reloadData()
                     }
@@ -330,7 +340,11 @@ class MyProfileViewController: UIViewController {
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileLikeScrapData = list
-                        self.myProfileLikeScrapSubData = list.postList[0].body
+                        if list.postList[0].errorCode == "404" {
+                            self.myProfileLikeScrapSubData = []
+                        } else {
+                            self.myProfileLikeScrapSubData = list.postList[0].body!
+                        }
                         print("Scrap Sub Data : {\(self.myProfileLikeScrapSubData)}")
                         self.myProfileCollectionView.reloadData()
                     }
@@ -532,27 +546,23 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                         myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
                         myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
                     }
-                    if self.myProfileSubData[indexPath.item].shareYN == "Y" {
-                        myProfileCell?.myProfileContentButton.setBackgroundImage(UIImage(named: "Lock.png"), for: .normal)
+                    var isFlag = self.myProfileSubData[indexPath.item].shareYN
+                    if isFlag == true {
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "Lock.png"), for: .normal)
                     } else {
-                        myProfileCell?.myProfileContentButton.setBackgroundImage(UIImage(named: "UnLock.png"), for: .normal)
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "UnLock.png"), for: .normal)
                     }
                     myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileSubData[indexPath.item].question)"
                     myProfileCell?.myProfileContentDateLabel.text = self.myProfileSubData[indexPath.item].writtenDate
                     myProfileCell?.myProfileAnswerTitleLabel.text = self.myProfileSubData[indexPath.item].answer
                     myProfileCell?.shareButtonClouser = {
                         ProfileServerApi.putMyProfileShareProgress(cardSeq: self.myProfileSubData[indexPath.item].answerId, level: self.myProfileSubData[indexPath.item].level) { result in
-                            if case let .success(data) = result, let list = data {
-                                self.isshareFlag = !self.isshareFlag
-                                let isFlag = self.myProfileSubData[indexPath.item].shareYN
-                                if isFlag == "Y" {
-                                    myProfileCell?.myProfileContentButton.setBackgroundImage(self.isshareFlag ? UIImage(named: "UnLock.png") : UIImage(named: "Lock.png"), for: .normal)
-                                } else {
-                                    myProfileCell?.myProfileContentButton.setBackgroundImage(self.isshareFlag ? UIImage(named: "Lock.png") : UIImage(named: "UnLock.png"), for: .normal)
-                                }
+                            if case let .success(data) = result, let _ = data {
+                                isFlag = !isFlag
+                                    myProfileCell?.myProfileContentButton.setImage(isFlag ? UIImage(named: "Lock.png") : UIImage(named: "UnLock.png"), for: .normal)
                                 print("true check \(self.myProfileSubData[indexPath.item].shareYN)")
                                 print("index did tap \(self.myProfileSubData[indexPath.item].answerId)")
-                                print("did tap data \(list)")
+                
                             }
                         }
                         
@@ -583,10 +593,12 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                         myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
                         myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
                     }
-                    if self.myProfileLikeScrapSubData[indexPath.item].likes == 1 {
-                        myProfileCell?.myProfileContentButton.setBackgroundImage(UIImage(named: "LikeOn.png"), for: .normal)
+                    var isLiked = self.myProfileLikeScrapSubData[indexPath.item].hasLiked
+                    
+                    if isLiked == true {
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "LikeOn.png"), for: .normal)
                     } else {
-                        myProfileCell?.myProfileContentButton.setBackgroundImage(UIImage(named: "LikeOff.png"), for: .normal)
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "LikeOff.png"), for: .normal)
                     }
                     myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileLikeScrapSubData[indexPath.item].question)"
                     myProfileCell?.myProfileContentDateLabel.text = self.myProfileLikeScrapSubData[indexPath.item].updateDate
@@ -595,14 +607,9 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                         let parameter = LikeProgressParameter(userId: self.myProfileLikeScrapData!.user_id, questId: self.myProfileLikeScrapSubData[indexPath.item].boardSeq)
                         ProfileServerApi.postMyProfileLikeProgress(likesParameter: parameter) {  result in
                             if case let .success(data) = result, let list = data {
+                                isLiked = !isLiked
+                                myProfileCell?.myProfileContentButton.setImage(isLiked ? UIImage(named: "LikeOn.png") : UIImage(named: "LikeOff.png"), for: .normal)
                                 print("did Tap like \(list)")
-                                self.islikeFlag = !self.islikeFlag
-                                let likeCount = self.myProfileLikeScrapSubData[indexPath.item].likes
-                                if likeCount > 1 {
-                                    myProfileCell?.myProfileContentButton.setBackgroundImage(self.islikeFlag ? UIImage(named: "LikeOff.png") : UIImage(named: "LikeOn.png"), for: .normal)
-                                } else {
-                                    myProfileCell?.myProfileContentButton.setBackgroundImage(self.islikeFlag ? UIImage(named: "LikeOn.png") : UIImage(named: "LikeOff.png"), for: .normal)
-                                }
                             }
                         }
                     }
@@ -631,10 +638,11 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                         myProfileCell?.myProfileContentTitleLabel.text = "# 상상플러스"
                         myProfileCell?.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
                     }
-                    if self.myProfileLikeScrapSubData[indexPath.item].scraps == 1 {
-                        myProfileCell?.myProfileContentButton.setBackgroundImage(UIImage(named: "ScrapsOn.png"), for: .normal)
+                    var isScraped = self.myProfileLikeScrapSubData[indexPath.item].hasScraped
+                    if isScraped == true {
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "ScrapsOn.png"), for: .normal)
                     } else {
-                        myProfileCell?.myProfileContentButton.setBackgroundImage(UIImage(named: "ScrapsOff.png"), for: .normal)
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "ScrapsOff.png"), for: .normal)
                     }
                     myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileLikeScrapSubData[indexPath.item].question)"
                     myProfileCell?.myProfileContentDateLabel.text = self.myProfileLikeScrapSubData[indexPath.item].updateDate
@@ -642,14 +650,10 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                     myProfileCell?.scrapButtonClouser = {
                         let parameter = ScrapProgressParameter(userId: self.myProfileLikeScrapData!.user_id, questId: self.myProfileLikeScrapSubData[indexPath.item].boardSeq)
                         ProfileServerApi.postMyProfileScrapProgress(scrapParameter: parameter) { result in
-                            if case let .success(data) = result, let _ = data {
-                                self.isscrapFlag = !self.isscrapFlag
-                                let scrpaFlag = self.myProfileLikeScrapSubData[indexPath.item].scraps
-                                if scrpaFlag == 1 {
-                                    myProfileCell?.myProfileContentButton.setBackgroundImage(self.isscrapFlag ? UIImage(named: "ScrapsOn.png") : UIImage(named: "ScrapsOff.png"), for: .normal)
-                                } else {
-                                    myProfileCell?.myProfileContentButton.setBackgroundImage(self.isscrapFlag ? UIImage(named: "ScrapsOff.png") : UIImage(named: "ScrapsOn.png"), for: .normal)
-                                }
+                            if case let .success(data) = result, let list = data {
+                                isScraped = !isScraped
+                                myProfileCell?.myProfileContentButton.setImage(isScraped ? UIImage(named: "ScrapsOn.png") : UIImage(named: "ScrapsOff.png"), for: .normal)
+                                print("did Tap scrap \(list)")
                             }
                         }
                     }
@@ -830,7 +834,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                 return UIEdgeInsets()
             }
         } else {
-            return UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 10)
+            return UIEdgeInsets(top: 20, left: 30, bottom: 30, right: 10)
         }
     }
     

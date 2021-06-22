@@ -44,8 +44,12 @@ class AdvisoryStageCell: UITableViewCell {
         self.answer = answer
         self.totalCount = totalCount
         
-        let nowLevel = answer.levels[answer.levels.startIndex]
-        if Int(String(nowLevel))! == totalCount {
+        let nowLevel = answer.levels.dropLast(2)
+        if Int(String(nowLevel))! == 10 {
+            checkImageView.image = UIImage(named: "checked_solid.png")
+            ongoingView.backgroundColor = .clear
+        }
+        else if Int(String(nowLevel))! == totalCount {
             checkImageView.image = UIImage(named: "confirm.png")
             ongoingView.backgroundColor = .clear
         } else {

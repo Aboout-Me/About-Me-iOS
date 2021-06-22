@@ -207,7 +207,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileWeeklyTitleLabel.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
         self.myProfileWeeklyTitleLabel.textAlignment = .center
         self.myProfileWeeklyTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
-        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow"), for: .normal)
+        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow_Profile"), for: .normal)
         self.myProfileWeeklyNextButton.addTarget(self, action: #selector(self.weeklyNextButtonDidTap(_:)), for: .touchUpInside)
         self.myProfileWeeklyLine.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileWeeklyPreviousButton.setImage(UIImage(named: "PreviousArrow"), for: .normal)

@@ -24,7 +24,7 @@ struct MyProfilePageModel: Codable {
     var level: Int
     var question: String
     var answer: String
-    var shareYN: String
+    var shareYN: Bool
     var regDate: String
     var writtenDate: String
 }

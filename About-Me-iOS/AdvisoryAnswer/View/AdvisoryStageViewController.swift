@@ -42,6 +42,7 @@ class AdvisoryStageViewController: UIViewController {
     
     @objc
     private func backButtonDidTap(_ sender: UIButton) {
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -62,42 +63,30 @@ class AdvisoryStageViewController: UIViewController {
         
         var questionDictionary: [Int: String] = [:]
         var answerDictionary: [Int: String] = [:]
-
         var editList: [Int] = []
-
         
         for (index, detail) in detailList!.enumerated() {
             questionDictionary[index + 1] = detail.question
             answerDictionary[index + 1] = detail.answer
-
             editList.append(index + 1)
         }
         
         questionVC.questionNumber = detailList!.count
         questionVC.advisoryBeforeTitle = themeList!.stage_name
-
-        }
-        
-        questionVC.questionNumber = detailList!.count
-
         questionVC.advisoryTitle = themeList!.stage_name
         questionVC.questionDictionary = questionDictionary
         questionVC.answerDictionary = answerDictionary
         questionVC.mode = .ongoing
-
         questionVC.stage = Int(themeList!.stage_num)!
         questionVC.editList = editList
-
         
         self.navigationController?.pushViewController(questionVC, animated: false)
     }
     // MARK: - Helpers
     
     private func configure() {
-
         self.navigationController?.isNavigationBarHidden = true
         
-
         let stageNib = UINib(nibName: "AdvisoryStageCell", bundle: nil)
         self.contentTableView.register(stageNib, forCellReuseIdentifier: "advisoryStageCell")
         
@@ -131,7 +120,11 @@ class AdvisoryStageViewController: UIViewController {
 
 extension AdvisoryStageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lastStage
+        if let detailList = self.detailList {
+            return detailList.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
