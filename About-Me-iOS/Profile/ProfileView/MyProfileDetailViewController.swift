@@ -82,7 +82,9 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = "프로필"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(didTapNavigationButton))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.view.backgroundColor = UIColor(red: 249/255, green: 249/255, blue: 249/255, alpha: 1.0)
         self.myProfileScrollView.delegate = self
         self.myProfileScrollView.contentInsetAdjustmentBehavior = .never
@@ -176,13 +178,20 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileCharacterLevelLabelFive.font = UIFont(name: "GmarketSansMedium", size: 10)
         self.myProfileCharacterProgressViewFive.transform = CGAffineTransform(scaleX: 1, y: 1.5)
         self.myProfileCharacterProgressViewFive.tintColor = UIColor(red: 169/255, green: 107/255, blue: 249/255, alpha: 1.0)
-        self.myProfileMonthButton.setAttributedTitle(NSAttributedString(string: "월", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
-        self.myProfileTuesdayButton.setAttributedTitle(NSAttributedString(string: "화", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
-        self.myProfileWednesdayButton.setAttributedTitle(NSAttributedString(string: "수", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
-        self.myProfileThursdayButton.setAttributedTitle(NSAttributedString(string: "목", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
-        self.myProfileFridayButton.setAttributedTitle(NSAttributedString(string: "금", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
-        self.myProfileSaturdayButton.setAttributedTitle(NSAttributedString(string: "토", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
-        self.myProfileSundayButton.setAttributedTitle(NSAttributedString(string: "일", attributes: [NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 13)!,NSAttributedString.Key.foregroundColor: UIColor.grayCcc]), for: .normal)
+        self.myProfileMonthButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileMonthButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileTuesdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileTuesdayButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileWednesdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileWednesdayButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileThursdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileThursdayButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileFridayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileFridayButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileSaturdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileSaturdayButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
+        self.myProfileSundayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        self.myProfileSundayButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 13)
         
     }
     
@@ -205,7 +214,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         self.myProfileWeeklyTitleLabel.textColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
         self.myProfileWeeklyTitleLabel.textAlignment = .center
         self.myProfileWeeklyTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
-        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow"), for: .normal)
+        self.myProfileWeeklyNextButton.setImage(UIImage(named: "Arrow_Profile"), for: .normal)
         self.myProfileWeeklyNextButton.addTarget(self, action: #selector(self.weeklyNextButtonDidTap(_:)), for: .touchUpInside)
         self.myProfileWeeklyLine.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileWeeklyPreviousButton.setImage(UIImage(named: "PreviousArrow"), for: .normal)
@@ -251,8 +260,14 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         ProfileServerApi.getWeeklyProgress(userId: 1) { result in
             if case let .success(data) = result, let list = data {
                 self.weeklyData = list.weeklyProgressingList[0]
+                self.myProfileWeeklyTitleLabel.text = "\(list.date)"
                 print("test color",self.weeklyData)
                 print("test Data \(self.weeklyData[0])")
+                if list.weeklyProgressingList.count == 1 {
+                    self.myProfileWeeklyNextButton.isEnabled = false
+                } else {
+                    self.myProfileWeeklyNextButton.isEnabled = true
+                }
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
                 }
@@ -273,112 +288,140 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
             } else if self.weeklyData[0].color == "pink" {
                 self.myProfileMonthButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileMonthButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
+            } else if self.weeklyData[0].color == "purple" {
                 self.myProfileMonthButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
                 self.myProfileMonthButton.setTitleColor(UIColor.white, for: .normal)
             }
-        } else if self.weeklyData[1].day == "화" && self.weeklyData[1].isWritten == true {
-            if self.weeklyData[0].color == "red" {
+        } else {
+            self.myProfileMonthButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileMonthButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        }
+        if self.weeklyData[1].day == "화" && self.weeklyData[1].isWritten == true {
+            if self.weeklyData[1].color == "red" {
                 self.myProfileTuesdayButton.setBackgroundImage(UIImage(named: "StampRed"), for: .normal)
                 self.myProfileTuesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "yellow" {
+            } else if self.weeklyData[1].color == "yellow" {
                 self.myProfileTuesdayButton.setBackgroundImage(UIImage(named: "StampYellow"), for: .normal)
                 self.myProfileTuesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "green" {
+            } else if self.weeklyData[1].color == "green" {
                 self.myProfileTuesdayButton.setBackgroundImage(UIImage(named: "StampGreen"), for: .normal)
                 self.myProfileTuesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "pink" {
+            } else if self.weeklyData[1].color == "pink" {
                 self.myProfileTuesdayButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileTuesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
+            } else if self.weeklyData[1].color == "purple" {
                 self.myProfileTuesdayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
                 self.myProfileTuesdayButton.setTitleColor(UIColor.white, for: .normal)
             }
-        } else if self.weeklyData[2].day == "수" && self.weeklyData[2].isWritten == true {
-            if self.weeklyData[0].color == "red" {
+        } else {
+            self.myProfileTuesdayButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileTuesdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        }
+        
+        if self.weeklyData[2].day == "수" && self.weeklyData[2].isWritten == true {
+            if self.weeklyData[2].color == "red" {
                 self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampRed"), for: .normal)
                 self.myProfileWednesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "yellow" {
+            } else if self.weeklyData[2].color == "yellow" {
                 self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampYellow"), for: .normal)
                 self.myProfileWednesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "green" {
+            } else if self.weeklyData[2].color == "green" {
                 self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampGreen"), for: .normal)
                 self.myProfileWednesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "pink" {
+            } else if self.weeklyData[2].color == "pink" {
                 self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileWednesdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
+            } else if self.weeklyData[2].color == "purple" {
                 self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
                 self.myProfileWednesdayButton.setTitleColor(UIColor.white, for: .normal)
             }
-        } else if self.weeklyData[3].day == "목" && self.weeklyData[3].isWritten == true {
-            if self.weeklyData[0].color == "red" {
+        } else {
+            self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileWednesdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        }
+        if self.weeklyData[3].day == "목" && self.weeklyData[3].isWritten == true {
+            if self.weeklyData[3].color == "red" {
                 self.myProfileThursdayButton.setBackgroundImage(UIImage(named: "StampRed"), for: .normal)
                 self.myProfileThursdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "yellow" {
+            } else if self.weeklyData[3].color == "yellow" {
                 self.myProfileThursdayButton.setBackgroundImage(UIImage(named: "StampYellow"), for: .normal)
                 self.myProfileThursdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "green" {
+            } else if self.weeklyData[3].color == "green" {
                 self.myProfileThursdayButton.setBackgroundImage(UIImage(named: "StampGreen"), for: .normal)
                 self.myProfileThursdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "pink" {
+            } else if self.weeklyData[3].color == "pink" {
                 self.myProfileThursdayButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileThursdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
-                self.myProfileWednesdayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
-                self.myProfileWednesdayButton.setTitleColor(UIColor.white, for: .normal)
+            } else if self.weeklyData[3].color == "purple" {
+                self.myProfileThursdayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
+                self.myProfileThursdayButton.setTitleColor(UIColor.white, for: .normal)
             }
-        } else if self.weeklyData[4].day == "금" && self.weeklyData[4].isWritten == true {
-            if self.weeklyData[0].color == "red" {
+        } else {
+            self.myProfileThursdayButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileThursdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        }
+        if self.weeklyData[4].day == "금" && self.weeklyData[4].isWritten == true {
+            if self.weeklyData[4].color == "red" {
                 self.myProfileFridayButton.setBackgroundImage(UIImage(named: "StampRed"), for: .normal)
                 self.myProfileFridayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "yellow" {
+            } else if self.weeklyData[4].color == "yellow" {
                 self.myProfileFridayButton.setBackgroundImage(UIImage(named: "StampYellow"), for: .normal)
                 self.myProfileFridayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "green" {
+            } else if self.weeklyData[4].color == "green" {
                 self.myProfileFridayButton.setBackgroundImage(UIImage(named: "StampGreen"), for: .normal)
                 self.myProfileFridayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "pink" {
+            } else if self.weeklyData[4].color == "pink" {
                 self.myProfileFridayButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileFridayButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
+            } else if self.weeklyData[4].color == "purple" {
                 self.myProfileFridayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
                 self.myProfileFridayButton.setTitleColor(UIColor.white, for: .normal)
             }
-        } else if self.weeklyData[5].day == "토" && self.weeklyData[5].isWritten == true {
-            if self.weeklyData[0].color == "red" {
+        } else {
+            self.myProfileFridayButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileFridayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        }
+        if self.weeklyData[5].day == "토" && self.weeklyData[5].isWritten == true {
+            if self.weeklyData[5].color == "red" {
                 self.myProfileSaturdayButton.setBackgroundImage(UIImage(named: "StampRed"), for: .normal)
                 self.myProfileSaturdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "yellow" {
+            } else if self.weeklyData[5].color == "yellow" {
                 self.myProfileSaturdayButton.setBackgroundImage(UIImage(named: "StampYellow"), for: .normal)
                 self.myProfileSaturdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "green" {
+            } else if self.weeklyData[5].color == "green" {
                 self.myProfileSaturdayButton.setBackgroundImage(UIImage(named: "StampGreen"), for: .normal)
                 self.myProfileSaturdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "pink" {
+            } else if self.weeklyData[5].color == "pink" {
                 self.myProfileSaturdayButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileSaturdayButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
+            } else if self.weeklyData[5].color == "purple" {
                 self.myProfileSaturdayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
                 self.myProfileSaturdayButton.setTitleColor(UIColor.white, for: .normal)
             }
-        } else if self.weeklyData[6].day == "일" && self.weeklyData[6].isWritten == true {
-            if self.weeklyData[0].color == "red" {
+        } else {
+            self.myProfileSaturdayButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileSaturdayButton.setTitleColor(UIColor.grayCcc, for: .normal)
+        }
+        if self.weeklyData[6].day == "일" && self.weeklyData[6].isWritten == true {
+            if self.weeklyData[6].color == "red" {
                 self.myProfileSundayButton.setBackgroundImage(UIImage(named: "StampRed"), for: .normal)
                 self.myProfileSundayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "yellow" {
+            } else if self.weeklyData[6].color == "yellow" {
                 self.myProfileSundayButton.setBackgroundImage(UIImage(named: "StampYellow"), for: .normal)
                 self.myProfileSundayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "green" {
+            } else if self.weeklyData[6].color == "green" {
                 self.myProfileSundayButton.setBackgroundImage(UIImage(named: "StampGreen"), for: .normal)
                 self.myProfileSundayButton.setTitleColor(UIColor.white, for: .normal)
-            } else if self.weeklyData[0].color == "pink" {
+            } else if self.weeklyData[6].color == "pink" {
                 self.myProfileSundayButton.setBackgroundImage(UIImage(named: "StampPink"), for: .normal)
                 self.myProfileSundayButton.setTitleColor(UIColor.white, for: .normal)
-            } else {
+            } else if self.weeklyData[6].color == "purple" {
                 self.myProfileSundayButton.setBackgroundImage(UIImage(named: "StampPurple"), for: .normal)
                 self.myProfileSundayButton.setTitleColor(UIColor.white, for: .normal)
             }
+        } else {
+            self.myProfileSundayButton.setBackgroundImage(UIImage(named: "StampDefault"), for: .normal)
+            self.myProfileSundayButton.setTitleColor(UIColor.grayCcc, for: .normal)
         }
     }
     
@@ -386,11 +429,14 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     private func weeklyNextButtonDidTap(_ sender: UIButton) {
         ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
             if case let .success(data) = result, let list = data {
+                print("counting \(list.weeklyProgressingList.count)")
                 self.sequence += 1
-                if self.sequence == 2 {
+                if list.weeklyProgressingList.count == self.sequence {
                     self.myProfileWeeklyNextButton.isEnabled = false
+                } else {
+                    self.myProfileWeeklyPreviousButton.isEnabled = true
+                    self.weeklyData = list.weeklyProgressingList[sequence]
                 }
-                self.weeklyData = list.weeklyProgressingList[2]
                 print("data\(self.sequence)" ,self.weeklyData)
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
@@ -404,16 +450,24 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
         ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
             if case let .success(data) = result, let list = data {
                 self.sequence -= 1
-                if self.sequence == 0 {
+                print("previous dataCounting \(list.weeklyProgressingList.count)")
+                if sequence == -1 {
                     self.myProfileWeeklyPreviousButton.isEnabled = false
+                    self.sequence = 0
+                } else {
+                    self.myProfileWeeklyNextButton.isEnabled = true
+                    self.weeklyData = list.weeklyProgressingList[sequence]
                 }
-                self.weeklyData = list.weeklyProgressingList[sequence]
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
                 }
-                print("data\(self.sequence)" ,self.weeklyData)
+                print("data\(sequence)" ,self.weeklyData)
             }
         }
+    }
+    @objc
+    public func didTapNavigationButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

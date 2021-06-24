@@ -20,8 +20,8 @@ struct MyProfileLikeScrapList: Codable {
 }
 
 struct MyProfileLikeScrapModel: Codable {
-    var code: Int
-    var body: [MyProfileLikeScrapModelBody]
+    var errorCode: String?
+    var body: [MyProfileLikeScrapModelBody]?
     
 }
 
@@ -33,6 +33,9 @@ struct MyProfileLikeScrapModelBody: Codable {
     var level: Int
     var likes: Int
     var scraps: Int
+    var hasLiked: Bool
+    var hasScraped: Bool
+    var shareYN: Bool
     var commentCount: Int
     var updateDate: String
 }
