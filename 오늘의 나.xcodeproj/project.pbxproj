@@ -209,6 +209,7 @@
 		FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF89606C261606F000CB6492 /* MyProfileViewController.swift */; };
 		FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */; };
 		FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */; };
+		FFA84BBC268250070073BD4F /* MyProfileAnswerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA84BBB268250070073BD4F /* MyProfileAnswerDetailViewController.swift */; };
 		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
 		FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */; };
 		FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */; };
@@ -432,6 +433,7 @@
 		FF89606C261606F000CB6492 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileCollectionViewCell.xib; sourceTree = "<group>"; };
+		FFA84BBB268250070073BD4F /* MyProfileAnswerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAnswerDetailViewController.swift; sourceTree = "<group>"; };
 		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
 		FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardDeleteList.swift; sourceTree = "<group>"; };
 		FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardEditList.swift; sourceTree = "<group>"; };
@@ -791,6 +793,7 @@
 			children = (
 				FF89606C261606F000CB6492 /* MyProfileViewController.swift */,
 				FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */,
+				FFA84BBB268250070073BD4F /* MyProfileAnswerDetailViewController.swift */,
 			);
 			path = ProfileView;
 			sourceTree = "<group>";
@@ -1192,6 +1195,7 @@
 				FF09714E267F3D51001712F3 /* AdvisoryDetailList.swift in Sources */,
 				FF09714F267F3D51001712F3 /* AdvisoryStageCell.swift in Sources */,
 				FF09714C267F3D51001712F3 /* AdvisoryList.swift in Sources */,
+				FFA84BBC268250070073BD4F /* MyProfileAnswerDetailViewController.swift in Sources */,
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
 				FF0970EE267F3C30001712F3 /* SocialListResponse.swift in Sources */,
 				FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */,

@@ -51,8 +51,7 @@ class MyProfileViewController: UIViewController {
         self.setInitLayout()
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationItem.title = "프로필"
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
+
     }
     
     private func setMyProfileSideMenuLayout() {
@@ -71,7 +70,7 @@ class MyProfileViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
+        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationItem.title = "프로필"
         let mainNib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
         let tagNib = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
@@ -142,15 +141,15 @@ class MyProfileViewController: UIViewController {
         self.myProfileContentContainerView.layer.maskedCorners =  [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         self.myProfileMyAnswerButton.isSelected = true
         self.myProfileMyAnswerButton.setTitle("내가 한 답", for: .normal)
-        self.myProfileMyAnswerButton.titleLabel?.font = UIFont(name: "GmarketSans-Medium", size: 14)
+        self.myProfileMyAnswerButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileMyAnswerButton.titleLabel?.textAlignment = .center
         self.myProfileMyAnswerButton.setTitleColor(UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 1.0), for: .selected)
         self.myProfileMyLikeButton.setTitle("좋아요", for: .normal)
-        self.myProfileMyLikeButton.titleLabel?.font = UIFont(name: "GmarketSans-Medium", size: 14)
+        self.myProfileMyLikeButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileMyLikeButton.titleLabel?.textAlignment = .center
         self.myProfileMyLikeButton.setTitleColor(UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0), for: .normal)
         self.myProfileMyScrapButton.setTitle("스크랩", for: .normal)
-        self.myProfileMyScrapButton.titleLabel?.font = UIFont(name: "GmarketSans-Medium", size: 14)
+        self.myProfileMyScrapButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.myProfileMyScrapButton.titleLabel?.textAlignment = .center
         self.myProfileMyScrapButton.setTitleColor(UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0), for: .normal)
         self.myProfileButtonBottomView.backgroundColor = UIColor.lineEee
@@ -167,14 +166,15 @@ class MyProfileViewController: UIViewController {
         self.myProfileMyAnswerButton.addTarget(self, action: #selector(self.didTapMyAnswerButton(_:)), for: .touchUpInside)
         self.myProfileFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileFloatingButton.plusColor = UIColor.white
-        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "Write.png"))
+        self.myProfileFloatingButton.selectedColor = UIColor.gray999
+        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
         self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "Write.png"))
+        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
         
     }
     
@@ -678,7 +678,11 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             // TO-DO
             let myProfileCell = collectionView.cellForItem(at: indexPath) as? MyProfileCollectionViewCell
             myProfileCell?.selectIndex = indexPath.item
-            
+            if self.myProfileFlag == "answer" {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let profileAnswerVC = storyboard.instantiateViewController(withIdentifier: "MyProfileAnswerVC") as? MyProfileAnswerDetailViewController
+                self.navigationController?.pushViewController(profileAnswerVC!, animated: true)
+            }
         } else {
             let myProfileTagCell = collectionView.cellForItem(at: indexPath) as? MyProfileTagCollectionViewCell
             switch indexPath.item {
@@ -770,6 +774,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                 break
             }
             collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+            self.myProfileCollectionView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         }
     }
     
