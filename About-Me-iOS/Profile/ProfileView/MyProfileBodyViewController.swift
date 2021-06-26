@@ -30,7 +30,7 @@ class MyProfileBodyViewController: UIViewController {
             if case let .success(data) = result, let list = data {
                 DispatchQueue.main.async {
                     self.myProfileLikeScrapData = list
-                    self.myProfileLikeScrapSubData = list.postList[0].body
+                    self.myProfileLikeScrapSubData = list.postList[0].body!
                     self.myProfileCollectionview.reloadData()
                     print(self.myProfileLikeScrapData)
                 }

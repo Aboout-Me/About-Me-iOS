@@ -18,8 +18,10 @@ class LastAnswerViewController: UIViewController {
     }
     
     private func setLastAnswerLayoutInit() {
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(self.navigationButtonDidTap(_:)))
         self.navigationItem.title = "나의 지난 응답"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 18)]
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)]
         self.backgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
         self.answerCollectionView.delegate = self
         self.answerCollectionView.dataSource = self
@@ -27,15 +29,21 @@ class LastAnswerViewController: UIViewController {
         self.answerCollectionView.register(nib, forCellWithReuseIdentifier: "LastAnswerCell")
         self.answerCollectionView.backgroundColor = .clear
         self.answerFloatingButton.buttonColor = .black
+        self.answerFloatingButton.selectedColor = UIColor.gray999
         self.answerFloatingButton.plusColor = .white
-        self.answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
-        self.answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
+        self.answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png"))
+        self.answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "Feed.png"))
+        self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
+    }
+    
+    @objc
+    private func navigationButtonDidTap(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -57,7 +65,17 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 335, height: 204)
+        return CGSize(width: UIScreen.main.bounds.size.width - 40, height: 367)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 15
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
     }
     
     
