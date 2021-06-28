@@ -18,6 +18,7 @@ class LastAnswerCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var answerContentLabel: UILabel!
     @IBOutlet weak var answerQuestionLabel: UILabel!
     @IBOutlet weak var answerEditButton: UIButton!
+    public var editButtonClousr: (() -> ())?
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,6 +32,7 @@ class LastAnswerCollectionViewCell: UICollectionViewCell {
         self.answerQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
         self.answerQuestionLabel.textColor = UIColor.gray333
         self.answerQuestionLabel.textAlignment = .left
+        self.answerQuestionLabel.lineBreakMode = .byTruncatingTail
         self.answerRankLabel.textColor = UIColor.gray333
         self.answerRankLabel.font = UIFont(name: "GmarketSansMedium", size: 11)
         self.answerCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
@@ -43,6 +45,15 @@ class LastAnswerCollectionViewCell: UICollectionViewCell {
         self.answerRankView.layer.cornerRadius = 5
         self.answerContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
         self.answerContentLabel.textColor = UIColor.gray333
-        self.answerContentLabel.numberOfLines = 0
+        self.answerContentLabel.numberOfLines = 3
+        self.answerContentLabel.textAlignment = .left
+        self.answerContentLabel.lineBreakMode = .byTruncatingTail
+        self.answerEditButton.addTarget(self, action: #selector(EditButtonDidTap(_:)), for: .touchUpInside)
     }
+    
+    @objc
+    private func EditButtonDidTap(_ sender: UIButton) {
+        editButtonClousr!()
+    }
+    
 }

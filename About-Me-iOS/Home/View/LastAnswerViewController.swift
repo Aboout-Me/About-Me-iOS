@@ -11,10 +11,31 @@ class LastAnswerViewController: UIViewController {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var answerFloatingButton: Floaty!
     @IBOutlet weak var answerCollectionView: UICollectionView!
+    public var answerId: Int = 0
+    private var screenSize = UIScreen.main.bounds.size
+    private var lastAnswerData = [LastAnswerListModel]()
+    
+    lazy var containerView: UIView = {
+        let dimView = UIView(frame: self.view.frame)
+        dimView.isOpaque = false
+        dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        dimView.tag = 2
+        return dimView
+    }()
+    
+    
+    lazy var answerEditBottomView: EditBottomSheetView = {
+        let editView = Bundle.main.loadNibNamed("EditBottomSheetView", owner: self, options: nil)?.first as? EditBottomSheetView
+        editView?.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
+        return editView!
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getLastAnswerCardList()
         self.setLastAnswerLayoutInit()
+        
     }
     
     private func setLastAnswerLayoutInit() {
@@ -41,27 +62,148 @@ class LastAnswerViewController: UIViewController {
         self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
     }
     
+    private func getUtilList() {
+        let parameter = [
+            "answer_id" : 97,
+            "user_id" : 1
+        ]
+        UtilApi.getDetailList(parameter: parameter) { result in
+            if case let .success(data) = result, let list = data {
+                print(list)
+            }
+        }
+    }
+    
+    private func getLastAnswerCardList() {
+        let parameter = [
+            "answer_id" : self.answerId
+        ]
+        
+        HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
+            if case let .success(data) = result, let list = data {
+                print(list)
+                self.lastAnswerData = list.postList
+                DispatchQueue.main.async {
+                    if self.lastAnswerData[0].color == "red" {
+                        self.backgroundImageView.image = UIImage(named: "imgBackgroundRed")
+                    } else if self.lastAnswerData[0].color == "yellow" {
+                        self.backgroundImageView.image = UIImage(named: "imgBackgroundYellow")
+                    } else if self.lastAnswerData[0].color == "green" {
+                        self.backgroundImageView.image = UIImage(named: "imgBackgroundGreen")
+                    } else if self.lastAnswerData[0].color == "pink" {
+                        self.backgroundImageView.image = UIImage(named: "imgBackgroundPink")
+                    } else {
+                        self.backgroundImageView.image = UIImage(named: "imgBackgroundViolet")
+                    }
+                    self.answerCollectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    public func setBottomSheetViewLayout() {
+        self.answerEditBottomView.layer.masksToBounds = true
+        self.answerEditBottomView.layer.cornerRadius = 10
+        self.answerEditBottomView.gestureView.layer.masksToBounds = true
+        self.answerEditBottomView.gestureView.layer.cornerRadius = 10
+        self.answerEditBottomView.editButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        self.answerEditBottomView.cancelButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        self.answerEditBottomView.deleteButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideEditBottomSheetView(_:)))
+        self.containerView.addGestureRecognizer(gesture)
+        self.answerEditBottomView.cancelButton.addTarget(self, action: #selector(cancelEditButtonDidTap(_:)), for: .touchUpInside)
+        self.answerEditBottomView.deleteButton.addTarget(self, action: #selector(deleteEditButtonDidTap(_:)), for: .touchUpInside)
+        
+        let window = UIApplication.shared.windows.first
+        window?.addSubview(self.containerView)
+        window?.addSubview(self.answerEditBottomView)
+    }
+    
+    @objc
+    private func hideEditBottomSheetView(_ gesture: UITapGestureRecognizer) {
+        let window = UIApplication.shared.windows.first
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            if let removeView = window?.viewWithTag(2) {
+                removeView.removeFromSuperview()
+            }
+            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }, completion: nil)
+    }
+    
+    @objc
+    private func cancelEditButtonDidTap(_ sender: UIButton) {
+        let window = UIApplication.shared.windows.first
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+            if let cancelView = window?.viewWithTag(2) {
+                cancelView.removeFromSuperview()
+            }
+            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }, completion: nil)
+    }
+    
+    @objc
+    private func deleteEditButtonDidTap(_ sender: UIButton) {
+        let window = UIApplication.shared.windows.first
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            if let deleteView = window?.viewWithTag(2) {
+                deleteView.removeFromSuperview()
+            }
+            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        } completion: { success in
+            if success {
+               // TO DO: CardSeq Add
+                
+            }
+        }
+
+    }
+    
+    
     @objc
     private func navigationButtonDidTap(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
 }
 
 
 extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 2
+        return self.lastAnswerData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let answerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LastAnswerCell", for: indexPath) as! LastAnswerCollectionViewCell
-        answerCell.answerCharacterLabel.text = "소소한일상"
-        answerCell.answerQuestionLabel.text = "인생의 가장 큰 목표는  무엇인가요?"
-        answerCell.answerRankLabel.text = "Level 2"
+        
+        if self.lastAnswerData[indexPath.item].color == "red" {
+            answerCell.answerCharacterLabel.text = "열정 충만"
+        } else if self.lastAnswerData[indexPath.item].color == "yellow" {
+            answerCell.answerCharacterLabel.text = "소소한일상"
+        } else if self.lastAnswerData[indexPath.item].color == "green" {
+            answerCell.answerCharacterLabel.text = "기억상자"
+        } else if self.lastAnswerData[indexPath.item].color == "pink" {
+            answerCell.answerCharacterLabel.text = "관계의 미학"
+        } else {
+            answerCell.answerCharacterLabel.text = "상상 플러스"
+        }
+        answerCell.answerQuestionLabel.text = "\(self.lastAnswerData[indexPath.item].question)"
+        answerCell.answerRankLabel.text = "Level \(self.lastAnswerData[indexPath.item].level)"
+        answerCell.answerContentLabel.text = "\(self.lastAnswerData[indexPath.item].answer)"
+        answerCell.editButtonClousr = {
+            self.setBottomSheetViewLayout()
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height - 224, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            })
+        }
         
         return answerCell
     }
+    
+    // TO DO :
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        <#code#>
+//    }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

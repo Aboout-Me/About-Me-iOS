@@ -10,7 +10,7 @@ import SideMenu
 import Hero
 import Floaty
 
-class HomeBeforeViewController: UIViewController, UITextViewDelegate {
+class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNavigationControllerDelegate {
     @IBOutlet weak var homeBeforeBackgroundImageView: UIImageView!
     @IBOutlet weak var homeBeforeFloatingButton: Floaty!
     @IBOutlet var homeBeforeBottomSheet: HomeBottomSheet!
@@ -235,6 +235,9 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
     private func showLastAnswerButtonDidTap() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let lastAnswerView = storyboard.instantiateViewController(identifier: "LastAnswerVC") as? LastAnswerViewController
+        let center = self.view.convert(self.homeBeforeCollectionView.center, to: self.homeBeforeCollectionView)
+        let indexPath = self.homeBeforeCollectionView.indexPathForItem(at: center)
+        lastAnswerView?.answerId = indexPath!.item
         guard let lastAnswerVC = lastAnswerView else { return }
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
         
@@ -257,6 +260,23 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate {
             self.homeBeforeBottomSheet.questionConfirmButton.isEnabled = false
             textView.text = "당신의 생각을 말해주세요"
             textView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
+        }
+    }
+    
+
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        print("side menu WillApper ")
+        let dimView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
+        dimView.tag = 2
+        UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
+            dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.view.addSubview(dimView)
+        }, completion: nil)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        if let removeView = self.view.viewWithTag(2) {
+            removeView.removeFromSuperview()
         }
     }
         
@@ -431,7 +451,6 @@ extension UIColor {
         return image!
     }
 }
-
 
 class HomeCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private var previousOffset: CGFloat = 0

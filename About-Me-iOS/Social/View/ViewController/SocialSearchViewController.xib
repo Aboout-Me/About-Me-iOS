@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialSearchViewController" customModule="About_Me_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialSearchViewController" customModule="__________" customModuleProvider="target">
             <connections>
                 <outlet property="searchInputView" destination="hMn-qD-9YW" id="P9U-V4-tAi"/>
                 <outlet property="searchTableView" destination="E6X-1B-JgA" id="wtU-Pa-Zp5"/>

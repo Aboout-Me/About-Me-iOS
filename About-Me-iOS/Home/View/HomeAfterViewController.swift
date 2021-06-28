@@ -13,7 +13,6 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var homeAfterFloaingButton: Floaty!
     @IBOutlet weak var homeAfterBackgroundImageView: UIImageView!
     @IBOutlet var homeAfterAnswerEditBottomSheetView: AnswerEditBottomSheet!
-    @IBOutlet var homeAfterEditBottomSheetView: EditBottomSheet!
     public var titleText: String = ""
     public var backgroundColor: String = ""
     public var answerLevel: String = ""
@@ -25,6 +24,12 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         containerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         containerView.tag = 1
         return containerView
+    }()
+    
+    lazy var editBottomView: EditBottomSheetView = {
+        let editView = Bundle.main.loadNibNamed("EditBottomSheetView", owner: self, options: nil)?.first as? EditBottomSheetView
+        editView?.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
+        return editView!
     }()
     
     
@@ -75,15 +80,16 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     
     
     private func editBottomSheetLayoutInit() {
-        self.homeAfterEditBottomSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
-        self.homeAfterEditBottomSheetView.gestureView.layer.cornerRadius = 10
-        self.homeAfterEditBottomSheetView.gestureView.layer.masksToBounds = true
-        self.homeAfterEditBottomSheetView.layer.cornerRadius = 10
-        self.homeAfterEditBottomSheetView.layer.masksToBounds = true
+        self.editBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
+        self.editBottomView.gestureView.layer.cornerRadius = 10
+        self.editBottomView.gestureView.layer.masksToBounds = true
+        self.editBottomView.layer.cornerRadius = 10
+        self.editBottomView.layer.masksToBounds = true
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideEditBottomSheetGestureAction(recognizer:)))
         self.editBottomContainerView.addGestureRecognizer(tapGesture)
-        self.homeAfterEditBottomSheetView.editButton.addTarget(self, action: #selector(self.homeAfterEditButtonDidTap(_:)), for: .touchUpInside)
-        self.homeAfterEditBottomSheetView.deleteButton.addTarget(self, action: #selector(self.homeAfterDeleteButtonDidTap(_:)), for: .touchUpInside)
+        self.editBottomView.editButton.addTarget(self, action: #selector(self.homeAfterEditButtonDidTap(_:)), for: .touchUpInside)
+        self.editBottomView.deleteButton.addTarget(self, action: #selector(self.homeAfterDeleteButtonDidTap(_:)), for: .touchUpInside)
+        self.editBottomView.cancelButton.addTarget(self, action: #selector(self.homeAfterCancelButtonDidTap(_:)), for: .touchUpInside)
     }
     
     
@@ -187,9 +193,9 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         let window = UIApplication.shared.windows.first
         let screenSize = UIScreen.main.bounds.size
         window?.addSubview(self.editBottomContainerView)
-        window?.addSubview(self.homeAfterEditBottomSheetView)
+        window?.addSubview(self.editBottomView)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.homeAfterEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height - 224, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height - 224, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
         })
     }
     
@@ -208,7 +214,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
             if let removeContainer = window?.viewWithTag(1) {
                 removeContainer.removeFromSuperview()
             }
-            self.homeAfterEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
         })
     }
     
@@ -221,7 +227,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
             if let removeContainer = window?.viewWithTag(1) {
                 removeContainer.removeFromSuperview()
             }
-            self.homeAfterEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
         } completion: { (success) in
             if success {
                 let screenSize = UIScreen.main.bounds.size
@@ -247,8 +253,34 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     
     @objc
     private func homeAfterDeleteButtonDidTap(_ sender: UIButton) {
-        self.deleteHomeCardList()
+        let window = UIApplication.shared.windows.first
+        let screenSize = UIScreen.main.bounds.size
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            if let deleteView = window?.viewWithTag(1) {
+                deleteView.removeFromSuperview()
+            }
+            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        } completion: { success in
+            if success {
+                self.deleteHomeCardList()
+            }
+        }
+
     }
+    
+    @objc
+    private func homeAfterCancelButtonDidTap(_ sender: UIButton) {
+        let window = UIApplication.shared.windows.first
+        let screenSize = UIScreen.main.bounds.size
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            if let cancelView = window?.viewWithTag(1) {
+                cancelView.removeFromSuperview()
+            }
+            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }, completion: nil)
+    }
+    
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
@@ -304,20 +336,7 @@ extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewData
     
 }
 
-class EditBottomSheet: UIView {
-    @IBOutlet weak var editButton: UIButton!
-    @IBOutlet weak var deleteButton: UIButton!
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var gestureView: UIView!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-}
+
 
 class AnswerEditBottomSheet: UIView {
     

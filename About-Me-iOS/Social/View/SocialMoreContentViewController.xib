@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialMoreContentViewController" customModule="About_Me_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialMoreContentViewController" customModule="__________" customModuleProvider="target">
             <connections>
                 <outlet property="bodyCollectionView" destination="9gC-AW-4jj" id="IcK-p9-YsG"/>
                 <outlet property="headerCollectionView" destination="cCo-eL-aAQ" id="0WL-Qo-1Vd"/>
