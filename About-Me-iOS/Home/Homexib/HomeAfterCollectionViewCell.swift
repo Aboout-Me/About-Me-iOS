@@ -23,9 +23,12 @@ class HomeAfterCollectionViewCell: UICollectionViewCell {
     }
     private func setLayoutInit() {
         self.homeAfterContainerView.layer.borderColor = UIColor.clear.cgColor
-        self.homeAfterContainerView.layer.cornerRadius = 20
-        self.homeAfterContainerView.layer.masksToBounds = true
+        self.homeAfterContainerView.layer.cornerRadius = 10
+        self.homeAfterContainerView.layer.masksToBounds = false
         self.homeAfterContainerView.backgroundColor = UIColor.white
+        self.homeAfterContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.homeAfterContainerView.layer.shadowColor = UIColor.black10.cgColor
+        self.homeAfterContainerView.layer.shadowRadius = 5
         self.homeAfterTitleLabel.numberOfLines = 0
         self.homeAfterTitleLabel.textAlignment = .left
         self.homeAfterTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)

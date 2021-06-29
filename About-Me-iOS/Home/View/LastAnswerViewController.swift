@@ -7,7 +7,7 @@
 
 import UIKit
 import Floaty
-class LastAnswerViewController: UIViewController {
+class LastAnswerViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var answerFloatingButton: Floaty!
     @IBOutlet weak var answerCollectionView: UICollectionView!
@@ -31,11 +31,22 @@ class LastAnswerViewController: UIViewController {
     }()
     
     
+    lazy var postBottomView: PostBottomSheetView = {
+        let postView = Bundle.main.loadNibNamed("PostBottomSheetView", owner: self, options: nil)?.first as? PostBottomSheetView
+        postView?.frame = CGRect(x: self.view.frame.origin.x, y: self.screenSize.height, width: self.view.frame.size.width, height: postView!.frame.size.height)
+        return postView!
+    }()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getLastAnswerCardList()
         self.setLastAnswerLayoutInit()
-        
+        self.view.addSubview(postBottomView)
+        self.setPostBottomSheetViewLayout()
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.postBottomView.frame = CGRect(x: 0, y: self.screenSize.height - self.screenSize.height / 1.05, width: self.screenSize.width, height: self.postBottomView.frame.size.height + self.view.safeAreaInsets.bottom)
+        })
     }
     
     private func setLastAnswerLayoutInit() {
@@ -62,6 +73,53 @@ class LastAnswerViewController: UIViewController {
         self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
     }
     
+    public func setBottomSheetViewLayout() {
+        self.answerEditBottomView.layer.masksToBounds = true
+        self.answerEditBottomView.layer.cornerRadius = 10
+        self.answerEditBottomView.gestureView.layer.masksToBounds = true
+        self.answerEditBottomView.gestureView.layer.cornerRadius = 10
+        self.answerEditBottomView.editButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        self.answerEditBottomView.cancelButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        self.answerEditBottomView.deleteButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideEditBottomSheetView(_:)))
+        self.containerView.addGestureRecognizer(gesture)
+        self.answerEditBottomView.cancelButton.addTarget(self, action: #selector(cancelEditButtonDidTap(_:)), for: .touchUpInside)
+        self.answerEditBottomView.deleteButton.addTarget(self, action: #selector(deleteEditButtonDidTap(_:)), for: .touchUpInside)
+        
+        let window = UIApplication.shared.windows.first
+        window?.addSubview(self.containerView)
+        window?.addSubview(self.answerEditBottomView)
+    }
+    
+    public func setPostBottomSheetViewLayout() {
+        let editToolbar = UIToolbar()
+        let fiexedbarButtonItem = UIBarButtonItem(systemItem: .flexibleSpace)
+        let donebarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.postToolBarButtonDidTap))
+        editToolbar.items = [fiexedbarButtonItem,donebarButtonItem]
+        editToolbar.sizeToFit()
+        self.postBottomView.layer.masksToBounds = true
+        self.postBottomView.layer.cornerRadius = 20
+        self.postBottomView.postNavigationTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        self.postBottomView.postNavigationTitleLabel.textAlignment = .center
+        self.postBottomView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
+        self.postBottomView.postNumberLabel.text = "Q. "
+        self.postBottomView.postNumberLabel.textColor = .gray333
+        self.postBottomView.postNumberLabel.textAlignment = .left
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 4
+        let attributedText = NSAttributedString(string: "인생의 가장 큰 목표는 무엇인가요? 인생의 가장 큰 목표는 무엇인가요?", attributes: [.paragraphStyle: paragraphStyle,.font: UIFont(name: "GmarketSansMedium", size: 20),.foregroundColor: UIColor.gray333])
+        self.postBottomView.postQuestionLabel.numberOfLines = 0
+        self.postBottomView.postQuestionLabel.attributedText = attributedText
+        self.postBottomView.postAnswerTextView.delegate = self
+        self.postBottomView.postAnswerTextView.textAlignment = .left
+        self.postBottomView.postAnswerTextView.text = "당신의 생각을 말해주세요"
+        self.postBottomView.postAnswerTextView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
+        self.postBottomView.postAnswerTextView.inputAccessoryView = editToolbar
+        
+    }
+    
+    
+    
     private func getUtilList() {
         let parameter = [
             "answer_id" : 97,
@@ -76,7 +134,7 @@ class LastAnswerViewController: UIViewController {
     
     private func getLastAnswerCardList() {
         let parameter = [
-            "answer_id" : self.answerId
+            "answer_id" : 97
         ]
         
         HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
@@ -99,24 +157,6 @@ class LastAnswerViewController: UIViewController {
                 }
             }
         }
-    }
-    
-    public func setBottomSheetViewLayout() {
-        self.answerEditBottomView.layer.masksToBounds = true
-        self.answerEditBottomView.layer.cornerRadius = 10
-        self.answerEditBottomView.gestureView.layer.masksToBounds = true
-        self.answerEditBottomView.gestureView.layer.cornerRadius = 10
-        self.answerEditBottomView.editButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        self.answerEditBottomView.cancelButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        self.answerEditBottomView.deleteButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(hideEditBottomSheetView(_:)))
-        self.containerView.addGestureRecognizer(gesture)
-        self.answerEditBottomView.cancelButton.addTarget(self, action: #selector(cancelEditButtonDidTap(_:)), for: .touchUpInside)
-        self.answerEditBottomView.deleteButton.addTarget(self, action: #selector(deleteEditButtonDidTap(_:)), for: .touchUpInside)
-        
-        let window = UIApplication.shared.windows.first
-        window?.addSubview(self.containerView)
-        window?.addSubview(self.answerEditBottomView)
     }
     
     @objc
@@ -151,7 +191,7 @@ class LastAnswerViewController: UIViewController {
             self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
         } completion: { success in
             if success {
-               // TO DO: CardSeq Add
+               // TO DO: answerId
                 
             }
         }
@@ -162,6 +202,11 @@ class LastAnswerViewController: UIViewController {
     @objc
     private func navigationButtonDidTap(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc
+    private func postToolBarButtonDidTap() {
+        self.postBottomView.endEditing(true)
     }
     
 }

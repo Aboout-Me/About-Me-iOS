@@ -19,6 +19,7 @@ class SideOnlyViewController: UIViewController {
     @IBOutlet weak var inquireButton: UIButton!
     @IBOutlet weak var noticeButton: UIButton!
     @IBOutlet weak var appVersionInfoButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,6 +53,11 @@ class SideOnlyViewController: UIViewController {
         self.inquireButton.titleLabel?.textAlignment = .center
         self.noticeButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
         self.noticeButton.titleLabel?.textAlignment = .center
+        self.logoutButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 15)
+        self.logoutButton.titleLabel?.textAlignment = .center
+        self.logoutButton.layer.borderColor = UIColor.lineEee.cgColor
+        self.logoutButton.layer.borderWidth = 1
+        self.logoutButton.layer.cornerRadius = 20
         guard let dictionary = Bundle.main.infoDictionary, let version = dictionary["CFBundleShortVersionString"] as? String else { return }
         print("버전 정보 \(version)")
         self.appVersionInfoButton.setTitle("버전정보 \(version)", for: .normal)
@@ -63,15 +69,14 @@ class SideOnlyViewController: UIViewController {
         self.socialButton.addTarget(self, action: #selector(self.showSocialButtonDidTap(_:)), for: .touchUpInside)
         self.myProfileButton.addTarget(self, action: #selector(self.showMyProfileButtonDidTap(_:)), for: .touchUpInside)
         self.myFeedButton.addTarget(self, action: #selector(self.showMyFeedButtonDidTap(_:)), for: .touchUpInside)
-        
     }
     
     @objc
     private func showQuestionButtonDidTap(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let questionView = storyboard.instantiateViewController(withIdentifier: "QuestionsVC") as? QuestionsViewController
-        guard let questionVC = questionView else { return }
-        self.navigationController?.pushViewController(questionVC, animated: true)
+        let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+        guard let homeBeforeVC = homeBeforeView else { return }
+        self.navigationController?.pushViewController(homeBeforeVC, animated: true)
     }
     
     @objc
