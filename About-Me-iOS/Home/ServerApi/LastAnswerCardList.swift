@@ -15,9 +15,11 @@ struct LastAnswerCardList: Codable {
 }
 
 struct LastAnswerListModel: Codable {
-    var answerId: Int
+    var cardSeq: Int
+    var quest_id: Int
     var question: String
     var color: String
+    var isShare: String
     var answer: String
     var level: Int
 }

@@ -189,6 +189,8 @@
 		FF6922BD264315F700B0B533 /* Edit.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BA264315F700B0B533 /* Edit.png */; };
 		FF6922BE264315F700B0B533 /* Edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BB264315F700B0B533 /* Edit@3x.png */; };
 		FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BC264315F700B0B533 /* Edit@2x.png */; };
+		FF7437F8268A224B00FB4C9A /* PostBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF7437F7268A224B00FB4C9A /* PostBottomSheetView.xib */; };
+		FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */; };
 		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
@@ -425,6 +427,8 @@
 		FF6922BA264315F700B0B533 /* Edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Edit.png; sourceTree = "<group>"; };
 		FF6922BB264315F700B0B533 /* Edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@3x.png"; sourceTree = "<group>"; };
 		FF6922BC264315F700B0B533 /* Edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@2x.png"; sourceTree = "<group>"; };
+		FF7437F7268A224B00FB4C9A /* PostBottomSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostBottomSheetView.xib; sourceTree = "<group>"; };
+		FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetView.swift; sourceTree = "<group>"; };
 		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
@@ -895,6 +899,9 @@
 				FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */,
 				FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */,
 				FF33506F2689E59F00D98DD9 /* EditBottomSheetView.swift */,
+				FF33506D2689E3E900D98DD9 /* EditBottomSheetView.xib */,
+				FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */,
+				FF7437F7268A224B00FB4C9A /* PostBottomSheetView.xib */,
 			);
 			path = Homexib;
 			sourceTree = "<group>";
@@ -975,7 +982,6 @@
 				07F33943264D281900B5CFC0 /* confirm@2x.png in Resources */,
 				0714AE85265D3261005C3C6E /* like_off@3x.png in Resources */,
 				FF6922B226430BC600B0B533 /* imgBackgroundYellow@3x.png in Resources */,
-				FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */,
 				FFFC0F9A2641A68500C6372F /* SelfQuestion@3x.png in Resources */,
 				FFFC0F8A2641A5B900C6372F /* Feed.png in Resources */,
 				07129474266D07B3001250FB /* bookmark_on_dark@3x.png in Resources */,
@@ -1038,7 +1044,6 @@
 				FFAE74CB2628AF7C0054CB2D /* check.png in Resources */,
 				0705C8F6265BE93F00E71E8E /* s_card_yellow@3x.png in Resources */,
 				07129472266D07B3001250FB /* like_on_dark@2x.png in Resources */,
-				FFAE74CB2628AF7C0054CB2D /* check.png in Resources */,
 				FFAE74C826287D2B0054CB2D /* icon.png in Resources */,
 				0712945A266D0578001250FB /* img_background_green@2x.png in Resources */,
 				FFFC0F75264192E200C6372F /* imgBackgroundRed@2x.png in Resources */,
@@ -1050,6 +1055,7 @@
 				FFFC0F7C264193CE00C6372F /* GmarketSansBold.otf in Resources */,
 				0705C8F4265BE93F00E71E8E /* s_card_green.png in Resources */,
 				0714AE8C265D326C005C3C6E /* bookmark_off.png in Resources */,
+				FF7437F8268A224B00FB4C9A /* PostBottomSheetView.xib in Resources */,
 				FFFC0F922641A63400C6372F /* Write.png in Resources */,
 				07432F732663D735008786B0 /* bookmark_off_dark.png in Resources */,
 				07EAD054266FAF860099B604 /* img_background_yellow@2x.png in Resources */,
@@ -1105,7 +1111,6 @@
 				FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */,
 				07129471266D07B3001250FB /* like_on_dark.png in Resources */,
 				07EE6C9A264AB06300F99643 /* BottomSheetView.xib in Resources */,
-				FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */,
 				0751A67226443515004E635C /* advisory@3x.png in Resources */,
 				0712945C266D0578001250FB /* img_background_pink.png in Resources */,
 				0751A66D26443515004E635C /*  alert-circle@3x.png in Resources */,
@@ -1172,8 +1177,6 @@
 				07B89EBB268A1002007380A5 /* ScrapProgressList.swift in Sources */,
 				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				0705C8D1265BDEAA00E71E8E /* SocialContentViewCell.swift in Sources */,
-				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
-				FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */,
 				0705C8CA2658267D00E71E8E /* AdvisoryUpdateList.swift in Sources */,
 				072931F4267F025C00CCA6A8 /* AdvisoryStageViewController.swift in Sources */,
 				FF3350702689E59F00D98DD9 /* EditBottomSheetView.swift in Sources */,
@@ -1226,6 +1229,7 @@
 				0705C8CD265BDC5800E71E8E /* SocialHeaderCell.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
+				FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */,
 				FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
 				07B05726266687CA002085B7 /* SocialCommentCell.swift in Sources */,
@@ -1388,6 +1392,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.aboutme.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1409,6 +1414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.About-Me-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

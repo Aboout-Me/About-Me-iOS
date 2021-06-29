@@ -7,16 +7,19 @@
 
 import UIKit
 import Floaty
+import SideMenu
 
-class HomeAfterViewController: UIViewController, UITextViewDelegate {
+class HomeAfterViewController: UIViewController, UITextViewDelegate,SideMenuNavigationControllerDelegate {
     @IBOutlet weak var homeAfterCollectionView: UICollectionView!
     @IBOutlet weak var homeAfterFloaingButton: Floaty!
     @IBOutlet weak var homeAfterBackgroundImageView: UIImageView!
-    @IBOutlet var homeAfterAnswerEditBottomSheetView: AnswerEditBottomSheet!
+    @IBOutlet weak var homeAfterLastAnswerButton: UIButton!
+    public var afterSideMenu: SideMenuNavigationController?
     public var titleText: String = ""
     public var backgroundColor: String = ""
     public var answerLevel: String = ""
     public var screenSize = UIScreen.main.bounds.size
+    public var isAfterShare = "N"
     
     lazy var editBottomContainerView: UIView = {
         let containerView = UIView(frame: self.view.frame)
@@ -24,6 +27,17 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         containerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         containerView.tag = 1
         return containerView
+    }()
+    
+    
+    lazy var answerBottomSheetView: PostBottomSheetView = {
+        let answerSheetView = Bundle.main.loadNibNamed("PostBottomSheetView", owner: self, options: nil)?.first as? PostBottomSheetView
+        answerSheetView?.frame = CGRect(x: self.view.frame.origin.x, y: self.screenSize.height, width: self.screenSize.width, height: answerSheetView!.frame.size.height)
+        answerSheetView?.postAnswerTextView.delegate = self
+        answerSheetView?.postCancelButton.addTarget(self, action: #selector(self.hideAnswerBottomSheetDidTap), for: .touchUpInside)
+        answerSheetView?.postConfirmButton.addTarget(self, action: #selector(self.confirmEditViewButtonDidTap), for: .touchUpInside)
+        answerSheetView?.postShareButton.addTarget(self, action: #selector(self.shareEditViewButtonDidTap(_:)), for: .touchUpInside)
+        return answerSheetView!
     }()
     
     lazy var editBottomView: EditBottomSheetView = {
@@ -37,6 +51,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
         
         self.setLayoutInit()
+        self.setSideMenuLayoutInit()
     }
     
     
@@ -48,6 +63,10 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let dateString = dateFormatter.string(from: date)
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(self.showAfterSideButtonDidTap))
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell"), style: .plain, target: self, action: nil)
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = dateString
         self.homeAfterCollectionView.delegate = self
         self.homeAfterCollectionView.dataSource = self
@@ -57,6 +76,13 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         self.homeAfterCollectionView.register(nib, forCellWithReuseIdentifier: "HomeAfterCell")
         self.homeAfterFloaingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.homeAfterFloaingButton.plusColor = UIColor.white
+        self.homeAfterFloaingButton.selectedColor = UIColor.gray999
+        self.homeAfterLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
+        self.homeAfterLastAnswerButton.setTitleColor(UIColor.gray333, for: .normal)
+        self.homeAfterLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        self.homeAfterLastAnswerButton.backgroundColor = .white
+        self.homeAfterLastAnswerButton.layer.cornerRadius = 15
+        self.homeAfterLastAnswerButton.layer.masksToBounds = true
         self.homeAfterFloaingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
         self.homeAfterFloaingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -76,6 +102,20 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         } else if self.backgroundColor == "purple" {
             self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
         }
+        
+        if UserDefaults.standard.integer(forKey: "homeBeforeLevel") == 1 {
+            self.homeAfterLastAnswerButton.isHidden = true
+        } else {
+            self.homeAfterLastAnswerButton.isHidden = false
+        }
+    }
+    
+    
+    private func setSideMenuLayoutInit() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let sideOnlyViewController: SideOnlyViewController = storyboard.instantiateViewController(withIdentifier: "SideOnlyViewController") as! SideOnlyViewController
+        self.afterSideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
+        self.afterSideMenu?.leftSide = true
     }
     
     
@@ -93,7 +133,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    private func answerEditBottomSheetLayoutInit() {
+    public func answerEditBottomSheetLayoutInit() {
         let paragraphStyle = NSMutableParagraphStyle()
         let editToolbar = UIToolbar()
         let screenSize = UIScreen.main.bounds.size
@@ -102,29 +142,23 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         let donebarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.toolbarButtonDidTap))
         editToolbar.items = [fiexedbarButtonItem,donebarButtonItem]
         editToolbar.sizeToFit()
-        self.homeAfterAnswerEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 2)
-        self.homeAfterAnswerEditBottomSheetView.answerTitleQuestionLabel.text = "Q. "
-        self.homeAfterAnswerEditBottomSheetView.answerTitleQuestionLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.homeAfterAnswerEditBottomSheetView.answerTitleQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
-        self.homeAfterAnswerEditBottomSheetView.answerTitleQuestionLabel.textAlignment = .left
-        self.homeAfterAnswerEditBottomSheetView.answerTitleLabel.attributedText = NSAttributedString(string: "\(self.titleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        self.homeAfterAnswerEditBottomSheetView.answerTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.homeAfterAnswerEditBottomSheetView.answerTitleLabel.textAlignment = .left
-        self.homeAfterAnswerEditBottomSheetView.answerTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
-        self.homeAfterAnswerEditBottomSheetView.answerTitleLabel.numberOfLines = 0
-        self.homeAfterAnswerEditBottomSheetView.answerTitleLabel.sizeToFit()
-        self.homeAfterAnswerEditBottomSheetView.answerTextView.delegate = self
-        self.homeAfterAnswerEditBottomSheetView.answerTextView.text = "당신의 생각을 말해주세요"
-        self.homeAfterAnswerEditBottomSheetView.answerTextView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
-        self.homeAfterAnswerEditBottomSheetView.answerTextView.inputAccessoryView = editToolbar
-        self.homeAfterAnswerEditBottomSheetView.answerEditNavigationBar.shadowImage = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0).imageFormatting()
-        self.homeAfterAnswerEditBottomSheetView.answerEditNavigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!]
-        self.homeAfterAnswerEditBottomSheetView.layer.cornerRadius = 20
-        self.homeAfterAnswerEditBottomSheetView.layer.masksToBounds = true
-        self.homeAfterAnswerEditBottomSheetView.backgroundColor = .white
-        self.homeAfterAnswerEditBottomSheetView.answerConfirmButton.isEnabled = false
-        self.homeAfterAnswerEditBottomSheetView.answerDeleteButton.addTarget(self, action: #selector(self.hideAnswerBottomSheetDidTap), for: .touchUpInside)
-        self.homeAfterAnswerEditBottomSheetView.answerConfirmButton.addTarget(self, action: #selector(self.confirmEditBottomSheetDidTap), for: .touchUpInside)
+        self.answerBottomSheetView.postNumberLabel.text = "Q. "
+        self.answerBottomSheetView.postNumberLabel.textColor = .gray333
+        self.answerBottomSheetView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
+        self.answerBottomSheetView.postNumberLabel.textAlignment = .left
+        self.answerBottomSheetView.postQuestionLabel.attributedText = NSAttributedString(string: "\(self.titleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        self.answerBottomSheetView.postQuestionLabel.textColor = .gray333
+        self.answerBottomSheetView.postQuestionLabel.textAlignment = .left
+        self.answerBottomSheetView.postQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        self.answerBottomSheetView.postQuestionLabel.numberOfLines = 0
+        self.answerBottomSheetView.postQuestionLabel.sizeToFit()
+        self.answerBottomSheetView.postAnswerTextView.text = "당신의 생각을 말해주세요"
+        self.answerBottomSheetView.postAnswerTextView.textColor = .gray999
+        self.answerBottomSheetView.postAnswerTextView.isScrollEnabled = false
+        self.answerBottomSheetView.postConfirmButton.isEnabled = false
+        self.answerBottomSheetView.postAnswerTextView.inputAccessoryView = editToolbar
+        self.answerBottomSheetView.layer.cornerRadius = 20
+        self.answerBottomSheetView.layer.masksToBounds = true
     }
     
     private func deleteHomeCardList() {
@@ -146,7 +180,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     // TODO: - APIRequest
     
     private func editHomeCardList() {
-        let parameter = HomeCardEditParamter(answer: self.homeAfterAnswerEditBottomSheetView.answerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), level: UserDefaults.standard.integer(forKey: "homeBeforeLevel"), share: "Y")
+        let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), level: UserDefaults.standard.integer(forKey: "homeBeforeLevel"), share: isAfterShare)
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list)
@@ -169,7 +203,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         let alertCancelButton = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         let alertConfirmButton = UIAlertAction(title: "네", style: .default) { _ in
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                self.homeAfterAnswerEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
+                self.answerBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
             })
         }
         alert.addAction(alertCancelButton)
@@ -178,13 +212,28 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     }
     
     @objc
-    private func confirmEditBottomSheetDidTap() {
+    private func confirmEditViewButtonDidTap() {
         let screenSize = UIScreen.main.bounds.size
-        self.homeAfterAnswerEditBottomSheetView.answerTextView.resignFirstResponder()
+        self.answerBottomSheetView.postAnswerTextView.resignFirstResponder()
         self.editHomeCardList()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.homeAfterAnswerEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
+            self.answerBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height / 1.2)
         })
+    }
+    
+    @objc
+    private func shareEditViewButtonDidTap(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            isAfterShare = "N"
+            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+            UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
+        } else {
+            sender.isSelected = true
+            isAfterShare = "Y"
+            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "Lock"), for: .normal)
+            UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
+        }
     }
     
     
@@ -202,7 +251,7 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     
     @objc
     private func toolbarButtonDidTap() {
-        self.homeAfterAnswerEditBottomSheetView.endEditing(true)
+        self.answerBottomSheetView.endEditing(true)
     }
     
     
@@ -232,10 +281,11 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
             if success {
                 let screenSize = UIScreen.main.bounds.size
                 let window = UIApplication.shared.windows.first
-                window?.addSubview(self.homeAfterAnswerEditBottomSheetView)
+                let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+                window?.addSubview(self.answerBottomSheetView)
                 self.answerEditBottomSheetLayoutInit()
                 UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                    self.homeAfterAnswerEditBottomSheetView.frame = CGRect(x: 0, y: screenSize.height - screenSize.height / 1.05, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+                    self.answerBottomSheetView.frame = CGRect(x: 0, y: screenSize.height - (screenSize.height - height - 12), width: screenSize.width, height: screenSize.height + height + 12)
                 })
             }
         }
@@ -281,10 +331,15 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
         }, completion: nil)
     }
     
+    @objc
+    public func showAfterSideButtonDidTap() {
+        guard let sideMenu = self.afterSideMenu else { return }
+        self.present(sideMenu, animated: true, completion: nil)
+    }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            self.homeAfterAnswerEditBottomSheetView.answerConfirmButton.isEnabled = false
+            self.answerBottomSheetView.postConfirmButton.isEnabled = false
             textView.text = "당신의 생각을 말해주세요"
             textView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
         }
@@ -293,18 +348,33 @@ class HomeAfterViewController: UIViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
-        if textView.textColor == UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0) {
-            self.homeAfterAnswerEditBottomSheetView.answerConfirmButton.isEnabled = true
+        if textView.textColor == .gray999 {
+            self.answerBottomSheetView.postConfirmButton.isEnabled = true
             textView.text = nil
             textView.textAlignment = .left
             textView.typingAttributes = [NSAttributedString.Key.paragraphStyle:paragraphStyle,NSAttributedString.Key.font:UIFont(name: "AppleSDGothicNeo-Regular", size: 16),NSAttributedString.Key.foregroundColor:UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)]
         }
     }
     
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        let effectView = UIView(frame: self.view.frame)
+        effectView.tag = 2
+        UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
+            effectView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.view.addSubview(effectView)
+        }, completion: nil)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        if let effectRemoveView = self.view.viewWithTag(2) {
+            effectRemoveView.removeFromSuperview()
+        }
+    }
+    
 }
 
 
-extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewDataSource{
+extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 1
     }
@@ -334,26 +404,14 @@ extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewData
         return homeAfterCell!
     }
     
-}
-
-
-
-class AnswerEditBottomSheet: UIView {
-    
-    @IBOutlet weak var answerEditNavigationBar: BottomNavigationBar!
-    @IBOutlet weak var answerDeleteButton: UIButton!
-    @IBOutlet weak var answerConfirmButton: UIButton!
-    @IBOutlet weak var answerShareButton: UIButton!
-    @IBOutlet weak var answerTitleQuestionLabel: UILabel!
-    @IBOutlet weak var answerTitleLabel: UILabel!
-    @IBOutlet weak var answerTextView: UITextView!
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: UIScreen.main.bounds.size.width - 40, height: 420)
     }
     
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 40, left: 20, bottom: 40, right: 20)
     }
     
 }

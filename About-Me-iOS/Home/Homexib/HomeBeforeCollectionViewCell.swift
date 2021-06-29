@@ -30,7 +30,10 @@ class HomeBeforeCollectionViewCell: UICollectionViewCell {
         self.homeBeforeTitleLineView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.homeBeforeContainerView.layer.borderColor = UIColor.clear.cgColor
         self.homeBeforeContainerView.layer.cornerRadius = 10
-        self.homeBeforeContainerView.layer.masksToBounds = true
+        self.homeBeforeContainerView.layer.masksToBounds = false
+        self.homeBeforeContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        self.homeBeforeContainerView.layer.shadowColor = UIColor.black10.cgColor
+        self.homeBeforeContainerView.layer.shadowRadius = 5
         self.homeBeforeContainerView.backgroundColor = UIColor.white
         self.homeBeforeTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.homeBeforeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
