@@ -7,6 +7,7 @@
 
 import UIKit
 import Floaty
+@available(iOS 14.0, *)
 class LastAnswerViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var answerFloatingButton: Floaty!
