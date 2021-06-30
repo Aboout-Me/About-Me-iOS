@@ -10,13 +10,15 @@ class AdditionalProfileViewController: UIViewController {
     @IBOutlet weak var introduceTextView: UITextView!
     @IBOutlet weak var limitNum: UILabel!
     @IBOutlet weak var nextButton: UIButton!
-    
+
     var emailFlag: Bool = false
     var nicknameFlag: Bool = false
     var dateFlag: Bool = false
     var genderFlag: Bool = false
     var introduceFlag: Bool = false
     
+    var gender = "none"
+      
     private var datePicker: UIDatePicker?
     
     override func viewDidLoad() {
@@ -72,6 +74,8 @@ class AdditionalProfileViewController: UIViewController {
  
         dateTextfield.inputView = datePicker
     }
+    
+//    func makeSignUpTemplate() -> 
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -156,6 +160,7 @@ class AdditionalProfileViewController: UIViewController {
         womanButton.setTitleColor(UIColor.lightGray, for: .normal)
         womanButton.layer.borderWidth = 0.25
         
+        gender = "man"
         genderFlag = true
         nextButtonisEnalbed()
     }
@@ -169,6 +174,7 @@ class AdditionalProfileViewController: UIViewController {
         manButton.setTitleColor(UIColor.lightGray, for: .normal)
         manButton.layer.borderWidth = 0.25
         
+        gender = "woman"
         genderFlag = true
         nextButtonisEnalbed()
     }

@@ -37,7 +37,7 @@
                                     <color key="titleColor" systemColor="systemPinkColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="GtP-ZS-CPc" kind="show" id="6TC-NO-xFH"/>
+                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ays-HQ-Hrn"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="logo description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEy-sZ-Srf">
@@ -115,6 +115,7 @@
                         <outlet property="logoDescription" destination="XEy-sZ-Srf" id="upv-Vb-0Sn"/>
                         <outlet property="logoImage" destination="mo2-PM-K9o" id="TUr-bp-U51"/>
                         <outlet property="naverloginButton" destination="cB0-VQ-Hud" id="9NY-da-PSf"/>
+                        <segue destination="GtP-ZS-CPc" kind="show" identifier="presentToConcierge" id="gf4-du-OTu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -124,7 +125,7 @@
         <!--SettingsViewController-->
         <scene sceneID="Ggc-JK-ZQJ">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingsViewController" storyboardName="Login" referencedIdentifier="SettingsViewController" id="HhR-2h-rfU" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="SettingsViewController" storyboardName="Settings" referencedIdentifier="SettingsViewController" id="HhR-2h-rfU" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ny6-tg-VOy"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtE-sd-Gf8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -154,7 +155,7 @@
         <!--Home_tempViewController-->
         <scene sceneID="faH-X8-HHE">
             <objects>
-                <viewControllerPlaceholder storyboardName="Login" referencedIdentifier="Home_tempViewController" id="SNz-cL-UcT" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Home_temp" referencedIdentifier="Home_tempViewController" id="SNz-cL-UcT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="CWD-WS-xQZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSu-uG-0rX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

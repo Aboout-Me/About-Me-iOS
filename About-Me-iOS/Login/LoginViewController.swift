@@ -10,7 +10,7 @@ import NaverThirdPartyLogin
 
 class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDelegate {
     
-    // MARK: - 변수정의(Label, Button ...)
+    // MARK: - 변수정의
     
     @IBOutlet var naverloginButton: UIButton!
     @IBOutlet var kakaologinButton: UIButton!
@@ -18,6 +18,10 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     @IBOutlet weak var logoDescription: UILabel!
     @IBOutlet var logoImage: UIImageView!
     let img = UIImage(named: "logoImage.png")
+    
+    var accessToken: String = ""
+    var refreshToken: String = ""
+    var authType: String = ""
 
     // MARK: - viewDidLoad
     
@@ -53,29 +57,47 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         self.navigationController?.navigationBar.topItem?.title = ""
     }
     
+    // segue로 token 및 authType 전달
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("== LoginVC == ")
+        print("access token = \(accessToken)")
+        print("auth type = \(authType)")
+        print("===============")
+        
+        guard let vc = segue.destination as? ConciergeViewController else { return }
+        vc.authType = self.authType
+        vc.accessToken = self.accessToken
+        vc.refreshToken = self.refreshToken
+    }
+
+
+    
     // MARK: - 네이버 로그인 파트
     
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
     
     // 로그인에 성공한 경우 호출
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
-        print("Success login")
+        print("네이버 로그인 호출 성공")
+        self.authType = "Naver"
         getInfo()
     }
     
     // refresh token
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
-        loginInstance?.accessToken
+        guard let naver_refreshToken = loginInstance?.accessToken else {return}
+        self.refreshToken = naver_refreshToken
     }
     
     // 로그아웃
     func oauth20ConnectionDidFinishDeleteToken() {
-        print("log out")
+        print("네이버 로그아웃")
     }
     
     // error
     func oauth20Connection(_ oauthConnection: NaverThirdPartyLoginConnection!, didFailWithError error: Error!) {
-        print("error = \(error.localizedDescription)")
+        print("네이버 oauth20Connection 에러 : error = \(error.localizedDescription)")
     }
     
     @IBAction func naverLoginButtonDidTap(_ sender: Any) {
@@ -95,12 +117,14 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
       }
       
       guard let tokenType = loginInstance?.tokenType else { return }
-      guard let accessToken = loginInstance?.accessToken else { return }
+      guard let naver_accessToken = loginInstance?.accessToken else { return }
+        self.accessToken = naver_accessToken
+        oauth20ConnectionDidFinishRequestACTokenWithRefreshToken()
         
       let urlStr = "https://openapi.naver.com/v1/nid/me"
       let url = URL(string: urlStr)!
       
-      let authorization = "\(tokenType) \(accessToken)"
+      let authorization = "\(tokenType) \(naver_accessToken)"
       
       let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
       
@@ -122,17 +146,22 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     @IBAction func kakaoLoginButtionDidTap(_ sender: Any) {
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
                 if let error = error {
-                    print(error)
+                    print("카카오 로그인 에러, error : \(error)")
                 }
                 else {
-                    print("loginWithKakaoAccount() success.")
+                    print("카카오 로그인 호출 성공")
+                    
+                    self.authType = "Kakao"
                     
                     // do something
                     _ = oauthToken
                     
                     // access token
-                    let accessToken = oauthToken?.accessToken
-                    print("\n [AT : ", accessToken, "]")
+                    let kakao_accessToken = oauthToken?.accessToken
+                    let kakao_refreshToken = oauthToken?.refreshToken
+                    self.accessToken = kakao_accessToken!
+                    self.refreshToken = kakao_refreshToken!
+                    
                     // 카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
                     self.setUserInfo()
                 }
@@ -142,10 +171,10 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     func setUserInfo() {
         UserApi.shared.me() {(user, error) in
             if let error = error {
-                print(error)
+                print("카카오 유저정보 가져오기 에러, errror : \(error)")
             }
             else {
-                print("me() success.")
+                print("카카오 유저정보 가져오기 성공")
                 
                 //do something
                 _ = user
@@ -158,6 +187,9 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
 //                }
             }
          }
+    }
+@IBAction func buttonPressed(_ sender: UIButton) {
+        performSegue(withIdentifier: "presentToConcierge", sender: nil)
     }
 }
 
@@ -192,5 +224,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Apple login error : \(error)")
     }
-    
 }
+
+

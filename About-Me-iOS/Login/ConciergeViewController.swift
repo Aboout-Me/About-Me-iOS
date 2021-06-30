@@ -2,21 +2,28 @@ import UIKit
 
 class ConciergeViewController: UIViewController {
 
+    var authType: String = ""
+    var accessToken: String = ""
+    var refreshToken: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // 임시로 계속 false값 주기
-        LandscapeManager.shared.isFirstLaunch = false
-        
+         
         self.navigationController?.navigationBar.topItem?.title = ""
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        // 처음 앱 접속 -> 온보딩, 한 번 이상 앱 접속 -> 홈
-        if LandscapeManager.shared.isFirstLaunch {
+        
+        print("== Concierge ==")
+        print("access token = \(accessToken)")
+        print("auth type = \(authType)")
+        print("===============")
+        
+        let flag = LoginApiService.postSignUp(authType: authType, accessToken: accessToken)
+        
+        // 회원가입인 경우
+        if flag == 0 {
             performSegue(withIdentifier: "toOnboarding", sender: nil)
-            LandscapeManager.shared.isFirstLaunch = true
-        } else {
+        }
+        // 기존유저의 로그인인 경우
+        else if flag == 1 {
             performSegue(withIdentifier: "toHome_temp", sender: nil)
         }
     }

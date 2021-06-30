@@ -8,6 +8,8 @@ import NaverThirdPartyLogin
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var window: UIWindow?
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // MARK: - 카카오
@@ -38,6 +40,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // 애플리케이션 이름
         instance?.appName = kServiceAppName
+        
+        let frame = UIScreen.main.bounds
+        window = UIWindow(frame: frame)
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+        
+        window?.rootViewController = vc
+        window?.makeKeyAndVisible()
         
         return true
       }
