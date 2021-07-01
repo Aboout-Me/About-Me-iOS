@@ -138,4 +138,30 @@ struct SocialApiService {
             }
         }
     }
+    
+    static func getSocialSearch(keyword: String, completion: @escaping (SocialSearchResponse) -> Void) {
+        let urlComponent = URLComponents(string: "\(API_URL)/Board/\(userId)/search?keyword=\(keyword)")
+        guard let url = urlComponent?.url else { return }
+        print(url)
+        
+        let request = AF.request(url, method: .get)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                print(stringResponse)
+                
+                do {
+                    let data = try JSONDecoder().decode(SocialSearchResponse.self, from: response.data!)
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
