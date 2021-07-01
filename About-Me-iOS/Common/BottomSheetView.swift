@@ -20,6 +20,7 @@ class BottomSheetView: UIViewController {
     @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var totalView: UIView!
+    @IBOutlet weak var handle: UIView!
     
     var panGestureRecognizer: UIPanGestureRecognizer?
     var originalPosition: CGPoint?
@@ -49,6 +50,7 @@ class BottomSheetView: UIViewController {
         self.colorView.isOpaque = false
         self.colorView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         self.backgroundView.layer.cornerRadius = 15
+        self.handle.layer.cornerRadius = 2.5
         
         self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(_:)))
         view.addGestureRecognizer(panGestureRecognizer!)

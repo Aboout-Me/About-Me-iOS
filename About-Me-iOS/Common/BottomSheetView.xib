@@ -13,6 +13,7 @@
                 <outlet property="backgroundView" destination="NYf-hR-c9e" id="hd0-yx-ek5"/>
                 <outlet property="colorView" destination="6oR-0P-exj" id="nQQ-dz-trn"/>
                 <outlet property="contentView" destination="y6e-Jf-6Lf" id="2Qv-N3-jiA"/>
+                <outlet property="handle" destination="VfP-kG-yVF" id="dmH-hZ-O9d"/>
                 <outlet property="totalView" destination="GGy-Ci-W0I" id="ftp-5i-CaP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
