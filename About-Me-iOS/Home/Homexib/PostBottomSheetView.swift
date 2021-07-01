@@ -20,6 +20,7 @@ class PostBottomSheetView: UIView {
     @IBOutlet weak var postNumberLabel: UILabel!
     @IBOutlet weak var postAnswerTextView: UITextView!
     @IBOutlet weak var postLineView: UIView!
+    @IBOutlet weak var postTextViewBottomConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

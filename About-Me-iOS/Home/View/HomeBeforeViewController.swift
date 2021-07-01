@@ -10,12 +10,11 @@ import SideMenu
 import Hero
 import Floaty
 
-class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNavigationControllerDelegate {
+class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDelegate {
     @IBOutlet weak var homeBeforeBackgroundImageView: UIImageView!
     @IBOutlet weak var homeBeforeFloatingButton: Floaty!
     @IBOutlet weak var homeBeforeCollectionView: UICollectionView!
     @IBOutlet weak var homeBeforeLastAnswerButton: UIButton!
-    @IBOutlet weak var homeBeforeFloatingBottomConstraint: NSLayoutConstraint!
     private var homeData = [HomeCardListModel]()
     public var sideMenu: SideMenuNavigationController?
     public var questionTitleText: String = ""
@@ -44,6 +43,11 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         self.setLayoutInit()
         self.setSideMenuLayoutInit()
         
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 
     
@@ -79,7 +83,6 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         layout.itemSize = CGSize(width: cellWidth, height: 420)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         self.homeBeforeCollectionView.collectionViewLayout = layout
-        self.homeBeforeCollectionView.allowsMultipleSelection = true
         self.homeBeforeCollectionView.delegate = self
         self.homeBeforeCollectionView.dataSource = self
         self.homeBeforeCollectionView.backgroundColor = UIColor.clear
@@ -91,6 +94,7 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         self.homeBeforeFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.homeBeforeFloatingButton.plusColor = UIColor.white
         self.homeBeforeFloatingButton.selectedColor = UIColor.gray999
+        self.homeBeforeFloatingButton.sticky = true
         self.homeBeforeFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let homeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
@@ -113,7 +117,6 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         self.homeBeforeLastAnswerButton.setTitleColor(UIColor.gray333, for: .normal)
         self.homeBeforeLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
         self.homeBeforeLastAnswerButton.addTarget(self, action: #selector(self.showLastAnswerButtonDidTap), for: .touchUpInside)
-        self.homeBeforeFloatingBottomConstraint.isActive = true
     }
     
     
@@ -139,11 +142,14 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         self.editAnswerSheetView.postAnswerTextView.text = "당신의 생각을 말해주세요"
         self.editAnswerSheetView.postAnswerTextView.textColor = .gray999
         self.editAnswerSheetView.postAnswerTextView.textAlignment = .left
-        self.editAnswerSheetView.postAnswerTextView.isScrollEnabled = false
+        self.editAnswerSheetView.postShareButton.isSelected = false
         self.editAnswerSheetView.postAnswerTextView.inputAccessoryView = questionToolBar
         self.editAnswerSheetView.layer.cornerRadius = 20
         self.editAnswerSheetView.layer.masksToBounds = true
         self.editAnswerSheetView.postConfirmButton.isEnabled = false
+        self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     private func getHomeCardList() {
@@ -199,7 +205,7 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         self.postHomeCardSave()
         UserDefaults.standard.set(self.editAnswerSheetView.postAnswerTextView.text, forKey: "myQuestionText")
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.2)
+            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
         })
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
@@ -214,13 +220,28 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
     
     @objc
     public func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardEndFrame = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardEndFrame.height
+            let caret = self.editAnswerSheetView.postAnswerTextView.caretRect(for: self.editAnswerSheetView.postAnswerTextView.selectedTextRange!.start)
+            self.editAnswerSheetView.postTextViewBottomConstraint.constant = keyboardHeight + 120
+            self.editAnswerSheetView.postAnswerTextView.scrollRectToVisible(caret, animated: true)
+            self.editAnswerSheetView.postAnswerTextView.contentInset.bottom = 10
+            self.editAnswerSheetView.layoutIfNeeded()
+        }
         
     }
     
     // TODO: - KeyBoardEvent
     @objc
     public func keyboardWillHide(_ notification: Notification) {
-        
+        if self.editAnswerSheetView.postAnswerTextView.bounds.size.height < self.editAnswerSheetView.postAnswerTextView.frame.size.height {
+            self.editAnswerSheetView.postTextViewBottomConstraint.constant = 15
+        } else {
+            self.editAnswerSheetView.postTextViewBottomConstraint.constant = self.editAnswerSheetView.postAnswerTextView.bounds.height
+        }
+        self.editAnswerSheetView.postAnswerTextView.contentInset.bottom = 10
+        self.editAnswerSheetView.layoutIfNeeded()
     }
     
     
@@ -240,7 +261,7 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         let alertDeleteButton = UIAlertAction(title: "아니오", style: .cancel, handler: nil)
         let alertConfirmButton = UIAlertAction(title: "네", style: .default) { _ in
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height / 1.2)
+                self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
             })
         }
         alert.addAction(alertDeleteButton)
@@ -268,29 +289,9 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         } else {
             sender.isSelected = true
             isshare = "Y"
-            self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "Lock"), for: .normal)
+            self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "Lock"), for: .selected)
         }
         
-    }
-    
-    
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = 5
-        if textView.textColor == .gray999 {
-            self.editAnswerSheetView.postConfirmButton.isEnabled = true
-            textView.text = nil
-            textView.textAlignment = .left
-            textView.typingAttributes = [NSAttributedString.Key.paragraphStyle : paragraphStyle, NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 16),NSAttributedString.Key.foregroundColor:UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)]
-        }
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-            self.editAnswerSheetView.postConfirmButton.isEnabled = false
-            textView.text = "당신의 생각을 말해주세요"
-            textView.textColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
-        }
     }
     
 
@@ -298,21 +299,23 @@ class HomeBeforeViewController: UIViewController, UITextViewDelegate, SideMenuNa
         print("side menu WillApper ")
         let dimView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
         dimView.tag = 2
+        if let view = self.view.viewWithTag(2) {
+            view.removeFromSuperview()
+        }
         UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
             dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             self.view.addSubview(dimView)
         }, completion: nil)
     }
     
-    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
         if let removeView = self.view.viewWithTag(2) {
             removeView.removeFromSuperview()
         }
     }
-        
 }
 
-extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.homeData.count
     }
@@ -442,4 +445,28 @@ class HomeCollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         return CGPoint(x: updatedOffset, y: proposedContentOffset.y)
     }
+}
+
+
+extension HomeBeforeViewController: UITextViewDelegate {
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 5
+        if textView.textColor == .gray999 {
+            self.editAnswerSheetView.postConfirmButton.isEnabled = true
+            textView.text = nil
+            textView.textAlignment = .left
+            textView.typingAttributes = [NSAttributedString.Key.paragraphStyle : paragraphStyle, NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 16),NSAttributedString.Key.foregroundColor:UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)]
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            self.editAnswerSheetView.postConfirmButton.isEnabled = false
+            textView.text = "당신의 생각을 말해주세요"
+            textView.textColor = .gray999
+        }
+    }
+    
 }
