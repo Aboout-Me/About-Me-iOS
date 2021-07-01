@@ -16,6 +16,8 @@ class HomeAfterCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var homeAfterSubjectLabel: UILabel!
     @IBOutlet weak var homeAfterEditButton: UIButton!
     @IBOutlet weak var homeAfterTitleLineView: UIView!
+    @IBOutlet weak var homeAfterLevelView: UIView!
+    @IBOutlet weak var homeAfterLevelLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -46,6 +48,12 @@ class HomeAfterCollectionViewCell: UICollectionViewCell {
         self.homeAfterTagButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         self.homeAfterTagButton.isEnabled = false
         self.homeAfterTitleLineView.backgroundColor = UIColor(red: 153/255, green: 153/255, blue: 153/255, alpha: 1.0)
+        self.homeAfterLevelView.layer.borderWidth = 1
+        self.homeAfterLevelView.layer.borderColor = UIColor.gray555.cgColor
+        self.homeAfterLevelView.layer.cornerRadius = 3
+        self.homeAfterLevelLabel.textColor = .gray333
+        self.homeAfterLevelLabel.font = UIFont(name: "GmarketSansMedium", size: 11)
+        self.homeAfterLevelLabel.textAlignment = .left
         self.contentView.isUserInteractionEnabled = true
     }
 }

@@ -8,6 +8,7 @@ target '오늘의 나' do
   pod 'Alamofire'
   pod 'SideMenu'
   pod 'Floaty', '~> 4.2.0' 
+
   # Pods for 오늘의 나
 
 end
