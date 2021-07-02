@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (5.4.1)
+  - Alamofire (5.4.3)
   - Floaty (4.2.0)
   - Hero (1.6.1)
   - SideMenu (6.5.0)
@@ -18,11 +18,15 @@ SPEC REPOS:
     - SideMenu
 
 SPEC CHECKSUMS:
-  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
 
+<<<<<<< HEAD
 PODFILE CHECKSUM: 1d6005c14d83237158ea18d13ac8d01bc980621d
+=======
+PODFILE CHECKSUM: 857c1320cabf0ed281cbeba6f699b96c037ca9b9
+>>>>>>> feature_Home
 
 COCOAPODS: 1.10.1

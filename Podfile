@@ -6,9 +6,11 @@ target '오늘의 나' do
   use_frameworks!
 
   # Pods for 오늘의 나
-pod 'Hero'
+  pod 'Hero'
   pod 'Alamofire'
   pod 'SideMenu'
   pod 'Floaty', '~> 4.2.0' 
+
+  # Pods for 오늘의 나
 
 end
