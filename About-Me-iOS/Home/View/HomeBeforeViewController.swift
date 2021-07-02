@@ -160,9 +160,9 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                     self.homeData = list.dailyLists
                     self.homeBeforeCollectionView.reloadData()
                     if self.homeData[0].lev == "1" {
-                        self.homeBeforeLastAnswerButton.isHidden = false
-                    } else {
                         self.homeBeforeLastAnswerButton.isHidden = true
+                    } else {
+                        self.homeBeforeLastAnswerButton.isHidden = false
                     }
                 }
             } else if case let .failure(error) = result {

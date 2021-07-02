@@ -21,7 +21,7 @@ struct SocialPost: Codable {
     let userId: Int
     let nickname: String
     let answer: String
-    let shareYN: String
+    let shareYN: Bool
     let level: Int
     let likes: Int
     let hasLiked: Bool
