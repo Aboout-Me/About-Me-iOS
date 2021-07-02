@@ -360,18 +360,11 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
-        let effectView = UIView(frame: self.view.frame)
-        effectView.tag = 2
-        UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
-            effectView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.view.addSubview(effectView)
-        }, completion: nil)
+        self.afterSideMenu?.setSideMenuNavigation(viewcontroller: self)
     }
     
-    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
-        if let effectRemoveView = self.view.viewWithTag(2) {
-            effectRemoveView.removeFromSuperview()
-        }
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.afterSideMenu?.deleteEffectViewNavigation(viewcontroller: self)
     }
     
 }
