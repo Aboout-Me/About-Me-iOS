@@ -17,36 +17,6 @@
 		07EE6C9A264AB06300F99643 /* BottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07EE6C98264AB06300F99643 /* BottomSheetView.xib */; };
 		07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */; };
 		07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */; };
-		BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */; };
-		FF0970EE267F3C30001712F3 /* SocialListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970CE267F3C30001712F3 /* SocialListResponse.swift */; };
-		FF0970EF267F3C30001712F3 /* SocialDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970CF267F3C30001712F3 /* SocialDetailResponse.swift */; };
-		FF0970F0267F3C30001712F3 /* SocialContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970D1267F3C30001712F3 /* SocialContentViewCell.swift */; };
-		FF0970F1267F3C30001712F3 /* SocialNoContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970D2267F3C30001712F3 /* SocialNoContentCell.xib */; };
-		FF0970F2267F3C30001712F3 /* SocialHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970D3267F3C30001712F3 /* SocialHeaderCell.xib */; };
-		FF0970F3267F3C30001712F3 /* SocialTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970D4267F3C30001712F3 /* SocialTagCell.swift */; };
-		FF0970F4267F3C30001712F3 /* SocialHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970D5267F3C30001712F3 /* SocialHeaderCell.swift */; };
-		FF0970F5267F3C30001712F3 /* SocialContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970D6267F3C30001712F3 /* SocialContentCell.xib */; };
-		FF0970F6267F3C30001712F3 /* SocialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970D7267F3C30001712F3 /* SocialCommentCell.xib */; };
-		FF0970F7267F3C30001712F3 /* SocialContentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970D8267F3C30001712F3 /* SocialContentViewCell.xib */; };
-		FF0970F8267F3C30001712F3 /* SocialNoContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970D9267F3C30001712F3 /* SocialNoContentCell.swift */; };
-		FF0970F9267F3C30001712F3 /* SocialNoContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970DA267F3C30001712F3 /* SocialNoContentTableViewCell.xib */; };
-		FF0970FA267F3C30001712F3 /* SocialMoreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970DB267F3C30001712F3 /* SocialMoreContentViewController.swift */; };
-		FF0970FB267F3C30001712F3 /* SocialMoreContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970DC267F3C30001712F3 /* SocialMoreContentCell.swift */; };
-		FF0970FC267F3C30001712F3 /* SocialMoreContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970DD267F3C30001712F3 /* SocialMoreContentViewController.xib */; };
-		FF0970FD267F3C30001712F3 /* SocialSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970DE267F3C30001712F3 /* SocialSearchCell.swift */; };
-		FF0970FE267F3C30001712F3 /* SocialNoContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970DF267F3C30001712F3 /* SocialNoContentTableViewCell.swift */; };
-		FF0970FF267F3C30001712F3 /* SocialMoreContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970E0267F3C30001712F3 /* SocialMoreContentCell.xib */; };
-		FF097100267F3C30001712F3 /* SocialDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970E2267F3C30001712F3 /* SocialDetailViewController.xib */; };
-		FF097101267F3C30001712F3 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970E3267F3C30001712F3 /* SocialViewController.swift */; };
-		FF097102267F3C30001712F3 /* SocialSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970E4267F3C30001712F3 /* SocialSearchViewController.xib */; };
-		FF097103267F3C30001712F3 /* SocialCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970E5267F3C30001712F3 /* SocialCommentViewController.swift */; };
-		FF097104267F3C30001712F3 /* SocialCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970E6267F3C30001712F3 /* SocialCommentViewController.xib */; };
-		FF097105267F3C30001712F3 /* SocialSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970E7267F3C30001712F3 /* SocialSearchViewController.swift */; };
-		FF097106267F3C30001712F3 /* SocialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970E8267F3C30001712F3 /* SocialDetailViewController.swift */; };
-		FF097107267F3C30001712F3 /* SocialSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF0970E9267F3C30001712F3 /* SocialSearchCell.xib */; };
-		FF097108267F3C30001712F3 /* SocialCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970EA267F3C30001712F3 /* SocialCommentCell.swift */; };
-		FF097109267F3C30001712F3 /* SocialContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970EB267F3C30001712F3 /* SocialContentCell.swift */; };
-		FF09710A267F3C30001712F3 /* SocialApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0970ED267F3C30001712F3 /* SocialApiService.swift */; };
 		FF09714A267F3D51001712F3 /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF097138267F3D51001712F3 /* AdvisoryQuestionViewController.swift */; };
 		FF09714B267F3D51001712F3 /* AdvisoryPostList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF09713A267F3D51001712F3 /* AdvisoryPostList.swift */; };
 		FF09714C267F3D51001712F3 /* AdvisoryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF09713B267F3D51001712F3 /* AdvisoryList.swift */; };
@@ -196,6 +166,35 @@
 		FF3BECD426518832006C585A /* ProfileServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3BECD326518832006C585A /* ProfileServerApi.swift */; };
 		FF3BECD726519A13006C585A /* WeeklyProgressList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3BECD626519A13006C585A /* WeeklyProgressList.swift */; };
 		FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */; };
+		FF47CD34268F85DE000634B8 /* SocialListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD14268F85DE000634B8 /* SocialListResponse.swift */; };
+		FF47CD35268F85DE000634B8 /* SocialDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD15268F85DE000634B8 /* SocialDetailResponse.swift */; };
+		FF47CD36268F85DE000634B8 /* SocialContentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD17268F85DE000634B8 /* SocialContentViewCell.swift */; };
+		FF47CD37268F85DE000634B8 /* SocialNoContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD18268F85DE000634B8 /* SocialNoContentCell.xib */; };
+		FF47CD38268F85DE000634B8 /* SocialHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD19268F85DE000634B8 /* SocialHeaderCell.xib */; };
+		FF47CD39268F85DE000634B8 /* SocialTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD1A268F85DE000634B8 /* SocialTagCell.swift */; };
+		FF47CD3A268F85DE000634B8 /* SocialHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD1B268F85DE000634B8 /* SocialHeaderCell.swift */; };
+		FF47CD3B268F85DE000634B8 /* SocialContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD1C268F85DE000634B8 /* SocialContentCell.xib */; };
+		FF47CD3C268F85DE000634B8 /* SocialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD1D268F85DE000634B8 /* SocialCommentCell.xib */; };
+		FF47CD3D268F85DE000634B8 /* SocialContentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD1E268F85DE000634B8 /* SocialContentViewCell.xib */; };
+		FF47CD3E268F85DE000634B8 /* SocialNoContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD1F268F85DE000634B8 /* SocialNoContentCell.swift */; };
+		FF47CD3F268F85DE000634B8 /* SocialNoContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD20268F85DE000634B8 /* SocialNoContentTableViewCell.xib */; };
+		FF47CD40268F85DE000634B8 /* SocialMoreContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD21268F85DE000634B8 /* SocialMoreContentViewController.swift */; };
+		FF47CD41268F85DE000634B8 /* SocialMoreContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD22268F85DE000634B8 /* SocialMoreContentCell.swift */; };
+		FF47CD42268F85DE000634B8 /* SocialMoreContentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD23268F85DE000634B8 /* SocialMoreContentViewController.xib */; };
+		FF47CD43268F85DE000634B8 /* SocialSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD24268F85DE000634B8 /* SocialSearchCell.swift */; };
+		FF47CD44268F85DE000634B8 /* SocialNoContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD25268F85DE000634B8 /* SocialNoContentTableViewCell.swift */; };
+		FF47CD45268F85DF000634B8 /* SocialMoreContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD26268F85DE000634B8 /* SocialMoreContentCell.xib */; };
+		FF47CD46268F85DF000634B8 /* SocialDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD28268F85DE000634B8 /* SocialDetailViewController.xib */; };
+		FF47CD47268F85DF000634B8 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD29268F85DE000634B8 /* SocialViewController.swift */; };
+		FF47CD48268F85DF000634B8 /* SocialSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD2A268F85DE000634B8 /* SocialSearchViewController.xib */; };
+		FF47CD49268F85DF000634B8 /* SocialCommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD2B268F85DE000634B8 /* SocialCommentViewController.swift */; };
+		FF47CD4A268F85DF000634B8 /* SocialCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD2C268F85DE000634B8 /* SocialCommentViewController.xib */; };
+		FF47CD4B268F85DF000634B8 /* SocialSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD2D268F85DE000634B8 /* SocialSearchViewController.swift */; };
+		FF47CD4C268F85DF000634B8 /* SocialDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD2E268F85DE000634B8 /* SocialDetailViewController.swift */; };
+		FF47CD4D268F85DF000634B8 /* SocialSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF47CD2F268F85DE000634B8 /* SocialSearchCell.xib */; };
+		FF47CD4E268F85DF000634B8 /* SocialCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD30268F85DE000634B8 /* SocialCommentCell.swift */; };
+		FF47CD4F268F85DF000634B8 /* SocialContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD31268F85DE000634B8 /* SocialContentCell.swift */; };
+		FF47CD50268F85DF000634B8 /* SocialApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47CD33268F85DE000634B8 /* SocialApiService.swift */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
 		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
 		FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */; };
@@ -239,38 +238,9 @@
 		07EE6C98264AB06300F99643 /* BottomSheetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomSheetView.xib; sourceTree = "<group>"; };
 		07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
-		303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.release.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_About_Me_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-About-Me-iOS.debug.xcconfig"; path = "Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		FF0970CE267F3C30001712F3 /* SocialListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialListResponse.swift; sourceTree = "<group>"; };
-		FF0970CF267F3C30001712F3 /* SocialDetailResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialDetailResponse.swift; sourceTree = "<group>"; };
-		FF0970D1267F3C30001712F3 /* SocialContentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialContentViewCell.swift; sourceTree = "<group>"; };
-		FF0970D2267F3C30001712F3 /* SocialNoContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNoContentCell.xib; sourceTree = "<group>"; };
-		FF0970D3267F3C30001712F3 /* SocialHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialHeaderCell.xib; sourceTree = "<group>"; };
-		FF0970D4267F3C30001712F3 /* SocialTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialTagCell.swift; sourceTree = "<group>"; };
-		FF0970D5267F3C30001712F3 /* SocialHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHeaderCell.swift; sourceTree = "<group>"; };
-		FF0970D6267F3C30001712F3 /* SocialContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialContentCell.xib; sourceTree = "<group>"; };
-		FF0970D7267F3C30001712F3 /* SocialCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialCommentCell.xib; sourceTree = "<group>"; };
-		FF0970D8267F3C30001712F3 /* SocialContentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialContentViewCell.xib; sourceTree = "<group>"; };
-		FF0970D9267F3C30001712F3 /* SocialNoContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNoContentCell.swift; sourceTree = "<group>"; };
-		FF0970DA267F3C30001712F3 /* SocialNoContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNoContentTableViewCell.xib; sourceTree = "<group>"; };
-		FF0970DB267F3C30001712F3 /* SocialMoreContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMoreContentViewController.swift; sourceTree = "<group>"; };
-		FF0970DC267F3C30001712F3 /* SocialMoreContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMoreContentCell.swift; sourceTree = "<group>"; };
-		FF0970DD267F3C30001712F3 /* SocialMoreContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialMoreContentViewController.xib; sourceTree = "<group>"; };
-		FF0970DE267F3C30001712F3 /* SocialSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSearchCell.swift; sourceTree = "<group>"; };
-		FF0970DF267F3C30001712F3 /* SocialNoContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNoContentTableViewCell.swift; sourceTree = "<group>"; };
-		FF0970E0267F3C30001712F3 /* SocialMoreContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialMoreContentCell.xib; sourceTree = "<group>"; };
-		FF0970E2267F3C30001712F3 /* SocialDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialDetailViewController.xib; sourceTree = "<group>"; };
-		FF0970E3267F3C30001712F3 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
-		FF0970E4267F3C30001712F3 /* SocialSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialSearchViewController.xib; sourceTree = "<group>"; };
-		FF0970E5267F3C30001712F3 /* SocialCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCommentViewController.swift; sourceTree = "<group>"; };
-		FF0970E6267F3C30001712F3 /* SocialCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialCommentViewController.xib; sourceTree = "<group>"; };
-		FF0970E7267F3C30001712F3 /* SocialSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSearchViewController.swift; sourceTree = "<group>"; };
-		FF0970E8267F3C30001712F3 /* SocialDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialDetailViewController.swift; sourceTree = "<group>"; };
-		FF0970E9267F3C30001712F3 /* SocialSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialSearchCell.xib; sourceTree = "<group>"; };
-		FF0970EA267F3C30001712F3 /* SocialCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCommentCell.swift; sourceTree = "<group>"; };
-		FF0970EB267F3C30001712F3 /* SocialContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialContentCell.swift; sourceTree = "<group>"; };
-		FF0970ED267F3C30001712F3 /* SocialApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialApiService.swift; sourceTree = "<group>"; };
+		2A388EC9C3283F8BF443B13A /* Pods-오늘의 나.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.debug.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.debug.xcconfig"; sourceTree = "<group>"; };
+		63A33B77EAE1ECD47B65BC37 /* Pods-오늘의 나.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.release.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.release.xcconfig"; sourceTree = "<group>"; };
+		6A995B04F75AAC23D4940F1C /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF097138267F3D51001712F3 /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
 		FF09713A267F3D51001712F3 /* AdvisoryPostList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvisoryPostList.swift; sourceTree = "<group>"; };
 		FF09713B267F3D51001712F3 /* AdvisoryList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvisoryList.swift; sourceTree = "<group>"; };
@@ -420,6 +390,35 @@
 		FF3BECD326518832006C585A /* ProfileServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileServerApi.swift; sourceTree = "<group>"; };
 		FF3BECD626519A13006C585A /* WeeklyProgressList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyProgressList.swift; sourceTree = "<group>"; };
 		FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardSaveList.swift; sourceTree = "<group>"; };
+		FF47CD14268F85DE000634B8 /* SocialListResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialListResponse.swift; sourceTree = "<group>"; };
+		FF47CD15268F85DE000634B8 /* SocialDetailResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialDetailResponse.swift; sourceTree = "<group>"; };
+		FF47CD17268F85DE000634B8 /* SocialContentViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialContentViewCell.swift; sourceTree = "<group>"; };
+		FF47CD18268F85DE000634B8 /* SocialNoContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNoContentCell.xib; sourceTree = "<group>"; };
+		FF47CD19268F85DE000634B8 /* SocialHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialHeaderCell.xib; sourceTree = "<group>"; };
+		FF47CD1A268F85DE000634B8 /* SocialTagCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialTagCell.swift; sourceTree = "<group>"; };
+		FF47CD1B268F85DE000634B8 /* SocialHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialHeaderCell.swift; sourceTree = "<group>"; };
+		FF47CD1C268F85DE000634B8 /* SocialContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialContentCell.xib; sourceTree = "<group>"; };
+		FF47CD1D268F85DE000634B8 /* SocialCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialCommentCell.xib; sourceTree = "<group>"; };
+		FF47CD1E268F85DE000634B8 /* SocialContentViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialContentViewCell.xib; sourceTree = "<group>"; };
+		FF47CD1F268F85DE000634B8 /* SocialNoContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNoContentCell.swift; sourceTree = "<group>"; };
+		FF47CD20268F85DE000634B8 /* SocialNoContentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialNoContentTableViewCell.xib; sourceTree = "<group>"; };
+		FF47CD21268F85DE000634B8 /* SocialMoreContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMoreContentViewController.swift; sourceTree = "<group>"; };
+		FF47CD22268F85DE000634B8 /* SocialMoreContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialMoreContentCell.swift; sourceTree = "<group>"; };
+		FF47CD23268F85DE000634B8 /* SocialMoreContentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialMoreContentViewController.xib; sourceTree = "<group>"; };
+		FF47CD24268F85DE000634B8 /* SocialSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSearchCell.swift; sourceTree = "<group>"; };
+		FF47CD25268F85DE000634B8 /* SocialNoContentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialNoContentTableViewCell.swift; sourceTree = "<group>"; };
+		FF47CD26268F85DE000634B8 /* SocialMoreContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialMoreContentCell.xib; sourceTree = "<group>"; };
+		FF47CD28268F85DE000634B8 /* SocialDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialDetailViewController.xib; sourceTree = "<group>"; };
+		FF47CD29268F85DE000634B8 /* SocialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		FF47CD2A268F85DE000634B8 /* SocialSearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialSearchViewController.xib; sourceTree = "<group>"; };
+		FF47CD2B268F85DE000634B8 /* SocialCommentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCommentViewController.swift; sourceTree = "<group>"; };
+		FF47CD2C268F85DE000634B8 /* SocialCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialCommentViewController.xib; sourceTree = "<group>"; };
+		FF47CD2D268F85DE000634B8 /* SocialSearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialSearchViewController.swift; sourceTree = "<group>"; };
+		FF47CD2E268F85DE000634B8 /* SocialDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialDetailViewController.swift; sourceTree = "<group>"; };
+		FF47CD2F268F85DE000634B8 /* SocialSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SocialSearchCell.xib; sourceTree = "<group>"; };
+		FF47CD30268F85DE000634B8 /* SocialCommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialCommentCell.swift; sourceTree = "<group>"; };
+		FF47CD31268F85DE000634B8 /* SocialContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialContentCell.swift; sourceTree = "<group>"; };
+		FF47CD33268F85DE000634B8 /* SocialApiService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialApiService.swift; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
 		FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -455,7 +454,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB1550D96B5D0731DF9A142A /* Pods_About_Me_iOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,7 +466,7 @@
 				0715A340260CD1860077882A /* About-Me-iOS */,
 				0715A33F260CD1860077882A /* Products */,
 				E45D6508C2D62EF6EF67D7BC /* Pods */,
-				FAD1F03200034F13B6130A6E /* Frameworks */,
+				83CC3EFACCD5A99095136AF9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -483,9 +481,9 @@
 		0715A340260CD1860077882A /* About-Me-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				FF47CD12268F85DE000634B8 /* Social */,
 				FF097159267F3E38001712F3 /* ImgaeFile */,
 				FF097137267F3D51001712F3 /* AdvisoryAnswer */,
-				FF0970CC267F3C30001712F3 /* Social */,
 				FF3BECCC265186FF006C585A /* Profile */,
 				07EE6C96264AB03D00F99643 /* Common */,
 				FFFC0F77264193A800C6372F /* Font */,
@@ -513,89 +511,21 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		E45D6508C2D62EF6EF67D7BC /* Pods */ = {
+		83CC3EFACCD5A99095136AF9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */,
-				303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		FAD1F03200034F13B6130A6E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4695D086F5E1ED7FA37BF42C /* Pods_About_Me_iOS.framework */,
+				6A995B04F75AAC23D4940F1C /* Pods_오늘의_나.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FF0970CC267F3C30001712F3 /* Social */ = {
+		E45D6508C2D62EF6EF67D7BC /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FF0970CD267F3C30001712F3 /* Model */,
-				FF0970D0267F3C30001712F3 /* View */,
-				FF0970EC267F3C30001712F3 /* Service */,
+				2A388EC9C3283F8BF443B13A /* Pods-오늘의 나.debug.xcconfig */,
+				63A33B77EAE1ECD47B65BC37 /* Pods-오늘의 나.release.xcconfig */,
 			);
-			path = Social;
-			sourceTree = "<group>";
-		};
-		FF0970CD267F3C30001712F3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				FF0970CE267F3C30001712F3 /* SocialListResponse.swift */,
-				FF0970CF267F3C30001712F3 /* SocialDetailResponse.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		FF0970D0267F3C30001712F3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				FF0970D1267F3C30001712F3 /* SocialContentViewCell.swift */,
-				FF0970D2267F3C30001712F3 /* SocialNoContentCell.xib */,
-				FF0970D3267F3C30001712F3 /* SocialHeaderCell.xib */,
-				FF0970D4267F3C30001712F3 /* SocialTagCell.swift */,
-				FF0970D5267F3C30001712F3 /* SocialHeaderCell.swift */,
-				FF0970D6267F3C30001712F3 /* SocialContentCell.xib */,
-				FF0970D7267F3C30001712F3 /* SocialCommentCell.xib */,
-				FF0970D8267F3C30001712F3 /* SocialContentViewCell.xib */,
-				FF0970D9267F3C30001712F3 /* SocialNoContentCell.swift */,
-				FF0970DA267F3C30001712F3 /* SocialNoContentTableViewCell.xib */,
-				FF0970DB267F3C30001712F3 /* SocialMoreContentViewController.swift */,
-				FF0970DC267F3C30001712F3 /* SocialMoreContentCell.swift */,
-				FF0970DD267F3C30001712F3 /* SocialMoreContentViewController.xib */,
-				FF0970DE267F3C30001712F3 /* SocialSearchCell.swift */,
-				FF0970DF267F3C30001712F3 /* SocialNoContentTableViewCell.swift */,
-				FF0970E0267F3C30001712F3 /* SocialMoreContentCell.xib */,
-				FF0970E1267F3C30001712F3 /* ViewController */,
-				FF0970E9267F3C30001712F3 /* SocialSearchCell.xib */,
-				FF0970EA267F3C30001712F3 /* SocialCommentCell.swift */,
-				FF0970EB267F3C30001712F3 /* SocialContentCell.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		FF0970E1267F3C30001712F3 /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				FF0970E2267F3C30001712F3 /* SocialDetailViewController.xib */,
-				FF0970E3267F3C30001712F3 /* SocialViewController.swift */,
-				FF0970E4267F3C30001712F3 /* SocialSearchViewController.xib */,
-				FF0970E5267F3C30001712F3 /* SocialCommentViewController.swift */,
-				FF0970E6267F3C30001712F3 /* SocialCommentViewController.xib */,
-				FF0970E7267F3C30001712F3 /* SocialSearchViewController.swift */,
-				FF0970E8267F3C30001712F3 /* SocialDetailViewController.swift */,
-			);
-			path = ViewController;
-			sourceTree = "<group>";
-		};
-		FF0970EC267F3C30001712F3 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				FF0970ED267F3C30001712F3 /* SocialApiService.swift */,
-			);
-			path = Service;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		FF097137267F3D51001712F3 /* AdvisoryAnswer */ = {
@@ -834,6 +764,74 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		FF47CD12268F85DE000634B8 /* Social */ = {
+			isa = PBXGroup;
+			children = (
+				FF47CD13268F85DE000634B8 /* Model */,
+				FF47CD16268F85DE000634B8 /* View */,
+				FF47CD32268F85DE000634B8 /* Service */,
+			);
+			path = Social;
+			sourceTree = "<group>";
+		};
+		FF47CD13268F85DE000634B8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FF47CD14268F85DE000634B8 /* SocialListResponse.swift */,
+				FF47CD15268F85DE000634B8 /* SocialDetailResponse.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FF47CD16268F85DE000634B8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FF47CD17268F85DE000634B8 /* SocialContentViewCell.swift */,
+				FF47CD18268F85DE000634B8 /* SocialNoContentCell.xib */,
+				FF47CD19268F85DE000634B8 /* SocialHeaderCell.xib */,
+				FF47CD1A268F85DE000634B8 /* SocialTagCell.swift */,
+				FF47CD1B268F85DE000634B8 /* SocialHeaderCell.swift */,
+				FF47CD1C268F85DE000634B8 /* SocialContentCell.xib */,
+				FF47CD1D268F85DE000634B8 /* SocialCommentCell.xib */,
+				FF47CD1E268F85DE000634B8 /* SocialContentViewCell.xib */,
+				FF47CD1F268F85DE000634B8 /* SocialNoContentCell.swift */,
+				FF47CD20268F85DE000634B8 /* SocialNoContentTableViewCell.xib */,
+				FF47CD21268F85DE000634B8 /* SocialMoreContentViewController.swift */,
+				FF47CD22268F85DE000634B8 /* SocialMoreContentCell.swift */,
+				FF47CD23268F85DE000634B8 /* SocialMoreContentViewController.xib */,
+				FF47CD24268F85DE000634B8 /* SocialSearchCell.swift */,
+				FF47CD25268F85DE000634B8 /* SocialNoContentTableViewCell.swift */,
+				FF47CD26268F85DE000634B8 /* SocialMoreContentCell.xib */,
+				FF47CD27268F85DE000634B8 /* ViewController */,
+				FF47CD2F268F85DE000634B8 /* SocialSearchCell.xib */,
+				FF47CD30268F85DE000634B8 /* SocialCommentCell.swift */,
+				FF47CD31268F85DE000634B8 /* SocialContentCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF47CD27268F85DE000634B8 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				FF47CD28268F85DE000634B8 /* SocialDetailViewController.xib */,
+				FF47CD29268F85DE000634B8 /* SocialViewController.swift */,
+				FF47CD2A268F85DE000634B8 /* SocialSearchViewController.xib */,
+				FF47CD2B268F85DE000634B8 /* SocialCommentViewController.swift */,
+				FF47CD2C268F85DE000634B8 /* SocialCommentViewController.xib */,
+				FF47CD2D268F85DE000634B8 /* SocialSearchViewController.swift */,
+				FF47CD2E268F85DE000634B8 /* SocialDetailViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		FF47CD32268F85DE000634B8 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				FF47CD33268F85DE000634B8 /* SocialApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		FFA7CEF8263C5B690021DD29 /* ProfileXib */ = {
 			isa = PBXGroup;
 			children = (
@@ -888,11 +886,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0715A352260CD1870077882A /* Build configuration list for PBXNativeTarget "오늘의 나" */;
 			buildPhases = (
-				DC4E6FED338908522ED3E73D /* [CP] Check Pods Manifest.lock */,
+				0039658058692DA5A402EFC8 /* [CP] Check Pods Manifest.lock */,
 				0715A33A260CD1860077882A /* Sources */,
 				0715A33B260CD1860077882A /* Frameworks */,
 				0715A33C260CD1860077882A /* Resources */,
-				4B9CBC91252DC0811E4006C7 /* [CP] Embed Pods Frameworks */,
+				4B31F58FD0FACFBD1BA5B00A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -946,29 +944,32 @@
 				FF097256267F3E39001712F3 /* s_card_violet@3x.png in Resources */,
 				FF0971E8267F3E38001712F3 /*  check-mark@3x.png in Resources */,
 				FF097240267F3E39001712F3 /* Write.png in Resources */,
+				FF47CD3D268F85DE000634B8 /* SocialContentViewCell.xib in Resources */,
 				FF0971E6267F3E38001712F3 /* img_background_yellow@3x.png in Resources */,
 				FF0971F1267F3E38001712F3 /* Settings.png in Resources */,
 				FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */,
 				0715A34B260CD1870077882A /* Assets.xcassets in Resources */,
 				FF097215267F3E39001712F3 /* s_card_pink.png in Resources */,
 				FF0971FD267F3E38001712F3 /* s_card_pink@2x.png in Resources */,
+				FF47CD3C268F85DE000634B8 /* SocialCommentCell.xib in Resources */,
 				FF097255267F3E39001712F3 /* s_card_green.png in Resources */,
 				FF0971E3267F3E38001712F3 /* like_on_dark@2x.png in Resources */,
 				FFFC0FA82642C1F800C6372F /* MyProfileTagCollectionViewCell.xib in Resources */,
 				FF0971F8267F3E38001712F3 /* ico_common_24_message_off@3x.png in Resources */,
 				FF097249267F3E39001712F3 /* imgBackgroundYellow@2x.png in Resources */,
-				FF0970F6267F3C30001712F3 /* SocialCommentCell.xib in Resources */,
 				FF09721C267F3E39001712F3 /* img_background_red@2x.png in Resources */,
+				FF47CD42268F85DE000634B8 /* SocialMoreContentViewController.xib in Resources */,
 				FF097156267F3D51001712F3 /* AdvisoryStageViewController.xib in Resources */,
 				FF097221267F3E39001712F3 /* s_card_green@3x.png in Resources */,
 				FF097209267F3E39001712F3 /* bookmark_off_dark@2x.png in Resources */,
 				FF097245267F3E39001712F3 /* checked_solid.png in Resources */,
 				FF0971FF267F3E38001712F3 /* Write@2x.png in Resources */,
-				FF0970FF267F3C30001712F3 /* SocialMoreContentCell.xib in Resources */,
 				FF09723A267F3E39001712F3 /* bookmark_off.png in Resources */,
+				FF47CD3F268F85DE000634B8 /* SocialNoContentTableViewCell.xib in Resources */,
 				FF097217267F3E39001712F3 /* Write@3x.png in Resources */,
 				FF0971E9267F3E38001712F3 /* like_off_dark@2x.png in Resources */,
 				FF097218267F3E39001712F3 /* ico_common_24_message_off_dark@2x.png in Resources */,
+				FF47CD48268F85DF000634B8 /* SocialSearchViewController.xib in Resources */,
 				FF097242267F3E39001712F3 /* imgBackgroundRed@2x.png in Resources */,
 				FF097233267F3E39001712F3 /* imgBackgroundRed.png in Resources */,
 				FF0971FB267F3E38001712F3 /* img_background_red@3x.png in Resources */,
@@ -977,24 +978,22 @@
 				FF0971E5267F3E38001712F3 /* icon.png in Resources */,
 				FF097204267F3E38001712F3 /* Vector.png in Resources */,
 				FF09720F267F3E39001712F3 /* like_off_dark.png in Resources */,
-				FF0970F7267F3C30001712F3 /* SocialContentViewCell.xib in Resources */,
-				FF0970F9267F3C30001712F3 /* SocialNoContentTableViewCell.xib in Resources */,
 				FF097229267F3E39001712F3 /* like_on_dark.png in Resources */,
 				FF097246267F3E39001712F3 /* imgBackgroundYellow@3x.png in Resources */,
 				FF097219267F3E39001712F3 /* s_card_pink@3x.png in Resources */,
 				FF0971EC267F3E38001712F3 /* like_off_dark@3x.png in Resources */,
 				FF097213267F3E39001712F3 /*  alert-circle@3x.png in Resources */,
-				FF097107267F3C30001712F3 /* SocialSearchCell.xib in Resources */,
 				FF09720C267F3E39001712F3 /* Feed@2x.png in Resources */,
 				FF09722A267F3E39001712F3 /* s_card_yellow.png in Resources */,
 				FF09723B267F3E39001712F3 /* img_background_violet@3x.png in Resources */,
 				FF09723C267F3E39001712F3 /*  close@3x.png in Resources */,
 				FF09722B267F3E39001712F3 /* arrow-left.png in Resources */,
-				FF0970F5267F3C30001712F3 /* SocialContentCell.xib in Resources */,
 				FF0971D9267F3E38001712F3 /* bookmark_off_dark.png in Resources */,
 				FF097236267F3E39001712F3 /* checked_solid@3x.png in Resources */,
 				FF0971E2267F3E38001712F3 /* ico_common_24_message_off_dark.png in Resources */,
 				FF097200267F3E38001712F3 /* circle-checked@2x.png in Resources */,
+				FF47CD38268F85DE000634B8 /* SocialHeaderCell.xib in Resources */,
+				FF47CD37268F85DE000634B8 /* SocialNoContentCell.xib in Resources */,
 				FF09720B267F3E39001712F3 /*  circle-checked.png in Resources */,
 				FF09721E267F3E39001712F3 /* img_background_pink@3x.png in Resources */,
 				FF0971E0267F3E38001712F3 /* s_card_yellow@2x.png in Resources */,
@@ -1009,6 +1008,7 @@
 				FF097244267F3E39001712F3 /* bookmark_off@3x.png in Resources */,
 				FF097223267F3E39001712F3 /* ico_common_20_delete_line@3x.png in Resources */,
 				FF09721D267F3E39001712F3 /* like_on@2x.png in Resources */,
+				FF47CD4D268F85DF000634B8 /* SocialSearchCell.xib in Resources */,
 				FF0971FE267F3E38001712F3 /* ico_common_24_message_off_dark@3x.png in Resources */,
 				FF0971DC267F3E38001712F3 /* like_off@2x.png in Resources */,
 				FF097228267F3E39001712F3 /*  alert-circle.png in Resources */,
@@ -1021,17 +1021,14 @@
 				FF09723D267F3E39001712F3 /* Settings@2x.png in Resources */,
 				FF097227267F3E39001712F3 /* ico_common_20_search@2x.png in Resources */,
 				FF097205267F3E39001712F3 /*  circle-checked@2x.png in Resources */,
-				FF097100267F3C30001712F3 /* SocialDetailViewController.xib in Resources */,
 				FF0971F4267F3E38001712F3 /* s_card_yellow@3x.png in Resources */,
 				FF097211267F3E39001712F3 /*  circle-checked@3x.png in Resources */,
 				FF0971E4267F3E38001712F3 /* like_off.png in Resources */,
 				FF0971EE267F3E38001712F3 /* Edit@2x.png in Resources */,
 				FF097153267F3D51001712F3 /* NoAnswerCell.xib in Resources */,
 				FF09724A267F3E39001712F3 /* bookmark_off@2x.png in Resources */,
-				FF097102267F3C30001712F3 /* SocialSearchViewController.xib in Resources */,
 				FF097222267F3E39001712F3 /* img_background_violet.png in Resources */,
 				FFFC0F7C264193CE00C6372F /* GmarketSansBold.otf in Resources */,
-				FF097104267F3C30001712F3 /* SocialCommentViewController.xib in Resources */,
 				FF09720A267F3E39001712F3 /* Feed@3x.png in Resources */,
 				FF097208267F3E39001712F3 /* img_background_yellow.png in Resources */,
 				FF0971DA267F3E38001712F3 /* bookmark_on_dark@2x.png in Resources */,
@@ -1039,11 +1036,10 @@
 				FF09724B267F3E39001712F3 /* imgBackgroundRed@3x.png in Resources */,
 				0715A349260CD1860077882A /* Main.storyboard in Resources */,
 				FF097239267F3E39001712F3 /* Edit.png in Resources */,
-				FF0970FC267F3C30001712F3 /* SocialMoreContentViewController.xib in Resources */,
-				FF0970F2267F3C30001712F3 /* SocialHeaderCell.xib in Resources */,
 				FFFC0F7A264193CB00C6372F /* GmarketSansMedium.otf in Resources */,
 				FF0971F5267F3E38001712F3 /* like_off@3x.png in Resources */,
 				FF0971F3267F3E38001712F3 /* advisory@2x.png in Resources */,
+				FF47CD45268F85DF000634B8 /* SocialMoreContentCell.xib in Resources */,
 				FF0971F9267F3E38001712F3 /* img_background_pink@2x.png in Resources */,
 				FF0971EF267F3E38001712F3 /* img_background_yellow@2x.png in Resources */,
 				FF097237267F3E39001712F3 /* s_card_violet@2x.png in Resources */,
@@ -1053,12 +1049,14 @@
 				FF0971DD267F3E38001712F3 /* check.png in Resources */,
 				FF097241267F3E39001712F3 /* menu@2x.png in Resources */,
 				FF097206267F3E39001712F3 /* ico_common_24_complete_off@3x.png in Resources */,
+				FF47CD3B268F85DE000634B8 /* SocialContentCell.xib in Resources */,
 				FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */,
 				FF0971E7267F3E38001712F3 /* Edit@3x.png in Resources */,
 				FF097248267F3E39001712F3 /* img_background_green.png in Resources */,
 				FF09721F267F3E39001712F3 /* ico_common_24_message_off@2x.png in Resources */,
 				FF097201267F3E38001712F3 /*  alert-circle@2x.png in Resources */,
 				FF09721A267F3E39001712F3 /* s_card_violet.png in Resources */,
+				FF47CD46268F85DF000634B8 /* SocialDetailViewController.xib in Resources */,
 				FF0971EA267F3E38001712F3 /* ico_common_20_search.png in Resources */,
 				FF097202267F3E38001712F3 /* SelfQuestion@3x.png in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
@@ -1069,6 +1067,7 @@
 				FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */,
 				FF097224267F3E39001712F3 /* s_card_red@2x.png in Resources */,
 				FF097216267F3E39001712F3 /* ico_common_24_edit_circle_L.png in Resources */,
+				FF47CD4A268F85DF000634B8 /* SocialCommentViewController.xib in Resources */,
 				FF09724C267F3E39001712F3 /* menu@3x.png in Resources */,
 				FF0971F0267F3E38001712F3 /* like_on_dark@3x.png in Resources */,
 				FF097235267F3E39001712F3 /* delete.png in Resources */,
@@ -1089,7 +1088,6 @@
 				FF097207267F3E39001712F3 /* FloatingPlus@2x.png in Resources */,
 				FF097254267F3E39001712F3 /* imgBackgroundYellow.png in Resources */,
 				FF097154267F3D51001712F3 /* AdvisoryAnswerCell.xib in Resources */,
-				FF0970F1267F3C30001712F3 /* SocialNoContentCell.xib in Resources */,
 				FF09724E267F3E39001712F3 /* Settings@3x.png in Resources */,
 				FF0971EB267F3E38001712F3 /* like_on.png in Resources */,
 				FF097226267F3E39001712F3 /* confirm.png in Resources */,
@@ -1102,24 +1100,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4B9CBC91252DC0811E4006C7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-About-Me-iOS/Pods-About-Me-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC4E6FED338908522ED3E73D /* [CP] Check Pods Manifest.lock */ = {
+		0039658058692DA5A402EFC8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1134,11 +1115,28 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-About-Me-iOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-오늘의 나-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4B31F58FD0FACFBD1BA5B00A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-오늘의 나/Pods-오늘의 나-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-오늘의 나/Pods-오늘의 나-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-오늘의 나/Pods-오늘의 나-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1153,60 +1151,60 @@
 				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				FF3BECD026518760006C585A /* CategoryProgressList.swift in Sources */,
 				FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */,
-				FF0970FA267F3C30001712F3 /* SocialMoreContentViewController.swift in Sources */,
+				FF47CD40268F85DE000634B8 /* SocialMoreContentViewController.swift in Sources */,
+				FF47CD39268F85DE000634B8 /* SocialTagCell.swift in Sources */,
 				FF097157267F3D51001712F3 /* AdvisoryApiService.swift in Sources */,
-				FF0970F3267F3C30001712F3 /* SocialTagCell.swift in Sources */,
-				FF0970F4267F3C30001712F3 /* SocialHeaderCell.swift in Sources */,
-				FF097101267F3C30001712F3 /* SocialViewController.swift in Sources */,
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
+				FF47CD3A268F85DE000634B8 /* SocialHeaderCell.swift in Sources */,
+				FF47CD47268F85DF000634B8 /* SocialViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,
-				FF0970F8267F3C30001712F3 /* SocialNoContentCell.swift in Sources */,
 				FF097158267F3D51001712F3 /* AdvisoryAnswerViewController.swift in Sources */,
+				FF47CD3E268F85DE000634B8 /* SocialNoContentCell.swift in Sources */,
 				FF097150267F3D51001712F3 /* AdvisoryAnswerCell.swift in Sources */,
 				FFEFA9E72670F5E70097591F /* LikeProgressList.swift in Sources */,
+				FF47CD36268F85DE000634B8 /* SocialContentViewCell.swift in Sources */,
 				FF09714D267F3D51001712F3 /* AdvisoryUpdateList.swift in Sources */,
-				FF0970F0267F3C30001712F3 /* SocialContentViewCell.swift in Sources */,
-				FF0970FD267F3C30001712F3 /* SocialSearchCell.swift in Sources */,
-				FF0970FE267F3C30001712F3 /* SocialNoContentTableViewCell.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
 				FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */,
+				FF47CD43268F85DE000634B8 /* SocialSearchCell.swift in Sources */,
 				FFFC0FA72642C1F800C6372F /* MyProfileTagCollectionViewCell.swift in Sources */,
-				FF097108267F3C30001712F3 /* SocialCommentCell.swift in Sources */,
+				FF47CD44268F85DE000634B8 /* SocialNoContentTableViewCell.swift in Sources */,
 				07EE6C99264AB06300F99643 /* BottomSheetView.swift in Sources */,
 				FF09714A267F3D51001712F3 /* AdvisoryQuestionViewController.swift in Sources */,
 				0715A342260CD1860077882A /* AppDelegate.swift in Sources */,
 				FF097152267F3D51001712F3 /* AdvisoryStageViewController.swift in Sources */,
-				FF0970FB267F3C30001712F3 /* SocialMoreContentCell.swift in Sources */,
+				FF47CD4E268F85DF000634B8 /* SocialCommentCell.swift in Sources */,
 				FF77DA9926669CBB00D7808D /* MyProfileLikeScrapList.swift in Sources */,
 				FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */,
 				FFEFA9EF267109190097591F /* ShareProgressList.swift in Sources */,
+				FF47CD41268F85DE000634B8 /* SocialMoreContentCell.swift in Sources */,
 				FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */,
 				07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */,
-				FF09710A267F3C30001712F3 /* SocialApiService.swift in Sources */,
 				FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */,
-				FF097105267F3C30001712F3 /* SocialSearchViewController.swift in Sources */,
 				FF89606D261606F000CB6492 /* MyProfileViewController.swift in Sources */,
 				FF097155267F3D51001712F3 /* NoAnswerCell.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
 				FF09714B267F3D51001712F3 /* AdvisoryPostList.swift in Sources */,
+				FF47CD50268F85DF000634B8 /* SocialApiService.swift in Sources */,
 				0715A344260CD1860077882A /* SceneDelegate.swift in Sources */,
+				FF47CD4B268F85DF000634B8 /* SocialSearchViewController.swift in Sources */,
 				FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */,
-				FF097103267F3C30001712F3 /* SocialCommentViewController.swift in Sources */,
 				FF09714E267F3D51001712F3 /* AdvisoryDetailList.swift in Sources */,
 				FF09714F267F3D51001712F3 /* AdvisoryStageCell.swift in Sources */,
 				FF09714C267F3D51001712F3 /* AdvisoryList.swift in Sources */,
+				FF47CD49268F85DF000634B8 /* SocialCommentViewController.swift in Sources */,
 				FFA84BBC268250070073BD4F /* MyProfileAnswerDetailViewController.swift in Sources */,
+				FF47CD34268F85DE000634B8 /* SocialListResponse.swift in Sources */,
 				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
-				FF0970EE267F3C30001712F3 /* SocialListResponse.swift in Sources */,
 				FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
 				FFEFA9F326714BE90097591F /* ScrapProgressList.swift in Sources */,
+				FF47CD4C268F85DF000634B8 /* SocialDetailViewController.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
-				FF097106267F3C30001712F3 /* SocialDetailViewController.swift in Sources */,
+				FF47CD35268F85DE000634B8 /* SocialDetailResponse.swift in Sources */,
+				FF47CD4F268F85DF000634B8 /* SocialContentCell.swift in Sources */,
 				FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */,
-				FF0970EF267F3C30001712F3 /* SocialDetailResponse.swift in Sources */,
-				FF097109267F3C30001712F3 /* SocialContentCell.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
 				FF72B9E1265CFFFC00A7A5E4 /* MyProfilePageList.swift in Sources */,
 			);
@@ -1352,7 +1350,7 @@
 		};
 		0715A353260CD1870077882A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ED4E2A372674212C230F6293 /* Pods-About-Me-iOS.debug.xcconfig */;
+			baseConfigurationReference = 2A388EC9C3283F8BF443B13A /* Pods-오늘의 나.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1373,7 +1371,7 @@
 		};
 		0715A354260CD1870077882A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 303D176E49B1A96371CB97B1 /* Pods-About-Me-iOS.release.xcconfig */;
+			baseConfigurationReference = 63A33B77EAE1ECD47B65BC37 /* Pods-오늘의 나.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
