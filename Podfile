@@ -4,9 +4,7 @@
 target '오늘의 나' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-
-  # Pods for 오늘의 나
-  pod 'Hero'
+pod 'Hero'
   pod 'Alamofire'
   pod 'SideMenu'
   pod 'Floaty', '~> 4.2.0' 
