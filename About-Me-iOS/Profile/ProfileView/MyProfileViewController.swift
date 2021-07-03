@@ -10,7 +10,7 @@ import Floaty
 import SideMenu
 import Alamofire
 
-class MyProfileViewController: UIViewController {
+class MyProfileViewController: UIViewController,SideMenuNavigationControllerDelegate {
     @IBOutlet weak var detailPushButton: UIButton!
     @IBOutlet weak var myProfileBackgroundImageView: UIImageView!
     @IBOutlet weak var myProfileBoxView: UIView!
@@ -167,6 +167,7 @@ class MyProfileViewController: UIViewController {
         self.myProfileFloatingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         self.myProfileFloatingButton.plusColor = UIColor.white
         self.myProfileFloatingButton.selectedColor = UIColor.gray999
+        self.myProfileFloatingButton.sticky = true
         self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
         self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -405,6 +406,14 @@ class MyProfileViewController: UIViewController {
         }
     }
     
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
+    }
+    
     @objc
     private func didTapMyScrapButton(_ sender: UIButton) {
         self.myProfileTagIndex = 0
@@ -610,6 +619,12 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                                 isLiked = !isLiked
                                 myProfileCell?.myProfileContentButton.setImage(isLiked ? UIImage(named: "LikeOn.png") : UIImage(named: "LikeOff.png"), for: .normal)
                                 print("did Tap like \(list)")
+                                if list.code == 200 {
+                                    DispatchQueue.main.async {
+                                        self.myProfileLikeScrapSubData.remove(at: myProfileCell!.selectIndex)
+                                        self.myProfileCollectionView.reloadData()
+                                    }
+                                }
                             }
                         }
                     }
@@ -653,6 +668,12 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                             if case let .success(data) = result, let list = data {
                                 isScraped = !isScraped
                                 myProfileCell?.myProfileContentButton.setImage(isScraped ? UIImage(named: "ScrapsOn.png") : UIImage(named: "ScrapsOff.png"), for: .normal)
+                                if list.code == 200 {
+                                    DispatchQueue.main.async {
+                                        self.myProfileLikeScrapSubData.remove(at: myProfileCell!.selectIndex)
+                                        self.myProfileCollectionView.reloadData()
+                                    }
+                                }
                                 print("did Tap scrap \(list)")
                             }
                         }
@@ -679,12 +700,12 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             let myProfileCell = collectionView.cellForItem(at: indexPath) as? MyProfileCollectionViewCell
             myProfileCell?.selectIndex = indexPath.item
             if self.myProfileFlag == "answer" {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let profileAnswerVC = storyboard.instantiateViewController(withIdentifier: "MyProfileAnswerVC") as? MyProfileAnswerDetailViewController
-                self.navigationController?.pushViewController(profileAnswerVC!, animated: true)
+                let profileAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
+                profileAnswerVC.answerId = self.myProfileSubData[indexPath.item].answerId
+                profileAnswerVC.authorId = 1
+                self.navigationController?.pushViewController(profileAnswerVC, animated: true)
             }
         } else {
-            let myProfileTagCell = collectionView.cellForItem(at: indexPath) as? MyProfileTagCollectionViewCell
             switch indexPath.item {
             case 0:
                 if self.myProfileFlag == "answer" {
