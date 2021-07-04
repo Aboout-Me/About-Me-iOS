@@ -63,7 +63,8 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     
     
     private func setInitLayout() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(self.didTapSideMenuButton))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NewMenu.png"), style: .plain, target: self, action: #selector(self.didTapSideMenuButton))
+        self.view.insetsLayoutMarginsFromSafeArea = false
         self.navigationController?.view.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -160,7 +161,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileBottomLineView.heightAnchor.constraint(equalToConstant: 2).isActive = true
         self.myProfileBottomLineViewLeadingConstraint = self.myProfileBottomLineView.leadingAnchor.constraint(equalTo: self.myProfileMyAnswerButton.leadingAnchor, constant: 25)
         self.myProfileBottomLineViewLeadingConstraint.isActive = true
-        self.myProfileBottomLineView.bottomAnchor.constraint(equalTo: self.myProfileMyAnswerButton.bottomAnchor).isActive = true
+        self.myProfileBottomLineView.bottomAnchor.constraint(equalTo: self.myProfileMyAnswerButton.bottomAnchor, constant: 0).isActive = true
         self.myProfileMyLikeButton.addTarget(self, action: #selector(self.didTapMyLikeButton(_:)), for: .touchUpInside)
         self.myProfileMyScrapButton.addTarget(self, action: #selector(self.didTapMyScrapButton(_:)), for: .touchUpInside)
         self.myProfileMyAnswerButton.addTarget(self, action: #selector(self.didTapMyAnswerButton(_:)), for: .touchUpInside)
@@ -384,7 +385,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
                 self.myProfileMyLikeButton.isSelected = true
                 self.myProfileMyLikeButton.setTitleColor(UIColor.black, for: .selected)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX - 15
+                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX + 5
                 self.myProfileBottomLineView.updateConstraints()
             } else {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -396,7 +397,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileMyAnswerButton.setTitleColor(.gray555, for: .normal)
                 self.myProfileMyLikeButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX - 15
+                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX + self.myProfileMyAnswerButton.frame.minX - 15
                 self.myProfileBottomLineView.updateConstraints()
             }
         } completion: { success in
@@ -435,7 +436,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileMyScrapButton.isSelected = true
             self.myProfileMyScrapButton.setTitleColor(UIColor.black, for: .selected)
             self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-            self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyScrapButton.frame.minX - 15
+            self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyScrapButton.frame.minX + self.myProfileMyAnswerButton.frame.minX - 15
             self.myProfileBottomLineView.updateConstraints()
         } completion: { success in
             if success == true {
@@ -465,7 +466,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileMyAnswerButton.isSelected = true
                 self.myProfileMyAnswerButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX - 15
+                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX + 5
                 self.myProfileBottomLineView.updateConstraints()
             } else {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -476,7 +477,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileMyAnswerButton.isSelected = true
                 self.myProfileMyAnswerButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX - 15
+                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX + self.myProfileMyLikeButton.frame.minX - 15
                 self.myProfileBottomLineView.updateConstraints()
             }
         } completion: { success in
@@ -860,7 +861,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                 return UIEdgeInsets()
             }
         } else {
-            return UIEdgeInsets(top: 20, left: 30, bottom: 30, right: 10)
+            return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 10)
         }
     }
     
