@@ -105,7 +105,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
         }
         
-        if UserDefaults.standard.integer(forKey: "homeBeforeLevel") == 1 {
+        if self.answerLevel == "1" {
             self.homeAfterLastAnswerButton.isHidden = true
         } else {
             self.homeAfterLastAnswerButton.isHidden = false
@@ -156,7 +156,6 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.answerBottomSheetView.postQuestionLabel.sizeToFit()
         self.answerBottomSheetView.postAnswerTextView.text = "당신의 생각을 말해주세요"
         self.answerBottomSheetView.postAnswerTextView.textColor = .gray999
-        self.answerBottomSheetView.postAnswerTextView.isScrollEnabled = false
         self.answerBottomSheetView.postConfirmButton.isEnabled = false
         self.answerBottomSheetView.postAnswerTextView.inputAccessoryView = editToolbar
         self.answerBottomSheetView.layer.cornerRadius = 20
@@ -360,18 +359,11 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
-        let effectView = UIView(frame: self.view.frame)
-        effectView.tag = 2
-        UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
-            effectView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.view.addSubview(effectView)
-        }, completion: nil)
+        self.afterSideMenu?.setSideMenuNavigation(viewcontroller: self)
     }
     
-    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
-        if let effectRemoveView = self.view.viewWithTag(2) {
-            effectRemoveView.removeFromSuperview()
-        }
+    func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.afterSideMenu?.deleteEffectViewNavigation(viewcontroller: self)
     }
     
 }
@@ -399,6 +391,13 @@ extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewData
         } else {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("상상플러스", for: .normal)
+        }
+        if self.answerLevel == "1" {
+            homeAfterCell?.homeAfterLevelView.isHidden = true
+            homeAfterCell?.homeAfterLevelLabel.isHidden = true
+        } else {
+            homeAfterCell?.homeAfterLevelView.isHidden = false
+            homeAfterCell?.homeAfterLevelLabel.isHidden = false
         }
         homeAfterCell?.homeAfterTitleLabel.text = "\(self.titleText)"
         homeAfterCell?.homeAfterSubjectLabel.text = "\(UserDefaults.standard.string(forKey: "myQuestionText")!)"

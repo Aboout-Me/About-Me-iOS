@@ -297,21 +297,11 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
 
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
         print("side menu WillApper ")
-        let dimView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height))
-        dimView.tag = 2
-        if let view = self.view.viewWithTag(2) {
-            view.removeFromSuperview()
-        }
-        UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
-            dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            self.view.addSubview(dimView)
-        }, completion: nil)
+        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
     }
     
     func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
-        if let removeView = self.view.viewWithTag(2) {
-            removeView.removeFromSuperview()
-        }
+        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
     }
 }
 
@@ -469,4 +459,32 @@ extension HomeBeforeViewController: UITextViewDelegate {
         }
     }
     
+}
+
+extension SideMenuNavigationController: SideMenuNavigationControllerDelegate {
+    func setSideMenuNavigation(viewcontroller: UIViewController) {
+        let effectView = UIView()
+        effectView.frame = viewcontroller.view.frame
+        effectView.tag = 1
+        if let view = viewcontroller.view.viewWithTag(1) {
+            view.removeFromSuperview()
+        }
+        UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
+            effectView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            viewcontroller.view.addSubview(effectView)
+        }, completion: nil)
+    }
+    
+    func deleteEffectViewNavigation(viewcontroller: UIViewController) {
+        if let view = viewcontroller.view.viewWithTag(1) {
+            view.removeFromSuperview()
+        }
+    }
+    
+    public func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        self.setSideMenuNavigation(viewcontroller: self)
+    }
+    public func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.deleteEffectViewNavigation(viewcontroller: self)
+    }
 }

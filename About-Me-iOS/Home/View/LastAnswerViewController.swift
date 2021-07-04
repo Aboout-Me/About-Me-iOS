@@ -368,11 +368,10 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.selectedIndex = indexPath.item
-        let answerCell = collectionView.cellForItem(at: indexPath) as? LastAnswerCollectionViewCell
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let answerDetailVC = storyboard.instantiateViewController(withIdentifier: "MyProfileAnswerVC") as? MyProfileAnswerDetailViewController
-        guard let answerDetailView = answerDetailVC else { return }
-        self.navigationController?.pushViewController(answerDetailView, animated: true)
+        let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
+        lastAnswerVC.answerId = self.lastAnswerData[indexPath.item].cardSeq
+        lastAnswerVC.authorId = 1
+        self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

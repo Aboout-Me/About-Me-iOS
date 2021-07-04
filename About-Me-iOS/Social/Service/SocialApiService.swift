@@ -71,7 +71,7 @@ struct SocialApiService {
         let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment")
         let parameters: [String: Any] = [
             "answerId": answerId,
-//            "authorId": userId,
+            "authorId": userId,
             "comment": comment
         ]
         guard let url = urlComponent?.url else { return }
