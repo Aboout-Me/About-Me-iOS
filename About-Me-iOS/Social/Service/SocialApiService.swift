@@ -164,4 +164,60 @@ struct SocialApiService {
             }
         }
     }
+    
+    static func postReport(suedUserId: Int, targetQuestionId: Int, sueReason: String, sueType: String, completion: @escaping (SocialReportResponse) -> Void) {
+        let urlComponent = URLComponents(string:  "\(API_URL)/Message/sue")
+        let parameters: [String: Any] = [
+            "suedUserId": suedUserId,
+            "targetQuestionId": targetQuestionId,
+            "sueReason": sueReason,
+            "sueType": sueType
+        ]
+        guard let url = urlComponent?.url else { return }
+        
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                print(stringResponse)
+                
+                do {
+                    let data = try JSONDecoder().decode(SocialReportResponse.self, from: response.data!)
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    static func deleteComment(commentId: Int, completion: @escaping (SocialCommentDeleteResponse) -> Void) {
+        let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment")
+        let parameters: [String: Any] = [
+            "commentId": commentId,
+            "userId": userId
+        ]
+        guard let url = urlComponent?.url else { return }
+        
+        let request = AF.request(url, method: .delete, parameters: parameters, encoding: JSONEncoding.default)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                print(stringResponse)
+                
+                do {
+                    let data = try JSONDecoder().decode(SocialCommentDeleteResponse.self, from: response.data!)
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

@@ -16,6 +16,7 @@ class SocialCommentCell: UITableViewCell {
     @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    var buttonClosure: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -28,7 +29,7 @@ class SocialCommentCell: UITableViewCell {
     // MARK: - Selectors
     
     @IBAction func moreButtonDidTap(_ sender: Any) {
-        print("tap")
+        buttonClosure!()
     }
     
 }

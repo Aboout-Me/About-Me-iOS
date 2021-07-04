@@ -169,6 +169,26 @@ extension SocialCommentViewController: UITableViewDataSource {
         cell.nicknameLabel.text = comments[indexPath.row].nickname
         cell.commentLabel.text =  comments[indexPath.row].comment
         cell.timeLabel.text = comments[indexPath.row].writtenDate
+        cell.buttonClosure = { [weak self] in
+            guard let self = self else { return }
+            if comments[indexPath.row].authorId == userId {
+                let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
+                myMoreView.modalPresentationStyle = .overCurrentContext
+                myMoreView.commentId = comments[indexPath.row].commentId
+                myMoreView.closure = { [weak self] in
+                    guard let self = self else { return }
+                    self.comments?.remove(at: indexPath.row)
+                    self.commentTableView.reloadData()
+                }
+                self.present(myMoreView, animated: true, completion: nil)
+            } else {
+                let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)
+                moreView.modalPresentationStyle = .overCurrentContext
+                moreView.suedUserId = comments[indexPath.row].authorId
+                moreView.targetQuestionId = comments[indexPath.row].commentId
+                self.present(moreView, animated: true, completion: nil)
+            }
+        }
         return cell
     }
 }

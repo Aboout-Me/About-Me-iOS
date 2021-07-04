@@ -81,6 +81,16 @@ class SocialDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func moreButtonDidTap(_ sender: Any) {
+        if let post = post {
+            let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)
+            moreView.modalPresentationStyle = .overCurrentContext
+            moreView.suedUserId = post.userId
+            moreView.targetQuestionId = post.answerId
+            self.present(moreView, animated: true, completion: nil)
+        }
+    }
+    
     // MARK: - Helpers
     
     private func configureNavigation() {
