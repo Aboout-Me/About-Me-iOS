@@ -87,6 +87,7 @@ class SocialDetailViewController: UIViewController {
             moreView.modalPresentationStyle = .overCurrentContext
             moreView.suedUserId = post.userId
             moreView.targetQuestionId = post.answerId
+            moreView.sueType = "board"
             self.present(moreView, animated: true, completion: nil)
         }
     }

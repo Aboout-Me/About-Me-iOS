@@ -186,6 +186,7 @@ extension SocialCommentViewController: UITableViewDataSource {
                 moreView.modalPresentationStyle = .overCurrentContext
                 moreView.suedUserId = comments[indexPath.row].authorId
                 moreView.targetQuestionId = comments[indexPath.row].commentId
+                moreView.sueType = "comment"
                 self.present(moreView, animated: true, completion: nil)
             }
         }

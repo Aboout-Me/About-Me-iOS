@@ -18,6 +18,7 @@ class SocialMoreView: UIViewController {
     var currentPositionTouched: CGPoint?
     var suedUserId: Int?
     var targetQuestionId: Int?
+    var sueType: String?
     
     // MARK: - Lifecycle
     
@@ -112,8 +113,8 @@ class SocialMoreView: UIViewController {
     }
     
     private func reportPost(reason: String) {
-        if let suedUserId = self.suedUserId, let targetQuestionId = self.targetQuestionId {
-            SocialApiService.postReport(suedUserId: suedUserId, targetQuestionId: targetQuestionId, sueReason: reason, sueType: "board") { response in
+        if let suedUserId = self.suedUserId, let targetQuestionId = self.targetQuestionId, let sueType = self.sueType {
+            SocialApiService.postReport(suedUserId: suedUserId, targetQuestionId: targetQuestionId, sueReason: reason, sueType: sueType) { response in
                 if response.code == 200 {
                     let alert = UIAlertController(title: "신고가 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
                     
