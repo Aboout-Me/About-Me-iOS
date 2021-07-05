@@ -13,13 +13,15 @@ import Alamofire
 class MyProfileViewController: UIViewController,SideMenuNavigationControllerDelegate {
     @IBOutlet weak var detailPushButton: UIButton!
     @IBOutlet weak var myProfileBackgroundImageView: UIImageView!
-    @IBOutlet weak var myProfileBoxView: UIView!
     @IBOutlet weak var myProfileCharacterNameLabel: UILabel!
     @IBOutlet weak var myProfileCharacterContentLabel: UILabel!
     @IBOutlet weak var myProfileNickNameLabel: UILabel!
-    @IBOutlet weak var myProfileCharacterTagFirst: UIButton!
-    @IBOutlet weak var myProfileCharacterTagSecond: UIButton!
-    @IBOutlet weak var myProfileCharacterTagThird: UIButton!
+    @IBOutlet weak var myProfileFirstTagContainerView: UIView!
+    @IBOutlet weak var myProfileSecondTagContainerView: UIView!
+    @IBOutlet weak var myProfileThirdTagContainerView: UIView!
+    @IBOutlet weak var myProfileFirstTagLabel: UILabel!
+    @IBOutlet weak var myProfileSecondTagLabel: UILabel!
+    @IBOutlet weak var myProfileThirdTagLabel: UILabel!
     @IBOutlet weak var myProfileContentContainerView: UIView!
     @IBOutlet weak var myProfileMyAnswerButton: UIButton!
     @IBOutlet weak var myProfileButtonBottomView: UIView!
@@ -87,20 +89,14 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileBackgroundImageView.contentMode = .scaleToFill
         self.myProfileTagCollectionView.showsHorizontalScrollIndicator = false
         self.myProfileTagCollectionView.allowsMultipleSelection = false
-        self.myProfileBoxView.layer.cornerRadius = 15
-        self.myProfileBoxView.layer.masksToBounds = false
-        self.myProfileBoxView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        self.myProfileBoxView.layer.shadowRadius = 10
-        self.myProfileBoxView.layer.shadowColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.1).cgColor
-        self.myProfileBoxView.layer.shadowOpacity = 0.1
         self.myProfileCharacterNameLabel.text = "열정충만"
-        self.myProfileCharacterNameLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.myProfileCharacterNameLabel.textColor = .white
         self.myProfileCharacterNameLabel.textAlignment = .left
         self.myProfileCharacterNameLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         self.myProfileCharacterContentLabel.numberOfLines = 0
-        self.myProfileCharacterContentLabel.textColor = .gray777
+        self.myProfileCharacterContentLabel.textColor = .white
         self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         self.myProfileCharacterContentLabel.textAlignment = .left
         self.myProfileCharacterContentLabel.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
@@ -108,35 +104,32 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileImageViewContainer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileImageViewContainer.layer.cornerRadius = self.myProfileImageViewContainer.frame.size.width / 2
         self.myProfileImageView.image = UIImage(named: "CharacterRed.png")
-        self.myProfileNickNameLabel.textColor = .gray999
+        self.myProfileNickNameLabel.textColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.8)
         self.myProfileNickNameLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 11)
-        self.myProfileNickNameLabel.textAlignment = .center
-        self.detailPushButton.setImage(UIImage(named: "Arrow_Profile.png"), for: .normal)
+        self.myProfileNickNameLabel.textAlignment = .left
+        self.detailPushButton.setImage(UIImage(named: "WhiteArrow"), for: .normal)
         self.detailPushButton.addTarget(self, action: #selector(self.didTapdetailPushButton), for: .touchUpInside)
-        self.myProfileCharacterTagFirst.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-        self.myProfileCharacterTagFirst.layer.borderWidth = 1
-        self.myProfileCharacterTagFirst.layer.cornerRadius = 3
-        self.myProfileCharacterTagFirst.layer.masksToBounds = true
-        self.myProfileCharacterTagFirst.setTitle("#열정", for: .normal)
-        self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-        self.myProfileCharacterTagFirst.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        self.myProfileCharacterTagFirst.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-        self.myProfileCharacterTagSecond.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-        self.myProfileCharacterTagSecond.layer.borderWidth = 1
-        self.myProfileCharacterTagSecond.layer.cornerRadius = 3
-        self.myProfileCharacterTagSecond.layer.masksToBounds = true
-        self.myProfileCharacterTagSecond.setTitle("#진로", for: .normal)
-        self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-        self.myProfileCharacterTagSecond.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-        self.myProfileCharacterTagSecond.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        self.myProfileCharacterTagThird.layer.borderColor =  UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-        self.myProfileCharacterTagThird.layer.borderWidth = 1
-        self.myProfileCharacterTagThird.layer.cornerRadius = 3
-        self.myProfileCharacterTagThird.layer.masksToBounds = true
-        self.myProfileCharacterTagThird.setTitle("#미래", for: .normal)
-        self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-        self.myProfileCharacterTagThird.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-        self.myProfileCharacterTagThird.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        self.myProfileFirstTagContainerView.layer.borderWidth = 1
+        self.myProfileFirstTagContainerView.layer.borderColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4).cgColor
+        self.myProfileFirstTagContainerView.backgroundColor = .clear
+        self.myProfileFirstTagContainerView.layer.cornerRadius = 3
+        self.myProfileFirstTagLabel.textColor = .white
+        self.myProfileFirstTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 9)
+        self.myProfileFirstTagLabel.textAlignment = .left
+        self.myProfileSecondTagContainerView.layer.cornerRadius = 3
+        self.myProfileSecondTagContainerView.layer.borderWidth = 1
+        self.myProfileSecondTagContainerView.backgroundColor = .clear
+        self.myProfileSecondTagContainerView.layer.borderColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4).cgColor
+        self.myProfileSecondTagLabel.textColor = .white
+        self.myProfileSecondTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 9)
+        self.myProfileSecondTagLabel.textAlignment = .left
+        self.myProfileThirdTagContainerView.layer.cornerRadius = 3
+        self.myProfileThirdTagContainerView.layer.borderWidth = 1
+        self.myProfileThirdTagContainerView.backgroundColor = .clear
+        self.myProfileThirdTagContainerView.layer.borderColor = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.4).cgColor
+        self.myProfileThirdTagLabel.textColor = .white
+        self.myProfileThirdTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 9)
+        self.myProfileThirdTagLabel.textAlignment = .left
         self.myProfileContentContainerView.layer.cornerRadius = 25
         self.myProfileContentContainerView.layer.masksToBounds = true
         self.myProfileContentContainerView.layer.maskedCorners =  [.layerMaxXMinYCorner,.layerMinXMinYCorner]
@@ -187,60 +180,45 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterRed")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed")
-            self.myProfileCharacterTagFirst.setTitle("#열정", for: .normal)
-            self.myProfileCharacterTagSecond.setTitle("#진로", for: .normal)
-            self.myProfileCharacterTagThird.setTitle("#미래", for: .normal)
-            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
+            self.myProfileFirstTagLabel.text = "#열정"
+            self.myProfileSecondTagLabel.text = "#진로"
+            self.myProfileThirdTagLabel.text = "#미래"
         } else if self.myProfileData?.color == "yellow" {
             self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "characterYellow")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundYellow")
-            self.myProfileCharacterTagFirst.setTitle("#일상", for: .normal)
-            self.myProfileCharacterTagSecond.setTitle("#추억", for: .normal)
-            self.myProfileCharacterTagThird.setTitle("#취향", for: .normal)
-            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0), for: .normal)
+            self.myProfileFirstTagLabel.text = "#일상"
+            self.myProfileSecondTagLabel.text = "#추억"
+            self.myProfileThirdTagLabel.text = "#취향"
         } else if self.myProfileData?.color == "green" {
             self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterGreen")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundGreen")
-            self.myProfileCharacterTagFirst.setTitle("#힐링", for: .normal)
-            self.myProfileCharacterTagSecond.setTitle("#치유", for: .normal)
-            self.myProfileCharacterTagThird.setTitle("#위로", for: .normal)
-            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0), for: .normal)
+            self.myProfileFirstTagLabel.text = "#힐링"
+            self.myProfileSecondTagLabel.text = "#치유"
+            self.myProfileThirdTagLabel.text = "#위로"
         } else if self.myProfileData?.color == "pink" {
             self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterPink")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundPink")
-            self.myProfileCharacterTagFirst.setTitle("#연애", for: .normal)
-            self.myProfileCharacterTagSecond.setTitle("#사랑", for: .normal)
-            self.myProfileCharacterTagThird.setTitle("#가치관", for: .normal)
-            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0), for: .normal)
+            self.myProfileFirstTagLabel.text = "#연애"
+            self.myProfileSecondTagLabel.text = "#사랑"
+            self.myProfileThirdTagLabel.text = "#가치관"
         } else {
             self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterVilolet")
             self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundViolet")
-            self.myProfileCharacterTagFirst.setTitle("#만약에", for: .normal)
-            self.myProfileCharacterTagSecond.setTitle("#상상", for: .normal)
-            self.myProfileCharacterTagThird.setTitle("#희망", for: .normal)
-            self.myProfileCharacterTagFirst.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagSecond.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
-            self.myProfileCharacterTagThird.setTitleColor(UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0), for: .normal)
+            self.myProfileFirstTagLabel.text = "#만약에"
+            self.myProfileSecondTagLabel.text = "#상상"
+            self.myProfileThirdTagLabel.text = "희망"
         }
     }
     
