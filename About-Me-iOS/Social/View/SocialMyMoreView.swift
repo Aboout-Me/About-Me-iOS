@@ -23,6 +23,7 @@ class SocialMyMoreView: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configure()
     }
     
     // MARK: - Selectors
