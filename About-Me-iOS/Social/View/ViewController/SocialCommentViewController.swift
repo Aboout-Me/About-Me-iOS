@@ -169,6 +169,7 @@ extension SocialCommentViewController: UITableViewDataSource {
         cell.nicknameLabel.text = comments[indexPath.row].nickname
         cell.commentLabel.text =  comments[indexPath.row].comment
         cell.timeLabel.text = comments[indexPath.row].writtenDate
+        cell.color = comments[indexPath.row].color
         cell.buttonClosure = { [weak self] in
             guard let self = self else { return }
             if comments[indexPath.row].authorId == userId {

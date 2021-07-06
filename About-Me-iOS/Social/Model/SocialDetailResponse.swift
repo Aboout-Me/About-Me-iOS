@@ -40,4 +40,5 @@ struct SocialComment: Codable {
     let regDate: String
     let writtenDate: String
     let comment: String
+    let color: String
 }
