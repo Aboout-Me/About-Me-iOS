@@ -19,6 +19,7 @@ class SocialMoreView: UIViewController {
     var suedUserId: Int?
     var targetQuestionId: Int?
     var sueType: String?
+    var closure: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -117,6 +118,16 @@ class SocialMoreView: UIViewController {
             SocialApiService.postReport(suedUserId: suedUserId, targetQuestionId: targetQuestionId, sueReason: reason, sueType: sueType) { response in
                 if response.code == 200 {
                     let alert = UIAlertController(title: "신고가 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let cancelAction = UIAlertAction(title: "닫기", style: .default) { _ in
+                        self.closure?()
+                    }
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: false, completion: nil)
+                }
+                else {
+                    let alert = UIAlertController(title: "잠시 후 다시 시도해주세요.", message: nil, preferredStyle: UIAlertController.Style.alert)
                     
                     let cancelAction = UIAlertAction(title: "닫기", style: .default, handler: nil)
                     

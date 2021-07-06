@@ -88,6 +88,9 @@ class SocialDetailViewController: UIViewController {
             moreView.suedUserId = post.userId
             moreView.targetQuestionId = post.answerId
             moreView.sueType = "board"
+            moreView.closure = {
+                self.dismiss(animated: false, completion: nil)
+            }
             self.present(moreView, animated: true, completion: nil)
         }
     }

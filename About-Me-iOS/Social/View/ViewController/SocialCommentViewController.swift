@@ -187,6 +187,9 @@ extension SocialCommentViewController: UITableViewDataSource {
                 moreView.suedUserId = comments[indexPath.row].authorId
                 moreView.targetQuestionId = comments[indexPath.row].commentId
                 moreView.sueType = "comment"
+                moreView.closure = {
+                    self.dismiss(animated: false, completion: nil)
+                }
                 self.present(moreView, animated: true, completion: nil)
             }
         }
