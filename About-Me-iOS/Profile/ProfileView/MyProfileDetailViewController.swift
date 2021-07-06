@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
+class MyProfileDetailViewController: UIViewController {
     
     @IBOutlet weak var myProfileBackgroundImageView: UIImageView!
     @IBOutlet weak var myProfileTitleLabel: UILabel!
@@ -59,6 +59,7 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     @IBOutlet weak var myProfileSundayButton: UIButton!
     @IBOutlet weak var myProfileMonthleadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var myProfileFridayleadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var myProfileCategoryTitleTopConstraint: NSLayoutConstraint!
     private var categoryData = [CategoryProgressModel]()
     private var weeklyData = [WeeklyProgressListModel]()
     public var sequence: Int = 0
@@ -471,3 +472,34 @@ class MyProfileDetailViewController: UIViewController,UIScrollViewDelegate {
     }
 }
 
+
+
+extension MyProfileDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("Scroll View ContentOffset y : \(scrollView.contentOffset.y)")
+        if scrollView.contentOffset.y > 115 {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+                self.navigationController?.navigationBar.isTranslucent = false
+                self.navigationController?.navigationBar.barTintColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                self.myProfileCategoryTitleTopConstraint.constant = 44
+                scrollView.scrollIndicatorInsets = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
+                self.view.layoutIfNeeded()
+            } completion: { success in
+                if success {
+                    self.myProfileBackgroundImageView.isHidden = true
+                }
+            }
+        } else if scrollView.contentOffset.y == 0 {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                print("Scroll view ContentOffset Down y : \(scrollView.contentOffset.y)")
+                self.myProfileBackgroundImageView.isHidden = false
+                self.navigationController?.navigationBar.isTranslucent = true
+                self.navigationController?.navigationBar.barTintColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                self.myProfileCategoryTitleTopConstraint.constant = 244
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+            
+        }
+    }
+   
+}

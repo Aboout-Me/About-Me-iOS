@@ -70,8 +70,8 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.navigationController?.view.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.layer.addBorder([.bottom], color: UIColor(white: 255/255, alpha: 0.2), width: 1)
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationItem.title = "프로필"
@@ -855,5 +855,18 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
 }
 
 
-
-
+extension CALayer {
+    public func addBorder(_ arr_Edge: [UIRectEdge], color: UIColor, width: CGFloat) {
+        for edge in arr_Edge {
+            let border = CALayer()
+            switch edge {
+            case UIRectEdge.bottom:
+                border.frame = CGRect(x: 0, y: frame.height - width, width: frame.width, height: width)
+            default:
+                break
+            }
+            border.backgroundColor = color.cgColor
+            self.addSublayer(border)
+        }
+    }
+}
