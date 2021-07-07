@@ -11,6 +11,7 @@ class SocialMoreContentViewController: UIViewController {
 
     // MARK: - Properties
     
+    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var headerCollectionView: UICollectionView!
     @IBOutlet weak var bodyCollectionView: UICollectionView!
     
@@ -187,6 +188,12 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == headerCollectionView {
+            if indexPath.row == 0 {
+                self.backgroundImageView.image = UIImage(named: "img_background_default.png")
+            } else {
+                self.backgroundImageView.image = UIImage(named: "img_background_\(tags[indexPath.row].1).png")
+            }
+            
             if self.state == .none {
                 MyFeedApiService.getFeedList(color: tags[indexPath.row].1) { feedList in
                     print("feedPost: \(feedList)")

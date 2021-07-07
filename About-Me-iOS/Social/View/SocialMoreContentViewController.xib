@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialMoreContentViewController" customModule="__________" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImageView" destination="ejS-aw-Dqu" id="Ada-Io-lJK"/>
                 <outlet property="bodyCollectionView" destination="9gC-AW-4jj" id="IcK-p9-YsG"/>
                 <outlet property="headerCollectionView" destination="cCo-eL-aAQ" id="0WL-Qo-1Vd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
