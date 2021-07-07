@@ -82,6 +82,10 @@
 		072931FC267F06DF00CCA6A8 /* arrow-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 072931F6267F04ED00CCA6A8 /* arrow-left.png */; };
 		072931FD267F06DF00CCA6A8 /* arrow-left@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 072931F7267F04ED00CCA6A8 /* arrow-left@2x.png */; };
 		072931FE267F06DF00CCA6A8 /* arrow-left@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 072931F8267F04ED00CCA6A8 /* arrow-left@3x.png */; };
+		074011952695B37300AFFA3D /* MyFeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074011942695B37300AFFA3D /* MyFeedResponse.swift */; };
+		074011972695B63C00AFFA3D /* MyFeedApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074011962695B63C00AFFA3D /* MyFeedApiService.swift */; };
+		074011A42695CCA700AFFA3D /* MyFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 074011A22695CCA700AFFA3D /* MyFeedCell.swift */; };
+		074011A52695CCA700AFFA3D /* MyFeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 074011A32695CCA700AFFA3D /* MyFeedCell.xib */; };
 		07432F5626637464008786B0 /* SocialSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07432F5426637464008786B0 /* SocialSearchCell.swift */; };
 		07432F5726637464008786B0 /* SocialSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07432F5526637464008786B0 /* SocialSearchCell.xib */; };
 		07432F5B266374DF008786B0 /* ico_common_20_delete_line@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07432F58266374DF008786B0 /* ico_common_20_delete_line@3x.png */; };
@@ -168,7 +172,6 @@
 		07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */; };
 		07F8FDA62691DD3400B306B2 /* SocialMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDA42691DD3400B306B2 /* SocialMoreView.swift */; };
 		07F8FDA72691DD3400B306B2 /* SocialMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDA52691DD3400B306B2 /* SocialMoreView.xib */; };
-		07F8FDA92691E51600B306B2 /* Pods_오늘의_나.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07F8FDA82691E51600B306B2 /* Pods_오늘의_나.framework */; };
 		07F8FDAA2691E51600B306B2 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F8FDA82691E51600B306B2 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07F8FDAF2691F57A00B306B2 /* SocialReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDAE2691F57A00B306B2 /* SocialReportResponse.swift */; };
 		07F8FDB22692031400B306B2 /* SocialMyMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDB02692031400B306B2 /* SocialMyMoreView.swift */; };
@@ -332,6 +335,10 @@
 		072931F6267F04ED00CCA6A8 /* arrow-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-left.png"; sourceTree = "<group>"; };
 		072931F7267F04ED00CCA6A8 /* arrow-left@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-left@2x.png"; sourceTree = "<group>"; };
 		072931F8267F04ED00CCA6A8 /* arrow-left@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow-left@3x.png"; sourceTree = "<group>"; };
+		074011942695B37300AFFA3D /* MyFeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedResponse.swift; sourceTree = "<group>"; };
+		074011962695B63C00AFFA3D /* MyFeedApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedApiService.swift; sourceTree = "<group>"; };
+		074011A22695CCA700AFFA3D /* MyFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFeedCell.swift; sourceTree = "<group>"; };
+		074011A32695CCA700AFFA3D /* MyFeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyFeedCell.xib; sourceTree = "<group>"; };
 		07432F5426637464008786B0 /* SocialSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSearchCell.swift; sourceTree = "<group>"; };
 		07432F5526637464008786B0 /* SocialSearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialSearchCell.xib; sourceTree = "<group>"; };
 		07432F58266374DF008786B0 /* ico_common_20_delete_line@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ico_common_20_delete_line@3x.png"; sourceTree = "<group>"; };
@@ -434,6 +441,7 @@
 		07F8FDBB2694ABCC00B306B2 /* s_card_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_card_purple.png; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
 		62E168CB7DBA2C0CBBB9DC84 /* Pods-오늘의 나.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.release.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.release.xcconfig"; sourceTree = "<group>"; };
+		CA490CE9E4AF870A1EF9A07D /* Pods___________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED6D3472889EA5B5FBED1B65 /* Pods-오늘의 나.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.debug.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.debug.xcconfig"; sourceTree = "<group>"; };
 		FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
 		FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileAnswerDetailViewController.swift; sourceTree = "<group>"; };
@@ -500,7 +508,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07F8FDA92691E51600B306B2 /* Pods_오늘의_나.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +538,8 @@
 				07129475266D11FD001250FB /* SocialNoContentTableViewCell.swift */,
 				07129476266D11FD001250FB /* SocialNoContentTableViewCell.xib */,
 				07011230268DEAFC008BD686 /* SocialSearchResponseCell.swift */,
+				074011A22695CCA700AFFA3D /* MyFeedCell.swift */,
+				074011A32695CCA700AFFA3D /* MyFeedCell.xib */,
 				07011231268DEAFC008BD686 /* SocialSearchResponseCell.xib */,
 				07F8FDA42691DD3400B306B2 /* SocialMoreView.swift */,
 				07F8FDA52691DD3400B306B2 /* SocialMoreView.xib */,
@@ -544,6 +553,7 @@
 			isa = PBXGroup;
 			children = (
 				0714AE91265D4113005C3C6E /* SocialApiService.swift */,
+				074011962695B63C00AFFA3D /* MyFeedApiService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -556,6 +566,7 @@
 				0701122E268DDDF7008BD686 /* SocialSearchResponse.swift */,
 				07F8FDAE2691F57A00B306B2 /* SocialReportResponse.swift */,
 				07F8FDB4269208BA00B306B2 /* SocialCommentDeleteResponse.swift */,
+				074011942695B37300AFFA3D /* MyFeedResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -703,6 +714,7 @@
 			isa = PBXGroup;
 			children = (
 				077A2D51268E13EC0020EA6D /* Pods_오늘의_나.framework */,
+				07F8FDA82691E51600B306B2 /* Pods_오늘의_나.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -710,7 +722,7 @@
 		2D3EADC77AF39CD4DB9D5108 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				07F8FDA82691E51600B306B2 /* Pods_오늘의_나.framework */,
+				CA490CE9E4AF870A1EF9A07D /* Pods___________.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1156,6 +1168,7 @@
 				07432F712663D735008786B0 /* bookmark_off_dark@2x.png in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				07EAD055266FAF860099B604 /* img_background_red@3x.png in Resources */,
+				074011A52695CCA700AFFA3D /* MyFeedCell.xib in Resources */,
 				07129458266D0578001250FB /* img_background_pink@2x.png in Resources */,
 				0757072C26651D1C009F98B4 /* SocialCommentViewController.xib in Resources */,
 				FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */,
@@ -1251,6 +1264,7 @@
 				07F8FDAF2691F57A00B306B2 /* SocialReportResponse.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
 				FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */,
+				074011952695B37300AFFA3D /* MyFeedResponse.swift in Sources */,
 				072931F1267EFE6500CCA6A8 /* AdvisoryDetailList.swift in Sources */,
 				FFFC0FA72642C1F800C6372F /* MyProfileTagCollectionViewCell.swift in Sources */,
 				0751A66426441545004E635C /* AdvisoryPostList.swift in Sources */,
@@ -1284,11 +1298,13 @@
 				07B89EB2268A1002007380A5 /* MyProfilePageList.swift in Sources */,
 				0705C8CD265BDC5800E71E8E /* SocialHeaderCell.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
+				074011A42695CCA700AFFA3D /* MyFeedCell.swift in Sources */,
 				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
 				FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */,
 				FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */,
 				07011232268DEAFC008BD686 /* SocialSearchResponseCell.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
+				074011972695B63C00AFFA3D /* MyFeedApiService.swift in Sources */,
 				07B05726266687CA002085B7 /* SocialCommentCell.swift in Sources */,
 				FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */,
 				FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */,
