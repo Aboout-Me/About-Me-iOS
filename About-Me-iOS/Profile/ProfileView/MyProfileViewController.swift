@@ -52,8 +52,9 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.setMyProfileSideMenuLayout()
         self.setInitLayout()
     }
-    override func viewWillAppear(_ animated: Bool) {
-
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.reomveCustomBottomLine()
     }
     
     private func setMyProfileSideMenuLayout() {
@@ -69,10 +70,8 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.view.insetsLayoutMarginsFromSafeArea = false
         self.navigationController?.view.backgroundColor = UIColor.clear
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.layer.addBorder([.bottom], color: UIColor(white: 255/255, alpha: 0.2), width: 1)
-        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.addCustomBottomLine(color: UIColor(white: 255/255, alpha: 0.2), height: 1)
         self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationItem.title = "프로필"
         let mainNib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
@@ -263,16 +262,16 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         if self.myProfileTagIndex == 0 && self.myProfileColor == "" {
             ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: nil) { result in
                 if case let .success(data) = result, let list = data {
+                    // TO DO 
                     DispatchQueue.main.async {
                         self.myProfileLikeScrapData = list
                         if list.postList[0].errorCode == "404" {
                             self.myProfileLikeScrapSubData = []
                         } else {
                             self.myProfileLikeScrapSubData = list.postList[0].body!
+                            self.myProfileCollectionView.reloadData()
                         }
-
                         print("Like All Data : [\(self.myProfileLikeScrapData)]")
-                        self.myProfileCollectionView.reloadData()
                     }
                 }
             }
@@ -854,19 +853,25 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     
 }
 
-
-extension CALayer {
-    public func addBorder(_ arr_Edge: [UIRectEdge], color: UIColor, width: CGFloat) {
-        for edge in arr_Edge {
-            let border = CALayer()
-            switch edge {
-            case UIRectEdge.bottom:
-                border.frame = CGRect(x: 0, y: frame.height - width, width: frame.width, height: width)
-            default:
-                break
-            }
-            border.backgroundColor = color.cgColor
-            self.addSublayer(border)
+extension UINavigationController
+{
+    func addCustomBottomLine(color:UIColor,height:Double)
+    {
+        let lineView = UIView(frame: CGRect(x: 0, y: 0, width:0, height: height))
+        lineView.backgroundColor = color
+        navigationBar.addSubview(lineView)
+        lineView.tag = 1
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        lineView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor).isActive = true
+        lineView.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+        lineView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
+        lineView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
+    }
+    
+    func reomveCustomBottomLine() {
+        navigationBar.setValue(true, forKey: "hidesShadow")
+        if let view = navigationBar.viewWithTag(1) {
+            view.removeFromSuperview()
         }
     }
 }
