@@ -17,7 +17,9 @@ class AdditionalProfileViewController: UIViewController {
     var genderFlag: Bool = false
     var introduceFlag: Bool = false
     
-    var gender = "none"
+    var gender: String = "none"
+    
+    var userEmail: String = "none"
       
     private var datePicker: UIDatePicker?
     
@@ -73,9 +75,15 @@ class AdditionalProfileViewController: UIViewController {
         view.addGestureRecognizer(tapGesture)
  
         dateTextfield.inputView = datePicker
+        
+        // LoginVC에서 email값 가져오기
+        emailTextfield.text = userEmail
     }
     
-//    func makeSignUpTemplate() -> 
+    override func viewDidDisappear(_ animated: Bool) {
+        // 프로필 데이터 전송 API 호출
+        LoginApiService.putProfile(email: emailTextfield.text ?? "none", nickname: nicknameTextfield.text ?? "none", introduce: introduceTextView.text ?? "none", color: "none", date: dateTextfield.text ?? "none", gender: gender)
+    }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
         view.endEditing(true)
@@ -218,4 +226,6 @@ extension AdditionalProfileViewController: UITextFieldDelegate{
         }
     }
 }
+
+
 

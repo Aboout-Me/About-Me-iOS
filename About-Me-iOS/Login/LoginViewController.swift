@@ -22,6 +22,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     var accessToken: String = ""
     var refreshToken: String = ""
     var authType: String = ""
+    var userEmail: String = ""
 
     // MARK: - viewDidLoad
     
@@ -65,10 +66,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         print("auth type = \(authType)")
         print("===============")
         
-        guard let vc = segue.destination as? ConciergeViewController else { return }
-        vc.authType = self.authType
-        vc.accessToken = self.accessToken
-        vc.refreshToken = self.refreshToken
+        guard let ConciergeVC = segue.destination as? ConciergeViewController else { return }
+        ConciergeVC.authType = self.authType
+        ConciergeVC.accessToken = self.accessToken
+        ConciergeVC.refreshToken = self.refreshToken
+        ConciergeVC.userEmail = self.userEmail
     }
 
 
@@ -135,9 +137,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         guard let email = object["email"] as? String else { return }
         guard let id = object["id"] as? String else {return}
         
-//        self.naverNameLabel.text = "\(name)"
-//        self.naverEmailLabel.text = "\(email)"
-//        self.naverIdLabel.text = "\(id)"
+        self.userEmail = email
       }
     }
     
@@ -179,7 +179,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                 //do something
                 _ = user
                 
-//                self.kakaoNameLabel.text = user?.kakaoAccount?.profile?.nickname
+                guard let email = user?.kakaoAccount?.email else { return }
+                self.userEmail = email
                 
 //                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
 //                    let data = try? Data(contentsOf: url) {

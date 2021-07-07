@@ -222,7 +222,7 @@
         <!--Additional Profile View Controller-->
         <scene sceneID="1gh-HP-BlN">
             <objects>
-                <viewController id="7UX-8N-gm8" customClass="AdditionalProfileViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AdditionalProfileViewController" id="7UX-8N-gm8" customClass="AdditionalProfileViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3Jn-Bj-xKg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
