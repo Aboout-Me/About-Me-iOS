@@ -142,7 +142,12 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
                         cell.tagLabel.text = tagText
                     }
                 }
-                cell.levelLabel.text = "Level \(post.level)"
+                if post.level == 1 {
+                    cell.levelView.isHidden = true
+                } else {
+                    cell.levelView.isHidden = false
+                    cell.levelLabel.text = "Level \(post.level)"
+                }
                 cell.questionLabel.text = post.question
                 cell.answerLabel.text = post.answer
                 cell.closure = { [weak self] in
