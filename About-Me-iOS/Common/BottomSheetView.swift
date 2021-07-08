@@ -62,7 +62,7 @@ class BottomSheetView: UIViewController {
         
         let confirmLabel = UILabel()
         confirmLabel.text = "글을 저장 하시겠어요?"
-        confirmLabel.font = UIFont.systemFont(ofSize: 15)
+        confirmLabel.font = UIFont.init(name: "AppleSDGothicNeo-Regular", size: 15)// UIFont.systemFont(ofSize: 15)
         confirmLabel.textColor = .gray555
         
         let cancelButton = CustomButton(text: "취소", type: .white)
@@ -76,17 +76,19 @@ class BottomSheetView: UIViewController {
         confirmLabel.centerX(inView: contentView)
         confirmLabel.anchor(top: confirmImage.bottomAnchor, paddingTop: 15)
         
-        let width = (self.contentView.frame.size.width - 40 - 40 - 20) / 2
+        let width = (self.contentView.frame.size.width - 20 - 20 - 5) / 2
         contentView.addSubview(cancelButton)
         cancelButton.setDimensions(height: 50, width: width)
-        cancelButton.anchor(top: confirmLabel.bottomAnchor, right: contentView.centerXAnchor,
-                              paddingTop: 50, paddingRight: 20)
+//        cancelButton.anchor(top: confirmLabel.bottomAnchor, right: contentView.centerXAnchor,
+//                              paddingTop: 50, paddingRight: 5)
+        cancelButton.anchor(bottom: contentView.bottomAnchor, right: contentView.centerXAnchor, paddingBottom: 10, paddingRight: 5)
         cancelButton.addTarget(self, action: #selector(cancelButtonDidTap), for: .touchUpInside)
 
         contentView.addSubview(saveButton)
         saveButton.setDimensions(height: 50, width: width)
-        saveButton.anchor(top: confirmLabel.bottomAnchor, left: contentView.centerXAnchor,
-                          paddingTop: 50, paddingLeft: 20)
+//        saveButton.anchor(top: confirmLabel.bottomAnchor, left: contentView.centerXAnchor,
+//                          paddingTop: 50, paddingLeft: 5)
+        saveButton.anchor(left: contentView.centerXAnchor, bottom: contentView.bottomAnchor, paddingLeft: 5, paddingBottom: 10)
         saveButton.addTarget(self, action: #selector(saveButtonDidTap), for: .touchUpInside)
     }
 

@@ -27,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYf-hR-c9e">
-                            <rect key="frame" x="0.0" y="584" width="414" height="60"/>
+                            <rect key="frame" x="0.0" y="604" width="414" height="60"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfP-kG-yVF">
                                     <rect key="frame" x="187" y="10" width="40" height="5"/>
@@ -47,12 +47,12 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-Ci-W0I">
-                            <rect key="frame" x="0.0" y="614" width="414" height="282"/>
+                            <rect key="frame" x="0.0" y="634" width="414" height="262"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6e-Jf-6Lf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="240" id="xjv-14-o5S"/>
+                                        <constraint firstAttribute="height" constant="220" id="xjv-14-o5S"/>
                                     </constraints>
                                 </view>
                             </subviews>

@@ -287,7 +287,7 @@ class AdvisoryQuestionViewController: UIViewController {
     
     @objc
     private func keyboardWillHide(_ notification: Notification) {
-        self.bottomConstraint.constant = 10
+        self.bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
     
