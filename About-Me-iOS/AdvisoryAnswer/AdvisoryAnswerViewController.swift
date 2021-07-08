@@ -92,9 +92,8 @@ class AdvisoryAnswerViewController: UIViewController {
     }
     
     private func configureNavigation() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu_white.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        self.navigationController?.navigationBar.tintColor = .white
         
         self.title = "자문자답"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
