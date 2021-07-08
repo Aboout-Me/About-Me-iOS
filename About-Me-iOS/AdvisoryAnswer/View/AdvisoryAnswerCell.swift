@@ -26,9 +26,7 @@ class AdvisoryAnswerCell: UITableViewCell {
         self.titleLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
         self.finishView.tintColor = .gray333
         self.stageLabel.textColor = .gray333
-        self.stageLabel.font = UIFont(name: "GmarketSansMedium", size: 15)
         self.createdLabel.textColor = .gray999
-        self.createdLabel.font = UIFont(name: "GmarketSansMedium", size: 13)
         
         self.borderView.layer.borderWidth = 0.5
         self.borderView.layer.borderColor = UIColor.lineDdd.cgColor
