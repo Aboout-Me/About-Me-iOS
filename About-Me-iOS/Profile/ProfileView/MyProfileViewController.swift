@@ -109,7 +109,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         self.myProfileCharacterContentLabel.textAlignment = .left
         self.myProfileCharacterContentLabel.attributedText = NSAttributedString(string: "", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        self.myProfileImageViewContainer.layer.masksToBounds = true
+        self.myProfileImageViewContainer.clipsToBounds = true
         self.myProfileImageViewContainer.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
         self.myProfileImageViewContainer.layer.cornerRadius = self.myProfileImageViewContainer.frame.size.width / 2
         self.myProfileImageView.image = UIImage(named: "CharacterRed.png")
@@ -162,6 +162,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileBottomLineViewWidthConstraint.isActive = true
         self.myProfileBottomLineView.heightAnchor.constraint(equalToConstant: 2).isActive = true
         self.myProfileContentViewRaiseButton.setImage(UIImage(named: "VerticalArrow"), for: .normal)
+        self.myProfileContentViewRaiseButton.addTarget(self, action: #selector(self.didTapRaiseButton(_:)), for: .touchUpInside)
         self.myProfileBottomLineView.bottomAnchor.constraint(equalTo: self.myProfileMyAnswerButton.bottomAnchor, constant: 0).isActive = true
         self.myProfileMyLikeButton.addTarget(self, action: #selector(self.didTapMyLikeButton(_:)), for: .touchUpInside)
         self.myProfileMyScrapButton.addTarget(self, action: #selector(self.didTapMyScrapButton(_:)), for: .touchUpInside)
@@ -351,6 +352,115 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         
     }
     
+    private func containerViewUpAnimation(_ isActive: Bool) {
+        UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+
+            self.myProfileImageViewContainer
+                .heightAnchor
+                .constraint(equalToConstant: 45)
+                .isActive = true
+            
+            self.myProfileImageViewContainer
+                .widthAnchor
+                .constraint(equalToConstant: 45)
+                .isActive = true
+                        
+            self.myProfileImageViewContainer
+                .topAnchor
+                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20)
+                .isActive = true
+            
+            self.myProfileCharacterNameLabel
+                .topAnchor
+                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20)
+                .isActive = true
+            
+            self.myProfileNickNameLabel
+                .topAnchor
+                .constraint(equalTo: self.myProfileCharacterNameLabel.bottomAnchor, constant: 5)
+                .isActive = true
+            
+            self.myProfileContentContainerView
+                .topAnchor
+                .constraint(equalTo: self.myProfileNickNameLabel.bottomAnchor, constant: 18)
+                .isActive = true
+            
+            self.myProfileImageViewContainer.layer.cornerRadius = 45 / 2.0
+            self.view.layoutIfNeeded()
+        } completion: { success in
+            if success {
+                UIView.animate(withDuration: 0, delay: 0, options: .curveEaseInOut, animations: {
+                    self.myProfileFirstTagLabel.isHidden = isActive
+                    self.myProfileFirstTagContainerView.isHidden = isActive
+                    self.myProfileSecondTagLabel.isHidden = isActive
+                    self.myProfileSecondTagContainerView.isHidden = isActive
+                    self.myProfileThirdTagLabel.isHidden = isActive
+                    self.myProfileThirdTagContainerView.isHidden = isActive
+                }, completion: nil)
+            }
+        }
+
+    }
+    
+    private func containerViewDownAnimation(_ isActived: Bool) {
+        UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            
+            // TODO: AutoLayout Not Working(수정)
+            
+            
+//            self.myProfileImageViewContainer.layer.cornerRadius = 60 / 2.0
+//            self.myProfileImageViewContainer
+//                .heightAnchor
+//                .constraint(equalToConstant: 60)
+//                .isActive = true
+//            self.myProfileImageViewContainer
+//                .widthAnchor
+//                .constraint(equalToConstant: 60)
+//                .isActive = true
+//
+//            self.myProfileImageViewContainer
+//                .topAnchor
+//                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30)
+//                .isActive = true
+//
+//            self.myProfileCharacterNameLabel
+//                .topAnchor
+//                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30)
+//                .isActive = true
+//
+//
+//            self.myProfileCharacterContentLabel
+//                .topAnchor
+//                .constraint(equalTo: self.myProfileCharacterNameLabel.bottomAnchor, constant: 20)
+//                .isActive = true
+//
+//            self.myProfileNickNameLabel
+//                .topAnchor
+//                .constraint(equalTo: self.myProfileCharacterContentLabel.bottomAnchor, constant: 3)
+//                .isActive = true
+//
+//            self.myProfileNickNameLabel
+//                .bottomAnchor
+//                .constraint(equalTo: self.myProfileContentContainerView.topAnchor, constant: -30)
+//                .isActive = true
+            
+
+            
+            self.view.setNeedsLayout()
+            
+        } completion: { success in
+            if success {
+                self.myProfileFirstTagLabel.isHidden = isActived
+                self.myProfileFirstTagContainerView.isHidden = isActived
+                self.myProfileSecondTagLabel.isHidden = isActived
+                self.myProfileSecondTagContainerView.isHidden = isActived
+                self.myProfileThirdTagLabel.isHidden = isActived
+                self.myProfileThirdTagContainerView.isHidden = isActived
+            }
+        }
+
+    }
+    
     
     @objc
     public func didTapSideMenuButton() {
@@ -478,6 +588,19 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         let profileDetailView = storyboard.instantiateViewController(withIdentifier: "ProfileDetail") as? MyProfileDetailViewController
         guard let profileDetailVC = profileDetailView else { return }
         self.navigationController?.pushViewController(profileDetailVC, animated: true)
+    }
+    
+    @objc
+    private func didTapRaiseButton(_ sender: UIButton) {
+        if sender.isSelected {
+            sender.isSelected = false
+            self.containerViewDownAnimation(sender.isSelected)
+            self.myProfileContentViewRaiseButton.setImage(UIImage(named: "VerticalArrow"), for: .normal)
+        } else {
+            sender.isSelected = true
+            self.containerViewUpAnimation(sender.isSelected)
+            self.myProfileContentViewRaiseButton.setImage(UIImage(named: "VerticaledArrow"), for: .selected)
+        }
     }
 }
 

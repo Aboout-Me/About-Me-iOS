@@ -74,6 +74,7 @@ class MyProfileDetailViewController: UIViewController {
         super.viewWillDisappear(true)
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.standardAppearance.backgroundColor = nil
+        self.navigationController?.view.backgroundColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
     }
     
     
@@ -475,17 +476,14 @@ class MyProfileDetailViewController: UIViewController {
 
 extension MyProfileDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height
-        print("Scroll View ContentOffset y : \(scrollView.contentOffset.y)")
-        print("navigationbar height image y : \((self.navigationController?.navigationBar.frame.height)! + height!)")
-        if scrollView.contentOffset.y > self.navigationController!.navigationBar.frame.midY {
+        let naviBarHeight = self.navigationController?.navigationBar.frame.minY ?? 0
+        if scrollView.contentOffset.y > naviBarHeight {
             UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
                 self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
                 self.navigationController?.navigationBar.isTranslucent = false
                 self.myProfileBackgroundImageView.isHidden = true
             }, completion: nil)
         } else {
-            print("Scroll view ContentOffset Down y : \(scrollView.contentOffset.y)")
             self.navigationController?.navigationBar.standardAppearance.backgroundColor = .clear
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController?.view.backgroundColor = UIColor.white
