@@ -70,13 +70,17 @@ class MyProfileDetailViewController: UIViewController {
         self.setWeeklyViewLayoutInit()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.standardAppearance.backgroundColor = nil
+    }
+    
     
     private func setCategoryViewLayoutInit() {
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Settings"), style: .plain, target: self, action: nil)
         self.navigationController?.view.backgroundColor = UIColor.clear
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = .clear
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = "프로필"
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(didTapNavigationButton))
@@ -469,24 +473,22 @@ class MyProfileDetailViewController: UIViewController {
 }
 
 
-//
 extension MyProfileDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        if scrollView.contentOffset.y > 120 {
-            print("Scroll View ContentOffset y : \(scrollView.contentOffset.y)")
+        let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height
+        print("Scroll View ContentOffset y : \(scrollView.contentOffset.y)")
+        print("navigationbar height image y : \((self.navigationController?.navigationBar.frame.height)! + height!)")
+        if scrollView.contentOffset.y > self.navigationController!.navigationBar.frame.midY {
             UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
-                self.navigationController?.navigationBar.barTintColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                self.navigationController?.navigationBar.standardAppearance.backgroundColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
                 self.navigationController?.navigationBar.isTranslucent = false
                 self.myProfileBackgroundImageView.isHidden = true
             }, completion: nil)
         } else {
             print("Scroll view ContentOffset Down y : \(scrollView.contentOffset.y)")
-            self.navigationController?.navigationBar.barTintColor = nil
+            self.navigationController?.navigationBar.standardAppearance.backgroundColor = .clear
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController?.view.backgroundColor = UIColor.white
-            self.navigationController?.navigationBar.shadowImage = UIImage()
-            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             UIView.animate(withDuration: 0.5, delay: 0, options: .allowUserInteraction, animations: {
                 self.myProfileBackgroundImageView.isHidden = false
                 self.view.layoutIfNeeded()

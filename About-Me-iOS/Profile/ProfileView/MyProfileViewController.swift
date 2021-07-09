@@ -33,6 +33,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     @IBOutlet weak var myProfileTagCollectionView: UICollectionView!
     @IBOutlet weak var myProfileImageView: UIImageView!
     @IBOutlet weak var myProfileFloatingButton: Floaty!
+    @IBOutlet weak var myProfileContentViewRaiseButton: UIButton!
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
     private var tagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
@@ -51,10 +52,15 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.getMyProfileList()
         self.setMyProfileSideMenuLayout()
         self.setInitLayout()
+        print("Device Size \(UIScreen.main.bounds.size.width)")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = UIColor(white: 255/255, alpha: 0.2)
+    }
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.reomveCustomBottomLine()
+        
     }
     
     private func setMyProfileSideMenuLayout() {
@@ -67,12 +73,16 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     
     private func setInitLayout() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NewMenu.png"), style: .plain, target: self, action: #selector(self.didTapSideMenuButton))
-        self.view.insetsLayoutMarginsFromSafeArea = false
         self.navigationController?.view.backgroundColor = UIColor.clear
-        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = .white
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        self.navigationController?.addCustomBottomLine(color: UIColor(white: 255/255, alpha: 0.2), height: 1)
-        self.navigationController!.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = UIColor(white: 255/255, alpha: 0.2)
         self.navigationItem.title = "프로필"
         let mainNib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
         let tagNib = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
@@ -151,8 +161,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileBottomLineViewWidthConstraint = self.myProfileBottomLineView.widthAnchor.constraint(equalToConstant: 62)
         self.myProfileBottomLineViewWidthConstraint.isActive = true
         self.myProfileBottomLineView.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        self.myProfileBottomLineViewLeadingConstraint = self.myProfileBottomLineView.leadingAnchor.constraint(equalTo: self.myProfileMyAnswerButton.leadingAnchor, constant: 25)
-        self.myProfileBottomLineViewLeadingConstraint.isActive = true
+        self.myProfileContentViewRaiseButton.setImage(UIImage(named: "VerticalArrow"), for: .normal)
         self.myProfileBottomLineView.bottomAnchor.constraint(equalTo: self.myProfileMyAnswerButton.bottomAnchor, constant: 0).isActive = true
         self.myProfileMyLikeButton.addTarget(self, action: #selector(self.didTapMyLikeButton(_:)), for: .touchUpInside)
         self.myProfileMyScrapButton.addTarget(self, action: #selector(self.didTapMyScrapButton(_:)), for: .touchUpInside)
@@ -169,7 +178,16 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
         self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
-        
+        if UIScreen.main.bounds.size.width >= 428 {
+            self.myProfileBottomLineViewLeadingConstraint = self.myProfileBottomLineView.leadingAnchor.constraint(equalTo: self.myProfileContentContainerView.leadingAnchor, constant: 55)
+            self.myProfileBottomLineViewLeadingConstraint.isActive = true
+        } else if UIScreen.main.bounds.size.width >= 414 {
+            self.myProfileBottomLineViewLeadingConstraint = self.myProfileBottomLineView.leadingAnchor.constraint(equalTo: self.myProfileContentContainerView.leadingAnchor, constant: 50)
+            self.myProfileBottomLineViewLeadingConstraint.isActive = true
+        } else {
+            self.myProfileBottomLineViewLeadingConstraint = self.myProfileBottomLineView.leadingAnchor.constraint(equalTo: self.myProfileContentContainerView.leadingAnchor, constant: 45)
+            self.myProfileBottomLineViewLeadingConstraint.isActive = true
+        }
     }
     
     private func setProfileServerProcessDidFinsh() {
@@ -362,7 +380,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
                 self.myProfileMyLikeButton.isSelected = true
                 self.myProfileMyLikeButton.setTitleColor(UIColor.black, for: .selected)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX + 5
+                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.center.x - 30
                 self.myProfileBottomLineView.updateConstraints()
             } else {
                 self.myProfileBottomLineView.layoutIfNeeded()
@@ -374,7 +392,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileMyAnswerButton.setTitleColor(.gray555, for: .normal)
                 self.myProfileMyLikeButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.frame.minX + self.myProfileMyAnswerButton.frame.minX - 15
+                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyLikeButton.center.x - 30
                 self.myProfileBottomLineView.updateConstraints()
             }
         } completion: { success in
@@ -382,14 +400,6 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileBottomLineView.layer.removeAnimation(forKey: "push")
             }
         }
-    }
-    
-    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
-        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
-    }
-    
-    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
-        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
     }
     
     @objc
@@ -413,7 +423,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileMyScrapButton.isSelected = true
             self.myProfileMyScrapButton.setTitleColor(UIColor.black, for: .selected)
             self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-            self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyScrapButton.frame.minX + self.myProfileMyAnswerButton.frame.minX - 15
+            self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyScrapButton.center.x - 30
             self.myProfileBottomLineView.updateConstraints()
         } completion: { success in
             if success == true {
@@ -443,18 +453,15 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 self.myProfileMyAnswerButton.isSelected = true
                 self.myProfileMyAnswerButton.setTitleColor(UIColor.black, for: .selected)
                 self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX + 5
-                self.myProfileBottomLineView.updateConstraints()
-            } else {
-                self.myProfileBottomLineView.layoutIfNeeded()
-                let transition = CATransition()
-                transition.duration = 0.1
-                transition.type = CATransitionType(rawValue: "push")
-                transition.subtype = .fromLeft
-                self.myProfileMyAnswerButton.isSelected = true
-                self.myProfileMyAnswerButton.setTitleColor(UIColor.black, for: .selected)
-                self.myProfileBottomLineView.layer.add(transition, forKey: kCATransition)
-                self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileMyAnswerButton.frame.minX + self.myProfileMyLikeButton.frame.minX - 15
+                if UIScreen.main.bounds.size.width >= 428 {
+                    self.myProfileBottomLineViewLeadingConstraint.constant =
+                        self.myProfileContentContainerView.frame.origin.x + 55
+                } else if UIScreen.main.bounds.size.width >= 414 {
+                    self.myProfileBottomLineViewLeadingConstraint.constant =
+                        self.myProfileContentContainerView.frame.origin.x + 50
+                } else {
+                    self.myProfileBottomLineViewLeadingConstraint.constant = self.myProfileContentContainerView.frame.origin.x + 45
+                }
                 self.myProfileBottomLineView.updateConstraints()
             }
         } completion: { success in
@@ -504,6 +511,14 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         } else {
             return self.tagNameList.count
         }
+    }
+    
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -851,27 +866,4 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         }
     }
     
-}
-
-extension UINavigationController
-{
-    func addCustomBottomLine(color:UIColor,height:Double)
-    {
-        let lineView = UIView(frame: CGRect(x: 0, y: 0, width:0, height: height))
-        lineView.backgroundColor = color
-        navigationBar.addSubview(lineView)
-        lineView.tag = 1
-        lineView.translatesAutoresizingMaskIntoConstraints = false
-        lineView.widthAnchor.constraint(equalTo: navigationBar.widthAnchor).isActive = true
-        lineView.heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
-        lineView.centerXAnchor.constraint(equalTo: navigationBar.centerXAnchor).isActive = true
-        lineView.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
-    }
-    
-    func reomveCustomBottomLine() {
-        navigationBar.setValue(true, forKey: "hidesShadow")
-        if let view = navigationBar.viewWithTag(1) {
-            view.removeFromSuperview()
-        }
-    }
 }
