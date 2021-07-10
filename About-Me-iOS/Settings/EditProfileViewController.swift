@@ -41,7 +41,7 @@ class EditProfileViewController: UIViewController {
         nicknameTextFieldIsEmpty()
         introduceTextViewIsEmpty()
         
-        confirmButtonisEnalbed()
+        confirmButtonisEnabled()
         introduceTextViewSetupView()
     }
     
@@ -80,7 +80,7 @@ class EditProfileViewController: UIViewController {
         }
     }
     
-    func confirmButtonisEnalbed() {
+    func confirmButtonisEnabled() {
         if nicknameFlag && introduceFlag {
             confirmButton.backgroundColor = UIColor.black
             confirmButton.setTitleColor(UIColor.white, for: .normal)
@@ -101,7 +101,7 @@ extension EditProfileViewController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         introduceTextViewSetupView()
         introduceTextViewIsEmpty()
-        confirmButtonisEnalbed()
+        confirmButtonisEnabled()
     }
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         // 개행 시 최초 응답자 제거
@@ -117,7 +117,7 @@ extension EditProfileViewController: UITextViewDelegate {
 extension EditProfileViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         nicknameTextFieldIsEmpty()
-        confirmButtonisEnalbed()
+        confirmButtonisEnabled()
     }
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == nicknameTextfield{

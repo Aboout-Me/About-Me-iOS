@@ -291,24 +291,54 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btc-Tb-yXa">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="btc-Tb-yXa">
                                 <rect key="frame" x="15" y="46" width="384" height="55"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="292-7U-V4r"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="서비스 관련 문의">
+                                <state key="normal" title="    서비스 관련 문의">
                                     <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="openBottomSheet" destination="vsc-Z2-bii" eventType="touchUpInside" id="gV8-6T-MHr"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-hc-V2u">
+                                <rect key="frame" x="15" y="152" width="384" height="240"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="jRD-FM-1BQ"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfP-S9-bWS">
+                                <rect key="frame" x="20" y="743" width="374" height="55"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Il1-4r-7rh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                <state key="normal" title="제출">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nZ2-jF-FAN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="nZ2-jF-FAN" firstAttribute="trailing" secondItem="MfP-S9-bWS" secondAttribute="trailing" constant="20" id="6W1-N0-dfT"/>
                             <constraint firstItem="OSZ-tm-Uar" firstAttribute="top" secondItem="btc-Tb-yXa" secondAttribute="bottom" constant="20" id="8jc-lV-pab"/>
                             <constraint firstItem="nZ2-jF-FAN" firstAttribute="trailing" secondItem="btc-Tb-yXa" secondAttribute="trailing" constant="15" id="FSu-FQ-oQH"/>
+                            <constraint firstItem="nZ2-jF-FAN" firstAttribute="leading" secondItem="UFA-hc-V2u" secondAttribute="leading" constant="-15" id="Gm8-Dc-xta"/>
+                            <constraint firstItem="nZ2-jF-FAN" firstAttribute="trailing" secondItem="UFA-hc-V2u" secondAttribute="trailing" constant="15" id="Qw8-jR-8ca"/>
+                            <constraint firstItem="nZ2-jF-FAN" firstAttribute="bottom" secondItem="MfP-S9-bWS" secondAttribute="bottom" constant="10" id="TWS-0x-5h4"/>
                             <constraint firstItem="btc-Tb-yXa" firstAttribute="top" secondItem="6Tq-Ma-1nX" secondAttribute="bottom" constant="10" id="VWU-Pe-OIr"/>
                             <constraint firstItem="btc-Tb-yXa" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="15" id="Wem-Qm-VIq"/>
+                            <constraint firstItem="MfP-S9-bWS" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="20" id="eG9-Vs-yIj"/>
+                            <constraint firstItem="UFA-hc-V2u" firstAttribute="top" secondItem="OSZ-tm-Uar" secondAttribute="bottom" constant="10" id="hY8-bW-ZGJ"/>
                             <constraint firstItem="6Tq-Ma-1nX" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="15" id="iA9-zd-R6I"/>
                             <constraint firstItem="6Tq-Ma-1nX" firstAttribute="top" secondItem="nZ2-jF-FAN" secondAttribute="top" constant="15" id="kZY-K0-Bsj"/>
                             <constraint firstItem="OSZ-tm-Uar" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="15" id="rmU-CM-dL9"/>
@@ -317,11 +347,13 @@
                     <navigationItem key="navigationItem" id="tnF-ae-4DM"/>
                     <connections>
                         <outlet property="chooseQuestionsButton" destination="btc-Tb-yXa" id="c3T-xh-6Kx"/>
+                        <outlet property="questionContents" destination="UFA-hc-V2u" id="vrg-Y4-eQv"/>
+                        <outlet property="submissionButton" destination="MfP-S9-bWS" id="s2N-Xg-FQ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ag7-8f-2ZL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1945" y="527"/>
+            <point key="canvasLocation" x="1944.9275362318842" y="526.33928571428567"/>
         </scene>
         <!--Notices View Controller-->
         <scene sceneID="3wg-dt-qTr">

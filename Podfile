@@ -11,7 +11,7 @@ target 'About-Me-iOS' do
   pod 'SideMenu'
   pod 'naveridlogin-sdk-ios'
   pod 'KakaoSDK'
-  pod 'Floaty', '~> 4.2.0' 
+  pod 'Floaty', '~> 4.2.0'
 
   # Pods for About-Me-iOS
 

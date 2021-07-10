@@ -159,7 +159,7 @@ class AdditionalProfileViewController: UIViewController {
         }
     }
     
-    @IBAction func manButtonDidTapeed(_ sender: UIButton) {
+    @IBAction func manButtonDidTapped(_ sender: UIButton) {
         manButton.layer.borderColor = UIColor.black.cgColor
         manButton.setTitleColor(UIColor.black, for: .normal)
         manButton.layer.borderWidth = 1
@@ -173,7 +173,7 @@ class AdditionalProfileViewController: UIViewController {
         nextButtonisEnalbed()
     }
     
-    @IBAction func womanButtonDidTapeed(_ sender: UIButton) {
+    @IBAction func womanButtonDidTapped(_ sender: UIButton) {
         womanButton.layer.borderColor = UIColor.black.cgColor
         womanButton.setTitleColor(UIColor.black, for: .normal)
         womanButton.layer.borderWidth = 1
