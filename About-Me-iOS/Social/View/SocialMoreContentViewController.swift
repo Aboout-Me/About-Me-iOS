@@ -153,6 +153,7 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
                 cell.closure = { [weak self] in
                     guard let self = self else { return }
                     let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
+                    myMoreView.deleteType = "board"
                     myMoreView.modalPresentationStyle = .overCurrentContext
                     self.present(myMoreView, animated: true, completion: nil)
                 }

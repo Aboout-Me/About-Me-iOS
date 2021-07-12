@@ -83,15 +83,22 @@ class SocialDetailViewController: UIViewController {
     
     @IBAction func moreButtonDidTap(_ sender: Any) {
         if let post = post {
-            let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)
-            moreView.modalPresentationStyle = .overCurrentContext
-            moreView.suedUserId = post.userId
-            moreView.targetQuestionId = post.answerId
-            moreView.sueType = "board"
-            moreView.closure = {
-                self.dismiss(animated: false, completion: nil)
+            if post.userId == userId {
+                let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
+                myMoreView.modalPresentationStyle = .overCurrentContext
+                myMoreView.deleteType = "board"
+                self.present(myMoreView, animated: true, completion: nil)
+            } else {
+                let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)
+                moreView.modalPresentationStyle = .overCurrentContext
+                moreView.suedUserId = post.userId
+                moreView.targetQuestionId = post.answerId
+                moreView.sueType = "board"
+                moreView.closure = {
+                    self.dismiss(animated: false, completion: nil)
+                }
+                self.present(moreView, animated: true, completion: nil)
             }
-            self.present(moreView, animated: true, completion: nil)
         }
     }
     

@@ -175,6 +175,7 @@ extension SocialCommentViewController: UITableViewDataSource {
             if comments[indexPath.row].authorId == userId {
                 let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
                 myMoreView.modalPresentationStyle = .overCurrentContext
+                myMoreView.deleteType = "comment"
                 myMoreView.commentId = comments[indexPath.row].commentId
                 myMoreView.closure = { [weak self] in
                     guard let self = self else { return }

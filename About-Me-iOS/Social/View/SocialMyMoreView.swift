@@ -17,6 +17,7 @@ class SocialMyMoreView: UIViewController {
     var originalPosition: CGPoint?
     var currentPositionTouched: CGPoint?
     var commentId: Int?
+    var deleteType: String?
     var closure: (() -> Void)?
     
     // MARK: - Lifecycle
@@ -64,17 +65,22 @@ class SocialMyMoreView: UIViewController {
     }
     
     @IBAction func deleteButtonDidTap(_ sender: Any) {
-        guard let commentId = self.commentId else { return }
-        SocialApiService.deleteComment(commentId: commentId) { response in
-            if response.code == 200 {
-                let alert = UIAlertController(title: "삭제가 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
-                
-                let cancelAction = UIAlertAction(title: "닫기", style: .default) { _ in
-                    self.closure?()
+        if self.deleteType == "board" {
+            
+        }
+        else if self.deleteType == "comment" {
+            guard let commentId = self.commentId else { return }
+            SocialApiService.deleteComment(commentId: commentId) { response in
+                if response.code == 200 {
+                    let alert = UIAlertController(title: "삭제가 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let cancelAction = UIAlertAction(title: "닫기", style: .default) { _ in
+                        self.closure?()
+                    }
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: false, completion: nil)
                 }
-                
-                alert.addAction(cancelAction)
-                self.present(alert, animated: false, completion: nil)
             }
         }
     }
