@@ -65,8 +65,17 @@ class SocialMyMoreView: UIViewController {
     
     @IBAction func deleteButtonDidTap(_ sender: Any) {
         guard let commentId = self.commentId else { return }
-        SocialApiService.deleteComment(commentId: commentId) { _ in
-            self.closure!()
+        SocialApiService.deleteComment(commentId: commentId) { response in
+            if response.code == 200 {
+                let alert = UIAlertController(title: "삭제가 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
+                
+                let cancelAction = UIAlertAction(title: "닫기", style: .default) { _ in
+                    self.closure?()
+                }
+                
+                alert.addAction(cancelAction)
+                self.present(alert, animated: false, completion: nil)
+            }
         }
     }
     

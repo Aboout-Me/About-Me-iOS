@@ -178,8 +178,10 @@ extension SocialCommentViewController: UITableViewDataSource {
                 myMoreView.commentId = comments[indexPath.row].commentId
                 myMoreView.closure = { [weak self] in
                     guard let self = self else { return }
-                    self.comments?.remove(at: indexPath.row)
-                    self.commentTableView.reloadData()
+                    self.dismiss(animated: false) {
+                        self.comments?.remove(at: indexPath.row)
+                        self.commentTableView.reloadData()
+                    }
                 }
                 self.present(myMoreView, animated: true, completion: nil)
             } else {

@@ -195,14 +195,11 @@ struct SocialApiService {
     }
     
     static func deleteComment(commentId: Int, completion: @escaping (SocialCommentDeleteResponse) -> Void) {
-        let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment")
-        let parameters: [String: Any] = [
-            "commentId": commentId,
-            "userId": userId
-        ]
+        let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment?commentId=\(commentId)&userId=\(userId)")
+
         guard let url = urlComponent?.url else { return }
         
-        let request = AF.request(url, method: .delete, parameters: parameters, encoding: JSONEncoding.default)
+        let request = AF.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default)
         request.validate(statusCode: 200...500).responseString { response in
             switch response.result {
             case .success:
