@@ -190,7 +190,9 @@ extension SocialCommentViewController: UITableViewDataSource {
                 moreView.modalPresentationStyle = .overCurrentContext
                 moreView.suedUserId = comments[indexPath.row].authorId
                 moreView.targetQuestionId = comments[indexPath.row].commentId
-                moreView.sueType = "comment"
+                if self.authorId == userId {
+                    moreView.sueType = "comment"
+                }
                 moreView.closure = {
                     self.dismiss(animated: false, completion: nil)
                 }

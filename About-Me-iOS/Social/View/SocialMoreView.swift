@@ -13,6 +13,8 @@ class SocialMoreView: UIViewController {
     
     @IBOutlet weak var handle: UIView!
     @IBOutlet weak var roundView: UIView!
+    @IBOutlet weak var reportButton: UIButton!
+    @IBOutlet weak var buttonView: UIView!
     var panGestureRecognizer: UIPanGestureRecognizer?
     var originalPosition: CGPoint?
     var currentPositionTouched: CGPoint?
@@ -111,6 +113,16 @@ class SocialMoreView: UIViewController {
         
         self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(_:)))
         view.addGestureRecognizer(panGestureRecognizer!)
+        
+        if sueType == nil {
+            self.reportButton.isHidden = true
+            self.reportButton.setHeight(height: 0)
+            self.buttonView.setHeight(height: 100)
+        } else {
+            self.reportButton.isHidden = false
+            self.reportButton.setHeight(height: 50)
+            self.buttonView.setHeight(height: 150)
+        }
     }
     
     private func reportPost(reason: String) {

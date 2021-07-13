@@ -9,7 +9,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialMoreView" customModule="__________" customModuleProvider="target">
             <connections>
+                <outlet property="buttonView" destination="51O-Hy-AJq" id="L3J-IM-XLV"/>
                 <outlet property="handle" destination="eZf-9o-C2Z" id="oMZ-M9-KnO"/>
+                <outlet property="reportButton" destination="rMl-w8-Qov" id="TvO-tf-eOp"/>
                 <outlet property="roundView" destination="by4-Ef-O1Y" id="ZYj-k4-zss"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
