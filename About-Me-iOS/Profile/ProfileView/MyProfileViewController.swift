@@ -36,6 +36,9 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     @IBOutlet weak var myProfileContentViewRaiseButton: UIButton!
     var myProfileBottomLineViewLeadingConstraint:NSLayoutConstraint!
     var myProfileBottomLineViewWidthConstraint: NSLayoutConstraint!
+    var myProfileImageViewContainerWidthConstraint: NSLayoutConstraint!
+    var myprofileImageViewContainerHeightConstraint: NSLayoutConstraint!
+    var myprofileContentLabelBottomConstraint: NSLayoutConstraint!
     private var tagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
     public var sideMenu: SideMenuNavigationController?
     public var myProfileColor = ""
@@ -140,8 +143,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileThirdTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 9)
         self.myProfileThirdTagLabel.textAlignment = .left
         self.myProfileContentContainerView.layer.cornerRadius = 25
-        self.myProfileContentContainerView.layer.masksToBounds = true
-        self.myProfileContentContainerView.layer.maskedCorners =  [.layerMaxXMinYCorner,.layerMinXMinYCorner]
+        self.myProfileContentContainerView.clipsToBounds = true
         self.myProfileMyAnswerButton.isSelected = true
         self.myProfileMyAnswerButton.setTitle("내가 한 답", for: .normal)
         self.myProfileMyAnswerButton.titleLabel?.font = UIFont(name: "GmarketSansMedium", size: 14)
@@ -354,16 +356,21 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     
     private func containerViewUpAnimation(_ isActive: Bool) {
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-
-            self.myProfileImageViewContainer
+            
+            // TO DO : Auto Layout 확인
+            self.myProfileCharacterContentLabel.isHidden = true
+            
+            self.myprofileImageViewContainerHeightConstraint = self.myProfileImageViewContainer
                 .heightAnchor
                 .constraint(equalToConstant: 45)
-                .isActive = true
+                
+            self.myprofileImageViewContainerHeightConstraint.isActive = true
             
-            self.myProfileImageViewContainer
+            self.myProfileImageViewContainerWidthConstraint = self.myProfileImageViewContainer
                 .widthAnchor
                 .constraint(equalToConstant: 45)
-                .isActive = true
+                
+            self.myProfileImageViewContainerWidthConstraint.isActive = true
                         
             self.myProfileImageViewContainer
                 .topAnchor
@@ -375,10 +382,12 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20)
                 .isActive = true
             
-            self.myProfileNickNameLabel
-                .topAnchor
-                .constraint(equalTo: self.myProfileCharacterNameLabel.bottomAnchor, constant: 5)
-                .isActive = true
+            self.myprofileContentLabelBottomConstraint = self.myProfileCharacterContentLabel
+                .bottomAnchor
+                .constraint(equalTo: self.myProfileNickNameLabel.topAnchor, constant: 18)
+                
+            self.myprofileContentLabelBottomConstraint.isActive = true
+
             
             self.myProfileContentContainerView
                 .topAnchor
@@ -405,51 +414,32 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     private func containerViewDownAnimation(_ isActived: Bool) {
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
             
-            // TODO: AutoLayout Not Working(수정)
             
+            self.myProfileImageViewContainerWidthConstraint.isActive = false
+            self.myprofileImageViewContainerHeightConstraint.isActive = false
             
-//            self.myProfileImageViewContainer.layer.cornerRadius = 60 / 2.0
-//            self.myProfileImageViewContainer
-//                .heightAnchor
-//                .constraint(equalToConstant: 60)
-//                .isActive = true
-//            self.myProfileImageViewContainer
-//                .widthAnchor
-//                .constraint(equalToConstant: 60)
-//                .isActive = true
-//
-//            self.myProfileImageViewContainer
-//                .topAnchor
-//                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30)
-//                .isActive = true
-//
-//            self.myProfileCharacterNameLabel
-//                .topAnchor
-//                .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 30)
-//                .isActive = true
-//
-//
-//            self.myProfileCharacterContentLabel
-//                .topAnchor
-//                .constraint(equalTo: self.myProfileCharacterNameLabel.bottomAnchor, constant: 20)
-//                .isActive = true
-//
-//            self.myProfileNickNameLabel
-//                .topAnchor
-//                .constraint(equalTo: self.myProfileCharacterContentLabel.bottomAnchor, constant: 3)
-//                .isActive = true
-//
-//            self.myProfileNickNameLabel
-//                .bottomAnchor
-//                .constraint(equalTo: self.myProfileContentContainerView.topAnchor, constant: -30)
-//                .isActive = true
+            self.view.safeAreaLayoutGuide
+                .topAnchor
+                .constraint(equalTo: self.myProfileImageViewContainer.topAnchor, constant: -30)
+                .isActive = true
             
-
+            self.view.safeAreaLayoutGuide
+                .topAnchor
+                .constraint(equalTo: self.myProfileCharacterNameLabel.topAnchor, constant: -30)
+                .isActive = true
             
-            self.view.setNeedsLayout()
+            self.myProfileNickNameLabel
+                .bottomAnchor
+                .constraint(equalTo: self.myProfileContentContainerView.topAnchor, constant: -30)
+                .isActive = true
+    
+            self.myprofileContentLabelBottomConstraint.isActive = false
+            self.myProfileImageViewContainer.layer.cornerRadius = 60 / 2.0
+            self.view.layoutIfNeeded()
             
         } completion: { success in
             if success {
+                self.myProfileCharacterContentLabel.isHidden = isActived
                 self.myProfileFirstTagLabel.isHidden = isActived
                 self.myProfileFirstTagContainerView.isHidden = isActived
                 self.myProfileSecondTagLabel.isHidden = isActived
