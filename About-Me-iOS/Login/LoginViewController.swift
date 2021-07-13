@@ -1,5 +1,6 @@
 import AuthenticationServices
 import Foundation
+import SwiftKeychainWrapper
 import UIKit
 
 import Alamofire
@@ -19,8 +20,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     @IBOutlet var logoImage: UIImageView!
     let img = UIImage(named: "logoImage.png")
     
-    var accessToken: String = ""
-    var refreshToken: String = ""
+//    var accessToken: String = ""
+//    var refreshToken: String = ""
     var authType: String = ""
     var userEmail: String = ""
 
@@ -62,14 +63,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("== LoginVC == ")
-        print("access token = \(accessToken)")
         print("auth type = \(authType)")
         print("===============")
         
         guard let ConciergeVC = segue.destination as? ConciergeViewController else { return }
         ConciergeVC.authType = self.authType
-        ConciergeVC.accessToken = self.accessToken
-        ConciergeVC.refreshToken = self.refreshToken
         ConciergeVC.userEmail = self.userEmail
     }
 
@@ -88,8 +86,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     
     // refresh token
     func oauth20ConnectionDidFinishRequestACTokenWithRefreshToken() {
-        guard let naver_refreshToken = loginInstance?.accessToken else {return}
-        self.refreshToken = naver_refreshToken
+        let _: Bool = KeychainWrapper.standard.set(loginInstance!.refreshToken, forKey: "refreshToken")
     }
     
     // 로그아웃
@@ -119,14 +116,13 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
       }
       
       guard let tokenType = loginInstance?.tokenType else { return }
-      guard let naver_accessToken = loginInstance?.accessToken else { return }
-        self.accessToken = naver_accessToken
+        let _: Bool = KeychainWrapper.standard.set(loginInstance!.accessToken, forKey: "accessToken")
         oauth20ConnectionDidFinishRequestACTokenWithRefreshToken()
         
       let urlStr = "https://openapi.naver.com/v1/nid/me"
       let url = URL(string: urlStr)!
       
-      let authorization = "\(tokenType) \(naver_accessToken)"
+      let authorization = "\(tokenType) \(KeychainWrapper.standard.string(forKey: "accessToken")!)"
       
       let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
       
@@ -156,11 +152,10 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                     // do something
                     _ = oauthToken
                     
-                    // access token
-                    let kakao_accessToken = oauthToken?.accessToken
-                    let kakao_refreshToken = oauthToken?.refreshToken
-                    self.accessToken = kakao_accessToken!
-                    self.refreshToken = kakao_refreshToken!
+                    // token
+                    let _: Bool = KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "accessToken")
+                    print("access token = \(KeychainWrapper.standard.string(forKey: "accessToken")!)")
+                    let _: Bool = KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "refreshToken")
                     
                     // 카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
                     self.setUserInfo()
@@ -214,16 +209,20 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
      
+        self.authType = "Apple"
+        
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            let user = credential.user
-            print("User: \(user)")
-            guard let email = credential.email else { return }
-            print("Email: \(email)")
+//            let user = credential.user
+//            print("User: \(user)")
+            self.userEmail = credential.email!
+            print("애플로그인 Email: \(self.userEmail)")
+            let _: Bool = KeychainWrapper.standard.set(credential.identityToken!, forKey: "id_token")
+            let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
         }
     }
  
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        print("Apple login error : \(error)")
+        print("애플 로그인 error : \(error)")
     }
 }
 

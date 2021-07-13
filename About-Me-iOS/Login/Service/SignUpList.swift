@@ -1,6 +1,6 @@
 import Foundation
 
 struct SignUpList: Encodable {
-    var AuthType: String
+    var type: String
     // var auth_yn: Int
 }

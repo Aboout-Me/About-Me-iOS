@@ -1,13 +1,12 @@
 import Foundation
 
 struct ProfileList: Encodable {
-    let email: String
-    let nickname: String
+    let birthday: String
+    let color: Int
     let introduce: String
-    let color: String
-    let date: String
-    let gender: String
-    
-//    let push_yn : 알림설정 - 필수
-//    let push-time : 08 / 20    
+    let nickName: String
+    let push_time: String
+    let push_yn: String
+    let theme_comment: Int
+    let userId: Int
 }

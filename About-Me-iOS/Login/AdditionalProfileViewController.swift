@@ -82,7 +82,7 @@ class AdditionalProfileViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         // 프로필 데이터 전송 API 호출
-        LoginApiService.putProfile(email: emailTextfield.text ?? "none", nickname: nicknameTextfield.text ?? "none", introduce: introduceTextView.text ?? "none", color: "none", date: dateTextfield.text ?? "none", gender: gender)
+//        LoginApiService.putProfile(email: emailTextfield.text!, nickname: nicknameTextfield.text!, introduce: introduceTextView.text ?? "none", color: "none", date: dateTextfield.text ?? "none", gender: gender)
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){

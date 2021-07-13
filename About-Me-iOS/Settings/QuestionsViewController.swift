@@ -40,16 +40,17 @@ class QuestionsViewController: UIViewController {
         
         questionContents.delegate = self
     
-        questionContentsIsEmpty()
         questionContentsSetupView()
+        questionContentsIsEmpty()
         submissionButtonisEnabled()
-//        let bottomSheet = BottomSheetView(nibName: "BottomSheetView", bundle: nil)
-//        bottomSheet.modalPresentationStyle = .overCurrentContext
-//        self.present(bottomSheet, animated: true, completion: nil)
     }
     
     @IBAction func chooseQuestionsButtonDidTapped () {
-        
+        let bottomSheetVC = BottomSheetViewController()
+         // 1
+         bottomSheetVC.modalPresentationStyle = .overFullScreen
+         // 2
+         self.present(bottomSheetVC, animated: false, completion: nil)
     }
     
     func questionContentsIsEmpty() {
@@ -94,13 +95,4 @@ extension QuestionsViewController: UITextViewDelegate {
         questionContentsIsEmpty()
         submissionButtonisEnabled()
     }
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        // 개행 시 최초 응답자 제거
-//        if text == "\n" {
-//            textView.resignFirstResponder()
-//        }
-//        guard let str = textView.text else { return true }
-//        let newLength = str.count + text.count - range.length
-//        return newLength <= 41
-//    }
 }

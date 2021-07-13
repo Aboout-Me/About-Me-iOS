@@ -111,7 +111,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1138" y="-62"/>
+            <point key="canvasLocation" x="-1197" y="219"/>
         </scene>
         <!--Edit Profile View Controller-->
         <scene sceneID="bPF-yg-nbp">
@@ -267,7 +267,7 @@
         <!--Questions View Controller-->
         <scene sceneID="u1v-4B-uam">
             <objects>
-                <viewController id="vsc-Z2-bii" customClass="QuestionsViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="QuestionsViewController" id="vsc-Z2-bii" customClass="QuestionsViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="miF-N5-v1Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -301,7 +301,7 @@
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="openBottomSheet" destination="vsc-Z2-bii" eventType="touchUpInside" id="gV8-6T-MHr"/>
+                                    <action selector="chooseQuestionsButtonDidTapped" destination="vsc-Z2-bii" eventType="touchUpInside" id="qtl-4V-35t"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-hc-V2u">
@@ -346,7 +346,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="tnF-ae-4DM"/>
                     <connections>
-                        <outlet property="chooseQuestionsButton" destination="btc-Tb-yXa" id="c3T-xh-6Kx"/>
+                        <outlet property="chooseQuestionsButton" destination="btc-Tb-yXa" id="ROL-CP-TLd"/>
                         <outlet property="questionContents" destination="UFA-hc-V2u" id="vrg-Y4-eQv"/>
                         <outlet property="submissionButton" destination="MfP-S9-bWS" id="s2N-Xg-FQ3"/>
                     </connections>
