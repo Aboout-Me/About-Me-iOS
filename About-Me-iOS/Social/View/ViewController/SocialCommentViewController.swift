@@ -176,7 +176,7 @@ extension SocialCommentViewController: UITableViewDataSource {
                 let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
                 myMoreView.modalPresentationStyle = .overCurrentContext
                 myMoreView.deleteType = "comment"
-                myMoreView.commentId = comments[indexPath.row].commentId
+                myMoreView.targetId = comments[indexPath.row].commentId
                 myMoreView.closure = { [weak self] in
                     guard let self = self else { return }
                     self.dismiss(animated: false) {

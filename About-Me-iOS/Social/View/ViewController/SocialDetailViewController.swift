@@ -87,6 +87,13 @@ class SocialDetailViewController: UIViewController {
                 let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
                 myMoreView.modalPresentationStyle = .overCurrentContext
                 myMoreView.deleteType = "board"
+                myMoreView.targetId = post.answerId
+                myMoreView.closure = { [weak self] in
+                    guard let self = self else { return }
+                    self.dismiss(animated: false) {
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                }
                 self.present(myMoreView, animated: true, completion: nil)
             } else {
                 let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)

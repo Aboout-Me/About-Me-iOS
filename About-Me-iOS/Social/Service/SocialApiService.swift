@@ -217,4 +217,28 @@ struct SocialApiService {
             }
         }
     }
+    
+    static func deleteBoard(cardSeq: Int, completion: @escaping (SocialCommentDeleteResponse) -> Void) {
+        let urlComponent = URLComponents(string:  "\(API_URL)/Board/dailyColors/\(cardSeq)")
+        
+        guard let url = urlComponent?.url else { return }
+        
+        let request = AF.request(url, method: .delete, parameters: nil, encoding: JSONEncoding.default)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                print(stringResponse)
+                
+                do {
+                    let data = try JSONDecoder().decode(SocialCommentDeleteResponse.self, from: response.data!)
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

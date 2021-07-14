@@ -154,7 +154,15 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
                     guard let self = self else { return }
                     let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
                     myMoreView.deleteType = "board"
+                    myMoreView.targetId = post.answerId
                     myMoreView.modalPresentationStyle = .overCurrentContext
+                    myMoreView.closure = { [weak self] in
+                        guard let self = self else { return }
+                        self.dismiss(animated: false) {
+                            self.feedList.remove(at: indexPath.row)
+                            self.bodyCollectionView.reloadData()
+                        }
+                    }
                     self.present(myMoreView, animated: true, completion: nil)
                 }
                 return cell
