@@ -28,3 +28,28 @@ struct MyProfilePageModel: Codable {
     var regDate: String
     var writtenDate: String
 }
+
+// MARK: OtherProfile Response
+
+struct OtherProfilePage: Codable {
+    var code: Int
+    var message: String
+    var user_id: Int
+    var nickName: String
+    var introduce: String
+    var color: String
+    var color_tag: String
+    var postList: [OtherProfilePageModel]
+    
+}
+
+struct OtherProfilePageModel: Codable {
+    var answerId: Int
+    var color: String
+    var level: Int
+    var question: String
+    var answer: String
+    var shareYN: Bool
+    var regDate: String
+    var writtenDate: String
+}

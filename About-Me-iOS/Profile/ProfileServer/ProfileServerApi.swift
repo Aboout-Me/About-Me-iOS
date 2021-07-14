@@ -222,6 +222,36 @@ struct ProfileServerApi {
         
     }
     
+    static func getSocialProfileUserProgress(userId: Int, otherId: Int, parameter: Parameters, completionHandler: @escaping(Result<OtherProfilePage>) -> ()) {
+        let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/\(userId)/\(otherId)")!
+        
+        AF.request(urlString, method: .get, parameters: parameter, encoding: JSONEncoding.default)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                
+                case let .success(response):
+                    do {
+                        let socialJson = try JSONSerialization.jsonObject(with: response, options: [])
+                        if let statusCode = socialJson as? [String:Any] {
+                            let code = statusCode["code"] as? Int
+                            if code == 200 {
+                                let decoder = JSONDecoder()
+                                let socialProfileData = try decoder.decode(OtherProfilePage.self, from: response)
+                                let result = Result<OtherProfilePage>.success(data: socialProfileData)
+                                completionHandler(result)
+                            }
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
+    
 }
 
 
