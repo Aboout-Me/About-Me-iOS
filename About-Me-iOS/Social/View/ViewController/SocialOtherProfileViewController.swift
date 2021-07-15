@@ -5,6 +5,11 @@
 //  Created by Kim dohyun on 2021/07/03.
 //
 
+enum SocialRequestType {
+    case Single
+    case All
+}
+
 import UIKit
 
 class SocialOtherProfileViewController: UIViewController {
@@ -30,6 +35,10 @@ class SocialOtherProfileViewController: UIViewController {
     public var otherId: Int?
     public var userId: Int?
     public var color: String?
+    private var socialProfileData: OtherProfilePage? = nil
+    private var socialProfileModelList = [OtherProfilePageModel]()
+    private var socialRequestType = SocialRequestType.All
+    private var socialTagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +46,20 @@ class SocialOtherProfileViewController: UIViewController {
     }
     
     private func setInitLayout() {
-//        self.socialProfileTagCollectionView.delegate = self
-//        self.socialProfileTagCollectionView.dataSource = self
-        
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        self.socialProfileTagCollectionView.collectionViewLayout = layout
+        self.socialProfileTagCollectionView.delegate = self
+        self.socialProfileTagCollectionView.dataSource = self
+        self.socialProfileTagCollectionView.showsHorizontalScrollIndicator = false
+        self.socialProfileTagCollectionView.allowsMultipleSelection = false
+        let nib = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
+        self.socialProfileTagCollectionView.register(nib, forCellWithReuseIdentifier: "MyProfileTagCell")
         self.socialContentView.clipsToBounds = true
         self.socialContentView.layer.cornerRadius = 25
         self.socialCharacterImageContentView.clipsToBounds = true
         self.socialCharacterImageContentView.layer.cornerRadius = self.socialCharacterImageContentView.frame.width / 2
+        self.socialCharacterImageContentView.backgroundColor = .whiteTwo
         self.socialCharacterNicknameLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
         self.socialCharacterNicknameLabel.textColor = .white
         self.socialCharacterNicknameLabel.textAlignment = .left
@@ -78,30 +94,130 @@ class SocialOtherProfileViewController: UIViewController {
         
     }
     
-// TO DO : GET API Request
+    private func setCharacterColor() {
+        if self.socialProfileData?.color == "red" {
+            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundRed")
+            self.socialCharacterImageView.image = UIImage(named: "CharacterRed")
+            self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
+            self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
+            self.socialUserNicknameContentLabel.text = "\(self.socialProfileData!.nickName)"
+            self.socialUserNicknameLabel.text = "\(self.socialProfileData!.nickName)님의 응답"
+            self.socialFirstTagLabel.text = "#열정"
+            self.socialSecondTagLabel.text = "#진로"
+            self.socialThirdTagLabel.text = "#미래"
+        } else if self.socialProfileData?.color == "yellow" {
+            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundYellow")
+            self.socialCharacterImageView.image = UIImage(named: "characterYellow")
+            self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
+            self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
+            self.socialUserNicknameContentLabel.text = "\(self.socialProfileData!.nickName)"
+            self.socialUserNicknameLabel.text = "\(self.socialProfileData!.nickName)님의 응답"
+            self.socialFirstTagLabel.text = "#일상"
+            self.socialSecondTagLabel.text = "#추억"
+            self.socialThirdTagLabel.text = "#취향"
+        } else if self.socialProfileData?.color == "green" {
+            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundGreen")
+            self.socialCharacterImageView.image = UIImage(named: "CharacterGreen")
+            self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
+            self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
+            self.socialUserNicknameContentLabel.text = "\(self.socialProfileData!.nickName)"
+            self.socialUserNicknameLabel.text = "\(self.socialProfileData!.nickName)님의 응답"
+            self.socialFirstTagLabel.text = "#힐링"
+            self.socialSecondTagLabel.text = "#치유"
+            self.socialThirdTagLabel.text = "#위로"
+        } else if self.socialProfileData?.color == "pink" {
+            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundPink")
+            self.socialCharacterImageView.image = UIImage(named: "CharacterPink")
+            self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
+            self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
+            self.socialUserNicknameContentLabel.text = "\(self.socialProfileData!.nickName)"
+            self.socialUserNicknameLabel.text = "\(self.socialProfileData!.nickName)님의 응답"
+            self.socialFirstTagLabel.text = "#연애"
+            self.socialSecondTagLabel.text = "#사랑"
+            self.socialThirdTagLabel.text = "#가치관"
+        } else {
+            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundViolet")
+            self.socialCharacterImageView.image = UIImage(named: "CharacterVilolet")
+            self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
+            self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
+            self.socialUserNicknameContentLabel.text = "\(self.socialProfileData!.nickName)"
+            self.socialUserNicknameLabel.text = "\(self.socialProfileData!.nickName)님의 응답"
+            self.socialFirstTagLabel.text = "#만약에"
+            self.socialSecondTagLabel.text = "#상상"
+            self.socialThirdTagLabel.text = "#희망"
+        }
+    }
     
-//    private func getOtherProfile() {
-//        let parameter = [
-//            "color": color
-//        ]
-//        ProfileServerApi.getSocialProfileUserProgress(userId: userId, otherId: otherId, parameter: parameter) { <#ProfileServerApi.Result<OtherProfilePage>#> in
-//            <#code#>
-//        }
-//
-//    }
+    
+    private func getOtherProfile() {
+        let parameter = [
+            "color": color!
+        ]
+        
+        switch socialRequestType {
+        case .All:
+            ProfileServerApi.getSocialProfileUserProgress(userId: userId!, otherId: otherId!, parameter: nil) { result in
+                if case let  .success(data) = result, let list = data  {
+                    self.socialProfileData = list
+                    self.socialProfileModelList = list.postList
+                    DispatchQueue.main.async {
+                        self.setCharacterColor()
+                    }
+                    print("social Profile All Data \(self.socialProfileData)")
+                    print("social Profile All Model Data \(self.socialProfileModelList)")
+                }
+            }
+        case .Single:
+            ProfileServerApi.getSocialProfileUserProgress(userId: userId!, otherId: otherId!, parameter: parameter) { result in
+                if case let .success(data) = result, let list = data {
+                    self.socialProfileData = list
+                    self.socialProfileModelList = list.postList
+                    DispatchQueue.main.async {
+                        self.setCharacterColor()
+                    }
+                    print("social Profile Single Data \(self.socialProfileData)")
+                    print("socail Profile Single Model Data \(self.socialProfileModelList)")
+                }
+            }
+            
+        }
+    }
     
 }
 
 // TO DO : CollectionView Delegate
 
-//extension SocialOtherProfileViewController: UICollectionViewDelegate,UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        <#code#>
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        <#code#>
-//    }
+extension SocialOtherProfileViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return self.socialTagNameList.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+       
+        let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
+        tagCell!.myProfileTagButton.setTitle(self.socialTagNameList[indexPath.item], for: .normal)
+        
+        return tagCell!
+    }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let tagLabel = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
+        print("tagLabel Size test \(tagLabel?.myProfileTagButton.intrinsicContentSize.width)")
+        
+        return CGSize(width: 100, height: 30)
+    }
     
-//}
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 10)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        
+        return 5
+    }
+
+
+}

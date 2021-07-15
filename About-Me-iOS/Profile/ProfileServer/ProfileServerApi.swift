@@ -222,12 +222,13 @@ struct ProfileServerApi {
         
     }
     
-    static func getSocialProfileUserProgress(userId: Int, otherId: Int, parameter: Parameters, completionHandler: @escaping(Result<OtherProfilePage>) -> ()) {
-        let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/\(userId)/\(otherId)")!
+    static func getSocialProfileUserProgress(userId: Int, otherId: Int, parameter: Parameters?, completionHandler: @escaping(Result<OtherProfilePage>) -> ()) {
+        let urlString: URL = URL(string:"http://3.36.188.237:8080/MyPage/\(userId)/\(otherId)")!
         
-        AF.request(urlString, method: .get, parameters: parameter, encoding: JSONEncoding.default)
+        AF.request(urlString, method: .get, parameters: parameter, encoding: URLEncoding.default)
             .validate()
             .responseData { response in
+                debugPrint(response)
                 switch response.result {
                 
                 case let .success(response):

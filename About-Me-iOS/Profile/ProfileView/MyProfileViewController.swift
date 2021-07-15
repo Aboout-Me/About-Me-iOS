@@ -55,7 +55,6 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.getMyProfileList()
         self.setMyProfileSideMenuLayout()
         self.setInitLayout()
-        print("Device Size \(UIScreen.main.bounds.size.width)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -802,7 +801,6 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == self.myProfileCollectionView {
-            // TO-DO
             let myProfileCell = collectionView.cellForItem(at: indexPath) as? MyProfileCollectionViewCell
             myProfileCell?.selectIndex = indexPath.item
             if self.myProfileFlag == "answer" {
