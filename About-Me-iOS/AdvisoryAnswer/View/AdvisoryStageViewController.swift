@@ -100,11 +100,11 @@ class AdvisoryStageViewController: UIViewController {
         self.contentTableView.dataSource = self
         self.contentTableView.delegate = self
         
-        self.nextButton.backgroundColor = .gray333
-        self.nextButton.setTitleColor(.white, for: .normal)
-        self.nextButton.layer.cornerRadius = 5
+        self.nextButton.layer.cornerRadius = 25
         self.nextButton.addTarget(self, action: #selector(nextButtonDidTap), for: .touchUpInside)
-        
+        self.nextButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+        self.nextButton.layer.shadowRadius = 12
+        self.nextButton.layer.shadowOpacity = 0.12
         self.lastStage = Int(themeList!.rate.components(separatedBy: " /")[0]) ?? 0
     }
     
