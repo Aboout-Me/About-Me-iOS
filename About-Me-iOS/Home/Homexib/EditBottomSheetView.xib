@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EditBottomSheetView" customModule="__________" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="EditBottomSheetView" customModule="__________" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jkn-bk-vRa">
+                    <rect key="frame" x="187" y="10" width="40" height="5"/>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="5" id="1up-8u-gRB"/>
+                        <constraint firstAttribute="width" constant="40" id="ypo-aa-OSl"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DC0-hE-wXx">
+                    <rect key="frame" x="0.0" y="141" width="414" height="50"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                    <state key="normal" title="취소하기">
+                        <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IYC-4h-x4P">
+                    <rect key="frame" x="0.0" y="41" width="414" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="414" id="Z2H-Js-qOH"/>
+                        <constraint firstAttribute="height" constant="50" id="ch9-RN-Tqu"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                    <state key="normal" title="수정하기">
+                        <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LBK-ik-La8">
+                    <rect key="frame" x="0.0" y="91" width="414" height="50"/>
+                    <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
+                    <state key="normal" title="삭제하기">
+                        <color key="titleColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="DC0-hE-wXx" firstAttribute="top" secondItem="LBK-ik-La8" secondAttribute="bottom" id="7RU-vK-MDv"/>
+                <constraint firstItem="IYC-4h-x4P" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="7et-Iy-jGJ"/>
+                <constraint firstItem="LBK-ik-La8" firstAttribute="trailing" secondItem="IYC-4h-x4P" secondAttribute="trailing" id="7nd-Tl-cmA"/>
+                <constraint firstItem="DC0-hE-wXx" firstAttribute="height" secondItem="IYC-4h-x4P" secondAttribute="height" id="AmE-c1-GSf"/>
+                <constraint firstItem="DC0-hE-wXx" firstAttribute="width" secondItem="IYC-4h-x4P" secondAttribute="width" id="FEr-SY-A7H"/>
+                <constraint firstItem="DC0-hE-wXx" firstAttribute="trailing" secondItem="IYC-4h-x4P" secondAttribute="trailing" id="HxV-sq-tv4"/>
+                <constraint firstItem="DC0-hE-wXx" firstAttribute="leading" secondItem="IYC-4h-x4P" secondAttribute="leading" id="O3v-OL-aNd"/>
+                <constraint firstItem="IYC-4h-x4P" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="OMg-wY-RyA"/>
+                <constraint firstItem="LBK-ik-La8" firstAttribute="centerX" secondItem="IYC-4h-x4P" secondAttribute="centerX" id="Pwb-Vx-rzl"/>
+                <constraint firstAttribute="trailing" secondItem="IYC-4h-x4P" secondAttribute="trailing" id="YWr-Jd-MMc"/>
+                <constraint firstItem="IYC-4h-x4P" firstAttribute="top" secondItem="jkn-bk-vRa" secondAttribute="bottom" constant="26" id="cwF-lt-4Qf"/>
+                <constraint firstItem="jkn-bk-vRa" firstAttribute="centerX" secondItem="IYC-4h-x4P" secondAttribute="centerX" id="eJr-p6-P0E"/>
+                <constraint firstItem="LBK-ik-La8" firstAttribute="leading" secondItem="IYC-4h-x4P" secondAttribute="leading" id="l8i-qC-oak"/>
+                <constraint firstItem="LBK-ik-La8" firstAttribute="height" secondItem="IYC-4h-x4P" secondAttribute="height" id="nRe-uR-Lag"/>
+                <constraint firstItem="LBK-ik-La8" firstAttribute="top" secondItem="IYC-4h-x4P" secondAttribute="bottom" id="xYQ-VX-CAM"/>
+                <constraint firstItem="DC0-hE-wXx" firstAttribute="centerX" secondItem="IYC-4h-x4P" secondAttribute="centerX" id="yDl-wO-CYJ"/>
+                <constraint firstItem="jkn-bk-vRa" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="yVh-tj-taP"/>
+                <constraint firstItem="LBK-ik-La8" firstAttribute="width" secondItem="IYC-4h-x4P" secondAttribute="width" id="z4L-tD-CyI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelButton" destination="DC0-hE-wXx" id="aNI-BF-Dg0"/>
+                <outlet property="deleteButton" destination="LBK-ik-La8" id="5ga-uI-Lho"/>
+                <outlet property="editButton" destination="IYC-4h-x4P" id="K7Q-y0-70U"/>
+                <outlet property="gestureView" destination="jkn-bk-vRa" id="7qk-cY-GrC"/>
+            </connections>
+            <point key="canvasLocation" x="22" y="50"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

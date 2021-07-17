@@ -521,13 +521,18 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-il-ITp">
-                                <rect key="frame" x="30" y="802" width="354" height="50"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKd-il-ITp">
+                                <rect key="frame" x="107" y="802" width="200" height="50"/>
+                                <color key="backgroundColor" red="0.62352941176470589" green="0.34509803921568627" blue="0.98431372549019602" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="cvA-Ft-Sz0"/>
+                                    <constraint firstAttribute="width" constant="200" id="jRx-85-Mk6"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="자문자답 만들러 가기 &gt;"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="16"/>
+                                <state key="normal" title="자문자답 만들기" image="arrow_button_white.png">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16"/>
+                                </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="현재 나의 고민을 10단계로 생각해보아요!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMH-zN-KNf">
                                 <rect key="frame" x="103.5" y="69" width="207" height="52"/>
@@ -538,6 +543,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UfI-Ke-CYq" customClass="Floaty" customModule="Floaty">
+                                <rect key="frame" x="344" y="802" width="50" height="50"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="AFx-wi-qfJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="fLa-ih-IU4"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="FnS-gf-ptK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -549,23 +562,26 @@
                             <constraint firstItem="MMH-zN-KNf" firstAttribute="top" secondItem="FnS-gf-ptK" secondAttribute="top" constant="25" id="9k1-Ik-ikB"/>
                             <constraint firstAttribute="bottom" secondItem="jqI-nq-qiV" secondAttribute="bottom" id="EnN-xc-wp1"/>
                             <constraint firstItem="MMH-zN-KNf" firstAttribute="centerX" secondItem="M28-fB-UaQ" secondAttribute="centerX" id="EzO-Ev-h4d"/>
+                            <constraint firstItem="wKd-il-ITp" firstAttribute="centerY" secondItem="UfI-Ke-CYq" secondAttribute="centerY" id="G25-m3-vfh"/>
                             <constraint firstItem="Oxb-Ib-Bsi" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="N8u-jC-1cK"/>
-                            <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="wKd-il-ITp" secondAttribute="trailing" constant="30" id="SJu-P8-37p"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Yqz-zY-U4z" secondAttribute="trailing" id="U5p-PT-o7f"/>
+                            <constraint firstItem="wKd-il-ITp" firstAttribute="centerX" secondItem="jqI-nq-qiV" secondAttribute="centerX" id="VP4-Rb-hng"/>
                             <constraint firstItem="Oxb-Ib-Bsi" firstAttribute="top" secondItem="M28-fB-UaQ" secondAttribute="top" id="Wce-eB-lh5"/>
                             <constraint firstItem="pdq-8y-fJ2" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="YeN-W9-jdR"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="bottom" secondItem="wKd-il-ITp" secondAttribute="bottom" constant="10" id="bXS-ZO-0V1"/>
                             <constraint firstItem="wKd-il-ITp" firstAttribute="top" secondItem="Yqz-zY-U4z" secondAttribute="bottom" constant="10" id="dVF-cR-egE"/>
-                            <constraint firstItem="wKd-il-ITp" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" constant="30" id="grM-ph-c2V"/>
                             <constraint firstItem="jqI-nq-qiV" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="hyL-mH-7AZ"/>
+                            <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="UfI-Ke-CYq" secondAttribute="trailing" constant="20" id="lcl-Va-GbQ"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="pdq-8y-fJ2" secondAttribute="trailing" id="r25-ew-Egu"/>
                             <constraint firstItem="FnS-gf-ptK" firstAttribute="trailing" secondItem="Oxb-Ib-Bsi" secondAttribute="trailing" id="xHF-8t-1Td"/>
+                            <constraint firstItem="FnS-gf-ptK" firstAttribute="bottom" secondItem="UfI-Ke-CYq" secondAttribute="bottom" constant="10" id="yca-Ly-6bp"/>
                             <constraint firstItem="Yqz-zY-U4z" firstAttribute="leading" secondItem="FnS-gf-ptK" secondAttribute="leading" id="zha-En-iQS"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="advisoryAnswerTableView" destination="Yqz-zY-U4z" id="hbz-gf-Ezc"/>
                         <outlet property="backgroundImageView" destination="Oxb-Ib-Bsi" id="b78-gd-onz"/>
+                        <outlet property="floatyButton" destination="UfI-Ke-CYq" id="vhy-hC-mdg"/>
                         <outlet property="newButton" destination="wKd-il-ITp" id="9Km-N2-tYD"/>
                         <outlet property="sectionHeaderView" destination="pdq-8y-fJ2" id="OFY-Dk-QNv"/>
                     </connections>
@@ -1870,6 +1886,7 @@
         <image name="CharacterRed" width="25.5" height="25.5"/>
         <image name="CharacterVilolet" width="25.5" height="25.5"/>
         <image name="StampDefault" width="44" height="44"/>
+        <image name="arrow_button_white.png" width="16" height="16"/>
         <image name="characterYellow" width="25.5" height="25.5"/>
         <image name="ico_common_24_edit_circle_L.png" width="24" height="24"/>
         <image name="imgBackgroundRed.png" width="375" height="812"/>

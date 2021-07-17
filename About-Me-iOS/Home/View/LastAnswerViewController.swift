@@ -76,7 +76,11 @@ class LastAnswerViewController: UIViewController {
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
+        self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { _ in
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.state = .none
+            self.navigationController?.pushViewController(moreVC, animated: true)
+        }
     }
     
     public func setBottomSheetViewLayout() {

@@ -52,20 +52,25 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUg-rN-UlH">
                     <rect key="frame" x="0.0" y="802" width="414" height="50"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NZ-Pl-QwA">
-                            <rect key="frame" x="20" y="0.0" width="374" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6NZ-Pl-QwA">
+                            <rect key="frame" x="107" y="0.0" width="200" height="50"/>
+                            <color key="backgroundColor" red="0.62352941176470589" green="0.34509803921568627" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
+                                <constraint firstAttribute="width" constant="200" id="YeM-NA-kZj"/>
                                 <constraint firstAttribute="height" constant="50" id="cVq-AZ-cOq"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                            <state key="normal" title="다음 단계 작성하러 가기 &gt;"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="16"/>
+                            <state key="normal" title="다음단계 작성하기" image="arrow_button_white.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16"/>
+                            </state>
                         </button>
                     </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="6NZ-Pl-QwA" firstAttribute="centerY" secondItem="IUg-rN-UlH" secondAttribute="centerY" id="1uY-F4-14a"/>
+                        <constraint firstItem="6NZ-Pl-QwA" firstAttribute="centerX" secondItem="IUg-rN-UlH" secondAttribute="centerX" id="P9O-uR-t4I"/>
                         <constraint firstAttribute="height" constant="50" id="PiF-j8-XLR"/>
-                        <constraint firstItem="6NZ-Pl-QwA" firstAttribute="leading" secondItem="IUg-rN-UlH" secondAttribute="leading" constant="20" id="wnv-JK-K8A"/>
-                        <constraint firstAttribute="trailing" secondItem="6NZ-Pl-QwA" secondAttribute="trailing" constant="20" id="ybR-dR-pEN"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vsw-Ka-nBf">
@@ -92,6 +97,7 @@
     </objects>
     <resources>
         <image name="arrow-left.png" width="24" height="24"/>
+        <image name="arrow_button_white.png" width="16" height="16"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
