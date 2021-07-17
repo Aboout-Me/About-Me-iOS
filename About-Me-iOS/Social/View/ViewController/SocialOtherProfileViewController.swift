@@ -14,7 +14,7 @@ import UIKit
 
 class SocialOtherProfileViewController: UIViewController {
     
-
+    
     @IBOutlet weak var socialDetailPushButton: UIButton!
     @IBOutlet weak var socialCharacterNicknameLabel: UILabel!
     @IBOutlet weak var socialCharacterImageView: UIImageView!
@@ -35,26 +35,32 @@ class SocialOtherProfileViewController: UIViewController {
     public var otherId: Int?
     public var userId: Int?
     public var color: String?
+    public var socialRequestType = SocialRequestType.All
     private var socialProfileData: OtherProfilePage? = nil
     private var socialProfileModelList = [OtherProfilePageModel]()
-    private var socialRequestType = SocialRequestType.All
     private var socialTagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setInitLayout()
+        self.getOtherProfile(color: "")
     }
     
     private func setInitLayout() {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        self.socialProfileTagCollectionView.collectionViewLayout = layout
         self.socialProfileTagCollectionView.delegate = self
         self.socialProfileTagCollectionView.dataSource = self
+        self.socialProfileTagCollectionView.tag = 0
         self.socialProfileTagCollectionView.showsHorizontalScrollIndicator = false
         self.socialProfileTagCollectionView.allowsMultipleSelection = false
         let nib = UINib(nibName: "MyProfileTagCollectionViewCell", bundle: nil)
         self.socialProfileTagCollectionView.register(nib, forCellWithReuseIdentifier: "MyProfileTagCell")
+        self.socialProfileMainCollectionView.delegate = self
+        self.socialProfileMainCollectionView.dataSource = self
+        let mainNib = UINib(nibName: "MyProfileCollectionViewCell", bundle: nil)
+        self.socialProfileMainCollectionView.register(mainNib, forCellWithReuseIdentifier: "MyProfileCell")
+        let emptyNib = UINib(nibName: "MyProfileEmptyCollectionViewCell", bundle: nil)
+        self.socialProfileMainCollectionView.register(emptyNib, forCellWithReuseIdentifier: "MyProfileEmptyCell")
+        self.socialProfileMainCollectionView.tag = 1
         self.socialContentView.clipsToBounds = true
         self.socialContentView.layer.cornerRadius = 25
         self.socialCharacterImageContentView.clipsToBounds = true
@@ -149,9 +155,10 @@ class SocialOtherProfileViewController: UIViewController {
     }
     
     
-    private func getOtherProfile() {
+    private func getOtherProfile(color: String) {
+        
         let parameter = [
-            "color": color!
+            "color": color
         ]
         
         switch socialRequestType {
@@ -159,12 +166,13 @@ class SocialOtherProfileViewController: UIViewController {
             ProfileServerApi.getSocialProfileUserProgress(userId: userId!, otherId: otherId!, parameter: nil) { result in
                 if case let  .success(data) = result, let list = data  {
                     self.socialProfileData = list
-                    self.socialProfileModelList = list.postList
                     DispatchQueue.main.async {
+                        self.socialProfileModelList = list.postList
                         self.setCharacterColor()
+                        self.socialProfileMainCollectionView.reloadData()
+                        print("social Profile All Data \(self.socialProfileData)")
+                        print("socail Profile All Model Data \(self.socialProfileModelList)")
                     }
-                    print("social Profile All Data \(self.socialProfileData)")
-                    print("social Profile All Model Data \(self.socialProfileModelList)")
                 }
             }
         case .Single:
@@ -174,6 +182,7 @@ class SocialOtherProfileViewController: UIViewController {
                     self.socialProfileModelList = list.postList
                     DispatchQueue.main.async {
                         self.setCharacterColor()
+                        self.socialProfileMainCollectionView.reloadData()
                     }
                     print("social Profile Single Data \(self.socialProfileData)")
                     print("socail Profile Single Model Data \(self.socialProfileModelList)")
@@ -185,39 +194,142 @@ class SocialOtherProfileViewController: UIViewController {
     
 }
 
-// TO DO : CollectionView Delegate
 
 extension SocialOtherProfileViewController: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        return self.socialTagNameList.count
+    
+        switch collectionView.tag {
+        case 0:
+            return self.socialTagNameList.count
+        case 1:
+            if self.socialProfileModelList.count == 0 {
+                return 1
+            } else {
+                return self.socialProfileModelList.count
+            }
+        default:
+            return 0
+        }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
-        let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
-        tagCell!.myProfileTagButton.setTitle(self.socialTagNameList[indexPath.item], for: .normal)
         
-        return tagCell!
+        switch collectionView.tag {
+        case 0:
+            let tagCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
+            
+            tagCell!.myProfileTagButton.setTitle(self.socialTagNameList[indexPath.item], for: .normal)
+            
+            return tagCell!
+        case 1:
+            if self.socialProfileModelList.count == 0 {
+                let emptyCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileEmptyCell", for: indexPath) as? MyProfileEmptyCollectionViewCell
+                
+                return emptyCell!
+            } else {
+                let mainCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileCell", for: indexPath) as? MyProfileCollectionViewCell
+                
+                if self.socialProfileModelList[indexPath.item].color == "red" {
+                    mainCell!.myProfileContentTitleLabel.text = "# 열정충만"
+                    mainCell!.myProfileContentTitleLabel.textColor =  UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+                } else if self.socialProfileModelList[indexPath.item].color == "yellow" {
+                    mainCell!.myProfileContentTitleLabel.text = "# 소소한 일상"
+                    mainCell!.myProfileContentTitleLabel.textColor =  UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+                } else if self.socialProfileModelList[indexPath.item].color == "green" {
+                    mainCell!.myProfileContentTitleLabel.text = "# 기억상자"
+                    mainCell!.myProfileContentTitleLabel.textColor =  UIColor(red: 42/255, green: 212/255, blue: 141/255, alpha: 1.0)
+                } else if self.socialProfileModelList[indexPath.item].color == "pink" {
+                    mainCell!.myProfileContentTitleLabel.text = "# 관계의 미학"
+                    mainCell!.myProfileContentTitleLabel.textColor =  UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+                } else {
+                    mainCell!.myProfileContentTitleLabel.text = "# 상상플러스"
+                    mainCell!.myProfileContentTitleLabel.textColor =  UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+                }
+                mainCell!.myProfileContentButton.isHidden = true
+                mainCell!.myProfileQuestionTitleLabel.text = "\(self.socialProfileModelList[indexPath.item].question)"
+                mainCell!.myProfileContentDateLabel.text = self.socialProfileModelList[indexPath.item].writtenDate
+                mainCell!.myProfileAnswerTitleLabel.text = self.socialProfileModelList[indexPath.item].answer
+                
+                return mainCell!
+            }
+        default:
+            
+            return UICollectionViewCell()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let tagLabel = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
-        print("tagLabel Size test \(tagLabel?.myProfileTagButton.intrinsicContentSize.width)")
-        
-        return CGSize(width: 100, height: 30)
+        switch collectionView.tag {
+        case 0:
+            let tagLabel = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
+            let size = (self.socialTagNameList[indexPath.row] as NSString).size(withAttributes: nil)
+            return CGSize(width: size.width + 50, height: 30)
+        case 1:
+            if self.socialProfileModelList.count == 0 {
+                return CGSize(width: self.socialProfileMainCollectionView.frame.size.width, height: 150)
+            } else {
+                return CGSize(width: UIScreen.main.bounds.size.width - 40, height: 100)
+            }
+        default:
+            return CGSize()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView.tag {
+        case 0:
+            if indexPath.item == 0 {
+                self.socialRequestType = .All
+                self.getOtherProfile(color: "")
+            } else if indexPath.item == 1 {
+                self.socialRequestType = .Single
+                self.getOtherProfile(color: "red")
+            } else if indexPath.item == 2 {
+                self.socialRequestType = .Single
+                self.getOtherProfile(color: "yellow")
+            } else if indexPath.item == 3 {
+                self.socialRequestType = .Single
+                self.getOtherProfile(color: "green")
+            } else if indexPath.item == 4 {
+                self.socialRequestType = .Single
+                self.getOtherProfile(color: "pink")
+            } else {
+                self.socialRequestType = .Single
+                self.getOtherProfile(color: "purple")
+            }
+            collectionView.selectItem(at: indexPath, animated: true, scrollPosition: .centeredHorizontally)
+        default:
+            break
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 10)
+        switch collectionView.tag {
+        case 0:
+            return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 10)
+        case 1:
+            if self.socialProfileModelList.count == 0 {
+                return UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
+            } else {
+                return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }
+        default:
+            return UIEdgeInsets()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         
-        return 5
+        switch collectionView.tag {
+        case 0:
+            return 5
+        case 1:
+            return 10
+        default:
+            return 0
+        }
     }
-
-
+    
+    
 }
