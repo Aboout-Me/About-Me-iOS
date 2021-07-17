@@ -206,6 +206,8 @@
 		FF38D1EB26905699001FD8B1 /* SocialOtherProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF38D1EA26905699001FD8B1 /* SocialOtherProfileViewController.xib */; };
 		FF38D1ED269056BA001FD8B1 /* SocialOtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF38D1EC269056BA001FD8B1 /* SocialOtherProfileViewController.swift */; };
 		FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */; };
+		FF599C5826A2B4F700A5D9A6 /* EditBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */; };
+		FF599C5926A2B4F700A5D9A6 /* PostBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
 		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
 		FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */; };
@@ -477,6 +479,8 @@
 		FF38D1EA26905699001FD8B1 /* SocialOtherProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialOtherProfileViewController.xib; sourceTree = "<group>"; };
 		FF38D1EC269056BA001FD8B1 /* SocialOtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialOtherProfileViewController.swift; sourceTree = "<group>"; };
 		FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardSaveList.swift; sourceTree = "<group>"; };
+		FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditBottomSheetView.xib; sourceTree = "<group>"; };
+		FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostBottomSheetView.xib; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
 		FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -986,6 +990,8 @@
 		FFFDB823261F233800947C44 /* Homexib */ = {
 			isa = PBXGroup;
 			children = (
+				FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */,
+				FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */,
 				FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */,
 				FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */,
 				FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */,
@@ -1108,6 +1114,7 @@
 				07EE6C8D26457E1A00F99643 /* ico_common_24_complete_off.png in Resources */,
 				074011AA2695D35D00AFFA3D /* img_background_default@3x.png in Resources */,
 				0759F91E26A29E07001499F6 /* arrow_button_white@2x.png in Resources */,
+				FF599C5826A2B4F700A5D9A6 /* EditBottomSheetView.xib in Resources */,
 				07EAD053266FAF860099B604 /* img_background_yellow.png in Resources */,
 				0751A67026443515004E635C /* advisory@2x.png in Resources */,
 				FFFC0F892641A5B900C6372F /* Feed@2x.png in Resources */,
@@ -1188,6 +1195,7 @@
 				FFFC0F7A264193CB00C6372F /* GmarketSansMedium.otf in Resources */,
 				FF334FFB2684E2FC00D98DD9 /* (null) in Resources */,
 				074011AF269742D300AFFA3D /* menu_white@3x.png in Resources */,
+				FF599C5926A2B4F700A5D9A6 /* PostBottomSheetView.xib in Resources */,
 				0714AE8B265D326C005C3C6E /* bookmark_off@3x.png in Resources */,
 				FFFC0F8226419BEE00C6372F /* FloatingPlus@2x.png in Resources */,
 				0705C8F1265BE93F00E71E8E /* s_card_violet@3x.png in Resources */,
