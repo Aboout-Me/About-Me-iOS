@@ -138,17 +138,6 @@ class LastAnswerViewController: UIViewController {
     
     
     
-    private func getUtilList() {
-        let parameter = [
-            "answer_id" : 97,
-            "user_id" : 1
-        ]
-        UtilApi.getDetailList(parameter: parameter) { result in
-            if case let .success(data) = result, let list = data {
-                print(list)
-            }
-        }
-    }
     
     private func getLastAnswerCardList() {
         let parameter = [
@@ -310,7 +299,7 @@ class LastAnswerViewController: UIViewController {
         } else {
             sender.isSelected = true
             isLastShare = "Y"
-            self.postBottomView.postShareButton.setImage(UIImage(named: "Lock"), for: .selected)
+            self.postBottomView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .selected)
         }
     }
     

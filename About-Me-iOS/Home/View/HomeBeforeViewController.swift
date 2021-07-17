@@ -291,7 +291,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         } else {
             sender.isSelected = true
             isshare = "Y"
-            self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "Lock"), for: .selected)
+            self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .selected)
         }
         
     }

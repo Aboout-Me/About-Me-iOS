@@ -193,13 +193,6 @@ struct HomeServerApi {
             }
     }
     
-    static func getghomeAfterAnswerList(parameter: Parameters, completionHandler: @escaping(Result<LastAnswerListModel>) -> ()) {
-        let urlString: URL = URL(string: "http://3.36.188.237:8080/Board/pastResponse")!
-        
-        AF.request(urlString, method: .get, parameters: parameter, encoding: URLEncoding.default)
-        
-    }
-    
 }
 extension HomeServerApi {
     enum Result<T> {

@@ -20,7 +20,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     public var answerLevel: String = ""
     public var screenSize = UIScreen.main.bounds.size
     public var isAfterShare = "N"
-    public var homeAfterModel = [LastAnswerCardList]()
+    public var homeAfterModel = [LastAnswerListModel]()
     
     lazy var editBottomContainerView: UIView = {
         let containerView = UIView(frame: self.view.frame)
@@ -53,6 +53,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         
         self.setLayoutInit()
         self.setSideMenuLayoutInit()
+        self.getHomeAnswerList()
     }
     
     
@@ -206,13 +207,13 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         }
     }
     
-    private func getHomeAnswerList() {
+    public func getHomeAnswerList() {
         let parameter = [
             "answer_id": UserDefaults.standard.integer(forKey: "homeBeforeSeq")
         ]
         HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
-            if case let .success(data) = result, let list = data {
-                self.homeAfterModel[0] = list
+            if case let .success(data) = result ,let list = data {
+                self.homeAfterModel = list.postList
                 
             }
         }
@@ -253,7 +254,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         } else {
             sender.isSelected = true
             isAfterShare = "Y"
-            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "Lock"), for: .normal)
+            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         }
     }
