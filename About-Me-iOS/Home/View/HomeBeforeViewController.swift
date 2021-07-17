@@ -111,8 +111,8 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             
         }
         self.homeBeforeLastAnswerButton.backgroundColor = .white
-        self.homeBeforeLastAnswerButton.layer.cornerRadius = 15
-        self.homeBeforeLastAnswerButton.layer.masksToBounds = true
+        self.homeBeforeLastAnswerButton.layer.cornerRadius = 10
+        self.homeBeforeLastAnswerButton.clipsToBounds = true
         self.homeBeforeLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
         self.homeBeforeLastAnswerButton.setTitleColor(UIColor.gray333, for: .normal)
         self.homeBeforeLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
@@ -147,7 +147,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.editAnswerSheetView.layer.cornerRadius = 20
         self.editAnswerSheetView.layer.masksToBounds = true
         self.editAnswerSheetView.postConfirmButton.isEnabled = false
-        self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+        self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
         NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -160,9 +160,9 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                     self.homeData = list.dailyLists
                     self.homeBeforeCollectionView.reloadData()
                     if self.homeData[0].lev == "1" {
-                        self.homeBeforeLastAnswerButton.isHidden = true
-                    } else {
                         self.homeBeforeLastAnswerButton.isHidden = false
+                    } else {
+                        self.homeBeforeLastAnswerButton.isHidden = true
                     }
                 }
             } else if case let .failure(error) = result {
@@ -285,7 +285,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         if sender.isSelected {
             sender.isSelected = false
             isshare = "N"
-            self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+            self.editAnswerSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
         } else {
             sender.isSelected = true
             isshare = "Y"

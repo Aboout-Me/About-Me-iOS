@@ -20,6 +20,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     public var answerLevel: String = ""
     public var screenSize = UIScreen.main.bounds.size
     public var isAfterShare = "N"
+    public var homeAfterModel = [LastAnswerCardList]()
     
     lazy var editBottomContainerView: UIView = {
         let containerView = UIView(frame: self.view.frame)
@@ -183,10 +184,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             }
         }
     }
-    
-    
-    // TODO: - APIRequest
-    
+        
     private func editHomeCardList() {
         let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), level: UserDefaults.standard.integer(forKey: "homeBeforeLevel"), share: isAfterShare)
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
@@ -200,6 +198,18 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
                 alert.addAction(alertButton)
                 self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    private func getHomeAnswerList() {
+        let parameter = [
+            "answer_id": UserDefaults.standard.integer(forKey: "homeBeforeSeq")
+        ]
+        HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
+            if case let .success(data) = result, let list = data {
+                self.homeAfterModel[0] = list
+                
             }
         }
     }
@@ -234,7 +244,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         if sender.isSelected {
             sender.isSelected = false
             isAfterShare = "N"
-            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         } else {
             sender.isSelected = true

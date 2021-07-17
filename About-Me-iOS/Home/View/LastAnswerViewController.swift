@@ -124,7 +124,7 @@ class LastAnswerViewController: UIViewController {
         self.postBottomView.postAnswerTextView.textColor = .gray999
         self.postBottomView.postAnswerTextView.inputAccessoryView = editToolbar
         self.postBottomView.postShareButton.isSelected = false
-        self.postBottomView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+        self.postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
         self.postBottomView.postCancelButton.addTarget(self, action: #selector(postCancelButtonDidTap(_:)), for: .touchUpInside)
         self.postBottomView.postShareButton.addTarget(self, action: #selector(postShareButtonDidTap(_:)), for: .touchUpInside)
         self.postBottomView.postConfirmButton.addTarget(self, action: #selector(postConfirmButtonDidTap(_:)), for: .touchUpInside)
@@ -301,7 +301,7 @@ class LastAnswerViewController: UIViewController {
         if sender.isSelected {
             sender.isSelected = false
             isLastShare = "N"
-            self.postBottomView.postShareButton.setImage(UIImage(named: "UnLock"), for: .normal)
+            self.postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
             
         } else {
             sender.isSelected = true
