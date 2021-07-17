@@ -179,7 +179,11 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png"))
+        self.myProfileFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { _ in
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.state = .none
+            self.navigationController?.pushViewController(moreVC, animated: true)
+        }
         if UIScreen.main.bounds.size.width >= 428 {
             self.myProfileBottomLineViewLeadingConstraint = self.myProfileBottomLineView.leadingAnchor.constraint(equalTo: self.myProfileContentContainerView.leadingAnchor, constant: 55)
             self.myProfileBottomLineViewLeadingConstraint.isActive = true

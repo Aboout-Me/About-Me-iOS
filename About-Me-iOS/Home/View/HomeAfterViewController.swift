@@ -92,7 +92,11 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.homeAfterFloaingButton.addItem("내 피드", icon: UIImage(named: "Feed.png"))
+        self.homeAfterFloaingButton.addItem("내 피드", icon: UIImage(named: "Feed.png")) { _ in
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.state = .none
+            self.navigationController?.pushViewController(moreVC, animated: true)
+        }
         if self.backgroundColor == "red" {
             self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
         } else if self.backgroundColor == "yellow" {

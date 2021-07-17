@@ -107,8 +107,10 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.homeBeforeFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { item in
-            
+        self.homeBeforeFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { _ in
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.state = .none
+            self.navigationController?.pushViewController(moreVC, animated: true)
         }
         self.homeBeforeLastAnswerButton.backgroundColor = .white
         self.homeBeforeLastAnswerButton.layer.cornerRadius = 15
