@@ -35,13 +35,15 @@ class SocialTagCell: UICollectionViewCell {
         didSet {
             if isSelected {
                 titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
-                titleLabel.textColor = colors[tagNumber]
-                backView.layer.borderColor = colors[tagNumber].cgColor
-                backView.layer.borderWidth = 1.5
+                titleLabel.textColor = .white // colors[tagNumber]
+                backView.backgroundColor = .gray333
+//                backView.layer.borderColor = colors[tagNumber].cgColor
+//                backView.layer.borderWidth = 1.5
             } else {
                 titleLabel.font = UIFont.systemFont(ofSize: 15)
                 titleLabel.textColor = .gray777
-                backView.layer.borderWidth = 0
+                backView.backgroundColor = .white
+//                backView.layer.borderWidth = 0
             }
         }
     }
@@ -52,6 +54,11 @@ class SocialTagCell: UICollectionViewCell {
         super.init(frame: frame)
         
         self.configure()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.textColor = .gray333
     }
     
     required init?(coder: NSCoder) {

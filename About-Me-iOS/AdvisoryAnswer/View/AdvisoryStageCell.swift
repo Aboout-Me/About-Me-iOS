@@ -35,9 +35,11 @@ class AdvisoryStageCell: UITableViewCell {
     private func configure() {
         self.backgroundColor = .solidF9F9F9
         self.answerContentView.layer.cornerRadius = 10
-        self.shadowView.layer.shadowOffset = CGSize(width: 5, height: 5)
-        self.shadowView.layer.shadowRadius = 5
-        self.shadowView.layer.shadowOpacity = 0.3
+        self.answerContentView.layer.borderColor = UIColor.lineEee.cgColor
+        self.answerContentView.layer.borderWidth = 1
+        self.shadowView.layer.shadowOffset = CGSize(width: 3, height: 0.5)
+        self.shadowView.layer.shadowRadius = 10
+        self.shadowView.layer.shadowOpacity = 0.2
     }
     
     func setValues(answer: AdvisoryAnswerList, totalCount: Int) {

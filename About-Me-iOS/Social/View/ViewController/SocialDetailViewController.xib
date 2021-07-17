@@ -63,6 +63,9 @@
                                 <constraint firstAttribute="width" constant="24" id="dXY-KC-X3G"/>
                             </constraints>
                             <state key="normal" image="ico_common_24_edit_circle_L.png"/>
+                            <connections>
+                                <action selector="moreButtonDidTap:" destination="-1" eventType="touchUpInside" id="Ucc-Ca-eGZ"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-we-eyh">
                             <rect key="frame" x="25" y="59" width="324" height="41"/>

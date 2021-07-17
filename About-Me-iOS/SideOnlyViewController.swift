@@ -106,7 +106,9 @@ class SideOnlyViewController: UIViewController {
     
     @objc
     private func showMyFeedButtonDidTap(_ sender: UIButton) {
-        
+        let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+        moreVC.state = .none
+        self.navigationController?.pushViewController(moreVC, animated: true)
     }
     
     @objc
