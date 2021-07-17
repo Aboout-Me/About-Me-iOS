@@ -219,8 +219,6 @@
 		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
-		FF982CBA26A2B033000151AB /* PostBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF982CB926A2B032000151AB /* PostBottomSheetView.xib */; };
-		FF982CBC26A2B067000151AB /* EditBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF982CBB26A2B067000151AB /* EditBottomSheetView.xib */; };
 		FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */; };
 		FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */; };
 		FFAE74C526287CAD0054CB2D /* Vector.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C426287CAD0054CB2D /* Vector.png */; };
@@ -489,8 +487,6 @@
 		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
-		FF982CB926A2B032000151AB /* PostBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostBottomSheetView.xib; sourceTree = "<group>"; };
-		FF982CBB26A2B067000151AB /* EditBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditBottomSheetView.xib; sourceTree = "<group>"; };
 		FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		FFAE74C426287CAD0054CB2D /* Vector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vector.png; sourceTree = "<group>"; };
@@ -987,9 +983,7 @@
 				FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */,
 				FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */,
 				FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */,
-				FF982CBB26A2B067000151AB /* EditBottomSheetView.xib */,
 				FF33506F2689E59F00D98DD9 /* EditBottomSheetView.swift */,
-				FF982CB926A2B032000151AB /* PostBottomSheetView.xib */,
 				FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */,
 			);
 			path = Homexib;
@@ -1192,7 +1186,6 @@
 				FF38D1EB26905699001FD8B1 /* SocialOtherProfileViewController.xib in Resources */,
 				07B89ECA268A1568007380A5 /* checked_solid@2x.png in Resources */,
 				0705C8F5265BE93F00E71E8E /* s_card_pink.png in Resources */,
-				FF982CBA26A2B033000151AB /* PostBottomSheetView.xib in Resources */,
 				FF351AA02668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib in Resources */,
 				FFFC0F8126419BEE00C6372F /* FloatingPlus@3x.png in Resources */,
 				0751A66E26443515004E635C /* advisory.png in Resources */,
@@ -1208,7 +1201,6 @@
 				07B89EC8268A1568007380A5 /* checked_solid.png in Resources */,
 				0714AE79265D3256005C3C6E /* ico_common_24_message_off.png in Resources */,
 				07432F712663D735008786B0 /* bookmark_off_dark@2x.png in Resources */,
-				FF982CBC26A2B067000151AB /* EditBottomSheetView.xib in Resources */,
 				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				07EAD055266FAF860099B604 /* img_background_red@3x.png in Resources */,
 				074011A52695CCA700AFFA3D /* MyFeedCell.xib in Resources */,
