@@ -60,14 +60,20 @@ class MyProfileDetailViewController: UIViewController {
     @IBOutlet weak var myProfileMonthleadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var myProfileFridayleadingConstraint: NSLayoutConstraint!
     private var categoryData = [CategoryProgressModel]()
-    private var weeklyData = [WeeklyProgressListModel]()
+    private var weeklyData = [WeeklyProgressSubModel]()
+    private var weeklyListData = [WeeklyProgressListModel]()
+    private var weeklyListcount: Int = 0
     public var sequence: Int = 0
+    public var weekDay: Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getWeeklyList()
         self.getCategoryList()
         self.setCategoryViewLayoutInit()
         self.setWeeklyViewLayoutInit()
+        let date = Date()
+        let calendar = Calendar.current.dateComponents([.weekdayOrdinal], from: date)
+        self.sequence = calendar.weekdayOrdinal! - 1
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -258,11 +264,74 @@ class MyProfileDetailViewController: UIViewController {
         self.myProfileCharacterLevelLabelFive.text = "lv.\(self.categoryData[4].level)"
     }
     
+    private func setnowDate() {
+        let date = Date()
+        let calendar = Calendar.current.dateComponents([.weekdayOrdinal], from: date)
+        print("now weekDay \(calendar)")
+        
+        self.weekDay = calendar.weekdayOrdinal!
+        
+        if self.weekDay == 1 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[0].date
+        } else if self.weekDay == 2 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[1].date
+        } else if self.weekDay == 3 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[2].date
+        } else {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[3].date
+        }
+    }
+    
+    private func updateDate() {
+        let date = Date()
+        let calendar = Calendar.current.dateComponents([.weekdayOrdinal], from: date)
+        print("update weekDay \(calendar)")
+        
+        self.weekDay = self.weekDay + 1
+        if self.weekDay == 1 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[0].date
+        } else if self.weekDay == 2 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[1].date
+        } else if self.weekDay == 3 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[2].date
+        } else {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[3].date
+        }
+        
+    }
+    
+    private func previousDate() {
+        let previousDate = Date()
+        let calnedar = Calendar.current.dateComponents([.weekdayOrdinal], from: previousDate)
+        print("previous weekDay \(calnedar)")
+        self.weekDay = self.weekDay - 1
+        print("weekDay Number \(self.weekDay)")
+        
+        if self.weekDay == 1 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[0].date
+        } else if self.weekDay == 2 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[1].date
+        } else if self.weekDay == 3 {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[2].date
+        } else {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[3].date
+        }
+    }
+    
     private func getWeeklyList(){
-        ProfileServerApi.getWeeklyProgress(userId: 1) { result in
+        ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
             if case let .success(data) = result, let list = data {
-                self.weeklyData = list.weeklyProgressingList[0]
-                self.myProfileWeeklyTitleLabel.text = "\(list.date)"
+                self.weeklyData = list.weeklyProgressingList[sequence].week!
+                self.weeklyListData = list.weeklyProgressingList
+                let index = self.weeklyListData.endIndex - 1
+                if self.weeklyListData[index].week == nil || self.weeklyListData[index].date == nil {
+                    self.weeklyListData.removeLast()
+                }
+                self.weeklyListcount = list.weeklyProgressingList.count - 1
+                
+                print("counting Weekly value \(self.weeklyListcount)")
+                self.myProfileWeeklyTitleLabel.text = list.weeklyProgressingList[0].date
+                self.setnowDate()
                 print("test color",self.weeklyData)
                 print("test Data \(self.weeklyData[0])")
                 if list.weeklyProgressingList.count == 1 {
@@ -433,15 +502,20 @@ class MyProfileDetailViewController: UIViewController {
             if case let .success(data) = result, let list = data {
                 print("counting \(list.weeklyProgressingList.count)")
                 self.sequence += 1
-                if list.weeklyProgressingList.count == self.sequence {
+                var lastCount = self.sequence + self.weeklyListcount
+                print("sequence count \(self.sequence)")
+                print("weeklyListCount \(self.weeklyListcount)")
+                if self.weeklyListcount == 4 || lastCount == 4 {
                     self.myProfileWeeklyNextButton.isEnabled = false
-                } else {
+                    self.weeklyData = list.weeklyProgressingList[sequence].week!
+                } else if self.weeklyListcount < self.sequence {
                     self.myProfileWeeklyPreviousButton.isEnabled = true
-                    self.weeklyData = list.weeklyProgressingList[sequence]
+                    self.weeklyData = list.weeklyProgressingList[sequence].week!
                 }
                 print("data\(self.sequence)" ,self.weeklyData)
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
+                    self.updateDate()
                 }
             }
         }
@@ -452,16 +526,19 @@ class MyProfileDetailViewController: UIViewController {
         ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
             if case let .success(data) = result, let list = data {
                 self.sequence -= 1
+                self.weeklyListcount -= 1
                 print("previous dataCounting \(list.weeklyProgressingList.count)")
-                if sequence == -1 {
+                print("sequnce count \(sequence)")
+                if sequence == 0 {
                     self.myProfileWeeklyPreviousButton.isEnabled = false
-                    self.sequence = 0
+                    self.weeklyData = list.weeklyProgressingList[sequence].week!
                 } else {
                     self.myProfileWeeklyNextButton.isEnabled = true
-                    self.weeklyData = list.weeklyProgressingList[sequence]
+                    self.weeklyData = list.weeklyProgressingList[sequence].week!
                 }
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
+                    self.previousDate()
                 }
                 print("data\(sequence)" ,self.weeklyData)
             }
