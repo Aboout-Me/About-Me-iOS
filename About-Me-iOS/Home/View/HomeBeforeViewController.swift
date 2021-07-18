@@ -365,9 +365,15 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPurple
         }
         if self.homeData[indexPath.item].lev == "1" {
-            cell.homeBeforeLevelLabel.isHidden = true
-        } else {
             cell.homeBeforeLevelLabel.isHidden = false
+            let attributedString = NSMutableAttributedString(string: "LV. \(self.homeData[indexPath.item].lev)", attributes: [
+              .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
+              .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
+            ])
+            attributedString.addAttribute(.font, value: UIFont(name: "GmarketSansBold", size: 13.0)!, range: NSRange(location: 3, length: 2))
+            cell.homeBeforeLevelLabel.attributedText = attributedString
+        } else {
+            cell.homeBeforeLevelLabel.isHidden = true
             let attributedString = NSMutableAttributedString(string: "LV. \(self.homeData[indexPath.item].lev)", attributes: [
               .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
               .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
