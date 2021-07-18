@@ -363,6 +363,7 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
         self.selectedIndex = indexPath.item
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
         lastAnswerVC.answerId = self.lastAnswerData[indexPath.item].cardSeq
+        lastAnswerVC.title = "" // TODO - MyNickname
         lastAnswerVC.authorId = 1
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }
