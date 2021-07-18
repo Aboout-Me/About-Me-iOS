@@ -64,6 +64,12 @@ class SocialDetailViewController: UIViewController {
         commentVC.answerId = self.answerId
         commentVC.authorId = self.authorId
         commentVC.comments = self.comments
+        commentVC.profileClosure = {
+            let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+            otherProfileVC.otherId = self.authorId
+            otherProfileVC.userId = userId
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
         self.present(commentVC, animated: true, completion: nil)
     }
     
@@ -103,6 +109,12 @@ class SocialDetailViewController: UIViewController {
                 moreView.sueType = "board"
                 moreView.closure = {
                     self.dismiss(animated: false, completion: nil)
+                }
+                moreView.profileClosure = {
+                    let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+                    otherProfileVC.otherId = post.userId
+                    otherProfileVC.userId = userId
+                    self.navigationController?.pushViewController(otherProfileVC, animated: true)
                 }
                 self.present(moreView, animated: true, completion: nil)
             }

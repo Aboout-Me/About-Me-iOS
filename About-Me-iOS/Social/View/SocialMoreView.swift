@@ -22,6 +22,7 @@ class SocialMoreView: UIViewController {
     var targetQuestionId: Int?
     var sueType: String?
     var closure: (() -> Void)?
+    var profileClosure: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -69,6 +70,9 @@ class SocialMoreView: UIViewController {
     }
     
     @IBAction func profileButtonDidTap(_ sender: Any) {
+        self.dismiss(animated: true) {
+            self.profileClosure?()
+        }
     }
     
     @IBAction func reportButtonDidTap(_ sender: Any) {
