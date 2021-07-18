@@ -20,6 +20,7 @@ class HomeBeforeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var homeBeforeSecondTagLabel: UILabel!
     @IBOutlet weak var homeBeforeThirdTagLabel: UILabel!
     @IBOutlet weak var homeBeforeLevelLabel: UILabel!
+    @IBOutlet weak var homeBeforeLevelBoxView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -58,6 +59,7 @@ class HomeBeforeCollectionViewCell: UICollectionViewCell {
         self.homeBeforeFirstTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.homeBeforeSecondTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
         self.homeBeforeThirdTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        self.homeBeforeLevelLabel.textAlignment = .center
         
     }
 

@@ -101,6 +101,14 @@
                                     <constraint firstItem="vmt-no-CiV" firstAttribute="top" secondItem="maw-qQ-e17" secondAttribute="top" constant="2" id="wuv-Tc-w1Z"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ypo-Xq-1hy">
+                                <rect key="frame" x="139.5" y="135" width="36" height="10"/>
+                                <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="45b-re-93H"/>
+                                    <constraint firstAttribute="height" constant="10" id="v7d-dH-Gh7"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sGK-i2-dLL">
                                 <rect key="frame" x="141.5" y="126" width="32" height="19"/>
                                 <constraints>
@@ -130,9 +138,11 @@
                             <constraint firstItem="maw-qQ-e17" firstAttribute="top" secondItem="b8X-CL-dYy" secondAttribute="top" id="QGc-gY-CL1"/>
                             <constraint firstItem="Bnb-Ud-29v" firstAttribute="top" secondItem="b8X-CL-dYy" secondAttribute="top" id="asK-Jd-e9b"/>
                             <constraint firstItem="Bnb-Ud-29v" firstAttribute="leading" secondItem="b8X-CL-dYy" secondAttribute="trailing" constant="3" id="bKo-Vz-6sD"/>
+                            <constraint firstItem="Ypo-Xq-1hy" firstAttribute="centerX" secondItem="E32-3J-9ff" secondAttribute="centerX" id="bfA-SG-4we"/>
                             <constraint firstItem="Bnb-Ud-29v" firstAttribute="height" secondItem="b8X-CL-dYy" secondAttribute="height" id="fHy-2k-fxi"/>
                             <constraint firstItem="maw-qQ-e17" firstAttribute="centerY" secondItem="b8X-CL-dYy" secondAttribute="centerY" id="fv7-8y-ktL"/>
                             <constraint firstAttribute="bottom" secondItem="maw-qQ-e17" secondAttribute="bottom" constant="34" id="hrb-sI-cFG"/>
+                            <constraint firstItem="Ypo-Xq-1hy" firstAttribute="top" secondItem="EqF-Di-i4J" secondAttribute="bottom" constant="74" id="mLQ-YG-Gkh"/>
                             <constraint firstItem="sGK-i2-dLL" firstAttribute="top" secondItem="EqF-Di-i4J" secondAttribute="bottom" constant="65" id="p9F-TS-FHa"/>
                             <constraint firstItem="Bnb-Ud-29v" firstAttribute="centerY" secondItem="b8X-CL-dYy" secondAttribute="centerY" id="sq6-Ji-ASO"/>
                             <constraint firstItem="A0b-52-IlR" firstAttribute="top" secondItem="c9x-kF-gTB" secondAttribute="bottom" constant="122" id="voG-Pj-IBE"/>
@@ -157,6 +167,7 @@
                 <outlet property="homeBeforeContainerView" destination="E32-3J-9ff" id="Jel-55-u77"/>
                 <outlet property="homeBeforeFirstTagLabel" destination="PjF-ty-NKg" id="Msw-jb-Qgh"/>
                 <outlet property="homeBeforeFirstTagView" destination="b8X-CL-dYy" id="IrO-Nu-zr0"/>
+                <outlet property="homeBeforeLevelBoxView" destination="Ypo-Xq-1hy" id="b7d-fJ-fFL"/>
                 <outlet property="homeBeforeLevelLabel" destination="sGK-i2-dLL" id="zEt-4x-66x"/>
                 <outlet property="homeBeforeSecondTagLabel" destination="Nzz-dY-YCx" id="Fjc-eG-Y8v"/>
                 <outlet property="homeBeforeSecondTagView" destination="Bnb-Ud-29v" id="0Bw-BU-syQ"/>
