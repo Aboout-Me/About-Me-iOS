@@ -28,6 +28,7 @@ class SocialCommentViewController: UIViewController {
     var answerId: Int?
     var authorId: Int?
     var comments: [SocialComment]?
+    var profileClosure: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -195,6 +196,11 @@ extension SocialCommentViewController: UITableViewDataSource {
                 }
                 moreView.closure = {
                     self.dismiss(animated: false, completion: nil)
+                }
+                moreView.profileClosure = {
+                    self.dismiss(animated: true) {
+                        self.profileClosure?()
+                    }
                 }
                 self.present(moreView, animated: true, completion: nil)
             }

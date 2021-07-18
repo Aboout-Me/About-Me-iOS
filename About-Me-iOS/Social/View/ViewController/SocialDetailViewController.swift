@@ -64,6 +64,12 @@ class SocialDetailViewController: UIViewController {
         commentVC.answerId = self.answerId
         commentVC.authorId = self.authorId
         commentVC.comments = self.comments
+        commentVC.profileClosure = {
+            let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+            otherProfileVC.otherId = self.authorId
+            otherProfileVC.userId = userId
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
         self.present(commentVC, animated: true, completion: nil)
     }
     
@@ -104,6 +110,12 @@ class SocialDetailViewController: UIViewController {
                 moreView.closure = {
                     self.dismiss(animated: false, completion: nil)
                 }
+                moreView.profileClosure = {
+                    let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+                    otherProfileVC.otherId = post.userId
+                    otherProfileVC.userId = userId
+                    self.navigationController?.pushViewController(otherProfileVC, animated: true)
+                }
                 self.present(moreView, animated: true, completion: nil)
             }
         }
@@ -115,8 +127,14 @@ class SocialDetailViewController: UIViewController {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left.png"), style: .plain, target: self, action: #selector(backIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.tintColor = .white
-        
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .clear
+        button.setTitle(self.title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        button.addTarget(self, action: #selector(titleDidTap), for: .touchUpInside)
+        self.navigationItem.titleView = button
     }
 
     private func configure() {
@@ -157,5 +175,12 @@ class SocialDetailViewController: UIViewController {
             scrapLabel.text = "\(post.scraps)"
             commentLabel.text = "\(post.comments)"
         }
+    }
+    
+    @objc private func titleDidTap(_ sender: UIButton) {
+        let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+        otherProfileVC.otherId = self.authorId
+        otherProfileVC.userId = userId
+        self.navigationController?.pushViewController(otherProfileVC, animated: true)
     }
 }

@@ -810,6 +810,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             if self.myProfileFlag == "answer" {
                 let profileAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
                 profileAnswerVC.answerId = self.myProfileSubData[indexPath.item].answerId
+                profileAnswerVC.title = self.myProfileData?.nickName
                 profileAnswerVC.authorId = 1
                 self.navigationController?.pushViewController(profileAnswerVC, animated: true)
             }

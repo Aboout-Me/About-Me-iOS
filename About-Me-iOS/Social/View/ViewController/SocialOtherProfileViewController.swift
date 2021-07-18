@@ -40,11 +40,16 @@ class SocialOtherProfileViewController: UIViewController {
     private var socialProfileModelList = [OtherProfilePageModel]()
     private var socialTagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setInitLayout()
         self.getOtherProfile(color: "")
+        self.configureNavigation()
     }
+    
+    // MARK: - Configure
     
     private func setInitLayout() {
         self.socialProfileTagCollectionView.delegate = self
@@ -98,6 +103,7 @@ class SocialOtherProfileViewController: UIViewController {
         self.socialUserNicknameLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.socialUserNicknameLabel.textAlignment = .center
         
+        self.socialProfileTagCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
     }
     
     private func setCharacterColor() {
@@ -154,6 +160,12 @@ class SocialOtherProfileViewController: UIViewController {
         }
     }
     
+    private func configureNavigation() {
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left.png"), style: .plain, target: self, action: #selector(backIconDidTap))
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.tintColor = .white
+        self.title = "프로필"
+    }
     
     private func getOtherProfile(color: String) {
         
@@ -190,6 +202,11 @@ class SocialOtherProfileViewController: UIViewController {
             }
             
         }
+    }
+    
+    @objc
+    private func backIconDidTap(_ sender: UIBarButtonItem) {
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -263,8 +280,8 @@ extension SocialOtherProfileViewController: UICollectionViewDelegate,UICollectio
         switch collectionView.tag {
         case 0:
             let tagLabel = collectionView.dequeueReusableCell(withReuseIdentifier: "MyProfileTagCell", for: indexPath) as? MyProfileTagCollectionViewCell
-            let size = (self.socialTagNameList[indexPath.row] as NSString).size(withAttributes: nil)
-            return CGSize(width: size.width + 50, height: 30)
+            tagLabel?.myProfileTagButton.setTitle(self.socialTagNameList[indexPath.item], for: .normal)
+            return CGSize(width: (tagLabel?.myProfileTagButton.intrinsicContentSize.width)!, height: 30)
         case 1:
             if self.socialProfileModelList.count == 0 {
                 return CGSize(width: self.socialProfileMainCollectionView.frame.size.width, height: 150)
