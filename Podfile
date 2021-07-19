@@ -8,6 +8,8 @@ pod 'Hero'
   pod 'Alamofire'
   pod 'SideMenu'
   pod 'Floaty', '~> 4.2.0' 
+  pod 'Firebase/Messaging'
+
 
   # Pods for 오늘의 나
 

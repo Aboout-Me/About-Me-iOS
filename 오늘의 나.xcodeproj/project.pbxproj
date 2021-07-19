@@ -181,7 +181,6 @@
 		07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */; };
 		07F8FDA62691DD3400B306B2 /* SocialMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDA42691DD3400B306B2 /* SocialMoreView.swift */; };
 		07F8FDA72691DD3400B306B2 /* SocialMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDA52691DD3400B306B2 /* SocialMoreView.xib */; };
-		07F8FDAA2691E51600B306B2 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F8FDA82691E51600B306B2 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07F8FDAF2691F57A00B306B2 /* SocialReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDAE2691F57A00B306B2 /* SocialReportResponse.swift */; };
 		07F8FDB22692031400B306B2 /* SocialMyMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDB02692031400B306B2 /* SocialMyMoreView.swift */; };
 		07F8FDB32692031400B306B2 /* SocialMyMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDB12692031400B306B2 /* SocialMyMoreView.xib */; };
@@ -232,6 +231,7 @@
 		FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CD2628B0CE0054CB2D /* delete.png */; };
 		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
 		FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */; };
+		FFC1752526A5BF260000F946 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFC1752426A5BF260000F946 /* GoogleService-Info.plist */; };
 		FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */; };
 		FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */; };
 		FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF30AA9264682280076BF44 /* HomeCardList.swift */; };
@@ -257,20 +257,6 @@
 		FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		07F8FDAB2691E51600B306B2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				07F8FDAA2691E51600B306B2 /* Pods_오늘의_나.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0701122E268DDDF7008BD686 /* SocialSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSearchResponse.swift; sourceTree = "<group>"; };
@@ -505,6 +491,8 @@
 		FFAE74CD2628B0CE0054CB2D /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
 		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
 		FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardDeleteList.swift; sourceTree = "<group>"; };
+		FFC1752426A5BF260000F946 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFC1752626A5C01A0000F946 /* 오늘의 나.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "오늘의 나.entitlements"; sourceTree = "<group>"; };
 		FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardEditList.swift; sourceTree = "<group>"; };
 		FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServerApi.swift; sourceTree = "<group>"; };
 		FFF30AA9264682280076BF44 /* HomeCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardList.swift; sourceTree = "<group>"; };
@@ -602,6 +590,7 @@
 		0715A335260CD1860077882A = {
 			isa = PBXGroup;
 			children = (
+				FFC1752626A5C01A0000F946 /* 오늘의 나.entitlements */,
 				0715A340260CD1860077882A /* About-Me-iOS */,
 				0715A33F260CD1860077882A /* Products */,
 				E45D6508C2D62EF6EF67D7BC /* Pods */,
@@ -636,6 +625,7 @@
 				0715A34C260CD1870077882A /* LaunchScreen.storyboard */,
 				0715A34F260CD1870077882A /* Info.plist */,
 				FF896061261603FB00CB6492 /* QuestionsViewController.swift */,
+				FFC1752426A5BF260000F946 /* GoogleService-Info.plist */,
 			);
 			path = "About-Me-iOS";
 			sourceTree = "<group>";
@@ -1016,7 +1006,6 @@
 				0715A33B260CD1860077882A /* Frameworks */,
 				0715A33C260CD1860077882A /* Resources */,
 				C0C3C8E55722A06C20F1B00A /* [CP] Embed Pods Frameworks */,
-				07F8FDAB2691E51600B306B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1091,6 +1080,7 @@
 				07F8FDC12694ABCC00B306B2 /* s_card_purple.png in Resources */,
 				077BC10226569467001AE876 /* menu.png in Resources */,
 				0751A67C26443792004E635C /*  check-mark@2x.png in Resources */,
+				FFC1752526A5BF260000F946 /* GoogleService-Info.plist in Resources */,
 				0705C8EA265BE93F00E71E8E /* s_card_yellow.png in Resources */,
 				075B1CD92652ADF800CEEE7B /* AdvisoryStageViewController.xib in Resources */,
 				07F8FDA72691DD3400B306B2 /* SocialMoreView.xib in Resources */,
@@ -1514,6 +1504,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = "오늘의 나.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1535,7 +1526,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.aboutme.ios;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.About-Me-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1550,6 +1541,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				BUILD_LIBRARY_FOR_DISTRIBUTION = NO;
+				CODE_SIGN_ENTITLEMENTS = "오늘의 나.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1563,6 +1555,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.About-Me-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_WORKSPACE = "";
