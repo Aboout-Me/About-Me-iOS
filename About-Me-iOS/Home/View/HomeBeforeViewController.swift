@@ -254,6 +254,11 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     
     @objc
     private func showAlarmButtonDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noticeView = storyboard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
+        guard let noticeVC = noticeView else { return }
+        self.navigationController?.pushViewController(noticeVC, animated: true)
+        
         
     }
     

@@ -233,6 +233,9 @@
 		FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */; };
 		FFC1752526A5BF260000F946 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFC1752426A5BF260000F946 /* GoogleService-Info.plist */; };
 		FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */; };
+		FFE8390326A6B1E800BA27E2 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */; };
+		FFE8390626A6B2F500BA27E2 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8390426A6B2F500BA27E2 /* NoticeTableViewCell.swift */; };
+		FFE8390726A6B2F500BA27E2 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE8390526A6B2F500BA27E2 /* NoticeTableViewCell.xib */; };
 		FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */; };
 		FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF30AA9264682280076BF44 /* HomeCardList.swift */; };
 		FFFC0F73264192E200C6372F /* imgBackgroundRed.png in Resources */ = {isa = PBXBuildFile; fileRef = FFFC0F70264192E200C6372F /* imgBackgroundRed.png */; };
@@ -494,6 +497,9 @@
 		FFC1752426A5BF260000F946 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFC1752626A5C01A0000F946 /* 오늘의 나.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "오늘의 나.entitlements"; sourceTree = "<group>"; };
 		FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardEditList.swift; sourceTree = "<group>"; };
+		FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		FFE8390426A6B2F500BA27E2 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
+		FFE8390526A6B2F500BA27E2 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
 		FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeServerApi.swift; sourceTree = "<group>"; };
 		FFF30AA9264682280076BF44 /* HomeCardList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardList.swift; sourceTree = "<group>"; };
 		FFFC0F70264192E200C6372F /* imgBackgroundRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = imgBackgroundRed.png; sourceTree = "<group>"; };
@@ -795,6 +801,7 @@
 				FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */,
 				FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */,
 				FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */,
+				FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -990,6 +997,8 @@
 				FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */,
 				FF33506F2689E59F00D98DD9 /* EditBottomSheetView.swift */,
 				FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */,
+				FFE8390426A6B2F500BA27E2 /* NoticeTableViewCell.swift */,
+				FFE8390526A6B2F500BA27E2 /* NoticeTableViewCell.xib */,
 			);
 			path = Homexib;
 			sourceTree = "<group>";
@@ -1226,6 +1235,7 @@
 				07432F5C266374DF008786B0 /* ico_common_20_delete_line.png in Resources */,
 				0714AE87265D3261005C3C6E /* like_off.png in Resources */,
 				FF6922B126430BC600B0B533 /* imgBackgroundYellow@2x.png in Resources */,
+				FFE8390726A6B2F500BA27E2 /* NoticeTableViewCell.xib in Resources */,
 				0751A67726443779004E635C /*  close@3x.png in Resources */,
 				FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */,
 			);
@@ -1309,6 +1319,7 @@
 				07F8FDAF2691F57A00B306B2 /* SocialReportResponse.swift in Sources */,
 				FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */,
 				FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */,
+				FFE8390626A6B2F500BA27E2 /* NoticeTableViewCell.swift in Sources */,
 				074011952695B37300AFFA3D /* MyFeedResponse.swift in Sources */,
 				072931F1267EFE6500CCA6A8 /* AdvisoryDetailList.swift in Sources */,
 				FFFC0FA72642C1F800C6372F /* MyProfileTagCollectionViewCell.swift in Sources */,
@@ -1332,6 +1343,7 @@
 				07432F5626637464008786B0 /* SocialSearchCell.swift in Sources */,
 				07432F682663C4AD008786B0 /* SocialTagCell.swift in Sources */,
 				FF38D1ED269056BA001FD8B1 /* SocialOtherProfileViewController.swift in Sources */,
+				FFE8390326A6B1E800BA27E2 /* NoticeViewController.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
 				0714AE94265D47C6005C3C6E /* SocialListResponse.swift in Sources */,
 				07F8FDB5269208BA00B306B2 /* SocialCommentDeleteResponse.swift in Sources */,

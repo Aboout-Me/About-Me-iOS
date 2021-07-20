@@ -12,7 +12,8 @@ import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var fcmtoken = ""
+    let gcmMessageIDKey = "gcm.message_id"
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -24,6 +25,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notiOptions: UNAuthorizationOptions = [.alert,.badge,.sound]
         UNUserNotificationCenter
             .current().requestAuthorization(options: notiOptions, completionHandler: {_, _ in })
+        
+        if let token = Messaging.messaging().fcmToken {
+            fcmtoken = token
+            print("fcmToken Check \(fcmtoken)")
+        } else {
+            print("fcmToken nil \(fcmtoken)")
+        }
+        
         application.registerForRemoteNotifications()
         
         return true
@@ -50,6 +59,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         completionHandler(UIBackgroundFetchResult.newData)
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
     }
 
 
@@ -59,10 +71,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let dataDict: [String:String] = ["token": fcmToken ?? ""]
+        fcmtoken = fcmToken!
         print("token \(fcmToken)")
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
+        if #available(iOS 14, *) {
+            completionHandler([.banner, .list, .sound, .badge])
+        } else {
+            completionHandler([.alert,.badge,.sound])
+        }
+        let userInfo = notification.request.content.userInfo
+        let json = userInfo as NSDictionary
+        let message = json.object(forKey: "message") ?? ""
+        print("message \(message)")
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
 }
 
 

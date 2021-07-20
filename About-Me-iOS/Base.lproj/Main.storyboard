@@ -14,6 +14,36 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Notice View Controller-->
+        <scene sceneID="tyw-nt-86D">
+            <objects>
+                <viewController storyboardIdentifier="NoticeVC" id="C7P-tb-n8X" customClass="NoticeViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oSr-ea-Ynn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="B7c-72-gSm">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="cnP-K3-j3G"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="B7c-72-gSm" firstAttribute="leading" secondItem="cnP-K3-j3G" secondAttribute="leading" id="8hg-Cy-8ia"/>
+                            <constraint firstItem="cnP-K3-j3G" firstAttribute="bottom" secondItem="B7c-72-gSm" secondAttribute="bottom" id="H2b-xq-FvJ"/>
+                            <constraint firstItem="B7c-72-gSm" firstAttribute="top" secondItem="cnP-K3-j3G" secondAttribute="top" id="Pon-lj-VMu"/>
+                            <constraint firstItem="B7c-72-gSm" firstAttribute="trailing" secondItem="cnP-K3-j3G" secondAttribute="trailing" id="k8w-YI-2fh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="noticeTableView" destination="B7c-72-gSm" id="afj-Px-NGF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X5S-7a-9uJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18.840579710144929" y="801.5625"/>
+        </scene>
         <!--Home Detail View Controller-->
         <scene sceneID="rRs-1N-jXw">
             <objects>
@@ -490,7 +520,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c64-aY-uI4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="19" y="814"/>
+            <point key="canvasLocation" x="948" y="802"/>
         </scene>
         <!--Advisory Answer View Controller-->
         <scene sceneID="Tyk-69-QN9">
