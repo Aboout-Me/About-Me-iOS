@@ -161,8 +161,9 @@
 		07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */; };
 		07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
-		181A5DB326997C200093669B /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A5DB226997C200093669B /* BottomSheetViewController.swift */; };
 		181A5DB5269DF4C30093669B /* SignUpListForApple.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181A5DB4269DF4C30093669B /* SignUpListForApple.swift */; };
+		18A07A9426A3E64A00BA151D /* SendInquireList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A07A9326A3E64A00BA151D /* SendInquireList.swift */; };
+		18A07A9626A3E6F400BA151D /* SettingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A07A9526A3E6F400BA151D /* SettingApiService.swift */; };
 		18BB80C2267F30D600D7FD89 /* Home_tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C0267F30D600D7FD89 /* Home_tempViewController.swift */; };
 		18BB80C3267F30D600D7FD89 /* Home_temp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BB80C1267F30D600D7FD89 /* Home_temp.storyboard */; };
 		18BB80CB267F30E100D7FD89 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C5267F30E100D7FD89 /* QuestionsViewController.swift */; };
@@ -172,6 +173,8 @@
 		18BB80CF267F30E100D7FD89 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BB80C9267F30E100D7FD89 /* Settings.storyboard */; };
 		18BB80D0267F30E100D7FD89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */; };
 		18BB80D22685C2EF00D7FD89 /* ProfileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80D12685C2EF00D7FD89 /* ProfileList.swift */; };
+		18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */; };
+		18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */; };
 		FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */; };
 		FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF351A9D2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift */; };
 		FF351AA02668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF351A9E2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib */; };
@@ -387,8 +390,10 @@
 		07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
-		181A5DB226997C200093669B /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		181A5DB4269DF4C30093669B /* SignUpListForApple.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpListForApple.swift; sourceTree = "<group>"; };
+		187558EC269ED6AF00B9C5B8 /* 오늘의 나.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "오늘의 나.entitlements"; sourceTree = "<group>"; };
+		18A07A9326A3E64A00BA151D /* SendInquireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInquireList.swift; sourceTree = "<group>"; };
+		18A07A9526A3E6F400BA151D /* SettingApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingApiService.swift; sourceTree = "<group>"; };
 		18BB80C0267F30D600D7FD89 /* Home_tempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Home_tempViewController.swift; sourceTree = "<group>"; };
 		18BB80C1267F30D600D7FD89 /* Home_temp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Home_temp.storyboard; sourceTree = "<group>"; };
 		18BB80C5267F30E100D7FD89 /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
@@ -398,6 +403,8 @@
 		18BB80C9267F30E100D7FD89 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		18BB80D12685C2EF00D7FD89 /* ProfileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileList.swift; sourceTree = "<group>"; };
+		18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewController.swift; sourceTree = "<group>"; };
+		18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsListViewController.xib; sourceTree = "<group>"; };
 		340738B870754F10FBD0EA70 /* Pods-오늘의 나.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.debug.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.debug.xcconfig"; sourceTree = "<group>"; };
 		73DD8AB0FB4900602D568084 /* Pods___________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF238FB72639A09C005F8CA8 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
@@ -517,6 +524,7 @@
 		0715A335260CD1860077882A = {
 			isa = PBXGroup;
 			children = (
+				187558EC269ED6AF00B9C5B8 /* 오늘의 나.entitlements */,
 				0715A340260CD1860077882A /* About-Me-iOS */,
 				0715A33F260CD1860077882A /* Products */,
 				E45D6508C2D62EF6EF67D7BC /* Pods */,
@@ -671,6 +679,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
+		18A07A9226A3E5F600BA151D /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				18A07A9326A3E64A00BA151D /* SendInquireList.swift */,
+				18A07A9526A3E6F400BA151D /* SettingApiService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		18BB80BF267F30D600D7FD89 /* Home_temp */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,13 +700,15 @@
 		18BB80C4267F30E100D7FD89 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				18A07A9226A3E5F600BA151D /* Service */,
 				18BB80C5267F30E100D7FD89 /* QuestionsViewController.swift */,
 				18BB80C6267F30E100D7FD89 /* AlertSettingsViewController.swift */,
 				18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */,
 				18BB80C8267F30E100D7FD89 /* NoticesViewController.swift */,
 				18BB80C9267F30E100D7FD89 /* Settings.storyboard */,
 				18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */,
-				181A5DB226997C200093669B /* BottomSheetViewController.swift */,
+				18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */,
+				18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1023,6 +1042,7 @@
 				FFFC0F8A2641A5B900C6372F /* Feed.png in Resources */,
 				07129474266D07B3001250FB /* bookmark_on_dark@3x.png in Resources */,
 				07129478266D11FD001250FB /* SocialNoContentTableViewCell.xib in Resources */,
+				18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */,
 				0751A67E26443792004E635C /*  check-mark@3x.png in Resources */,
 				0714AE84265D3261005C3C6E /* like_off@2x.png in Resources */,
 				0714AE82265D3261005C3C6E /* like_on.png in Resources */,
@@ -1214,6 +1234,7 @@
 				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				0705C8D1265BDEAA00E71E8E /* SocialContentViewCell.swift in Sources */,
 				FF3BECD426518832006C585A /* ProfileServerApi.swift in Sources */,
+				18A07A9426A3E64A00BA151D /* SendInquireList.swift in Sources */,
 				07989A15267F2B0B006C52A0 /* LandscapeManager.swift in Sources */,
 				07989A1D267F2B0B006C52A0 /* SceneDelegate.swift in Sources */,
 				FF3BECD726519A13006C585A /* WeeklyProgressList.swift in Sources */,
@@ -1226,6 +1247,7 @@
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,
 				07432F642663BBA6008786B0 /* SocialMoreContentViewController.swift in Sources */,
+				18A07A9626A3E6F400BA151D /* SettingApiService.swift in Sources */,
 				07432F6C2663D477008786B0 /* SocialMoreContentCell.swift in Sources */,
 				07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */,
 				0725AB38263AC5C20082A20D /* AdvisoryApiService.swift in Sources */,
@@ -1263,7 +1285,6 @@
 				18BB80CB267F30E100D7FD89 /* QuestionsViewController.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
 				0714AE94265D47C6005C3C6E /* SocialListResponse.swift in Sources */,
-				181A5DB326997C200093669B /* BottomSheetViewController.swift in Sources */,
 				07432F602663A64B008786B0 /* SocialNoContentCell.swift in Sources */,
 				FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */,
 				18BB80D22685C2EF00D7FD89 /* ProfileList.swift in Sources */,
@@ -1272,6 +1293,7 @@
 				0705C8CD265BDC5800E71E8E /* SocialHeaderCell.swift in Sources */,
 				FF238FB82639A09C005F8CA8 /* MyProfileDetailViewController.swift in Sources */,
 				07989A17267F2B0B006C52A0 /* AdditionalProfileViewController.swift in Sources */,
+				18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */,
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
 				FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */,
@@ -1428,6 +1450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "오늘의 나.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XKA22N2KHA;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
@@ -1449,6 +1472,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "오늘의 나.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XKA22N2KHA;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";

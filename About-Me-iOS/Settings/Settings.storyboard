@@ -297,11 +297,11 @@
                                     <constraint firstAttribute="height" constant="55" id="292-7U-V4r"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="    서비스 관련 문의">
+                                <state key="normal">
                                     <color key="titleColor" systemColor="labelColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="chooseQuestionsButtonDidTapped" destination="vsc-Z2-bii" eventType="touchUpInside" id="qtl-4V-35t"/>
+                                    <action selector="chooseQuestionsButtonDidTapped:" destination="vsc-Z2-bii" eventType="touchUpInside" id="sdm-gZ-Gsj"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="UFA-hc-V2u">
@@ -324,7 +324,16 @@
                                 <state key="normal" title="제출">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="submissionButtonDidTapped:" destination="vsc-Z2-bii" eventType="touchUpInside" id="Wr3-3r-R7J"/>
+                                </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="서비스 관련 문의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xki-au-WzB">
+                                <rect key="frame" x="30" y="64.5" width="99" height="18"/>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="15"/>
+                                <color key="textColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="nZ2-jF-FAN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -333,11 +342,13 @@
                             <constraint firstItem="OSZ-tm-Uar" firstAttribute="top" secondItem="btc-Tb-yXa" secondAttribute="bottom" constant="20" id="8jc-lV-pab"/>
                             <constraint firstItem="nZ2-jF-FAN" firstAttribute="trailing" secondItem="btc-Tb-yXa" secondAttribute="trailing" constant="15" id="FSu-FQ-oQH"/>
                             <constraint firstItem="nZ2-jF-FAN" firstAttribute="leading" secondItem="UFA-hc-V2u" secondAttribute="leading" constant="-15" id="Gm8-Dc-xta"/>
+                            <constraint firstItem="Xki-au-WzB" firstAttribute="leading" secondItem="btc-Tb-yXa" secondAttribute="leading" constant="15" id="PLW-i3-jQd"/>
                             <constraint firstItem="nZ2-jF-FAN" firstAttribute="trailing" secondItem="UFA-hc-V2u" secondAttribute="trailing" constant="15" id="Qw8-jR-8ca"/>
                             <constraint firstItem="nZ2-jF-FAN" firstAttribute="bottom" secondItem="MfP-S9-bWS" secondAttribute="bottom" constant="10" id="TWS-0x-5h4"/>
                             <constraint firstItem="btc-Tb-yXa" firstAttribute="top" secondItem="6Tq-Ma-1nX" secondAttribute="bottom" constant="10" id="VWU-Pe-OIr"/>
                             <constraint firstItem="btc-Tb-yXa" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="15" id="Wem-Qm-VIq"/>
                             <constraint firstItem="MfP-S9-bWS" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="20" id="eG9-Vs-yIj"/>
+                            <constraint firstItem="Xki-au-WzB" firstAttribute="centerY" secondItem="btc-Tb-yXa" secondAttribute="centerY" id="fSe-hH-A8F"/>
                             <constraint firstItem="UFA-hc-V2u" firstAttribute="top" secondItem="OSZ-tm-Uar" secondAttribute="bottom" constant="10" id="hY8-bW-ZGJ"/>
                             <constraint firstItem="6Tq-Ma-1nX" firstAttribute="leading" secondItem="nZ2-jF-FAN" secondAttribute="leading" constant="15" id="iA9-zd-R6I"/>
                             <constraint firstItem="6Tq-Ma-1nX" firstAttribute="top" secondItem="nZ2-jF-FAN" secondAttribute="top" constant="15" id="kZY-K0-Bsj"/>
@@ -347,6 +358,7 @@
                     <navigationItem key="navigationItem" id="tnF-ae-4DM"/>
                     <connections>
                         <outlet property="chooseQuestionsButton" destination="btc-Tb-yXa" id="ROL-CP-TLd"/>
+                        <outlet property="chooseQuestionsLabel" destination="Xki-au-WzB" id="TBA-Rf-SRQ"/>
                         <outlet property="questionContents" destination="UFA-hc-V2u" id="vrg-Y4-eQv"/>
                         <outlet property="submissionButton" destination="MfP-S9-bWS" id="s2N-Xg-FQ3"/>
                     </connections>

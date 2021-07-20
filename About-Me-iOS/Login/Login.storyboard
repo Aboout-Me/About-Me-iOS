@@ -139,11 +139,34 @@
                     <view key="view" contentMode="scaleToFill" id="nrH-YL-QSI">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="logo description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w02-1k-ae6">
+                                <rect key="frame" x="145.5" y="465" width="123" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HOF-HZ-zh9">
+                                <rect key="frame" x="152" y="325" width="110" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="zTM-Wg-91x"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="2Ur-qY-FZh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="w02-1k-ae6" firstAttribute="top" secondItem="HOF-HZ-zh9" secondAttribute="bottom" constant="30" id="1a2-5z-R5X"/>
+                            <constraint firstItem="HOF-HZ-zh9" firstAttribute="width" secondItem="HOF-HZ-zh9" secondAttribute="height" multiplier="1:1" id="3zr-jq-lQg"/>
+                            <constraint firstItem="w02-1k-ae6" firstAttribute="centerY" secondItem="2Ur-qY-FZh" secondAttribute="centerY" id="59k-25-DKf"/>
+                            <constraint firstItem="HOF-HZ-zh9" firstAttribute="centerX" secondItem="2Ur-qY-FZh" secondAttribute="centerX" id="W3m-LQ-jZl"/>
+                            <constraint firstItem="w02-1k-ae6" firstAttribute="centerX" secondItem="2Ur-qY-FZh" secondAttribute="centerX" id="vV8-mR-sa0"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gMp-UE-OHG"/>
                     <connections>
+                        <outlet property="logoDescription" destination="w02-1k-ae6" id="sPs-gv-RZn"/>
+                        <outlet property="logoImage" destination="HOF-HZ-zh9" id="JcE-DE-vhy"/>
                         <segue destination="SNz-cL-UcT" kind="presentation" identifier="toHome_temp" id="3iZ-Pp-FHA"/>
                         <segue destination="7UX-8N-gm8" kind="show" identifier="toOnboarding" id="TtE-hc-8vg"/>
                     </connections>
@@ -290,7 +313,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="남"/>
                                 <connections>
-                                    <action selector="manButtonDidTapeed:" destination="7UX-8N-gm8" eventType="touchUpInside" id="9we-hH-s9L"/>
+                                    <action selector="manButtonDidTapped:" destination="7UX-8N-gm8" eventType="touchUpInside" id="6bQ-E4-vAc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AOx-4w-Skh">
@@ -301,7 +324,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="여"/>
                                 <connections>
-                                    <action selector="womanButtonDidTapeed:" destination="7UX-8N-gm8" eventType="touchUpInside" id="mKc-nJ-Ywm"/>
+                                    <action selector="womanButtonDidTapped:" destination="7UX-8N-gm8" eventType="touchUpInside" id="FKK-Wc-tN0"/>
                                 </connections>
                             </button>
                         </subviews>

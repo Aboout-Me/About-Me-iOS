@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         
         logoImage.image = img
         
-        logoDescription.font = UIFont(name: "GmarketSansTTFMedium", size: 18)
+        logoDescription.font = UIFont(name: "GmarketSansMedium", size: 18)
         
         kakaologinButton.setBackgroundImage(UIImage(named: "kakaologinImage.png"), for: UIControl.State.normal)
         naverloginButton.setBackgroundImage(UIImage(named: "naverloginImage.png"), for: UIControl.State.normal)
@@ -132,7 +132,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         guard let name = object["name"] as? String else { return }
         guard let email = object["email"] as? String else { return }
         guard let id = object["id"] as? String else {return}
-        
+        print("naver user id : \(id)")
         self.userEmail = email
       }
     }
@@ -202,7 +202,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         let request = ASAuthorizationAppleIDProvider().createRequest()
         request.requestedScopes = [.fullName, .email]
         let controller = ASAuthorizationController(authorizationRequests: [request])
-        controller.delegate = self as? ASAuthorizationControllerDelegate
+        controller.delegate = self as ASAuthorizationControllerDelegate
         controller.presentationContextProvider = self as? ASAuthorizationControllerPresentationContextProviding
         controller.performRequests()
     }

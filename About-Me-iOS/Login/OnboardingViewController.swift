@@ -57,7 +57,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
 
             let description = UILabel.init(frame: CGRect(x:0,y:100,width:scrollWidth,height:70))
             description.numberOfLines = 2
-            description.font = UIFont(name: "GmarketSansTTFMedium", size: 24)
+            description.font = UIFont(name: "GmarketSansMedium", size: 24)
             description.text = descs[index]
             
             let attrString = NSMutableAttributedString(string: description.text!)

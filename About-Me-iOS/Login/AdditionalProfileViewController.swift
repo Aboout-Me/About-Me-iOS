@@ -20,6 +20,7 @@ class AdditionalProfileViewController: UIViewController {
     var gender: String = "none"
     
     var userEmail: String = "none"
+    var userId: Int = -1
       
     private var datePicker: UIDatePicker?
     
@@ -82,7 +83,8 @@ class AdditionalProfileViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         // 프로필 데이터 전송 API 호출
-//        LoginApiService.putProfile(email: emailTextfield.text!, nickname: nicknameTextfield.text!, introduce: introduceTextView.text ?? "none", color: "none", date: dateTextfield.text ?? "none", gender: gender)
+        print("**Add.profile** user Id : \(self.userId)")
+        LoginApiService.putProfile(email: userEmail, nickName: nicknameTextfield.text!, birthday: dateTextfield.text!, introduce: introduceTextView.text!, userId: userId)
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -115,7 +117,7 @@ class AdditionalProfileViewController: UIViewController {
     }
     
     func introduceTextViewIsEmpty() {
-        if introduceTextView.text == "짧은 글을 추가하여 회원님을 소개해 주세요" {
+        if introduceTextView.text == "짧은 글을 추가하여 회원님을 소개해 주세요" || introduceTextView.text == ""{
             introduceFlag = false
         } else {
             introduceFlag = true
@@ -192,7 +194,7 @@ extension AdditionalProfileViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         introduceTextViewSetupView()
     }
-    func textViewDidEndEditing(_ textView: UITextView) {
+    func textViewDidChange(_ textView: UITextView) {
         introduceTextViewSetupView()
         introduceTextViewIsEmpty()
         nextButtonisEnalbed()
@@ -209,7 +211,7 @@ extension AdditionalProfileViewController: UITextViewDelegate {
 }
 
 extension AdditionalProfileViewController: UITextFieldDelegate{
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    func textFieldDidChange(_ textField: UITextField) {
         emailTextFieldIsEmpty()
         nicknameTextFieldIsEmpty()
         dateTextFieldIsEmpty()
