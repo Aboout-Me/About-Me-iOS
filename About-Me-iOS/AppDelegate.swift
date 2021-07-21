@@ -56,11 +56,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().apnsToken = deviceToken
     }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Message Error \(error.localizedDescription)")
+    }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         completionHandler(UIBackgroundFetchResult.newData)
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
+            let aps = userInfo["aps"] as? [String: Any]
+            print("FCM APS \(aps)")
         }
     }
 
@@ -82,13 +87,25 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
         } else {
             completionHandler([.alert,.badge,.sound])
         }
+        
         let userInfo = notification.request.content.userInfo
-        let json = userInfo as NSDictionary
-        let message = json.object(forKey: "message") ?? ""
-        print("message \(message)")
+        let aps = userInfo["aps"] as? [String: Any]
+        let alert = aps!["alert"] as? [String:Any]
+        let badge = userInfo["badge"] as? Int
+        
+        
+        print("message UserInfo \(userInfo)")
+        print("message aps \(aps)")
+        print("message alert \(alert)")
+        print("message title \(alert!["body"])")
+        print("message body \(alert!["title"])")
+        print("badge count \(badge)")
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let userInfo = response.notification.request.content.userInfo
+               
+        print(userInfo)
         completionHandler()
     }
 }

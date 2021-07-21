@@ -223,6 +223,8 @@
 		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF896062261603FB00CB6492 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF896061261603FB00CB6492 /* QuestionsViewController.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
+		FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */; };
+		FF9B5A7726A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */; };
 		FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */; };
 		FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */; };
 		FFAE74C526287CAD0054CB2D /* Vector.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C426287CAD0054CB2D /* Vector.png */; };
@@ -486,6 +488,8 @@
 		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF896061261603FB00CB6492 /* QuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeEmptyTableViewCell.swift; sourceTree = "<group>"; };
+		FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeEmptyTableViewCell.xib; sourceTree = "<group>"; };
 		FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		FFAE74C426287CAD0054CB2D /* Vector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Vector.png; sourceTree = "<group>"; };
@@ -999,6 +1003,8 @@
 				FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */,
 				FFE8390426A6B2F500BA27E2 /* NoticeTableViewCell.swift */,
 				FFE8390526A6B2F500BA27E2 /* NoticeTableViewCell.xib */,
+				FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */,
+				FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */,
 			);
 			path = Homexib;
 			sourceTree = "<group>";
@@ -1169,6 +1175,7 @@
 				07EAD054266FAF860099B604 /* img_background_yellow@2x.png in Resources */,
 				075707262664FF9C009F98B4 /* ico_common_24_edit_circle_L@3x.png in Resources */,
 				07432F5B266374DF008786B0 /* ico_common_20_delete_line@3x.png in Resources */,
+				FF9B5A7726A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib in Resources */,
 				077BC10126569467001AE876 /* menu@3x.png in Resources */,
 				07F8FDBD2694ABCC00B306B2 /* s_card_purple@2x.png in Resources */,
 				0712946F266D07B3001250FB /* bookmark_on_dark@2x.png in Resources */,
@@ -1330,6 +1337,7 @@
 				07B89EBA268A1002007380A5 /* LikeProgressList.swift in Sources */,
 				0757072B26651D1C009F98B4 /* SocialCommentViewController.swift in Sources */,
 				FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */,
+				FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */,
 				078BCF60265E9D3400303BB2 /* SocialSearchViewController.swift in Sources */,
 				07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */,
 				07B89EAF268A1002007380A5 /* ProfileServerApi.swift in Sources */,
