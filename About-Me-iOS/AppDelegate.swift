@@ -13,6 +13,7 @@ import UserNotifications
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var fcmtoken = ""
+    var badgeCount: Int = 0
     let gcmMessageIDKey = "gcm.message_id"
 
 
@@ -25,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let notiOptions: UNAuthorizationOptions = [.alert,.badge,.sound]
         UNUserNotificationCenter
             .current().requestAuthorization(options: notiOptions, completionHandler: {_, _ in })
-        
+        Messaging.messaging().isAutoInitEnabled = true
         if let token = Messaging.messaging().fcmToken {
             fcmtoken = token
             print("fcmToken Check \(fcmtoken)")
@@ -56,17 +57,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Messaging.messaging().apnsToken = deviceToken
     }
+    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Message Error \(error.localizedDescription)")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        completionHandler(UIBackgroundFetchResult.newData)
+        
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
-            let aps = userInfo["aps"] as? [String: Any]
-            print("FCM APS \(aps)")
         }
+        completionHandler(UIBackgroundFetchResult.newData)
     }
 
 
@@ -77,9 +78,11 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let dataDict: [String:String] = ["token": fcmToken ?? ""]
         fcmtoken = fcmToken!
-        print("token \(fcmToken)")
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
+    
+    // MARK: - foreground
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         
         if #available(iOS 14, *) {
@@ -99,13 +102,19 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
         print("message alert \(alert)")
         print("message title \(alert!["body"])")
         print("message body \(alert!["title"])")
-        print("badge count \(badge)")
+        //TODO : HomeViewController RootView or Alarm Image upload
+        
     }
     
+    // MARK: - background
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let userInfo = response.notification.request.content.userInfo
-               
-        print(userInfo)
+        let userInfo = response.notification.request.content
+        
+        guard let badge = userInfo.badge as? Int else { return }
+        print("badge UserInfo \(badge)")
+        print("test userInfo ",userInfo)
+        UIApplication.shared.applicationIconBadgeNumber = badge
         completionHandler()
     }
 }
