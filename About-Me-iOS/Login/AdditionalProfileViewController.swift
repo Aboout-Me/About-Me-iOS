@@ -18,7 +18,8 @@ class AdditionalProfileViewController: UIViewController {
     var introduceFlag: Bool = false
     
     var gender: String = "none"
-    
+//    var birthday: Date = Date()
+    var birthday: String = ""
     var userEmail: String = "none"
     var userId: Int = -1
       
@@ -84,7 +85,7 @@ class AdditionalProfileViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         // 프로필 데이터 전송 API 호출
         print("**Add.profile** user Id : \(self.userId)")
-        LoginApiService.putProfile(email: userEmail, nickName: nicknameTextfield.text!, birthday: dateTextfield.text!, introduce: introduceTextView.text!, userId: userId)
+        LoginApiService.putProfile(birthday: birthday, email: userEmail, nickName: nicknameTextfield.text!, gender: gender, introduce: introduceTextView.text!, userId: userId)
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){
@@ -92,9 +93,14 @@ class AdditionalProfileViewController: UIViewController {
     }
     
     @objc func dateChanged(datePicker: UIDatePicker){
-        let dateFormatter = DateFormatter()
+        var dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy년 MM월 dd일"
         dateTextfield.text = dateFormatter.string(from: datePicker.date)
+
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let temp = dateFormatter.string(from: datePicker.date)
+        self.birthday = temp
+        
         view.endEditing(true)
     }
     
@@ -211,7 +217,7 @@ extension AdditionalProfileViewController: UITextViewDelegate {
 }
 
 extension AdditionalProfileViewController: UITextFieldDelegate{
-    func textFieldDidChange(_ textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         emailTextFieldIsEmpty()
         nicknameTextFieldIsEmpty()
         dateTextFieldIsEmpty()

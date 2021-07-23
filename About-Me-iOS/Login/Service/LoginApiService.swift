@@ -157,13 +157,24 @@ struct LoginApiService {
         }
     }
     
-    static func putProfile(email: String, nickName: String, birthday: String, introduce: String, userId: Int)
+    static func putProfile(birthday: String, email: String, nickName: String, gender: String, introduce: String, userId: Int)
  {
         let url = "\(API_URL)/MyPage/profile"
-        let profileParams = ProfileList(nickName: nickName, introduce: introduce, userId: userId)
+        // let profileParams = ProfileList(email: email, gender: gender, introduce: introduce, nickName: nickName, userId: userId)
+        
+        let parameters: Parameters = [
+            "birthday": birthday,
+            "email": email,
+            "gender": gender,
+            "introduce": introduce,
+            "nickName": nickName,
+            "userId": userId
+        ]
 
-        let request = AF.request(url, method: .put, parameters: profileParams, encoder: URLEncodedFormParameterEncoder.default)
-       
+        
+        let request = AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+
+        
         request.validate(statusCode: 200...500).responseString { response in
             switch response.result {
             case .success:

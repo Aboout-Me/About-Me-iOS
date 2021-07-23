@@ -3,12 +3,12 @@ import Alamofire
 
 struct SettingApiService {
     
-            //문의 처리 API
+    //문의 처리 API
     static func postSendInquire(parameter: Parameters ,compltionHandler:@escaping((Result<SendInquireList>) -> ())) {
         let urlString: URL = URL(string: "http://3.36.188.237:8080/sendInquire")!
         
         
-        AF.request(urlString, method: .post, parameters: parameter, encoding: URLEncoding.default)
+        AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
             .validate()
             .responseData { response in
                 debugPrint(response.result)
