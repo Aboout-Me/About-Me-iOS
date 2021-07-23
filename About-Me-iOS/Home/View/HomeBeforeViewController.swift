@@ -39,7 +39,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UIApplication.shared.applicationIconBadgeNumber = 0
         self.getHomeCardList()
         self.setLayoutInit()
         self.setSideMenuLayoutInit()
