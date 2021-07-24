@@ -328,6 +328,8 @@ class MyProfileDetailViewController: UIViewController {
                 }
                 self.myProfileWeeklyTitleLabel.text = list.weeklyProgressingList[0].date
                 self.setnowDate()
+                print("get Sequence \(sequence)")
+                print("get weeklyListData \(self.weeklyListData.endIndex)")
                 print("test color",self.weeklyData)
                 print("test Data \(self.weeklyData[0])")
                 if list.weeklyProgressingList.count == 1 {
@@ -337,6 +339,11 @@ class MyProfileDetailViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
+                    if self.sequence == self.weeklyListData.endIndex - 1 {
+                        self.myProfileWeeklyNextButton.isEnabled = false
+                    } else if self.sequence == self.weeklyListData.startIndex {
+                        self.myProfileWeeklyPreviousButton.isEnabled = false
+                    }
                 }
             }
         }
@@ -501,7 +508,6 @@ class MyProfileDetailViewController: UIViewController {
                 print("list end index count \(self.weeklyListData.endIndex)")
                 if self.sequence == self.weeklyListData.endIndex - 1 {
                     self.myProfileWeeklyNextButton.isEnabled = false
-                    self.weeklyData = list.weeklyProgressingList[sequence].week!
                 } else {
                     self.myProfileWeeklyPreviousButton.isEnabled = true
                     self.weeklyData = list.weeklyProgressingList[sequence].week!
