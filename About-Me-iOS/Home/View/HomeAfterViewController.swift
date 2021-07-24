@@ -21,6 +21,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     public var screenSize = UIScreen.main.bounds.size
     public var isAfterShare = "N"
     public var homeAfterModel = [LastAnswerListModel]()
+    private var homeAfterData: SocialDetailResponse? = nil
     
     lazy var editBottomContainerView: UIView = {
         let containerView = UIView(frame: self.view.frame)
@@ -53,7 +54,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         
         self.setLayoutInit()
         self.setSideMenuLayoutInit()
-        self.getHomeAnswerList()
+        self.getUtilList()
     }
     
     
@@ -99,23 +100,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             moreVC.state = .none
             self.navigationController?.pushViewController(moreVC, animated: true)
         }
-        if self.backgroundColor == "red" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-        } else if self.backgroundColor == "yellow" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-        } else if self.backgroundColor == "green" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-        } else if self.backgroundColor == "pink" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
-        } else if self.backgroundColor == "purple" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
-        }
-        
-        if self.answerLevel == "1" {
-            self.homeAfterLastAnswerButton.isHidden = true
-        } else {
-            self.homeAfterLastAnswerButton.isHidden = false
-        }
+
     }
     
     
@@ -189,7 +174,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             }
         }
     }
-        
+    
     private func editHomeCardList() {
         let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), level: UserDefaults.standard.integer(forKey: "homeBeforeLevel"), share: isAfterShare)
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
@@ -197,7 +182,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                 print(list)
                 self.titleText = list.dailyLists[0].question
                 UserDefaults.standard.set(list.dailyLists[0].answer, forKey: "myQuestionText")
-                self.homeAfterCollectionView.reloadData()
+                self.getUtilList()
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Put Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -207,14 +192,31 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         }
     }
     
-    public func getHomeAnswerList() {
-        let parameter = [
-            "answer_id": UserDefaults.standard.integer(forKey: "homeBeforeSeq")
-        ]
-        HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
-            if case let .success(data) = result ,let list = data {
-                self.homeAfterModel = list.postList
-                
+    private func getUtilList() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            SocialApiService.getSocialDetail(answerId: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), authorId: 1) { detailResponse in
+                DispatchQueue.main.async {
+                    self.homeAfterData = detailResponse!
+                    if self.homeAfterData?.post.color == "red" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+                    } else if self.homeAfterData?.post.color == "yellow" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+                    } else if self.homeAfterData?.post.color == "green" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+                    } else if self.homeAfterData?.post.color == "pink" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+                    } else if self.homeAfterData?.post.color == "purple" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+                    }
+                    
+                    if self.homeAfterData?.post.level == 1 {
+                        self.homeAfterLastAnswerButton.isHidden = true
+                    } else {
+                        self.homeAfterLastAnswerButton.isHidden = false
+                    }
+                    self.homeAfterCollectionView.reloadData()
+                }
+                print("get UtilList Data\(self.homeAfterData)")
             }
         }
     }
@@ -311,7 +313,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                 })
             }
         }
-
+        
     }
     @objc
     private func keyboardWillShow(_ notification: Notification) {
@@ -351,7 +353,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                 self.deleteHomeCardList()
             }
         }
-
+        
     }
     
     @objc
@@ -391,31 +393,35 @@ extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let homeAfterCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeAfterCell", for: indexPath) as? HomeAfterCollectionViewCell
-        if self.backgroundColor == "red" {
+        if self.homeAfterData?.post.color == "red" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("열정충만", for: .normal)
-        } else if self.backgroundColor == "yellow" {
+        } else if self.homeAfterData?.post.color == "yellow" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 242/255, green: 194/255, blue: 23/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("소소한일상", for: .normal)
-        } else if self.backgroundColor == "green" {
+        } else if self.homeAfterData?.post.color == "green" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("기억상자", for: .normal)
-        } else if self.backgroundColor == "pink" {
+        } else if self.homeAfterData?.post.color == "pink" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("관계의미학", for: .normal)
         } else {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("상상플러스", for: .normal)
         }
-        if self.answerLevel == "1" {
+        if self.homeAfterData?.post.level == 1 {
             homeAfterCell?.homeAfterLevelView.isHidden = true
             homeAfterCell?.homeAfterLevelLabel.isHidden = true
         } else {
             homeAfterCell?.homeAfterLevelView.isHidden = false
             homeAfterCell?.homeAfterLevelLabel.isHidden = false
         }
-        homeAfterCell?.homeAfterTitleLabel.text = "\(self.titleText)"
-        homeAfterCell?.homeAfterSubjectLabel.text = "\(UserDefaults.standard.string(forKey: "myQuestionText")!)"
+        if let questionText = self.homeAfterData?.post.question {
+            homeAfterCell?.homeAfterTitleLabel.text = "\(questionText)"
+        }
+        if let answerText = self.homeAfterData?.post.answer {
+            homeAfterCell?.homeAfterSubjectLabel.text = "\(answerText)"
+        }
         homeAfterCell?.homeAfterEditButton.addTarget(self, action: #selector(self.showEditBottomSheetDidTap(_:)), for: .touchUpInside)
         return homeAfterCell!
     }

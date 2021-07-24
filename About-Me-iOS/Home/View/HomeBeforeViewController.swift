@@ -184,8 +184,12 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         HomeServerApi.postHomecardListSave(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
-                UserDefaults.standard.set(list.dailyLists[0].level, forKey: "homeBeforeLevel")
-                UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "homeBeforeSeq")
+                print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
+                DispatchQueue.main.async {
+                    UserDefaults.standard.set(list.dailyLists[0].level, forKey: "homeBeforeLevel")
+                    UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "homeBeforeSeq")
+                    UserDefaults.standard.synchronize()
+                }
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)

@@ -31,4 +31,5 @@ struct HomeCardSaveListModel: Codable {
     var level: Int
     var isShare: String
     var color: String
+    var answer_id: Int
 }
