@@ -45,6 +45,12 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -249,7 +255,16 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     
     @objc
     private func showAlarmButtonDidTap() {
-        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let noticeView = storyboard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
+        guard let noticeVC = noticeView else { return }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
+        } completion: { success in
+            if success {
+                self.navigationController?.pushViewController(noticeVC, animated: true)
+            }
+        }
     }
     
     @objc
