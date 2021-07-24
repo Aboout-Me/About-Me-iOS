@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 completionHandler(UIBackgroundFetchResult.newData)
                 
             } else {
-                completionHandler(UIBackgroundFetchResult.newData)
+                completionHandler(UIBackgroundFetchResult.noData)
             }
         }
         
