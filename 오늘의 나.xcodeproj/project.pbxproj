@@ -181,7 +181,6 @@
 		07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */; };
 		07F8FDA62691DD3400B306B2 /* SocialMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDA42691DD3400B306B2 /* SocialMoreView.swift */; };
 		07F8FDA72691DD3400B306B2 /* SocialMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDA52691DD3400B306B2 /* SocialMoreView.xib */; };
-		07F8FDAA2691E51600B306B2 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07F8FDA82691E51600B306B2 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07F8FDAF2691F57A00B306B2 /* SocialReportResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDAE2691F57A00B306B2 /* SocialReportResponse.swift */; };
 		07F8FDB22692031400B306B2 /* SocialMyMoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F8FDB02692031400B306B2 /* SocialMyMoreView.swift */; };
 		07F8FDB32692031400B306B2 /* SocialMyMoreView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDB12692031400B306B2 /* SocialMyMoreView.xib */; };
@@ -257,20 +256,6 @@
 		FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		07F8FDAB2691E51600B306B2 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				07F8FDAA2691E51600B306B2 /* Pods_오늘의_나.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0701122E268DDDF7008BD686 /* SocialSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSearchResponse.swift; sourceTree = "<group>"; };
@@ -1016,7 +1001,6 @@
 				0715A33B260CD1860077882A /* Frameworks */,
 				0715A33C260CD1860077882A /* Resources */,
 				C0C3C8E55722A06C20F1B00A /* [CP] Embed Pods Frameworks */,
-				07F8FDAB2691E51600B306B2 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

@@ -59,7 +59,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     private func setLayoutInit() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(self.showSideButtonDidTap))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "newSideMenu"), style: .plain, target: self, action: #selector(self.showSideButtonDidTap))
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell.png"), style: .plain, target: self, action: #selector(self.showAlarmButtonDidTap))
         let mainNib = UINib(nibName: "HomeBeforeCollectionViewCell", bundle: nil)
         let date = Date()
@@ -161,11 +161,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                 DispatchQueue.main.async {
                     self.homeData = list.dailyLists
                     self.homeBeforeCollectionView.reloadData()
-                    if self.homeData[0].lev == "1" {
-                        self.homeBeforeLastAnswerButton.isHidden = false
-                    } else {
-                        self.homeBeforeLastAnswerButton.isHidden = true
-                    }
                 }
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Error Message", message: error, preferredStyle: .alert)
@@ -317,6 +312,13 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let ParagraphStyle = NSMutableParagraphStyle()
         ParagraphStyle.lineSpacing = 6
         print("색상 테스트\(self.homeData[indexPath.item].color)")
+        
+        if self.homeData[indexPath.item].lev == "1" {
+            self.homeBeforeLastAnswerButton.isHidden = false
+        } else {
+            self.homeBeforeLastAnswerButton.isHidden = true
+        }
+        
         if self.homeData[indexPath.item].color == "red" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
@@ -477,6 +479,7 @@ extension SideMenuNavigationController: SideMenuNavigationControllerDelegate {
         if let view = viewcontroller.view.viewWithTag(1) {
             view.removeFromSuperview()
         }
+        viewcontroller.navigationController?.navigationBar.alpha = 0.5
         UIView.animate(withDuration: 0.2, delay: 1, options: .curveEaseInOut, animations: {
             effectView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
             viewcontroller.view.addSubview(effectView)
@@ -484,6 +487,7 @@ extension SideMenuNavigationController: SideMenuNavigationControllerDelegate {
     }
     
     func deleteEffectViewNavigation(viewcontroller: UIViewController) {
+        viewcontroller.navigationController?.navigationBar.alpha = 1.0
         if let view = viewcontroller.view.viewWithTag(1) {
             view.removeFromSuperview()
         }

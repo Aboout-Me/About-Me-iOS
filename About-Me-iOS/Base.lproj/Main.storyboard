@@ -76,7 +76,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oMA-bw-ZdD">
-                                <rect key="frame" x="30" y="614" width="354" height="62"/>
+                                <rect key="frame" x="30" y="614" width="357" height="62"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="62" id="w5r-3A-0Pp"/>
                                 </constraints>
@@ -97,7 +97,7 @@
                             <constraint firstAttribute="bottom" secondItem="Drn-sO-ERf" secondAttribute="bottom" id="7uU-Kz-5Qe"/>
                             <constraint firstItem="bdc-N2-W1n" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="90" id="Enq-ur-bT7"/>
                             <constraint firstItem="oMA-bw-ZdD" firstAttribute="top" secondItem="bdc-N2-W1n" secondAttribute="bottom" constant="16" id="GCz-Uf-BKE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oMA-bw-ZdD" secondAttribute="trailing" constant="30" id="JCZ-Ck-OVq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oMA-bw-ZdD" secondAttribute="trailing" constant="27" id="JCZ-Ck-OVq"/>
                             <constraint firstItem="Drn-sO-ERf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="JfI-fi-xZV"/>
                             <constraint firstItem="oMA-bw-ZdD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="PKO-2v-ZOk"/>
                             <constraint firstItem="bdc-N2-W1n" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Slv-rb-13V"/>
