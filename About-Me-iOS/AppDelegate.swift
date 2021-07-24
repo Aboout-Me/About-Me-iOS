@@ -73,16 +73,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if (application.applicationState == .inactive || application.applicationState == .background)
             {
                 self.badgeCount += 1
+                print("badgeCounting \(badgeCount)")
                 application.applicationIconBadgeNumber = self.badgeCount
                 completionHandler(UIBackgroundFetchResult.newData)
                 
             } else {
-                completionHandler(UIBackgroundFetchResult.noData)
+                completionHandler(UIBackgroundFetchResult.newData)
             }
         }
         
         
     }
+    
+    
 }
 
 
@@ -110,6 +113,7 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content
+        self.badgeCount = 0
         print("test userInfo ",userInfo)
         completionHandler()
     }
