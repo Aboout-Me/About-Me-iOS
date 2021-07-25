@@ -14,6 +14,7 @@ struct HomeServerApi {
         AF.request(urlstring, method: .get, encoding: JSONEncoding.prettyPrinted)
             .validate()
             .responseData { response in
+                debugPrint(response)
                 switch response.result {
                 case let .success(response):
                     do {
@@ -164,7 +165,7 @@ struct HomeServerApi {
     }
     
     static func getLastAnswerCardList(parameter: Parameters, completionHandler: @escaping(Result<LastAnswerCardList>) -> ()) {
-        let urlString:URL = URL(string: "http://3.36.188.237:8080/Board/pastResponse?\(2)")!
+        let urlString:URL = URL(string: "http://3.36.188.237:8080/Board/pastResponse")!
         AF.request(urlString, method: .get, parameters: parameter, encoding: URLEncoding.default)
             .validate()
             .responseData { response in

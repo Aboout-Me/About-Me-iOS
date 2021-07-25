@@ -23,7 +23,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     public var selectIndex:Int = 0
     public var screenSize = UIScreen.main.bounds.size
     public var isshare = "N"
-    public var backgroundColor = ""
     
     
     lazy var editAnswerSheetView: PostBottomSheetView = {
@@ -42,7 +41,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.getHomeCardList()
         self.setLayoutInit()
         self.setSideMenuLayoutInit()
-        
+        self.removeUserDefaultData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -160,6 +159,14 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+    private func removeUserDefaultData() {
+        if UserDefaults.standard.integer(forKey: "card_seq") != nil && UserDefaults.standard.integer(forKey: "answer_Id") != nil {
+            UserDefaults.standard.removeObject(forKey: "card_seq")
+            UserDefaults.standard.removeObject(forKey: "answer_Id")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
     private func getHomeCardList() {
         HomeServerApi.getHomeCardList(userId: 1) { result in
             if case let .success(data) = result, let list = data {
@@ -186,14 +193,17 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
                 print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
                 DispatchQueue.main.async {
-                    UserDefaults.standard.set(list.dailyLists[0].level, forKey: "homeBeforeLevel")
-                    UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "homeBeforeSeq")
-                    UserDefaults.standard.synchronize()
+                    UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
+                    UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
+                    UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id")
                 }
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
                 alert.addAction(alertButton)
+                UserDefaults.standard.removeObject(forKey: "card_seq")
+                UserDefaults.standard.removeObject(forKey: "answer_Id")
+                UserDefaults.standard.synchronize()
                 self.present(alert, animated: true, completion: nil)
             }
         }
@@ -217,9 +227,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
         guard let homeAfterVC = homeAfterView else { return }
-        homeAfterVC.titleText = self.questionTitleText
-        homeAfterVC.backgroundColor = self.homeData[self.selectIndex].color
-        homeAfterVC.answerLevel = self.homeData[self.selectIndex].lev
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
     
@@ -292,6 +299,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         let center = self.view.convert(self.homeBeforeCollectionView.center, to: self.homeBeforeCollectionView)
         let indexPath = self.homeBeforeCollectionView.indexPathForItem(at: center)
         lastAnswerView?.answerId = indexPath!.item
+        lastAnswerView?.questId = self.homeData[indexPath!.item].seq
         guard let lastAnswerVC = lastAnswerView else { return }
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }

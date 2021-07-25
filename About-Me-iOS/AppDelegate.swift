@@ -63,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         var contentAvailable: Int
+        print("userInfo \(userInfo)")
         let aps = userInfo["aps"] as? NSDictionary
         if let content = aps!["content-available"] as? String {
             contentAvailable = Int(content)!
@@ -92,7 +93,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let dataDict: [String:String] = ["token": fcmToken ?? ""]
-        fcmtoken = fcmToken!
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
     
@@ -114,7 +114,13 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content
         self.badgeCount = 0
-        print("test userInfo ",userInfo)
+        print("test userInfo ",userInfo.userInfo)
+        guard var rootView = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else { return }
+        let navigationController = rootView as? UINavigationController
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+        guard let homeBeforeVC = homeBeforeView else { return }
+        navigationController?.pushViewController(homeBeforeVC, animated: true)
         completionHandler()
     }
 }

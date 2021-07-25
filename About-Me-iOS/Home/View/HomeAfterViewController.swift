@@ -15,12 +15,8 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     @IBOutlet weak var homeAfterBackgroundImageView: UIImageView!
     @IBOutlet weak var homeAfterLastAnswerButton: UIButton!
     public var afterSideMenu: SideMenuNavigationController?
-    public var titleText: String = ""
-    public var backgroundColor: String = ""
-    public var answerLevel: String = ""
     public var screenSize = UIScreen.main.bounds.size
     public var isAfterShare = "N"
-    public var homeAfterModel = [LastAnswerListModel]()
     private var homeAfterData: SocialDetailResponse? = nil
     
     lazy var editBottomContainerView: UIView = {
@@ -57,6 +53,11 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.getUtilList()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
+        self.getUtilList()
+    }
     
     private func setLayoutInit() {
         let cellWidth = floor(view.frame.width * 0.85)
@@ -68,7 +69,11 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let dateString = dateFormatter.string(from: date)
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(self.showAfterSideButtonDidTap))
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell"), style: .plain, target: self, action: nil)
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell"), style: .plain, target: self, action: #selector(self.showAlarmButtonDidTap))
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.isTranslucent = true
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = dateString
@@ -88,7 +93,13 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.homeAfterLastAnswerButton.backgroundColor = .white
         self.homeAfterLastAnswerButton.layer.cornerRadius = 15
         self.homeAfterLastAnswerButton.layer.masksToBounds = true
-        self.homeAfterFloaingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
+        self.homeAfterLastAnswerButton.addTarget(self, action: #selector(self.showLastAnswerButtonDidTap), for: .touchUpInside)
+        self.homeAfterFloaingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png")) { _ in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+            guard let homeAfterVC = homeAfterView else { return }
+            self.navigationController?.pushViewController(homeAfterVC, animated: true)
+        }
         self.homeAfterFloaingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
@@ -139,7 +150,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.answerBottomSheetView.postNumberLabel.textColor = .gray333
         self.answerBottomSheetView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
         self.answerBottomSheetView.postNumberLabel.textAlignment = .left
-        self.answerBottomSheetView.postQuestionLabel.attributedText = NSAttributedString(string: "\(self.titleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        self.answerBottomSheetView.postQuestionLabel.attributedText = NSAttributedString(string: "\(self.homeAfterData!.post.question)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         self.answerBottomSheetView.postQuestionLabel.textColor = .gray333
         self.answerBottomSheetView.postQuestionLabel.textAlignment = .left
         self.answerBottomSheetView.postQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
@@ -161,8 +172,8 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     private func deleteHomeCardList() {
-        print(UserDefaults.standard.integer(forKey: "homeBeforeSeq"))
-        HomeServerApi.deleteHomeCardList(seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq")) { result in
+        print(UserDefaults.standard.integer(forKey: "answer_Id"))
+        HomeServerApi.deleteHomeCardList(seq: UserDefaults.standard.integer(forKey: "answer_Id")) { result in
             if case let .success(data) = result, let list = data {
                 print(list)
                 self.navigationController?.popViewController(animated: true)
@@ -176,12 +187,10 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     private func editHomeCardList() {
-        let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), level: UserDefaults.standard.integer(forKey: "homeBeforeLevel"), share: isAfterShare)
+        let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "card_seq"), level: self.homeAfterData!.post.level, share: isAfterShare)
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list)
-                self.titleText = list.dailyLists[0].question
-                UserDefaults.standard.set(list.dailyLists[0].answer, forKey: "myQuestionText")
                 self.getUtilList()
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Put Error Message", message: error, preferredStyle: .alert)
@@ -194,7 +203,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     private func getUtilList() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            SocialApiService.getSocialDetail(answerId: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), authorId: 1) { detailResponse in
+            SocialApiService.getSocialDetail(answerId: UserDefaults.standard.integer(forKey: "answer_Id"), authorId: 1) { detailResponse in
                 DispatchQueue.main.async {
                     self.homeAfterData = detailResponse!
                     if self.homeAfterData?.post.color == "red" {
@@ -259,6 +268,15 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         }
+    }
+    
+    @objc
+    private func showLastAnswerButtonDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let lastAnswerView = storyboard.instantiateViewController(identifier: "LastAnswerVC") as? LastAnswerViewController
+        lastAnswerView?.questId = UserDefaults.standard.integer(forKey: "quest_id")
+        guard let lastAnswerVC = lastAnswerView else { return }
+        self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }
     
     
@@ -373,6 +391,14 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     public func showAfterSideButtonDidTap() {
         guard let sideMenu = self.afterSideMenu else { return }
         self.present(sideMenu, animated: true, completion: nil)
+    }
+    
+    @objc
+    public func showAlarmButtonDidTap() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let NoticeView = storyBoard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
+        guard let NoticeVC = NoticeView else { return }
+        self.navigationController?.pushViewController(NoticeVC, animated: true)
     }
     
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {

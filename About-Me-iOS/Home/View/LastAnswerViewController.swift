@@ -13,6 +13,7 @@ class LastAnswerViewController: UIViewController {
     @IBOutlet weak var answerFloatingButton: Floaty!
     @IBOutlet weak var answerCollectionView: UICollectionView!
     public var answerId: Int = 0
+    public var questId: Int = 0
     private var screenSize = UIScreen.main.bounds.size
     private var lastAnswerData = [LastAnswerListModel]()
     private var selectedIndex = 0
@@ -47,6 +48,7 @@ class LastAnswerViewController: UIViewController {
         super.viewDidLoad()
         self.getLastAnswerCardList()
         self.setLastAnswerLayoutInit()
+        print("test \(questId)")
     }
     
     deinit {
@@ -141,7 +143,8 @@ class LastAnswerViewController: UIViewController {
     
     private func getLastAnswerCardList() {
         let parameter = [
-            "answer_id" : 97
+            "user_id" : 1,
+            "quest_id" : questId
         ]
         
         HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
@@ -172,8 +175,7 @@ class LastAnswerViewController: UIViewController {
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
             if case let .success(data) = result ,let list = data {
                 DispatchQueue.main.async {
-                    print("Last Put List \(list)")
-                    self.answerCollectionView.reloadData()
+                    self.getLastAnswerCardList()
                 }
             }
         }
@@ -336,14 +338,19 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
         
         if self.lastAnswerData[indexPath.item].color == "red" {
             answerCell.answerCharacterLabel.text = "열정 충만"
+            answerCell.answerCharacterView.backgroundColor = .primaryRed
         } else if self.lastAnswerData[indexPath.item].color == "yellow" {
             answerCell.answerCharacterLabel.text = "소소한일상"
+            answerCell.answerCharacterView.backgroundColor = .primaryYellow
         } else if self.lastAnswerData[indexPath.item].color == "green" {
             answerCell.answerCharacterLabel.text = "기억상자"
+            answerCell.answerCharacterView.backgroundColor = .primaryGreen
         } else if self.lastAnswerData[indexPath.item].color == "pink" {
             answerCell.answerCharacterLabel.text = "관계의 미학"
+            answerCell.answerCharacterView.backgroundColor = .primaryPink
         } else {
             answerCell.answerCharacterLabel.text = "상상 플러스"
+            answerCell.answerCharacterView.backgroundColor = .primaryPurple
         }
         answerCell.answerQuestionLabel.text = "\(self.lastAnswerData[indexPath.item].question)"
         answerCell.answerRankLabel.text = "Level \(self.lastAnswerData[indexPath.item].level)"
