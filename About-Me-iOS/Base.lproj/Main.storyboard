@@ -852,8 +852,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fib-R1-f7C">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fib-R1-f7C">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zPN-su-pVf">
                                     <size key="itemSize" width="128" height="128"/>
@@ -875,12 +876,6 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="h1p-Rl-vfm"/>
                         <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="Fib-R1-f7C" firstAttribute="top" secondItem="h1p-Rl-vfm" secondAttribute="top" id="1bf-MZ-p23"/>
-                            <constraint firstItem="h1p-Rl-vfm" firstAttribute="bottom" secondItem="Fib-R1-f7C" secondAttribute="bottom" id="2Gj-jQ-ySt"/>
-                            <constraint firstItem="Fib-R1-f7C" firstAttribute="leading" secondItem="h1p-Rl-vfm" secondAttribute="leading" id="6En-Ha-OK9"/>
-                            <constraint firstItem="h1p-Rl-vfm" firstAttribute="trailing" secondItem="Fib-R1-f7C" secondAttribute="trailing" id="iMz-bq-QkX"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Fib-R1-f7C" id="WLW-yW-HeG"/>

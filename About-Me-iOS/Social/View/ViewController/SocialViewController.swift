@@ -237,7 +237,7 @@ extension SocialViewController: UICollectionViewDataSource {
 extension SocialViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row % 2 == 0 {
-            return CGSize(width: collectionView.frame.width, height: 40)
+            return CGSize(width: collectionView.frame.width, height: 37)
         } else {
             if indexPath.row == 1, latestList.count == 0 {
                 return CGSize(width: collectionView.frame.width, height: 44)
@@ -248,7 +248,7 @@ extension SocialViewController: UICollectionViewDelegateFlowLayout {
             if indexPath.row == 5, categoryList.count == 0 {
                 return CGSize(width: collectionView.frame.width, height: 44)
             }
-            return CGSize(width: collectionView.frame.width, height: 300)
+            return CGSize(width: collectionView.frame.width, height: 270)
         }
     }
 }

@@ -33,7 +33,7 @@ class SocialContentViewCell: UICollectionViewCell {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 15
         layout.itemSize = CGSize(width: 240, height: 250)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 30, right: 20)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
         self.collectionView.collectionViewLayout = layout
         
         let socialContentNib = UINib(nibName: "SocialContentCell", bundle: nil)
