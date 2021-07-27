@@ -112,7 +112,8 @@ class AdvisoryStageViewController: UIViewController {
         AdvisoryApiService.getAdvisoryDetailList(stage: Int(themeList!.stage_num)!, theme: themeList!.stage_name) { detailList in
             print(detailList)
             // TODO: code check
-            self.detailList = detailList.answerLists
+            let answerLists = detailList.answerLists.sorted(by: { $0.levels < $1.levels })
+            self.detailList = answerLists
             self.contentTableView.reloadData()
         }
     }
