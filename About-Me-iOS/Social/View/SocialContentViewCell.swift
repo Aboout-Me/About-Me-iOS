@@ -62,24 +62,24 @@ extension SocialContentViewCell: UICollectionViewDataSource {
         cell.likeLabel.text = "\(social.likes)"
         cell.commentLabel.text = "\(social.comments)"
         
-        cell.likeButton.setImage(social.hasLiked ? UIImage(named: "like_on.png") : UIImage(named: "like_off.png"), for: .normal)
+        cell.likeButton.setImage(social.hasLiked ? UIImage(named: "social_white_like_on.png") : UIImage(named: "social_white_like_off.png"), for: .normal)
         var liked = social.hasLiked
         var likes = social.likes
         cell.likeButtonTapClosure = {
             SocialApiService.postLikeButton(questId: social.answerId, authorId: social.userId) {
                 liked = !liked
-                cell.likeButton.setImage(liked ? UIImage(named: "like_on.png") : UIImage(named: "like_off.png"), for: .normal)
+                cell.likeButton.setImage(liked ? UIImage(named: "social_white_like_on.png") : UIImage(named: "social_white_like_off.png"), for: .normal)
                 likes = liked ? likes + 1 : likes - 1
                 cell.likeLabel.text = "\(likes)"
             }
         }
         
-        cell.bookmarkButton.setImage(social.hasScrapped ? UIImage(named: "bookmark_on_dark.png") : UIImage(named: "bookmark_off.png"), for: .normal)
+        cell.bookmarkButton.setImage(social.hasScrapped ? UIImage(named: "social_white_bookmark_on.png") : UIImage(named: "social_white_bookmark_off.png"), for: .normal)
         var scrapped = social.hasScrapped
         cell.bookmarkButtonTapClosure = {
             SocialApiService.postScrapButton(questId: social.answerId, authorId: social.userId) {
                 scrapped = !scrapped
-                cell.bookmarkButton.setImage(scrapped ? UIImage(named: "bookmark_on_dark.png") : UIImage(named: "bookmark_off.png"), for: .normal)
+                cell.bookmarkButton.setImage(scrapped ? UIImage(named: "social_white_bookmark_on.png") : UIImage(named: "social_white_bookmark_off.png"), for: .normal)
             }
         }
         return cell
