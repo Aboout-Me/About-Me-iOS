@@ -141,6 +141,7 @@ class SocialDetailViewController: UIViewController {
         self.roundView.layer.cornerRadius = 10
         self.tagView.layer.cornerRadius = 3
         self.bottomRoundView.layer.cornerRadius = 10
+        self.answerTextView.textContainer.lineFragmentPadding = 0
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(bottomViewDidTap))
         self.bottomRoundView.addGestureRecognizer(gesture)
