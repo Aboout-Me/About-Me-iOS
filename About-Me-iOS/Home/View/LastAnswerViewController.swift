@@ -46,8 +46,8 @@ class LastAnswerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getLastAnswerCardList()
-        self.setLastAnswerLayoutInit()
+        getLastAnswerCardList()
+        setLastAnswerLayoutInit()
         print("test \(questId)")
     }
     
@@ -57,28 +57,28 @@ class LastAnswerViewController: UIViewController {
     }
     
     private func setLastAnswerLayoutInit() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(self.navigationButtonDidTap(_:)))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(LastAnswerViewController.navigationButtonDidTap(_:)))
         self.navigationItem.title = "나의 지난 응답"
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)]
-        self.backgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-        self.answerCollectionView.delegate = self
-        self.answerCollectionView.dataSource = self
+        backgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+        answerCollectionView.delegate = self
+        answerCollectionView.dataSource = self
         let nib = UINib(nibName: "LastAnswerCollectionViewCell", bundle: nil)
-        self.answerCollectionView.register(nib, forCellWithReuseIdentifier: "LastAnswerCell")
-        self.answerCollectionView.backgroundColor = .clear
-        self.answerFloatingButton.buttonColor = .black
-        self.answerFloatingButton.selectedColor = UIColor.gray999
-        self.answerFloatingButton.plusColor = .white
-        self.answerFloatingButton.sticky = true
-        self.answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png"))
-        self.answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { item in
+        answerCollectionView.register(nib, forCellWithReuseIdentifier: "LastAnswerCell")
+        answerCollectionView.backgroundColor = .clear
+        answerFloatingButton.buttonColor = .black
+        answerFloatingButton.selectedColor = UIColor.gray999
+        answerFloatingButton.plusColor = .white
+        answerFloatingButton.sticky = true
+        answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png"))
+        answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { _ in
+        answerFloatingButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { _ in
             let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
             moreVC.state = .none
             self.navigationController?.pushViewController(moreVC, animated: true)
@@ -86,23 +86,23 @@ class LastAnswerViewController: UIViewController {
     }
     
     public func setBottomSheetViewLayout() {
-        self.answerEditBottomView.layer.masksToBounds = true
-        self.answerEditBottomView.layer.cornerRadius = 10
-        self.answerEditBottomView.gestureView.layer.masksToBounds = true
-        self.answerEditBottomView.gestureView.layer.cornerRadius = 10
-        self.answerEditBottomView.editButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        self.answerEditBottomView.cancelButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
-        self.answerEditBottomView.deleteButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        answerEditBottomView.layer.masksToBounds = true
+        answerEditBottomView.layer.cornerRadius = 10
+        answerEditBottomView.gestureView.layer.masksToBounds = true
+        answerEditBottomView.gestureView.layer.cornerRadius = 10
+        answerEditBottomView.editButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        answerEditBottomView.cancelButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
+        answerEditBottomView.deleteButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 18)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(hideEditBottomSheetView(_:)))
-        self.containerView.addGestureRecognizer(gesture)
+        containerView.addGestureRecognizer(gesture)
         
-        self.answerEditBottomView.editButton.addTarget(self, action: #selector(editButtonDidTap(_:)), for: .touchUpInside)
-        self.answerEditBottomView.cancelButton.addTarget(self, action: #selector(cancelButtonDidTap(_:)), for: .touchUpInside)
-        self.answerEditBottomView.deleteButton.addTarget(self, action: #selector(deleteButtonDidTap(_:)), for: .touchUpInside)
+        answerEditBottomView.editButton.addTarget(self, action: #selector(editButtonDidTap(_:)), for: .touchUpInside)
+        answerEditBottomView.cancelButton.addTarget(self, action: #selector(cancelButtonDidTap(_:)), for: .touchUpInside)
+        answerEditBottomView.deleteButton.addTarget(self, action: #selector(deleteButtonDidTap(_:)), for: .touchUpInside)
         
         let window = UIApplication.shared.windows.first
-        window?.addSubview(self.containerView)
-        window?.addSubview(self.answerEditBottomView)
+        window?.addSubview(containerView)
+        window?.addSubview(answerEditBottomView)
     }
     
     public func setPostBottomSheetViewLayout() {
@@ -111,29 +111,29 @@ class LastAnswerViewController: UIViewController {
         let donebarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.postToolBarButtonDidTap))
         editToolbar.items = [fiexedbarButtonItem,donebarButtonItem]
         editToolbar.sizeToFit()
-        self.postBottomView.layer.masksToBounds = true
-        self.postBottomView.layer.cornerRadius = 20
-        self.postBottomView.postNavigationTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
-        self.postBottomView.postNavigationTitleLabel.textAlignment = .center
-        self.postBottomView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
-        self.postBottomView.postNumberLabel.text = "Q. "
-        self.postBottomView.postNumberLabel.textColor = .gray333
-        self.postBottomView.postNumberLabel.textAlignment = .left
+        postBottomView.layer.masksToBounds = true
+        postBottomView.layer.cornerRadius = 20
+        postBottomView.postNavigationTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        postBottomView.postNavigationTitleLabel.textAlignment = .center
+        postBottomView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
+        postBottomView.postNumberLabel.text = "Q. "
+        postBottomView.postNumberLabel.textColor = .gray333
+        postBottomView.postNumberLabel.textAlignment = .left
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
         let attributedText = NSAttributedString(string: "인생의 가장 큰 목표는 무엇인가요? 인생의 가장 큰 목표는 무엇인가요?", attributes: [.paragraphStyle: paragraphStyle,.font: UIFont(name: "GmarketSansMedium", size: 20),.foregroundColor: UIColor.gray333])
-        self.postBottomView.postQuestionLabel.numberOfLines = 0
-        self.postBottomView.postQuestionLabel.attributedText = attributedText
-        self.postBottomView.postAnswerTextView.delegate = self
-        self.postBottomView.postAnswerTextView.textAlignment = .left
-        self.postBottomView.postAnswerTextView.text = "당신의 생각을 말해주세요"
-        self.postBottomView.postAnswerTextView.textColor = .gray999
-        self.postBottomView.postAnswerTextView.inputAccessoryView = editToolbar
-        self.postBottomView.postShareButton.isSelected = false
-        self.postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
-        self.postBottomView.postCancelButton.addTarget(self, action: #selector(postCancelButtonDidTap(_:)), for: .touchUpInside)
-        self.postBottomView.postShareButton.addTarget(self, action: #selector(postShareButtonDidTap(_:)), for: .touchUpInside)
-        self.postBottomView.postConfirmButton.addTarget(self, action: #selector(postConfirmButtonDidTap(_:)), for: .touchUpInside)
+        postBottomView.postQuestionLabel.numberOfLines = 0
+        postBottomView.postQuestionLabel.attributedText = attributedText
+        postBottomView.postAnswerTextView.delegate = self
+        postBottomView.postAnswerTextView.textAlignment = .left
+        postBottomView.postAnswerTextView.text = "당신의 생각을 말해주세요"
+        postBottomView.postAnswerTextView.textColor = .gray999
+        postBottomView.postAnswerTextView.inputAccessoryView = editToolbar
+        postBottomView.postShareButton.isSelected = false
+        postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
+        postBottomView.postCancelButton.addTarget(self, action: #selector(postCancelButtonDidTap(_:)), for: .touchUpInside)
+        postBottomView.postShareButton.addTarget(self, action: #selector(postShareButtonDidTap(_:)), for: .touchUpInside)
+        postBottomView.postConfirmButton.addTarget(self, action: #selector(postConfirmButtonDidTap(_:)), for: .touchUpInside)
         NotificationCenter.default.addObserver(self, selector: #selector(LastAnswerViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LastAnswerViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -173,7 +173,7 @@ class LastAnswerViewController: UIViewController {
         let parameter = HomeCardEditParamter(answer: self.postBottomView.postAnswerTextView.text ?? "", category_seq: self.lastAnswerData[selectedIndex].cardSeq, level: self.lastAnswerData[selectedIndex].level, share: self.isLastShare)
         print("data 1 \(self.lastAnswerData[selectedIndex].quest_id)")
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
-            if case let .success(data) = result ,let list = data {
+            if case let .success(data) = result ,let _ = data {
                 DispatchQueue.main.async {
                     self.getLastAnswerCardList()
                 }
@@ -183,8 +183,7 @@ class LastAnswerViewController: UIViewController {
     
     private func deleteLastAnswerCardList() {
         HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].cardSeq) { result in
-            if case let .success(data) = result, let list = data {
-                print(list)
+            if case let .success(data) = result, let _ = data {
                 self.navigationController?.popViewController(animated: true)
             }
         }
@@ -196,24 +195,23 @@ class LastAnswerViewController: UIViewController {
             let keyboardEndFrame = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardEndFrame.height
             let caret = self.postBottomView.postAnswerTextView.caretRect(for: self.postBottomView.postAnswerTextView.selectedTextRange!.start)
-            self.postBottomView.postTextViewBottomConstraint.constant = keyboardHeight + 120
-            self.postBottomView.postAnswerTextView.scrollRectToVisible(caret, animated: true)
-            self.postBottomView.postAnswerTextView.contentInset.bottom = 10
-            self.postBottomView.layoutIfNeeded()
+            postBottomView.postTextViewBottomConstraint.constant = keyboardHeight + 120
+            postBottomView.postAnswerTextView.scrollRectToVisible(caret, animated: true)
+            postBottomView.postAnswerTextView.contentInset.bottom = 10
+            postBottomView.layoutIfNeeded()
             
         }
     }
     
     @objc
     public func keyboardWillHide(_ notification: Notification) {
-        if self.postBottomView.postAnswerTextView.bounds.height < self.postBottomView.postAnswerTextView.frame.size.height {
-            self.postBottomView.postTextViewBottomConstraint.constant = 15
+        if postBottomView.postAnswerTextView.bounds.height < postBottomView.postAnswerTextView.frame.size.height {
+            postBottomView.postTextViewBottomConstraint.constant = 15
         } else {
-            print("bounds Size \(self.postBottomView.postAnswerTextView.bounds.height)")
-            self.postBottomView.postTextViewBottomConstraint.constant = self.postBottomView.postAnswerTextView.bounds.height
+            postBottomView.postTextViewBottomConstraint.constant = postBottomView.postAnswerTextView.bounds.height
         }
-        self.postBottomView.postAnswerTextView.contentInset.bottom = 10
-        self.postBottomView.layoutIfNeeded()
+        postBottomView.postAnswerTextView.contentInset.bottom = 10
+        postBottomView.layoutIfNeeded()
     }
     
     
@@ -249,7 +247,6 @@ class LastAnswerViewController: UIViewController {
             self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
         } completion: { success in
             if success {
-               // TO DO
                 self.deleteLastAnswerCardList()
             }
         }
@@ -263,7 +260,6 @@ class LastAnswerViewController: UIViewController {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
             if let view = window?.viewWithTag(2){
                 view.removeFromSuperview()
-                print("answer View\(view)")
             }
             self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
         } completion: { success in
@@ -296,19 +292,19 @@ class LastAnswerViewController: UIViewController {
         if sender.isSelected {
             sender.isSelected = false
             isLastShare = "N"
-            self.postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
+            postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
             
         } else {
             sender.isSelected = true
             isLastShare = "Y"
-            self.postBottomView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .selected)
+            postBottomView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .selected)
         }
     }
     
     @objc
     private func postConfirmButtonDidTap(_ sender: UIButton) {
-        self.postBottomView.postAnswerTextView.resignFirstResponder()
-        self.putLastAnswerCardList()
+        postBottomView.postAnswerTextView.resignFirstResponder()
+        putLastAnswerCardList()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.postBottomView.frame = CGRect(x: self.view.frame.origin.x, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
         }, completion: nil)
@@ -322,7 +318,7 @@ class LastAnswerViewController: UIViewController {
     
     @objc
     private func postToolBarButtonDidTap() {
-        self.postBottomView.endEditing(true)
+        postBottomView.endEditing(true)
     }
 }
 
@@ -330,31 +326,31 @@ class LastAnswerViewController: UIViewController {
 extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return self.lastAnswerData.count
+        return lastAnswerData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let answerCell = collectionView.dequeueReusableCell(withReuseIdentifier: "LastAnswerCell", for: indexPath) as! LastAnswerCollectionViewCell
         
-        if self.lastAnswerData[indexPath.item].color == "red" {
+        if lastAnswerData[indexPath.item].color == "red" {
             answerCell.answerCharacterLabel.text = "열정 충만"
             answerCell.answerCharacterView.backgroundColor = .primaryRed
-        } else if self.lastAnswerData[indexPath.item].color == "yellow" {
+        } else if lastAnswerData[indexPath.item].color == "yellow" {
             answerCell.answerCharacterLabel.text = "소소한일상"
             answerCell.answerCharacterView.backgroundColor = .primaryYellow
-        } else if self.lastAnswerData[indexPath.item].color == "green" {
+        } else if lastAnswerData[indexPath.item].color == "green" {
             answerCell.answerCharacterLabel.text = "기억상자"
             answerCell.answerCharacterView.backgroundColor = .primaryGreen
-        } else if self.lastAnswerData[indexPath.item].color == "pink" {
+        } else if lastAnswerData[indexPath.item].color == "pink" {
             answerCell.answerCharacterLabel.text = "관계의 미학"
             answerCell.answerCharacterView.backgroundColor = .primaryPink
         } else {
             answerCell.answerCharacterLabel.text = "상상 플러스"
             answerCell.answerCharacterView.backgroundColor = .primaryPurple
         }
-        answerCell.answerQuestionLabel.text = "\(self.lastAnswerData[indexPath.item].question)"
-        answerCell.answerRankLabel.text = "Level \(self.lastAnswerData[indexPath.item].level)"
-        answerCell.answerContentLabel.text = "\(self.lastAnswerData[indexPath.item].answer)"
+        answerCell.answerQuestionLabel.text = "\(lastAnswerData[indexPath.item].question)"
+        answerCell.answerRankLabel.text = "Level \(lastAnswerData[indexPath.item].level)"
+        answerCell.answerContentLabel.text = "\(lastAnswerData[indexPath.item].answer)"
         answerCell.editButtonClousr = {
             self.setBottomSheetViewLayout()
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
@@ -367,9 +363,9 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.selectedIndex = indexPath.item
+        selectedIndex = indexPath.item
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
-        lastAnswerVC.answerId = self.lastAnswerData[indexPath.item].cardSeq
+        lastAnswerVC.answerId = lastAnswerData[indexPath.item].cardSeq
         lastAnswerVC.title = "" // TODO - MyNickname
         lastAnswerVC.authorId = 1
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
@@ -398,7 +394,7 @@ extension LastAnswerViewController: UITextViewDelegate {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
         if textView.textColor == .gray999 {
-            self.postBottomView.postConfirmButton.isEnabled = true
+            postBottomView.postConfirmButton.isEnabled = true
             textView.text = nil
             textView.textAlignment = .left
             textView.typingAttributes = [.paragraphStyle: paragraphStyle,.font: UIFont(name: "AppleSDGothicNeo-Regular", size: 16),.foregroundColor: UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)]
@@ -407,7 +403,7 @@ extension LastAnswerViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            self.postBottomView.postConfirmButton.isEnabled = false
+            postBottomView.postConfirmButton.isEnabled = false
             textView.text = "당신의 생각을 말해주세요"
             textView.textColor = .gray999
         }

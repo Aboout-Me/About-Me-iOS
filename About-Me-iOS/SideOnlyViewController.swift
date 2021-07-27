@@ -73,7 +73,7 @@ class SideOnlyViewController: UIViewController {
     
     @objc
     private func showQuestionButtonDidTap(_ sender: UIButton) {
-        if UserDefaults.standard.integer(forKey: "answer_Id") != nil {
+        if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as?
             HomeAfterViewController

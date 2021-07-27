@@ -86,7 +86,6 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         navigationApp.configureWithTransparentBackground()
         self.navigationController?.navigationBar.standardAppearance = navigationApp
         self.navigationController?.navigationBar.compactAppearance = navigationApp
-        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationApp
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationController?.navigationBar.standardAppearance.shadowColor = UIColor(white: 255/255, alpha: 0.2)
         self.navigationItem.title = "프로필"

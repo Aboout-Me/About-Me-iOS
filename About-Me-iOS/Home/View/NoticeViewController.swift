@@ -18,6 +18,7 @@ class NoticeViewController: UIViewController {
     }
     
     private func setInitLayout() {
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationArrow.png"), style: .plain, target: self, action: #selector(self.backButtonDidTap))
         self.noticeTableView.delegate = self
         self.noticeTableView.dataSource = self
         self.noticeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
@@ -26,12 +27,14 @@ class NoticeViewController: UIViewController {
         let emptyNib = UINib(nibName: "NoticeEmptyTableViewCell", bundle: nil)
         self.noticeTableView.register(nib, forCellReuseIdentifier: "noticeCell")
         self.noticeTableView.register(emptyNib, forCellReuseIdentifier: "noticeEmptyCell")
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationArrow.png"), style: .plain, target: self, action: #selector(self.backButtonDidTap))
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.font : UIFont(name: "AppleSDGothicNeo-Medium", size: 18),.foregroundColor: UIColor(white: 34/255, alpha: 1.0)]
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.title = "알림"
         self.navigationController?.navigationBar.tintColor = .black
-        self.navigationController?.navigationBar.titleTextAttributes = [.font : UIFont(name: "AppleSDGothicNeo-Medium", size: 18),.foregroundColor: UIColor(white: 34/255, alpha: 1.0)]
-        
     }
     
     @objc
