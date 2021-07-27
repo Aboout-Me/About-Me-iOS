@@ -119,7 +119,12 @@ class AdvisoryAnswerViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .white
         
         self.title = "자문자답"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
     }
     
     private func setSideMenuLayoutInit() {
