@@ -35,6 +35,8 @@ class NoticeViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.title = "알림"
         self.navigationController?.navigationBar.tintColor = .black
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.rightBarIcon = nil
     }
     
     @objc

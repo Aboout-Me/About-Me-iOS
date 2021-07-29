@@ -23,6 +23,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private var selectIndex:Int = 0
     private var screenSize = UIScreen.main.bounds.size
     public var isshare = "N"
+    private var rightBarButtonName = "Bell"
     
     
     lazy var editAnswerSheetView: PostBottomSheetView = {
@@ -46,12 +47,15 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate!.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeBeforeViewController.showAlarmButtonDidTap))
         self.navigationController?.navigationBar.tintColor = .white
         let navigationApp = UINavigationBarAppearance()
         navigationApp.configureWithTransparentBackground()
         self.navigationController?.navigationBar.standardAppearance = navigationApp
         self.navigationController?.navigationBar.compactAppearance = navigationApp
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
     }
     
@@ -69,9 +73,10 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     private func setLayoutInit() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let leftBarButtonItem,rightBarButtonItem: UIBarButtonItem
         leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "newSideMenu"), style: .plain, target: self, action: #selector(HomeBeforeViewController.showSideButtonDidTap))
-        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell.png"), style: .plain, target: self, action: #selector(HomeBeforeViewController.showAlarmButtonDidTap))
+        rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate!.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeBeforeViewController.showAlarmButtonDidTap))
         let mainNib = UINib(nibName: "HomeBeforeCollectionViewCell", bundle: nil)
         let date = Date()
         let dateFormatter = DateFormatter()

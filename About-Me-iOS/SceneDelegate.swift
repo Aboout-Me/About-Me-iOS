@@ -53,6 +53,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to restart any tasks that were paused (or not yet started) when the scene was inactive.
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         appDelegate?.badgeCount = 0
+        if appDelegate?.isPushFlag == 1 {
+            appDelegate?.rightBarIcon = "BellOn"
+        } else {
+            appDelegate?.rightBarIcon = nil
+        }
         UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
@@ -70,6 +75,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        appDelegate?.badgeCount = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
     }
 
 

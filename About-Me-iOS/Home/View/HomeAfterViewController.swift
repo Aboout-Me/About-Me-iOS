@@ -18,6 +18,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     public var screenSize = UIScreen.main.bounds.size
     public var isAfterShare = "N"
     private var homeAfterData: SocialDetailResponse? = nil
+    private var rightBarButtonName = "Bell"
     
     lazy var editBottomContainerView: UIView = {
         let containerView = UIView(frame: self.view.frame)
@@ -54,12 +55,15 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate?.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeAfterViewController.showAlarmButtonDidTap))
         self.navigationController?.navigationBar.tintColor = .white
         let navigationApp = UINavigationBarAppearance()
         navigationApp.configureWithTransparentBackground()
         self.navigationController?.navigationBar.standardAppearance = navigationApp
         self.navigationController?.navigationBar.compactAppearance = navigationApp
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
         getUtilList()
     }
@@ -73,8 +77,9 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let dateString = dateFormatter.string(from: date)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(HomeAfterViewController.showAfterSideButtonDidTap))
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell"), style: .plain, target: self, action: #selector(HomeAfterViewController.showAlarmButtonDidTap))
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate?.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeAfterViewController.showAlarmButtonDidTap))
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.view.backgroundColor = .clear
@@ -224,9 +229,9 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                     }
                     
                     if self.homeAfterData?.post.level == 1 {
-                        self.homeAfterLastAnswerButton.isHidden = true
-                    } else {
                         self.homeAfterLastAnswerButton.isHidden = false
+                    } else {
+                        self.homeAfterLastAnswerButton.isHidden = true
                     }
                     self.homeAfterCollectionView.reloadData()
                 }
