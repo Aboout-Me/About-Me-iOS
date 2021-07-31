@@ -351,13 +351,13 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let ParagraphStyle = NSMutableParagraphStyle()
         ParagraphStyle.lineSpacing = 6
         print("색상 테스트\(homeData[indexPath.item].color)")
-        
-        if homeData[indexPath.item].lev == "1" {
-            homeBeforeLastAnswerButton.isHidden = false
-        } else {
+        let center = view.convert(homeBeforeCollectionView.center, to: homeBeforeCollectionView)
+        guard let indexpath = homeBeforeCollectionView.indexPathForItem(at: center) else { return UICollectionViewCell() }
+        if homeData[indexpath.item].lev == "1" {
             homeBeforeLastAnswerButton.isHidden = true
+        } else {
+            homeBeforeLastAnswerButton.isHidden = false
         }
-        
         if homeData[indexPath.item].color == "red" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
@@ -406,7 +406,8 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPurple
         }
         if homeData[indexPath.item].lev == "1" {
-            cell.homeBeforeLevelLabel.isHidden = false
+            cell.homeBeforeLevelLabel.isHidden = true
+            cell.homeBeforeLevelBoxView.isHidden = true
             let attributedString = NSMutableAttributedString(string: "LV. \(homeData[indexPath.item].lev)", attributes: [
               .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
               .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
@@ -414,7 +415,8 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             attributedString.addAttribute(.font, value: UIFont(name: "GmarketSansBold", size: 13.0)!, range: NSRange(location: 3, length: 2))
             cell.homeBeforeLevelLabel.attributedText = attributedString
         } else {
-            cell.homeBeforeLevelLabel.isHidden = true
+            cell.homeBeforeLevelLabel.isHidden = false
+            cell.homeBeforeLevelBoxView.isHidden = false
             let attributedString = NSMutableAttributedString(string: "LV. \(homeData[indexPath.item].lev)", attributes: [
               .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
               .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
@@ -448,6 +450,11 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let point:CGPoint = CGPoint(x:midX, y:midY)
         guard let indexPath = homeBeforeCollectionView.indexPathForItem(at: point) else { return  }
         currentPage = indexPath.item
+        if homeData[currentPage].lev == "1" {
+            homeBeforeLastAnswerButton.isHidden = true
+        } else {
+            homeBeforeLastAnswerButton.isHidden = false
+        }
         print("colletionView point\(point)")
         if homeData[currentPage].color == "red" {
             homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")

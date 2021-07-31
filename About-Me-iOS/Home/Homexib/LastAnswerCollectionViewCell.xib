@@ -21,9 +21,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="335" height="204"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="당신은 봄, 여름, 가을, 겨울 중 어느 계..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awD-eX-Ytk">
-                                <rect key="frame" x="20" y="62" width="295" height="22"/>
+                                <rect key="frame" x="20" y="62" width="290" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="295" id="cac-Qh-sBD"/>
+                                    <constraint firstAttribute="width" constant="290" id="cac-Qh-sBD"/>
                                     <constraint firstAttribute="height" constant="22" id="roq-zC-l8S"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -85,7 +85,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="제 인생의 가장 큰 목표는 세계일주예요~ 허황될 수 있지만 꼭 이룰거예요!!제 인생의 가장..." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwi-WW-qdU">
-                                <rect key="frame" x="20" y="109" width="315" height="75"/>
+                                <rect key="frame" x="20" y="109" width="290" height="75"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -97,14 +97,15 @@
                             <constraint firstItem="yQv-Zp-ZAA" firstAttribute="leading" secondItem="gbb-uA-rc9" secondAttribute="leading" constant="20" id="Cyh-cC-S3f"/>
                             <constraint firstItem="hwi-WW-qdU" firstAttribute="top" secondItem="awD-eX-Ytk" secondAttribute="bottom" constant="25" id="HAq-fw-hSd"/>
                             <constraint firstItem="awD-eX-Ytk" firstAttribute="top" secondItem="nyi-Ee-91a" secondAttribute="bottom" constant="15" id="HH2-Zk-sgh"/>
-                            <constraint firstItem="hwi-WW-qdU" firstAttribute="trailing" secondItem="awD-eX-Ytk" secondAttribute="trailing" constant="20" id="Xkm-6E-1Zd"/>
                             <constraint firstItem="nyi-Ee-91a" firstAttribute="leading" secondItem="gbb-uA-rc9" secondAttribute="leading" constant="20" id="Xqw-Mu-EX2"/>
                             <constraint firstAttribute="bottom" secondItem="hwi-WW-qdU" secondAttribute="bottom" constant="20" id="YKq-L4-Srs"/>
                             <constraint firstItem="hwi-WW-qdU" firstAttribute="leading" secondItem="yQv-Zp-ZAA" secondAttribute="leading" id="ZR5-Xi-IaA"/>
                             <constraint firstItem="Q2a-wD-pGT" firstAttribute="top" secondItem="gbb-uA-rc9" secondAttribute="top" constant="20" id="feJ-hC-BBI"/>
+                            <constraint firstItem="Q2a-wD-pGT" firstAttribute="trailing" secondItem="hwi-WW-qdU" secondAttribute="trailing" constant="5" id="g1K-p0-zgg"/>
                             <constraint firstItem="nyi-Ee-91a" firstAttribute="top" secondItem="gbb-uA-rc9" secondAttribute="top" constant="25" id="hJQ-WD-FSX"/>
                             <constraint firstItem="mAF-Fy-XYl" firstAttribute="leading" secondItem="nyi-Ee-91a" secondAttribute="trailing" constant="3" id="iAC-lB-gON"/>
                             <constraint firstAttribute="trailing" secondItem="Q2a-wD-pGT" secondAttribute="trailing" constant="20" id="iNa-dc-v59"/>
+                            <constraint firstItem="Q2a-wD-pGT" firstAttribute="trailing" secondItem="awD-eX-Ytk" secondAttribute="trailing" constant="5" id="s9i-JL-UAm"/>
                             <constraint firstItem="yQv-Zp-ZAA" firstAttribute="top" secondItem="awD-eX-Ytk" secondAttribute="bottom" constant="5" id="uSv-NN-jLS"/>
                             <constraint firstItem="awD-eX-Ytk" firstAttribute="leading" secondItem="gbb-uA-rc9" secondAttribute="leading" constant="20" id="z58-1e-5sT"/>
                         </constraints>

@@ -71,8 +71,13 @@ class LastAnswerViewController: UIViewController {
         answerFloatingButton.selectedColor = UIColor.gray999
         answerFloatingButton.plusColor = .white
         answerFloatingButton.sticky = true
-        answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png"))
-        answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { item in
+        answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { _ in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+            guard let homeBeforeVC = homeBeforeView else { return }
+            self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+        }
+        answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
@@ -365,7 +370,7 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedIndex = indexPath.item
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
-        lastAnswerVC.answerId = lastAnswerData[indexPath.item].cardSeq
+        lastAnswerVC.answerId = lastAnswerData[indexPath.item].answer_id
         lastAnswerVC.title = "" // TODO - MyNickname
         lastAnswerVC.authorId = 1
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)

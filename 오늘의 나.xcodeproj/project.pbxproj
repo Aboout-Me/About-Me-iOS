@@ -146,8 +146,6 @@
 		078BCF65265E9E2600303BB2 /* ico_common_20_search.png in Resources */ = {isa = PBXBuildFile; fileRef = 078BCF62265E9E2600303BB2 /* ico_common_20_search.png */; };
 		078BCF66265E9E2600303BB2 /* ico_common_20_search@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 078BCF63265E9E2600303BB2 /* ico_common_20_search@3x.png */; };
 		078BCF67265E9E2600303BB2 /* ico_common_20_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 078BCF64265E9E2600303BB2 /* ico_common_20_search@2x.png */; };
-		07A8AE1526B03BDB00FE2027 /* Pods_오늘의_나.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07A8AE1426B03BDB00FE2027 /* Pods_오늘의_나.framework */; };
-		07A8AE1626B03BDB00FE2027 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07A8AE1426B03BDB00FE2027 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07A8AE1B26B0487A00FE2027 /* social_light_bookmark_off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE1826B0487900FE2027 /* social_light_bookmark_off@2x.png */; };
 		07A8AE1C26B0487A00FE2027 /* social_light_bookmark_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE1926B0487A00FE2027 /* social_light_bookmark_off@3x.png */; };
 		07A8AE1D26B0487A00FE2027 /* social_light_bookmark_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE1A26B0487A00FE2027 /* social_light_bookmark_off.png */; };
@@ -291,20 +289,6 @@
 		FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		07A8AE1726B03BDB00FE2027 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				07A8AE1626B03BDB00FE2027 /* Pods_오늘의_나.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0701122E268DDDF7008BD686 /* SocialSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSearchResponse.swift; sourceTree = "<group>"; };
@@ -604,7 +588,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				07A8AE1526B03BDB00FE2027 /* Pods_오늘의_나.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,7 +1102,6 @@
 				0715A33B260CD1860077882A /* Frameworks */,
 				0715A33C260CD1860077882A /* Resources */,
 				C0C3C8E55722A06C20F1B00A /* [CP] Embed Pods Frameworks */,
-				07A8AE1726B03BDB00FE2027 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
