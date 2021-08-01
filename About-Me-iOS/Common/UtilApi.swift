@@ -39,6 +39,30 @@ struct UtilApi {
             }
     }
     
+    static func getPushList(userId: Int, completionHandler: @escaping(Result<PushModelList>) -> ()) {
+        let urlString: URL = URL(string: "http://3.36.188.237:8080/Message/Push/\(userId)/List")!
+        AF.request(urlString, method: .get, encoding: JSONEncoding.default)
+            .validate()
+            .responseData { response in
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let decoder = JSONDecoder()
+                        let pushList = try decoder.decode(PushModelList.self, from: response)
+                        if pushList.code == 200 {
+                            let result =  Result<PushModelList>.success(data: pushList)
+                            completionHandler(result)
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+        
+    }
+    
 }
 
 

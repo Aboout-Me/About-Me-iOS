@@ -129,7 +129,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             self.navigationController?.pushViewController(moreVC, animated: true)
         }
         homeBeforeLastAnswerButton.backgroundColor = .white
-        homeBeforeLastAnswerButton.layer.cornerRadius = 10
+        homeBeforeLastAnswerButton.layer.cornerRadius = 15
         homeBeforeLastAnswerButton.clipsToBounds = true
         homeBeforeLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
         homeBeforeLastAnswerButton.setTitleColor(.gray333, for: .normal)

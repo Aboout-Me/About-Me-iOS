@@ -11,22 +11,23 @@ import UIKit
 class NoticeViewController: UIViewController {
     
     @IBOutlet weak var noticeTableView: UITableView!
-    private var noticeData:[String] = ["1","2"]
+    public var noticeData:[PushModelDataList] = [PushModelDataList]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setInitLayout()
+        setInitLayout()
+        getPushList()
     }
     
     private func setInitLayout() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "navigationArrow.png"), style: .plain, target: self, action: #selector(self.backButtonDidTap))
-        self.noticeTableView.delegate = self
-        self.noticeTableView.dataSource = self
-        self.noticeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.noticeTableView.separatorColor = .lineEee
+        noticeTableView.delegate = self
+        noticeTableView.dataSource = self
+        noticeTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        noticeTableView.separatorColor = .lineEee
         let nib = UINib(nibName: "NoticeTableViewCell", bundle: nil)
         let emptyNib = UINib(nibName: "NoticeEmptyTableViewCell", bundle: nil)
-        self.noticeTableView.register(nib, forCellReuseIdentifier: "noticeCell")
-        self.noticeTableView.register(emptyNib, forCellReuseIdentifier: "noticeEmptyCell")
+        noticeTableView.register(nib, forCellReuseIdentifier: "noticeCell")
+        noticeTableView.register(emptyNib, forCellReuseIdentifier: "noticeEmptyCell")
         let navigationApp = UINavigationBarAppearance()
         navigationApp.configureWithTransparentBackground()
         self.navigationController?.navigationBar.standardAppearance = navigationApp
@@ -39,6 +40,19 @@ class NoticeViewController: UIViewController {
         appDelegate?.rightBarIcon = nil
     }
     
+    private func getPushList() {
+        UtilApi.getPushList(userId: 4) { result in
+            if case let .success(data) = result, let list = data {
+                print("push result value \(result)")
+                self.noticeData = list.body
+                self.noticeData.reverse()
+                DispatchQueue.main.async {
+                    self.noticeTableView.reloadData()
+                }
+            }
+        }
+    }
+    
     @objc
     private func backButtonDidTap(){
         self.navigationController?.popViewController(animated: true)
@@ -48,11 +62,10 @@ class NoticeViewController: UIViewController {
 
 extension NoticeViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // TODO : Cell Add
         if noticeData.count == 0 {
             return 1
         } else {
-            return self.noticeData.count
+            return noticeData.count
         }
     }
 
@@ -65,9 +78,25 @@ extension NoticeViewController: UITableViewDelegate,UITableViewDataSource {
             tableView.separatorColor = .clear
             return emptyCell!
         } else {
+            tableView.isUserInteractionEnabled = true
+            tableView.isScrollEnabled = true
+            tableView.separatorColor = .lineEee
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "noticeCell", for: indexPath) as? NoticeTableViewCell else { return UITableViewCell()}
-            cell.noticeContentLabel.text = "[중요] 6월 업데이트 사항과 새로운 기능을 확인해보세요."
-            cell.noticeDateLabel.text = "8시간 전"
+            if noticeData[indexPath.row].color == "red" {
+                cell.noticeImageView.image = UIImage(named: "CharacterRed")
+            } else if noticeData[indexPath.row].color == "yellow" {
+                cell.noticeImageView.image = UIImage(named: "characterYellow")
+            } else if noticeData[indexPath.row].color == "green" {
+                cell.noticeImageView.image = UIImage(named: "CharacterGreen")
+            } else if noticeData[indexPath.row].color == "pink" {
+                cell.noticeImageView.image = UIImage(named: "CharacterPink")
+            } else if noticeData[indexPath.row].color == "purple" {
+                cell.noticeImageView.image = UIImage(named: "CharacterVilolet")
+            } else {
+                cell.noticeImageView.image = UIImage(named: "noticeFeed")
+            }
+            cell.noticeContentLabel.text = "\(noticeData[indexPath.row].message)"
+            cell.noticeDateLabel.text = "\(noticeData[indexPath.row].updateDate)"
             return cell
         }
     }
@@ -90,7 +119,7 @@ extension NoticeViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if self.noticeData.count == 0 {
+        if noticeData.count == 0 {
             return 300
         } else {
             return UITableView.automaticDimension
