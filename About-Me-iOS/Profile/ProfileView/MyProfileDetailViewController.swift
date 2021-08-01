@@ -277,7 +277,11 @@ class MyProfileDetailViewController: UIViewController {
         } else if self.weekDay == 3 {
             self.myProfileWeeklyTitleLabel.text = self.weeklyListData[2].date
         } else {
-            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[3].date
+            if weeklyListData.endIndex == 5 {
+                myProfileWeeklyTitleLabel.text = weeklyListData[4].date
+            } else {
+                myProfileWeeklyTitleLabel.text = weeklyListData[3].date
+            }
         }
     }
     
@@ -293,8 +297,10 @@ class MyProfileDetailViewController: UIViewController {
             self.myProfileWeeklyTitleLabel.text = self.weeklyListData[1].date
         } else if self.weekDay == 3 {
             self.myProfileWeeklyTitleLabel.text = self.weeklyListData[2].date
-        } else {
+        } else if self .weekDay == 4{
             self.myProfileWeeklyTitleLabel.text = self.weeklyListData[3].date
+        } else {
+            self.myProfileWeeklyTitleLabel.text = self.weeklyListData[4].date
         }
         
     }
@@ -328,6 +334,8 @@ class MyProfileDetailViewController: UIViewController {
                 }
                 self.myProfileWeeklyTitleLabel.text = list.weeklyProgressingList[0].date
                 self.setnowDate()
+                print("get Sequence \(sequence)")
+                print("get weeklyListData \(self.weeklyListData.endIndex)")
                 print("test color",self.weeklyData)
                 print("test Data \(self.weeklyData[0])")
                 if list.weeklyProgressingList.count == 1 {
@@ -337,6 +345,11 @@ class MyProfileDetailViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.setWeeklyServerProcessDidFinsh()
+                    if self.sequence == self.weeklyListData.endIndex - 1 {
+                        self.myProfileWeeklyNextButton.isEnabled = false
+                    } else if self.sequence == self.weeklyListData.startIndex {
+                        self.myProfileWeeklyPreviousButton.isEnabled = false
+                    }
                 }
             }
         }

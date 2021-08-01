@@ -15,12 +15,10 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     @IBOutlet weak var homeAfterBackgroundImageView: UIImageView!
     @IBOutlet weak var homeAfterLastAnswerButton: UIButton!
     public var afterSideMenu: SideMenuNavigationController?
-    public var titleText: String = ""
-    public var backgroundColor: String = ""
-    public var answerLevel: String = ""
     public var screenSize = UIScreen.main.bounds.size
     public var isAfterShare = "N"
-    public var homeAfterModel = [LastAnswerListModel]()
+    private var homeAfterData: SocialDetailResponse? = nil
+    private var rightBarButtonName = "Bell"
     
     lazy var editBottomContainerView: UIView = {
         let containerView = UIView(frame: self.view.frame)
@@ -35,15 +33,15 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let answerSheetView = Bundle.main.loadNibNamed("PostBottomSheetView", owner: self, options: nil)?.first as? PostBottomSheetView
         answerSheetView?.frame = CGRect(x: self.view.frame.origin.x, y: self.screenSize.height, width: self.screenSize.width, height: answerSheetView!.frame.size.height)
         answerSheetView?.postAnswerTextView.delegate = self
-        answerSheetView?.postCancelButton.addTarget(self, action: #selector(self.hideAnswerBottomSheetDidTap), for: .touchUpInside)
-        answerSheetView?.postConfirmButton.addTarget(self, action: #selector(self.confirmEditViewButtonDidTap), for: .touchUpInside)
-        answerSheetView?.postShareButton.addTarget(self, action: #selector(self.shareEditViewButtonDidTap(_:)), for: .touchUpInside)
+        answerSheetView?.postCancelButton.addTarget(self, action: #selector(HomeAfterViewController.hideAnswerBottomSheetDidTap), for: .touchUpInside)
+        answerSheetView?.postConfirmButton.addTarget(self, action: #selector(HomeAfterViewController.confirmEditViewButtonDidTap), for: .touchUpInside)
+        answerSheetView?.postShareButton.addTarget(self, action: #selector(HomeAfterViewController.shareEditViewButtonDidTap(_:)), for: .touchUpInside)
         return answerSheetView!
     }()
     
     lazy var editBottomView: EditBottomSheetView = {
         let editView = Bundle.main.loadNibNamed("EditBottomSheetView", owner: self, options: nil)?.first as? EditBottomSheetView
-        editView?.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
+        editView?.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224)
         return editView!
     }()
     
@@ -51,11 +49,24 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.setLayoutInit()
-        self.setSideMenuLayoutInit()
-        self.getHomeAnswerList()
+        setLayoutInit()
+        setSideMenuLayoutInit()
+        getUtilList()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate?.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeAfterViewController.showAlarmButtonDidTap))
+        self.navigationController?.navigationBar.tintColor = .white
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
+        self.navigationItem.rightBarButtonItem = rightBarButtonItem
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
+        getUtilList()
+    }
     
     private func setLayoutInit() {
         let cellWidth = floor(view.frame.width * 0.85)
@@ -66,78 +77,73 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
         let dateString = dateFormatter.string(from: date)
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(self.showAfterSideButtonDidTap))
-        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Bell"), style: .plain, target: self, action: nil)
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(HomeAfterViewController.showAfterSideButtonDidTap))
+        let rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate?.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeAfterViewController.showAlarmButtonDidTap))
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.isTranslucent = true
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = dateString
-        self.homeAfterCollectionView.delegate = self
-        self.homeAfterCollectionView.dataSource = self
-        self.homeAfterCollectionView.backgroundColor = .clear
-        self.homeAfterCollectionView.collectionViewLayout = layout
+        homeAfterCollectionView.delegate = self
+        homeAfterCollectionView.dataSource = self
+        homeAfterCollectionView.backgroundColor = .clear
+        homeAfterCollectionView.collectionViewLayout = layout
         let nib = UINib(nibName: "HomeAfterCollectionViewCell", bundle: nil)
-        self.homeAfterCollectionView.register(nib, forCellWithReuseIdentifier: "HomeAfterCell")
-        self.homeAfterFloaingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.homeAfterFloaingButton.plusColor = UIColor.white
-        self.homeAfterFloaingButton.selectedColor = UIColor.gray999
-        self.homeAfterFloaingButton.sticky = true
-        self.homeAfterLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
-        self.homeAfterLastAnswerButton.setTitleColor(UIColor.gray333, for: .normal)
-        self.homeAfterLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
-        self.homeAfterLastAnswerButton.backgroundColor = .white
-        self.homeAfterLastAnswerButton.layer.cornerRadius = 15
-        self.homeAfterLastAnswerButton.layer.masksToBounds = true
-        self.homeAfterFloaingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
-        self.homeAfterFloaingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
+        homeAfterCollectionView.register(nib, forCellWithReuseIdentifier: "HomeAfterCell")
+        homeAfterFloaingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        homeAfterFloaingButton.plusColor = UIColor.white
+        homeAfterFloaingButton.selectedColor = UIColor.gray999
+        homeAfterFloaingButton.sticky = true
+        homeAfterLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
+        homeAfterLastAnswerButton.setTitleColor(UIColor.gray333, for: .normal)
+        homeAfterLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        homeAfterLastAnswerButton.backgroundColor = .white
+        homeAfterLastAnswerButton.layer.cornerRadius = 15
+        homeAfterLastAnswerButton.layer.masksToBounds = true
+        homeAfterLastAnswerButton.addTarget(self, action: #selector(self.showLastAnswerButtonDidTap), for: .touchUpInside)
+        homeAfterFloaingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png")) { _ in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+            guard let homeAfterVC = homeAfterView else { return }
+            self.navigationController?.pushViewController(homeAfterVC, animated: true)
+        }
+        homeAfterFloaingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
             guard let advisoryAnswerVC = advisoryAnswerView else { return }
             self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
         }
-        self.homeAfterFloaingButton.addItem("내 피드", icon: UIImage(named: "Feed.png")) { _ in
+        homeAfterFloaingButton.addItem("내 피드", icon: UIImage(named: "Feed.png")) { _ in
             let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
             moreVC.state = .none
             self.navigationController?.pushViewController(moreVC, animated: true)
         }
-        if self.backgroundColor == "red" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-        } else if self.backgroundColor == "yellow" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-        } else if self.backgroundColor == "green" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-        } else if self.backgroundColor == "pink" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
-        } else if self.backgroundColor == "purple" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
-        }
-        
-        if self.answerLevel == "1" {
-            self.homeAfterLastAnswerButton.isHidden = true
-        } else {
-            self.homeAfterLastAnswerButton.isHidden = false
-        }
+
     }
     
     
     private func setSideMenuLayoutInit() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let sideOnlyViewController: SideOnlyViewController = storyboard.instantiateViewController(withIdentifier: "SideOnlyViewController") as! SideOnlyViewController
-        self.afterSideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
-        self.afterSideMenu?.leftSide = true
+        afterSideMenu = SideMenuNavigationController(rootViewController: sideOnlyViewController)
+        afterSideMenu?.leftSide = true
     }
     
     
     private func editBottomSheetLayoutInit() {
         self.editBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
-        self.editBottomView.gestureView.layer.cornerRadius = 10
-        self.editBottomView.gestureView.layer.masksToBounds = true
-        self.editBottomView.layer.cornerRadius = 10
-        self.editBottomView.layer.masksToBounds = true
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.hideEditBottomSheetGestureAction(recognizer:)))
-        self.editBottomContainerView.addGestureRecognizer(tapGesture)
-        self.editBottomView.editButton.addTarget(self, action: #selector(self.homeAfterEditButtonDidTap(_:)), for: .touchUpInside)
-        self.editBottomView.deleteButton.addTarget(self, action: #selector(self.homeAfterDeleteButtonDidTap(_:)), for: .touchUpInside)
-        self.editBottomView.cancelButton.addTarget(self, action: #selector(self.homeAfterCancelButtonDidTap(_:)), for: .touchUpInside)
+        editBottomView.gestureView.layer.cornerRadius = 10
+        editBottomView.gestureView.layer.masksToBounds = true
+        editBottomView.layer.cornerRadius = 10
+        editBottomView.layer.masksToBounds = true
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeAfterViewController.hideEditBottomSheetGestureAction(recognizer:)))
+        editBottomContainerView.addGestureRecognizer(tapGesture)
+        editBottomView.editButton.addTarget(self, action: #selector(HomeAfterViewController.homeAfterEditButtonDidTap(_:)), for: .touchUpInside)
+        editBottomView.deleteButton.addTarget(self, action: #selector(HomeAfterViewController.homeAfterDeleteButtonDidTap(_:)), for: .touchUpInside)
+        editBottomView.cancelButton.addTarget(self, action: #selector(HomeAfterViewController.homeAfterCancelButtonDidTap(_:)), for: .touchUpInside)
     }
     
     
@@ -146,26 +152,28 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let editToolbar = UIToolbar()
         let screenSize = UIScreen.main.bounds.size
         paragraphStyle.lineSpacing = 4
-        let fiexedbarButtonItem = UIBarButtonItem(systemItem: .flexibleSpace)
-        let donebarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.toolbarButtonDidTap))
+        let fiexedbarButtonItem,donebarButtonItem: UIBarButtonItem
+        fiexedbarButtonItem = UIBarButtonItem(systemItem: .flexibleSpace)
+        donebarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: #selector(self.toolbarButtonDidTap))
         editToolbar.items = [fiexedbarButtonItem,donebarButtonItem]
         editToolbar.sizeToFit()
-        self.answerBottomSheetView.postNumberLabel.text = "Q. "
-        self.answerBottomSheetView.postNumberLabel.textColor = .gray333
-        self.answerBottomSheetView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
-        self.answerBottomSheetView.postNumberLabel.textAlignment = .left
-        self.answerBottomSheetView.postQuestionLabel.attributedText = NSAttributedString(string: "\(self.titleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
-        self.answerBottomSheetView.postQuestionLabel.textColor = .gray333
-        self.answerBottomSheetView.postQuestionLabel.textAlignment = .left
-        self.answerBottomSheetView.postQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
-        self.answerBottomSheetView.postQuestionLabel.numberOfLines = 0
-        self.answerBottomSheetView.postQuestionLabel.sizeToFit()
-        self.answerBottomSheetView.postAnswerTextView.text = "당신의 생각을 말해주세요"
-        self.answerBottomSheetView.postAnswerTextView.textColor = .gray999
-        self.answerBottomSheetView.postConfirmButton.isEnabled = false
-        self.answerBottomSheetView.postAnswerTextView.inputAccessoryView = editToolbar
-        self.answerBottomSheetView.layer.cornerRadius = 20
-        self.answerBottomSheetView.layer.masksToBounds = true
+        answerBottomSheetView.postNumberLabel.text = "Q. "
+        answerBottomSheetView.postNumberLabel.textColor = .gray333
+        answerBottomSheetView.postNumberLabel.font = UIFont(name: "GmarketSansMedium", size: 18)
+        answerBottomSheetView.postNumberLabel.textAlignment = .left
+        answerBottomSheetView.postQuestionLabel.attributedText = NSAttributedString(string: "\(homeAfterData!.post.question)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        answerBottomSheetView.postQuestionLabel.textColor = .gray333
+        answerBottomSheetView.postQuestionLabel.textAlignment = .left
+        answerBottomSheetView.postQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        answerBottomSheetView.postQuestionLabel.numberOfLines = 0
+        answerBottomSheetView.postQuestionLabel.sizeToFit()
+        answerBottomSheetView.postAnswerTextView.text = "당신의 생각을 말해주세요"
+        answerBottomSheetView.postAnswerTextView.textColor = .gray999
+        answerBottomSheetView.postConfirmButton.isEnabled = false
+        answerBottomSheetView.postAnswerTextView.inputAccessoryView = editToolbar
+        answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
+        answerBottomSheetView.layer.cornerRadius = 20
+        answerBottomSheetView.clipsToBounds = true
         NotificationCenter.default.addObserver(self, selector: #selector(HomeAfterViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(HomeAfterViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -176,10 +184,9 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     private func deleteHomeCardList() {
-        print(UserDefaults.standard.integer(forKey: "homeBeforeSeq"))
-        HomeServerApi.deleteHomeCardList(seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq")) { result in
-            if case let .success(data) = result, let list = data {
-                print(list)
+        print(UserDefaults.standard.integer(forKey: "answer_Id"))
+        HomeServerApi.deleteHomeCardList(seq: UserDefaults.standard.integer(forKey: "answer_Id")) { result in
+            if case let .success(data) = result, let _ = data {
                 self.navigationController?.popViewController(animated: true)
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Delete Error Message", message: error, preferredStyle: .alert)
@@ -189,15 +196,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             }
         }
     }
-        
+    
     private func editHomeCardList() {
-        let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "homeBeforeSeq"), level: UserDefaults.standard.integer(forKey: "homeBeforeLevel"), share: isAfterShare)
+        let parameter = HomeCardEditParamter(answer: self.answerBottomSheetView.postAnswerTextView.text ?? "", category_seq: UserDefaults.standard.integer(forKey: "card_seq"), level: self.homeAfterData!.post.level, share: isAfterShare)
         HomeServerApi.putHomeCardList(parameter: parameter) { result in
-            if case let .success(data) = result, let list = data {
-                print(list)
-                self.titleText = list.dailyLists[0].question
-                UserDefaults.standard.set(list.dailyLists[0].answer, forKey: "myQuestionText")
-                self.homeAfterCollectionView.reloadData()
+            if case let .success(data) = result, let _ = data {
+                self.getUtilList()
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Put Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -207,14 +211,31 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         }
     }
     
-    public func getHomeAnswerList() {
-        let parameter = [
-            "answer_id": UserDefaults.standard.integer(forKey: "homeBeforeSeq")
-        ]
-        HomeServerApi.getLastAnswerCardList(parameter: parameter) { result in
-            if case let .success(data) = result ,let list = data {
-                self.homeAfterModel = list.postList
-                
+    private func getUtilList() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            SocialApiService.getSocialDetail(answerId: UserDefaults.standard.integer(forKey: "answer_Id"), authorId: 1) { detailResponse in
+                DispatchQueue.main.async {
+                    self.homeAfterData = detailResponse!
+                    if self.homeAfterData?.post.color == "red" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+                    } else if self.homeAfterData?.post.color == "yellow" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+                    } else if self.homeAfterData?.post.color == "green" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+                    } else if self.homeAfterData?.post.color == "pink" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+                    } else if self.homeAfterData?.post.color == "purple" {
+                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+                    }
+                    
+                    if self.homeAfterData?.post.level == 1 {
+                        self.homeAfterLastAnswerButton.isHidden = false
+                    } else {
+                        self.homeAfterLastAnswerButton.isHidden = true
+                    }
+                    self.homeAfterCollectionView.reloadData()
+                }
+                print("get UtilList Data\(self.homeAfterData)")
             }
         }
     }
@@ -237,8 +258,8 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     @objc
     private func confirmEditViewButtonDidTap() {
         let screenSize = UIScreen.main.bounds.size
-        self.answerBottomSheetView.postAnswerTextView.resignFirstResponder()
-        self.editHomeCardList()
+        answerBottomSheetView.postAnswerTextView.resignFirstResponder()
+        editHomeCardList()
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.answerBottomSheetView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height)
         })
@@ -249,14 +270,23 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         if sender.isSelected {
             sender.isSelected = false
             isAfterShare = "N"
-            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
+            answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         } else {
             sender.isSelected = true
             isAfterShare = "Y"
-            self.answerBottomSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .normal)
+            answerBottomSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         }
+    }
+    
+    @objc
+    private func showLastAnswerButtonDidTap() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let lastAnswerView = storyboard.instantiateViewController(identifier: "LastAnswerVC") as? LastAnswerViewController
+        lastAnswerView?.questId = UserDefaults.standard.integer(forKey: "quest_id")
+        guard let lastAnswerVC = lastAnswerView else { return }
+        self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }
     
     
@@ -264,9 +294,9 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     private func showEditBottomSheetDidTap(_ sender: UIButton) {
         let window = UIApplication.shared.windows.first
         let screenSize = UIScreen.main.bounds.size
-        self.editBottomSheetLayoutInit()
-        window?.addSubview(self.editBottomContainerView)
-        window?.addSubview(self.editBottomView)
+        editBottomSheetLayoutInit()
+        window?.addSubview(editBottomContainerView)
+        window?.addSubview(editBottomView)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
             self.editBottomView.frame = CGRect(x: 0, y: screenSize.height - 224, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
         })
@@ -275,7 +305,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     @objc
     private func toolbarButtonDidTap() {
-        self.answerBottomSheetView.endEditing(true)
+        answerBottomSheetView.endEditing(true)
     }
     
     
@@ -311,30 +341,30 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                 })
             }
         }
-
+        
     }
     @objc
     private func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardEndFrame = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardEndFrame.height
-            let caret = self.answerBottomSheetView.postAnswerTextView.caretRect(for: self.answerBottomSheetView.postAnswerTextView.selectedTextRange!.start)
-            self.answerBottomSheetView.postTextViewBottomConstraint.constant = keyboardHeight + 120
-            self.answerBottomSheetView.postAnswerTextView.scrollRectToVisible(caret, animated: true)
-            self.answerBottomSheetView.postAnswerTextView.contentInset.bottom = 10
-            self.answerBottomSheetView.layoutIfNeeded()
+            let caret = answerBottomSheetView.postAnswerTextView.caretRect(for: answerBottomSheetView.postAnswerTextView.selectedTextRange!.start)
+            answerBottomSheetView.postTextViewBottomConstraint.constant = keyboardHeight + 120
+            answerBottomSheetView.postAnswerTextView.scrollRectToVisible(caret, animated: true)
+            answerBottomSheetView.postAnswerTextView.contentInset.bottom = 10
+            answerBottomSheetView.layoutIfNeeded()
         }
     }
     
     @objc
     private func keyboardWillHide(_ notification: Notification) {
-        if self.answerBottomSheetView.postAnswerTextView.bounds.height < self.answerBottomSheetView.postAnswerTextView.frame.size.height {
-            self.answerBottomSheetView.postTextViewBottomConstraint.constant = 15
+        if answerBottomSheetView.postAnswerTextView.bounds.height < answerBottomSheetView.postAnswerTextView.frame.size.height {
+            answerBottomSheetView.postTextViewBottomConstraint.constant = 15
         } else {
-            self.answerBottomSheetView.postTextViewBottomConstraint.constant = self.answerBottomSheetView.postAnswerTextView.bounds.height
+            answerBottomSheetView.postTextViewBottomConstraint.constant = answerBottomSheetView.postAnswerTextView.bounds.height
         }
-        self.answerBottomSheetView.postAnswerTextView.contentInset.bottom = 10
-        self.answerBottomSheetView.layoutIfNeeded()
+        answerBottomSheetView.postAnswerTextView.contentInset.bottom = 10
+        answerBottomSheetView.layoutIfNeeded()
     }
     
     @objc
@@ -351,7 +381,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                 self.deleteHomeCardList()
             }
         }
-
+        
     }
     
     @objc
@@ -369,16 +399,24 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     @objc
     public func showAfterSideButtonDidTap() {
-        guard let sideMenu = self.afterSideMenu else { return }
+        guard let sideMenu = afterSideMenu else { return }
         self.present(sideMenu, animated: true, completion: nil)
     }
     
+    @objc
+    public func showAlarmButtonDidTap() {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let NoticeView = storyBoard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
+        guard let NoticeVC = NoticeView else { return }
+        self.navigationController?.pushViewController(NoticeVC, animated: true)
+    }
+    
     func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
-        self.afterSideMenu?.setSideMenuNavigation(viewcontroller: self)
+        afterSideMenu?.setSideMenuNavigation(viewcontroller: self)
     }
     
     func sideMenuDidDisappear(menu: SideMenuNavigationController, animated: Bool) {
-        self.afterSideMenu?.deleteEffectViewNavigation(viewcontroller: self)
+        afterSideMenu?.deleteEffectViewNavigation(viewcontroller: self)
     }
     
 }
@@ -391,32 +429,36 @@ extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewData
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let homeAfterCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeAfterCell", for: indexPath) as? HomeAfterCollectionViewCell
-        if self.backgroundColor == "red" {
+        if homeAfterData?.post.color == "red" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("열정충만", for: .normal)
-        } else if self.backgroundColor == "yellow" {
+        } else if homeAfterData?.post.color == "yellow" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 242/255, green: 194/255, blue: 23/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("소소한일상", for: .normal)
-        } else if self.backgroundColor == "green" {
+        } else if homeAfterData?.post.color == "green" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("기억상자", for: .normal)
-        } else if self.backgroundColor == "pink" {
+        } else if homeAfterData?.post.color == "pink" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("관계의미학", for: .normal)
         } else {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("상상플러스", for: .normal)
         }
-        if self.answerLevel == "1" {
+        if homeAfterData?.post.level == 1 {
             homeAfterCell?.homeAfterLevelView.isHidden = true
             homeAfterCell?.homeAfterLevelLabel.isHidden = true
         } else {
             homeAfterCell?.homeAfterLevelView.isHidden = false
             homeAfterCell?.homeAfterLevelLabel.isHidden = false
         }
-        homeAfterCell?.homeAfterTitleLabel.text = "\(self.titleText)"
-        homeAfterCell?.homeAfterSubjectLabel.text = "\(UserDefaults.standard.string(forKey: "myQuestionText")!)"
-        homeAfterCell?.homeAfterEditButton.addTarget(self, action: #selector(self.showEditBottomSheetDidTap(_:)), for: .touchUpInside)
+        if let questionText = homeAfterData?.post.question {
+            homeAfterCell?.homeAfterTitleLabel.text = "\(questionText)"
+        }
+        if let answerText = homeAfterData?.post.answer {
+            homeAfterCell?.homeAfterSubjectLabel.text = "\(answerText)"
+        }
+        homeAfterCell?.homeAfterEditButton.addTarget(self, action: #selector(HomeAfterViewController.showEditBottomSheetDidTap(_:)), for: .touchUpInside)
         return homeAfterCell!
     }
     
@@ -427,7 +469,7 @@ extension HomeAfterViewController: UITextViewDelegate {
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
-            self.answerBottomSheetView.postConfirmButton.isEnabled = false
+            answerBottomSheetView.postConfirmButton.isEnabled = false
             textView.text = "당신의 생각을 말해주세요"
             textView.textColor = .gray999
         }
@@ -437,7 +479,7 @@ extension HomeAfterViewController: UITextViewDelegate {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5
         if textView.textColor == .gray999 {
-            self.answerBottomSheetView.postConfirmButton.isEnabled = true
+            answerBottomSheetView.postConfirmButton.isEnabled = true
             textView.text = nil
             textView.textAlignment = .left
             textView.typingAttributes = [NSAttributedString.Key.paragraphStyle:paragraphStyle,NSAttributedString.Key.font:UIFont(name: "AppleSDGothicNeo-Regular", size: 16),NSAttributedString.Key.foregroundColor:UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)]

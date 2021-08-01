@@ -22,35 +22,42 @@ class LastAnswerCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.setLayoutInit()
+        setLayoutInit()
     }
 
     private func setLayoutInit() {
-        self.answerContainerView.backgroundColor = .white
-        self.answerContainerView.layer.cornerRadius = 15
-        self.answerContainerView.layer.masksToBounds = true
-        self.answerQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
-        self.answerQuestionLabel.textColor = UIColor.gray333
-        self.answerQuestionLabel.textAlignment = .left
-        self.answerQuestionLabel.lineBreakMode = .byTruncatingTail
-        self.answerRankLabel.textColor = UIColor.gray333
-        self.answerRankLabel.font = UIFont(name: "GmarketSansMedium", size: 11)
-        self.answerCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
-        self.answerEditButton.setImage(UIImage(named: "Edit.png"), for: .normal)
-        self.answerCharacterView.layer.masksToBounds = true
-        self.answerCharacterView.layer.cornerRadius = 3
-        self.answerRankView.layer.borderWidth = 1
-        self.answerRankView.layer.borderColor = UIColor.gray555.cgColor
-        self.answerRankView.layer.masksToBounds = true
-        self.answerRankView.layer.cornerRadius = 5
-        self.answerContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
-        self.answerContentLabel.textColor = UIColor.gray333
-        self.answerContentLabel.numberOfLines = 3
-        self.answerContentLabel.textAlignment = .left
-        self.answerContentLabel.lineBreakMode = .byTruncatingTail
-        self.answerEditButton.addTarget(self, action: #selector(EditButtonDidTap(_:)), for: .touchUpInside)
+        
+        //MARK: - View
+        answerContainerView.backgroundColor = .white
+        answerContainerView.layer.cornerRadius = 15
+        answerContainerView.layer.masksToBounds = true
+        answerCharacterView.layer.masksToBounds = true
+        answerCharacterView.layer.cornerRadius = 3
+        answerRankView.layer.borderWidth = 1
+        answerRankView.layer.borderColor = UIColor.gray555.cgColor
+        answerRankView.layer.masksToBounds = true
+        answerRankView.layer.cornerRadius = 5
+        
+        //MARK: - Label
+        answerQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
+        answerQuestionLabel.textColor = UIColor.gray333
+        answerQuestionLabel.textAlignment = .left
+        answerQuestionLabel.lineBreakMode = .byTruncatingTail
+        answerRankLabel.textColor = UIColor.gray333
+        answerRankLabel.font = UIFont(name: "GmarketSansMedium", size: 11)
+        answerCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
+        answerContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        answerContentLabel.textColor = UIColor.gray333
+        answerContentLabel.numberOfLines = 3
+        answerContentLabel.textAlignment = .left
+        answerContentLabel.lineBreakMode = .byTruncatingTail
+        
+        //MARK: - Button
+        answerEditButton.addTarget(self, action: #selector(EditButtonDidTap(_:)), for: .touchUpInside)
+        answerEditButton.setImage(UIImage(named: "Edit.png"), for: .normal)
     }
     
+    //MARK: - Action
     @objc
     private func EditButtonDidTap(_ sender: UIButton) {
         editButtonClousr!()

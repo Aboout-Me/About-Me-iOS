@@ -14,6 +14,8 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var fcmtoken = ""
     var badgeCount: Int = 0
+    var rightBarIcon: String?
+    var isPushFlag: Int = 0
     let gcmMessageIDKey = "gcm.message_id"
     
     
@@ -63,16 +65,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         var contentAvailable: Int
+        print("userInfo \(userInfo)")
         let aps = userInfo["aps"] as? NSDictionary
         if let content = aps!["content-available"] as? String {
             contentAvailable = Int(content)!
         } else {
             contentAvailable = aps!["content-available"] as! Int
+            isPushFlag = contentAvailable
         }
         if (contentAvailable == 1) {
             if (application.applicationState == .inactive || application.applicationState == .background)
             {
                 self.badgeCount += 1
+                rightBarIcon = "BellOn"
                 print("badgeCounting \(badgeCount)")
                 application.applicationIconBadgeNumber = self.badgeCount
                 completionHandler(UIBackgroundFetchResult.newData)
@@ -92,7 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         let dataDict: [String:String] = ["token": fcmToken ?? ""]
-        fcmtoken = fcmToken!
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
     }
     
@@ -113,8 +117,27 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         let userInfo = response.notification.request.content
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let rootView = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else { return }
+        let navigationController = rootView as? UINavigationController
         self.badgeCount = 0
-        print("test userInfo ",userInfo)
+        print("test userInfo ",userInfo.userInfo)
+        if UIApplication.shared.applicationState == .active {
+            let notionView = storyboard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
+            guard let noticeVC = notionView else { return }
+            navigationController?.pushViewController(noticeVC, animated: true)
+        } else if UIApplication.shared.applicationState == .inactive || UIApplication.shared.applicationState == .background {
+            if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
+                let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                guard let homeAfterVC = homeAfterView else { return }
+                navigationController?.pushViewController(homeAfterVC, animated: true)
+            } else {
+                let navigationController = rootView as? UINavigationController
+                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                guard let homeBeforeVC = homeBeforeView else { return }
+                navigationController?.pushViewController(homeBeforeVC, animated: true)
+            }
+        }
         completionHandler()
     }
 }

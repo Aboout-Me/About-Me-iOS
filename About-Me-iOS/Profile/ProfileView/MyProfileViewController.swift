@@ -39,6 +39,10 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     var myProfileImageViewContainerWidthConstraint: NSLayoutConstraint!
     var myprofileImageViewContainerHeightConstraint: NSLayoutConstraint!
     var myprofileContentLabelBottomConstraint: NSLayoutConstraint!
+    var myprofileImageViewWidthConstraint: NSLayoutConstraint!
+    var myprofileImageViewHeightConstraint: NSLayoutConstraint!
+    var myprofileImageViewCenterXConstraint: NSLayoutConstraint!
+    var myprofileImageViewCenterYConstraint: NSLayoutConstraint!
     private var tagNameList = ["전체","열정충만","소소한 일상","기억상자","관계의미학","상상플러스"]
     public var sideMenu: SideMenuNavigationController?
     public var myProfileColor = ""
@@ -82,7 +86,6 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         navigationApp.configureWithTransparentBackground()
         self.navigationController?.navigationBar.standardAppearance = navigationApp
         self.navigationController?.navigationBar.compactAppearance = navigationApp
-        self.navigationController?.navigationBar.scrollEdgeAppearance = navigationApp
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
         self.navigationController?.navigationBar.standardAppearance.shadowColor = UIColor(white: 255/255, alpha: 0.2)
         self.navigationItem.title = "프로필"
@@ -142,6 +145,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileThirdTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 9)
         self.myProfileThirdTagLabel.textAlignment = .left
         self.myProfileContentContainerView.layer.cornerRadius = 25
+        self.myProfileContentContainerView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         self.myProfileContentContainerView.clipsToBounds = true
         self.myProfileMyAnswerButton.isSelected = true
         self.myProfileMyAnswerButton.setTitle("내가 한 답", for: .normal)
@@ -172,7 +176,12 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileFloatingButton.plusColor = UIColor.white
         self.myProfileFloatingButton.selectedColor = UIColor.gray999
         self.myProfileFloatingButton.sticky = true
-        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png"))
+        self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png")) { _ in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+            guard let homeBeforeVC = homeBeforeView else { return }
+            self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+        }
         self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
@@ -360,9 +369,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     private func containerViewUpAnimation(_ isActive: Bool) {
         UIView.animate(withDuration: 0.5, delay: 1.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
             
-            // TO DO : Auto Layout 확인
             self.myProfileCharacterContentLabel.isHidden = true
-            
             self.myprofileImageViewContainerHeightConstraint = self.myProfileImageViewContainer
                 .heightAnchor
                 .constraint(equalToConstant: 45)
@@ -374,7 +381,27 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 .constraint(equalToConstant: 45)
                 
             self.myProfileImageViewContainerWidthConstraint.isActive = true
-                        
+            
+            self.myprofileImageViewWidthConstraint = self.myProfileImageView
+                .widthAnchor
+                .constraint(equalToConstant: 25)
+            self.myprofileImageViewWidthConstraint.isActive = true
+            self.myprofileImageViewHeightConstraint = self.myProfileImageView
+                .heightAnchor
+                .constraint(equalToConstant: 25)
+            self.myprofileImageViewHeightConstraint.isActive = true
+            
+            self.myprofileImageViewCenterXConstraint = self.myProfileImageView
+                .centerXAnchor
+                .constraint(equalTo: self.myProfileImageViewContainer.centerXAnchor)
+            
+            self.myprofileImageViewCenterXConstraint.isActive = true
+            self.myprofileImageViewCenterYConstraint = self.myProfileImageView
+                .centerYAnchor
+                .constraint(equalTo: self.myProfileImageViewContainer.centerYAnchor)
+
+            self.myprofileImageViewCenterYConstraint.isActive = true
+            
             self.myProfileImageViewContainer
                 .topAnchor
                 .constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20)
@@ -420,6 +447,11 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             
             self.myProfileImageViewContainerWidthConstraint.isActive = false
             self.myprofileImageViewContainerHeightConstraint.isActive = false
+            self.myprofileImageViewWidthConstraint.isActive = false
+            self.myprofileImageViewHeightConstraint.isActive = false
+            self.myprofileImageViewCenterXConstraint.isActive = false
+            self.myprofileImageViewCenterYConstraint.isActive = false
+            self.myprofileContentLabelBottomConstraint.isActive = false
             
             self.view.safeAreaLayoutGuide
                 .topAnchor
@@ -436,7 +468,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 .constraint(equalTo: self.myProfileContentContainerView.topAnchor, constant: -30)
                 .isActive = true
     
-            self.myprofileContentLabelBottomConstraint.isActive = false
+            
             self.myProfileImageViewContainer.layer.cornerRadius = 60 / 2.0
             self.view.layoutIfNeeded()
             

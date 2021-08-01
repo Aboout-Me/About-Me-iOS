@@ -65,7 +65,12 @@ class SocialViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = .black
         
         self.title = "공감하는 이야기"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 18)]
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.black, .font: UIFont.systemFont(ofSize: 18)]
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
     }
     
     private func configure() {
@@ -232,7 +237,7 @@ extension SocialViewController: UICollectionViewDataSource {
 extension SocialViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row % 2 == 0 {
-            return CGSize(width: collectionView.frame.width, height: 40)
+            return CGSize(width: collectionView.frame.width, height: 37)
         } else {
             if indexPath.row == 1, latestList.count == 0 {
                 return CGSize(width: collectionView.frame.width, height: 44)
@@ -243,7 +248,7 @@ extension SocialViewController: UICollectionViewDelegateFlowLayout {
             if indexPath.row == 5, categoryList.count == 0 {
                 return CGSize(width: collectionView.frame.width, height: 44)
             }
-            return CGSize(width: collectionView.frame.width, height: 300)
+            return CGSize(width: collectionView.frame.width, height: 270)
         }
     }
 }

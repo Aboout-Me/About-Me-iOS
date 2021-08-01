@@ -141,6 +141,7 @@ class SocialDetailViewController: UIViewController {
         self.roundView.layer.cornerRadius = 10
         self.tagView.layer.cornerRadius = 3
         self.bottomRoundView.layer.cornerRadius = 10
+        self.answerTextView.textContainer.lineFragmentPadding = 0
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(bottomViewDidTap))
         self.bottomRoundView.addGestureRecognizer(gesture)
@@ -167,10 +168,10 @@ class SocialDetailViewController: UIViewController {
             }
             questionLabel.text = post.question
             answerTextView.text = post.answer
-            likeButton.setImage(post.hasLiked ? UIImage(named: "like_on_dark.png") : UIImage(named: "like_off_dark.png"),
+            likeButton.setImage(post.hasLiked ? UIImage(named: "social_light_like_on.png") : UIImage(named: "social_light_like_off.png"),
                                 for: .normal)
             likeLabel.text = "\(post.likes)"
-            scrapButton.setImage(post.hasScrapped ? UIImage(named: "bookmark_on_dark.png") : UIImage(named: "bookmark_off_dark.png"),
+            scrapButton.setImage(post.hasScrapped ? UIImage(named: "social_light_bookmark_on.png") : UIImage(named: "social_light_bookmark_off.png"),
                                  for: .normal)
             scrapLabel.text = "\(post.scraps)"
             commentLabel.text = "\(post.comments)"
