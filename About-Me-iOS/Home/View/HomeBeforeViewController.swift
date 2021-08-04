@@ -111,6 +111,10 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         homeBeforeFloatingButton.plusColor = .white
         homeBeforeFloatingButton.selectedColor = .gray999
         homeBeforeFloatingButton.sticky = true
+        homeBeforeLastAnswerButton
+            .widthAnchor
+            .constraint(equalToConstant: cellWidth)
+            .isActive = true
         homeBeforeFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let homeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
