@@ -168,6 +168,9 @@
                                 <state key="normal" title="확인">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="confirmButtonDidTapped:" destination="fh4-4v-cyR" eventType="touchUpInside" id="DPJ-U8-QP1"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WzD-mK-0yi"/>

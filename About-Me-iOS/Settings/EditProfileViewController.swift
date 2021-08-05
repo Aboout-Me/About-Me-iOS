@@ -92,6 +92,11 @@ class EditProfileViewController: UIViewController {
         }
     }
 
+    @IBAction func confirmButtonDidTapped(_ sender: UIButton) {
+        if confirmButton.isEnabled {
+            LoginApiService.putProfileForEditing(nickName: nicknameTextfield.text!, introduce: introduceTextView.text!, userId: userId)
+        }
+    }
 }
 
 extension EditProfileViewController: UITextViewDelegate {

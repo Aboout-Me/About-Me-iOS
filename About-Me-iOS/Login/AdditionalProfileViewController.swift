@@ -85,7 +85,7 @@ class AdditionalProfileViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         // 프로필 데이터 전송 API 호출
         print("**Add.profile** user Id : \(self.userId)")
-        LoginApiService.putProfile(birthday: birthday, email: userEmail, nickName: nicknameTextfield.text!, gender: gender, introduce: introduceTextView.text!, userId: userId)
+        LoginApiService.putProfileForSignUp(birthday: birthday, email: userEmail, nickName: nicknameTextfield.text!, gender: gender, introduce: introduceTextView.text!, userId: userId)
     }
     
     @objc func viewTapped(gestureRecognizer: UITapGestureRecognizer){

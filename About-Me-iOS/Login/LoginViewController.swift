@@ -216,6 +216,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
 //            print("User: \(user)")
             self.userEmail = credential.email!
             print("애플로그인 Email: \(self.userEmail)")
+            print("apple token : \(credential.identityToken)")
             let _: Bool = KeychainWrapper.standard.set(credential.identityToken!, forKey: "id_token")
             let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
         }
