@@ -64,6 +64,12 @@ class SocialDetailViewController: UIViewController {
         commentVC.answerId = self.answerId
         commentVC.authorId = self.authorId
         commentVC.comments = self.comments
+        commentVC.profileClosure = {
+            let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+            otherProfileVC.otherId = self.authorId
+            otherProfileVC.userId = userId
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
         self.present(commentVC, animated: true, completion: nil)
     }
     
@@ -81,20 +87,61 @@ class SocialDetailViewController: UIViewController {
         }
     }
     
+    @IBAction func moreButtonDidTap(_ sender: Any) {
+        if let post = post {
+            if post.userId == userId {
+                let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
+                myMoreView.modalPresentationStyle = .overCurrentContext
+                myMoreView.deleteType = "board"
+                myMoreView.targetId = post.answerId
+                myMoreView.closure = { [weak self] in
+                    guard let self = self else { return }
+                    self.dismiss(animated: false) {
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                }
+                self.present(myMoreView, animated: true, completion: nil)
+            } else {
+                let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)
+                moreView.modalPresentationStyle = .overCurrentContext
+                moreView.suedUserId = post.userId
+                moreView.targetQuestionId = post.answerId
+                moreView.sueType = "board"
+                moreView.closure = {
+                    self.dismiss(animated: false, completion: nil)
+                }
+                moreView.profileClosure = {
+                    let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+                    otherProfileVC.otherId = post.userId
+                    otherProfileVC.userId = userId
+                    self.navigationController?.pushViewController(otherProfileVC, animated: true)
+                }
+                self.present(moreView, animated: true, completion: nil)
+            }
+        }
+    }
+    
     // MARK: - Helpers
     
     private func configureNavigation() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left.png"), style: .plain, target: self, action: #selector(backIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.tintColor = .white
-        
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .clear
+        button.setTitle(self.title, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        button.addTarget(self, action: #selector(titleDidTap), for: .touchUpInside)
+        self.navigationItem.titleView = button
     }
 
     private func configure() {
         self.roundView.layer.cornerRadius = 10
         self.tagView.layer.cornerRadius = 3
         self.bottomRoundView.layer.cornerRadius = 10
+        self.answerTextView.textContainer.lineFragmentPadding = 0
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(bottomViewDidTap))
         self.bottomRoundView.addGestureRecognizer(gesture)
@@ -121,13 +168,20 @@ class SocialDetailViewController: UIViewController {
             }
             questionLabel.text = post.question
             answerTextView.text = post.answer
-            likeButton.setImage(post.hasLiked ? UIImage(named: "like_on_dark.png") : UIImage(named: "like_off_dark.png"),
+            likeButton.setImage(post.hasLiked ? UIImage(named: "social_light_like_on.png") : UIImage(named: "social_light_like_off.png"),
                                 for: .normal)
             likeLabel.text = "\(post.likes)"
-            scrapButton.setImage(post.hasScrapped ? UIImage(named: "bookmark_on_dark.png") : UIImage(named: "bookmark_off_dark.png"),
+            scrapButton.setImage(post.hasScrapped ? UIImage(named: "social_light_bookmark_on.png") : UIImage(named: "social_light_bookmark_off.png"),
                                  for: .normal)
             scrapLabel.text = "\(post.scraps)"
             commentLabel.text = "\(post.comments)"
         }
+    }
+    
+    @objc private func titleDidTap(_ sender: UIButton) {
+        let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+        otherProfileVC.otherId = self.authorId
+        otherProfileVC.userId = userId
+        self.navigationController?.pushViewController(otherProfileVC, animated: true)
     }
 }

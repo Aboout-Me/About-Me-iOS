@@ -7,6 +7,7 @@
 
 import UIKit
 import SideMenu
+import Floaty
 
 class AdvisoryAnswerViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class AdvisoryAnswerViewController: UIViewController {
     @IBOutlet weak var sectionHeaderView: UIView!
     @IBOutlet weak var advisoryAnswerTableView: UITableView!
     @IBOutlet weak var newButton: UIButton!
+    @IBOutlet weak var floatyButton: Floaty!
     
     public var sideMenu: SideMenuNavigationController?
     private var answerLists: [ThemeList] = []
@@ -83,21 +85,46 @@ class AdvisoryAnswerViewController: UIViewController {
         
         self.sectionHeaderView.roundCorners([.topLeft, .topRight], radius: 20)
         
-        self.newButton.setTitleColor(.white, for: .normal)
-        self.newButton.backgroundColor = .gray333
-        self.newButton.addTarget(self, action: #selector(newButtonDidTap(_:)), for: .touchUpInside)
-        self.newButton.layer.cornerRadius = 5
-        //        let nibName = UINib(nibName: "AdvisoryNewAnswerCell", bundle: nil)
-        //        advisoryAnswerTableView.register(nibName, forCellReuseIdentifier: "newAnswerCell")
+        self.newButton.layer.cornerRadius = 25
+        self.newButton.addTarget(self, action: #selector(newButtonDidTap), for: .touchUpInside)
+        self.newButton.layer.shadowOffset = CGSize(width: 3, height: 3)
+        self.newButton.layer.shadowRadius = 12
+        self.newButton.layer.shadowOpacity = 0.12
+        self.floatyButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        self.floatyButton.plusColor = UIColor.white
+        self.floatyButton.selectedColor = UIColor.gray999
+        self.floatyButton.sticky = true
+        self.floatyButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { item in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let homeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+            guard let homeVC = homeView else { return }
+            self.navigationController?.pushViewController(homeVC, animated: true)
+        }
+        self.floatyButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { item in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let advisoryAnswerView = storyboard.instantiateViewController(withIdentifier: "AdvisoryAnswerVC") as? AdvisoryAnswerViewController
+            guard let advisoryAnswerVC = advisoryAnswerView else { return }
+            self.navigationController?.pushViewController(advisoryAnswerVC, animated: true)
+        }
+        self.floatyButton.addItem("내 피드", icon: UIImage(named: "icoFeed.png")) { _ in
+            let moreVC = SocialMoreContentViewController(nibName: "SocialMoreContentViewController", bundle: nil)
+            moreVC.state = .none
+            self.navigationController?.pushViewController(moreVC, animated: true)
+        }
     }
     
     private func configureNavigation() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu_white.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.tintColor = .white
         
         self.title = "자문자답"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
     }
     
     private func setSideMenuLayoutInit() {
@@ -112,15 +139,6 @@ class AdvisoryAnswerViewController: UIViewController {
             if let list = list {
                 print(list)
                 self.answerLists = list.themeLists
-                if list.themeLists.count == 0 {
-                    self.advisoryAnswerTableView.alwaysBounceVertical = false
-                    self.newButton.setTitle("첫 번째 자문자답 만들러 가기 >",
-                                            for: .normal)
-                } else {
-                    self.advisoryAnswerTableView.alwaysBounceVertical = true
-                    self.newButton.setTitle("새로운 자문자답 만들러 가기 >",
-                                            for: .normal)
-                }
                 self.advisoryAnswerTableView.reloadData()
             }
         }
@@ -191,6 +209,16 @@ extension AdvisoryAnswerViewController: UITableViewDataSource {
 
 extension AdvisoryAnswerViewController: UITableViewDelegate {
     
+}
+
+extension AdvisoryAnswerViewController: SideMenuNavigationControllerDelegate {
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
+    }
 }
 
 extension UIView {

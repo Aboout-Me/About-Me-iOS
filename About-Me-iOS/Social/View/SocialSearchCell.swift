@@ -12,11 +12,18 @@ class SocialSearchCell: UITableViewCell {
     // MARK: - Properties
     
     @IBOutlet weak var searchTextLabel: UILabel!
-    @IBOutlet weak var deleteImageView: UIImageView!
+    var buttonClosure: (() -> Void)?
     
     // MARK: - Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    // MARK: - Selectors
+    
+    @IBAction func deleteButtonDidTap(_ sender: Any) {
+        buttonClosure!()
+    }
+    
 }

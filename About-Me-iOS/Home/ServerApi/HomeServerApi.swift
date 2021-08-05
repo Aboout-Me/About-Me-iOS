@@ -6,7 +6,6 @@
 //
 
 import Alamofire
-import UIKit
 
 
 struct HomeServerApi {
@@ -15,6 +14,7 @@ struct HomeServerApi {
         AF.request(urlstring, method: .get, encoding: JSONEncoding.prettyPrinted)
             .validate()
             .responseData { response in
+                debugPrint(response)
                 switch response.result {
                 case let .success(response):
                     do {
@@ -160,6 +160,36 @@ struct HomeServerApi {
                         let serverError = Result<HomeCardEditList>.failure(error: HomeError.server.failureReason!)
                         completionHandler(serverError)
                     }
+                }
+            }
+    }
+    
+    static func getLastAnswerCardList(parameter: Parameters, completionHandler: @escaping(Result<LastAnswerCardList>) -> ()) {
+        let urlString:URL = URL(string: "http://3.36.188.237:8080/Board/pastResponse")!
+        AF.request(urlString, method: .get, parameters: parameter, encoding: URLEncoding.default)
+            .validate()
+            .responseData { response in
+                debugPrint(response)
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let jsonObject = try JSONSerialization.jsonObject(with: response, options: [])
+                        if let jsonData = jsonObject as? [String:Any] {
+                            let code = jsonData["code"] as? Int
+                            if code == 200 {
+                                let decoder = JSONDecoder()
+                                let lastAnswerList = try decoder.decode(LastAnswerCardList.self, from: response)
+                                let result = Result<LastAnswerCardList>.success(data: lastAnswerList)
+                                completionHandler(result)
+                            }
+                        }
+                    } catch  {
+                        print(error.localizedDescription)
+                    }
+                    
+                case let .failure(error):
+                    print(error.localizedDescription)
+                    
                 }
             }
     }

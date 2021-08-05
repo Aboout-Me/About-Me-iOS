@@ -28,6 +28,7 @@ class SocialCommentViewController: UIViewController {
     var answerId: Int?
     var authorId: Int?
     var comments: [SocialComment]?
+    var profileClosure: (() -> Void)?
     
     // MARK: - Lifecycle
     
@@ -169,6 +170,41 @@ extension SocialCommentViewController: UITableViewDataSource {
         cell.nicknameLabel.text = comments[indexPath.row].nickname
         cell.commentLabel.text =  comments[indexPath.row].comment
         cell.timeLabel.text = comments[indexPath.row].writtenDate
+        cell.color = comments[indexPath.row].color
+        cell.buttonClosure = { [weak self] in
+            guard let self = self else { return }
+            if comments[indexPath.row].authorId == userId {
+                let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
+                myMoreView.modalPresentationStyle = .overCurrentContext
+                myMoreView.deleteType = "comment"
+                myMoreView.targetId = comments[indexPath.row].commentId
+                myMoreView.closure = { [weak self] in
+                    guard let self = self else { return }
+                    self.dismiss(animated: false) {
+                        self.comments?.remove(at: indexPath.row)
+                        self.commentTableView.reloadData()
+                    }
+                }
+                self.present(myMoreView, animated: true, completion: nil)
+            } else {
+                let moreView = SocialMoreView(nibName: "SocialMoreView", bundle: nil)
+                moreView.modalPresentationStyle = .overCurrentContext
+                moreView.suedUserId = comments[indexPath.row].authorId
+                moreView.targetQuestionId = comments[indexPath.row].commentId
+                if self.authorId == userId {
+                    moreView.sueType = "comment"
+                }
+                moreView.closure = {
+                    self.dismiss(animated: false, completion: nil)
+                }
+                moreView.profileClosure = {
+                    self.dismiss(animated: true) {
+                        self.profileClosure?()
+                    }
+                }
+                self.present(moreView, animated: true, completion: nil)
+            }
+        }
         return cell
     }
 }

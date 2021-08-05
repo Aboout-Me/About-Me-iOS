@@ -203,7 +203,7 @@ class AdvisoryQuestionViewController: UIViewController {
             
             nextButton.widthAnchor.constraint(equalTo: previousButton.widthAnchor).isActive = true
             previousButton.leadingAnchor.constraint(equalTo: buttonView.leadingAnchor, constant: 20).isActive = true
-            nextButton.leadingAnchor.constraint(equalTo: previousButton.trailingAnchor, constant: 20).isActive = true
+            nextButton.leadingAnchor.constraint(equalTo: previousButton.trailingAnchor, constant: 10).isActive = true
             nextButton.trailingAnchor.constraint(equalTo: buttonView.trailingAnchor, constant: -20).isActive = true
         }
     }
@@ -280,14 +280,14 @@ class AdvisoryQuestionViewController: UIViewController {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardHeight = keyboardFrame.cgRectValue.height
             
-            self.bottomConstraint.constant = keyboardHeight + 10
+            self.bottomConstraint.constant = keyboardHeight
             self.view.layoutIfNeeded()
         }
     }
     
     @objc
     private func keyboardWillHide(_ notification: Notification) {
-        self.bottomConstraint.constant = 10
+        self.bottomConstraint.constant = 0
         self.view.layoutIfNeeded()
     }
     

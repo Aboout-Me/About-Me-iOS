@@ -13,6 +13,7 @@
                 <outlet property="backgroundView" destination="NYf-hR-c9e" id="hd0-yx-ek5"/>
                 <outlet property="colorView" destination="6oR-0P-exj" id="nQQ-dz-trn"/>
                 <outlet property="contentView" destination="y6e-Jf-6Lf" id="2Qv-N3-jiA"/>
+                <outlet property="handle" destination="VfP-kG-yVF" id="dmH-hZ-O9d"/>
                 <outlet property="totalView" destination="GGy-Ci-W0I" id="ftp-5i-CaP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,7 +27,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NYf-hR-c9e">
-                            <rect key="frame" x="0.0" y="584" width="414" height="60"/>
+                            <rect key="frame" x="0.0" y="604" width="414" height="60"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfP-kG-yVF">
                                     <rect key="frame" x="187" y="10" width="40" height="5"/>
@@ -46,12 +47,12 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGy-Ci-W0I">
-                            <rect key="frame" x="0.0" y="614" width="414" height="282"/>
+                            <rect key="frame" x="0.0" y="634" width="414" height="262"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y6e-Jf-6Lf">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="240"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="220"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="240" id="xjv-14-o5S"/>
+                                        <constraint firstAttribute="height" constant="220" id="xjv-14-o5S"/>
                                     </constraints>
                                 </view>
                             </subviews>

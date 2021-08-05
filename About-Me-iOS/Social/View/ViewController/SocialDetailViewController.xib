@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialDetailViewController" customModule="About_Me_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialDetailViewController" customModule="__________" customModuleProvider="target">
             <connections>
                 <outlet property="answerTextView" destination="J1Y-kh-RQA" id="5zi-EC-Zue"/>
                 <outlet property="backgroundImageView" destination="efK-Ml-CGy" id="O8C-8w-4mb"/>
@@ -36,7 +36,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FCO-Cy-cFU">
-                    <rect key="frame" x="20" y="238" width="374" height="420"/>
+                    <rect key="frame" x="20" y="134" width="374" height="420"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nto-VF-7xG">
                             <rect key="frame" x="25" y="25" width="52" height="19"/>
@@ -63,6 +63,9 @@
                                 <constraint firstAttribute="width" constant="24" id="dXY-KC-X3G"/>
                             </constraints>
                             <state key="normal" image="ico_common_24_edit_circle_L.png"/>
+                            <connections>
+                                <action selector="moreButtonDidTap:" destination="-1" eventType="touchUpInside" id="Ucc-Ca-eGZ"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문질문" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jCc-we-eyh">
                             <rect key="frame" x="25" y="59" width="324" height="41"/>
@@ -120,7 +123,7 @@
                                 <constraint firstAttribute="height" constant="20" id="Ier-wo-rk8"/>
                                 <constraint firstAttribute="width" constant="20" id="a8n-dG-aCT"/>
                             </constraints>
-                            <state key="normal" image="like_off_dark.png"/>
+                            <state key="normal" image="social_light_like_off.png"/>
                             <connections>
                                 <action selector="likeButtonDidTap:" destination="-1" eventType="touchUpInside" id="44X-qg-Ke9"/>
                             </connections>
@@ -158,7 +161,7 @@
                                 <constraint firstAttribute="width" constant="20" id="Kaf-Wb-EBH"/>
                                 <constraint firstAttribute="height" constant="20" id="VgR-1c-2CD"/>
                             </constraints>
-                            <state key="normal" image="bookmark_off_dark.png"/>
+                            <state key="normal" image="social_light_bookmark_off.png"/>
                             <connections>
                                 <action selector="bookmarkButtonDidTap:" destination="-1" eventType="touchUpInside" id="a4T-66-IeG"/>
                             </connections>
@@ -169,7 +172,7 @@
                                 <constraint firstAttribute="width" constant="20" id="ef7-I8-YOx"/>
                                 <constraint firstAttribute="height" constant="20" id="kDy-0O-pPt"/>
                             </constraints>
-                            <state key="normal" image="ico_common_24_message_off_dark.png"/>
+                            <state key="normal" image="social_light_message_off.png"/>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -197,9 +200,9 @@
                 <constraint firstItem="FCO-Cy-cFU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="0Sp-cj-8nZ"/>
                 <constraint firstItem="1c1-fv-dmt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6LE-Fi-gAQ"/>
                 <constraint firstAttribute="trailing" secondItem="efK-Ml-CGy" secondAttribute="trailing" id="90T-GF-ei2"/>
-                <constraint firstItem="FCO-Cy-cFU" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AsO-rL-MbH"/>
                 <constraint firstItem="1J5-Us-PBw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Azk-gz-7hq"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1c1-fv-dmt" secondAttribute="trailing" id="Cmm-kF-WcO"/>
+                <constraint firstItem="FCO-Cy-cFU" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="90" id="I5X-rW-ckO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="1J5-Us-PBw" secondAttribute="bottom" id="LkH-0C-vmA"/>
                 <constraint firstAttribute="bottom" secondItem="1c1-fv-dmt" secondAttribute="bottom" id="S6M-9Y-L6q"/>
                 <constraint firstItem="efK-Ml-CGy" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="SdS-ZB-D4T"/>
@@ -212,11 +215,11 @@
         </view>
     </objects>
     <resources>
-        <image name="bookmark_off_dark.png" width="24" height="24"/>
         <image name="ico_common_24_edit_circle_L.png" width="24" height="24"/>
-        <image name="ico_common_24_message_off_dark.png" width="16" height="16"/>
         <image name="imgBackgroundRed.png" width="375" height="812"/>
-        <image name="like_off_dark.png" width="16" height="16"/>
+        <image name="social_light_bookmark_off.png" width="20" height="20"/>
+        <image name="social_light_like_off.png" width="20" height="20"/>
+        <image name="social_light_message_off.png" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

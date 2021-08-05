@@ -7,9 +7,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialSearchViewController" customModule="About_Me_iOS" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SocialSearchViewController" customModule="__________" customModuleProvider="target">
             <connections>
+                <outlet property="afterView" destination="wrK-Kp-aFH" id="48q-gX-Uz4"/>
+                <outlet property="beforeView" destination="RuG-lo-zos" id="Laz-NB-ZxQ"/>
                 <outlet property="searchInputView" destination="hMn-qD-9YW" id="P9U-V4-tAi"/>
+                <outlet property="searchResultLabel" destination="bak-ml-uVT" id="fCP-Cc-OKh"/>
                 <outlet property="searchTableView" destination="E6X-1B-JgA" id="wtU-Pa-Zp5"/>
                 <outlet property="searchTextField" destination="y7f-68-0fp" id="AWN-lU-caD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -75,10 +78,44 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="E6X-1B-JgA">
-                    <rect key="frame" x="0.0" y="114" width="414" height="748"/>
+                    <rect key="frame" x="0.0" y="193" width="414" height="669"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RuG-lo-zos">
+                    <rect key="frame" x="0.0" y="94" width="414" height="52"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최근 검색어" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocT-HL-yRR">
+                            <rect key="frame" x="20" y="20" width="83" height="22"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="ocT-HL-yRR" secondAttribute="bottom" constant="10" id="8sX-LH-gx9"/>
+                        <constraint firstItem="ocT-HL-yRR" firstAttribute="top" secondItem="RuG-lo-zos" secondAttribute="top" constant="20" id="XBG-yW-wcb"/>
+                        <constraint firstItem="ocT-HL-yRR" firstAttribute="leading" secondItem="RuG-lo-zos" secondAttribute="leading" constant="20" id="u2N-yo-ki4"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wrK-Kp-aFH">
+                    <rect key="frame" x="0.0" y="146" width="414" height="47"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="검색 결과 4건" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bak-ml-uVT">
+                            <rect key="frame" x="20" y="20" width="76" height="17"/>
+                            <fontDescription key="fontDescription" name="AppleSDGothicNeo-Medium" family="Apple SD Gothic Neo" pointSize="14"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="bak-ml-uVT" firstAttribute="top" secondItem="wrK-Kp-aFH" secondAttribute="top" constant="20" id="P10-2a-0dW"/>
+                        <constraint firstAttribute="bottom" secondItem="bak-ml-uVT" secondAttribute="bottom" constant="10" id="dId-ea-SBq"/>
+                        <constraint firstItem="bak-ml-uVT" firstAttribute="leading" secondItem="wrK-Kp-aFH" secondAttribute="leading" constant="20" id="ezB-DJ-sSo"/>
+                    </constraints>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,9 +123,15 @@
                 <constraint firstItem="cHn-db-I87" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="KGV-iz-M4X"/>
                 <constraint firstItem="cHn-db-I87" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NE3-MP-IJ6"/>
                 <constraint firstItem="E6X-1B-JgA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ssa-2E-Mna"/>
+                <constraint firstItem="wrK-Kp-aFH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZoN-g8-FRE"/>
+                <constraint firstItem="RuG-lo-zos" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="dyc-dL-Vj6"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="cHn-db-I87" secondAttribute="trailing" id="eBT-dZ-cbT"/>
-                <constraint firstItem="E6X-1B-JgA" firstAttribute="top" secondItem="cHn-db-I87" secondAttribute="bottom" constant="20" id="fU5-5H-h5a"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wrK-Kp-aFH" secondAttribute="trailing" id="ftX-2s-Vfk"/>
+                <constraint firstItem="E6X-1B-JgA" firstAttribute="top" secondItem="wrK-Kp-aFH" secondAttribute="bottom" id="lYb-eg-TYT"/>
+                <constraint firstItem="RuG-lo-zos" firstAttribute="top" secondItem="cHn-db-I87" secondAttribute="bottom" id="mYK-xW-yd9"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="E6X-1B-JgA" secondAttribute="trailing" id="vmh-1L-VU6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="RuG-lo-zos" secondAttribute="trailing" id="wlz-HO-owh"/>
+                <constraint firstItem="wrK-Kp-aFH" firstAttribute="top" secondItem="RuG-lo-zos" secondAttribute="bottom" id="wso-cD-PVa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="E6X-1B-JgA" secondAttribute="bottom" id="xBZ-UP-sns"/>
             </constraints>
             <point key="canvasLocation" x="131.8840579710145" y="53.571428571428569"/>

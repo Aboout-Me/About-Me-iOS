@@ -12,48 +12,58 @@ class HomeBeforeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var homeBeforeContainerView: UIView!
     @IBOutlet weak var homeBeforeTitleLabel: UILabel!
     @IBOutlet weak var homeBeforeCharacterLabel: UILabel!
-    @IBOutlet weak var homeBeforeCharacterTagFirstButton: UIButton!
-    @IBOutlet weak var homeBeforeCharacterTagSecondButton: UIButton!
-    @IBOutlet weak var homeBeforeCharacterTagThirdButton: UIButton!
     @IBOutlet weak var homeBeforeTitleLineView: UIView!
+    @IBOutlet weak var homeBeforeFirstTagView: UIView!
+    @IBOutlet weak var homeBeforeSecondTagView: UIView!
+    @IBOutlet weak var homeBeforeThirdTagView: UIView!
+    @IBOutlet weak var homeBeforeFirstTagLabel: UILabel!
+    @IBOutlet weak var homeBeforeSecondTagLabel: UILabel!
+    @IBOutlet weak var homeBeforeThirdTagLabel: UILabel!
+    @IBOutlet weak var homeBeforeLevelLabel: UILabel!
+    @IBOutlet weak var homeBeforeLevelBoxView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        self.setInitLayout()
+        setInitLayout()
     }
     
     public func setInitLayout() {
-        self.homeBeforeTitleLineView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
-        self.homeBeforeContainerView.layer.borderColor = UIColor.clear.cgColor
-        self.homeBeforeContainerView.layer.cornerRadius = 20
-        self.homeBeforeContainerView.layer.masksToBounds = true
-        self.homeBeforeContainerView.backgroundColor = UIColor.white
-        self.homeBeforeTitleLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
-        self.homeBeforeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
-        self.homeBeforeTitleLabel.numberOfLines = 0
-        self.homeBeforeTitleLabel.textAlignment = .center
-        self.homeBeforeTitleLabel.lineBreakMode = .byWordWrapping
-        self.homeBeforeCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
-        self.homeBeforeCharacterLabel.textColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
-        self.homeBeforeCharacterLabel.textAlignment = .center
-        self.homeBeforeCharacterTagFirstButton.layer.borderWidth = 1
-        self.homeBeforeCharacterTagFirstButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-        self.homeBeforeCharacterTagFirstButton.layer.cornerRadius = 3
-        self.homeBeforeCharacterTagFirstButton.layer.masksToBounds = true
-        self.homeBeforeCharacterTagFirstButton.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-        self.homeBeforeCharacterTagFirstButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-        self.homeBeforeCharacterTagSecondButton.layer.borderWidth = 1
-        self.homeBeforeCharacterTagSecondButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-        self.homeBeforeCharacterTagSecondButton.layer.cornerRadius = 3
-        self.homeBeforeCharacterTagSecondButton.layer.masksToBounds = true
-        self.homeBeforeCharacterTagSecondButton.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-        self.homeBeforeCharacterTagSecondButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
-        self.homeBeforeCharacterTagThirdButton.layer.borderWidth = 1
-        self.homeBeforeCharacterTagThirdButton.layer.borderColor = UIColor(red: 238/255, green: 238/255, blue: 238/255, alpha: 1.0).cgColor
-        self.homeBeforeCharacterTagThirdButton.layer.cornerRadius = 3
-        self.homeBeforeCharacterTagThirdButton.layer.masksToBounds = true
-        self.homeBeforeCharacterTagThirdButton.setTitleColor(UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0), for: .normal)
-        self.homeBeforeCharacterTagThirdButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        
+        //MARK: - View
+        homeBeforeTitleLineView.backgroundColor = UIColor(red: 247/255, green: 247/255, blue: 247/255, alpha: 1.0)
+        homeBeforeContainerView.layer.borderColor = UIColor.clear.cgColor
+        homeBeforeContainerView.layer.cornerRadius = 10
+        homeBeforeContainerView.layer.masksToBounds = false
+        homeBeforeContainerView.layer.shadowOffset = CGSize(width: 0, height: 4)
+        homeBeforeContainerView.layer.shadowColor = UIColor.black10.cgColor
+        homeBeforeContainerView.layer.shadowRadius = 5
+        homeBeforeContainerView.backgroundColor = UIColor.white
+        homeBeforeFirstTagView.layer.borderWidth = 1
+        homeBeforeFirstTagView.layer.borderColor = UIColor.lineEee.cgColor
+        homeBeforeFirstTagView.layer.masksToBounds = true
+        homeBeforeFirstTagView.layer.cornerRadius = 3
+        homeBeforeSecondTagView.layer.borderWidth = 1
+        homeBeforeSecondTagView.layer.borderColor = UIColor.lineEee.cgColor
+        homeBeforeSecondTagView.layer.masksToBounds = true
+        homeBeforeSecondTagView.layer.cornerRadius = 3
+        homeBeforeThirdTagView.layer.borderWidth = 1
+        homeBeforeThirdTagView.layer.borderColor = UIColor.lineEee.cgColor
+        homeBeforeThirdTagView.layer.masksToBounds = true
+        homeBeforeThirdTagView.layer.cornerRadius = 3
+        
+        //MARK: - Label
+        homeBeforeFirstTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        homeBeforeSecondTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        homeBeforeThirdTagLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 12)
+        homeBeforeLevelLabel.textAlignment = .center
+        homeBeforeTitleLabel.textColor = .gray333
+        homeBeforeTitleLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        homeBeforeTitleLabel.numberOfLines = 0
+        homeBeforeTitleLabel.textAlignment = .center
+        homeBeforeTitleLabel.lineBreakMode = .byWordWrapping
+        homeBeforeCharacterLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        homeBeforeCharacterLabel.textColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
+        homeBeforeCharacterLabel.textAlignment = .center
     }
 
 }

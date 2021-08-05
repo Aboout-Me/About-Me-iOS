@@ -10,11 +10,15 @@ import Foundation
 struct WeeklyProgressList: Codable {
     var code: Int
     var message: String
-    var date: String
-    var weeklyProgressingList: [[WeeklyProgressListModel]]
+    var weeklyProgressingList: [WeeklyProgressListModel]
 }
 
 struct WeeklyProgressListModel: Codable {
+    var date: String?
+    var week: [WeeklyProgressSubModel]?
+}
+
+struct WeeklyProgressSubModel: Codable {
     var color: String?
     var day: String?
     var isWritten: Bool?

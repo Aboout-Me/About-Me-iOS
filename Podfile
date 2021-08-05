@@ -11,7 +11,7 @@ target '오늘의 나' do
   pod 'KakaoSDK'
   pod 'Floaty', '~> 4.2.0'
   pod 'SwiftKeychainWrapper'
-  
+  pod 'Firebase/Messaging'  
 
   # Pods for 오늘의 나
 
