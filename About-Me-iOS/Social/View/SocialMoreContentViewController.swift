@@ -106,7 +106,7 @@ class SocialMoreContentViewController: UIViewController {
         let headerLayout = UICollectionViewFlowLayout()
         headerLayout.scrollDirection = .horizontal
         headerLayout.minimumLineSpacing = 10
-        headerLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 20, right: 20)
+        headerLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         self.headerCollectionView.collectionViewLayout = headerLayout
         
         let bodyLayout = UICollectionViewFlowLayout()

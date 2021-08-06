@@ -252,3 +252,13 @@ extension SocialViewController: UICollectionViewDelegateFlowLayout {
         }
     }
 }
+
+extension SocialViewController: SideMenuNavigationControllerDelegate {
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
+    }
+}

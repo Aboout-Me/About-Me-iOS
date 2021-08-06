@@ -1,25 +1,25 @@
 PODS:
   - Alamofire (5.4.3)
-  - Firebase/CoreOnly (8.3.0):
-    - FirebaseCore (= 8.3.0)
-  - Firebase/Messaging (8.3.0):
+  - Firebase/CoreOnly (8.5.0):
+    - FirebaseCore (= 8.5.0)
+  - Firebase/Messaging (8.5.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (~> 8.3.0)
-  - FirebaseCore (8.3.0):
+    - FirebaseMessaging (~> 8.5.0)
+  - FirebaseCore (8.5.0):
     - FirebaseCoreDiagnostics (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
-  - FirebaseCoreDiagnostics (8.3.0):
+  - FirebaseCoreDiagnostics (8.5.0):
     - GoogleDataTransport (~> 9.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/Logger (~> 7.4)
     - nanopb (~> 2.30908.0)
-  - FirebaseInstallations (8.3.0):
+  - FirebaseInstallations (8.5.0):
     - FirebaseCore (~> 8.0)
     - GoogleUtilities/Environment (~> 7.4)
     - GoogleUtilities/UserDefaults (~> 7.4)
-    - PromisesObjC (~> 1.2)
-  - FirebaseMessaging (8.3.0):
+    - PromisesObjC (< 3.0, >= 1.2)
+  - FirebaseMessaging (8.5.0):
     - FirebaseCore (~> 8.0)
     - FirebaseInstallations (~> 8.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.4)
@@ -49,20 +49,57 @@ PODS:
   - GoogleUtilities/UserDefaults (7.5.0):
     - GoogleUtilities/Logger
   - Hero (1.6.1)
+  - KakaoSDK (2.5.6):
+    - KakaoSDKAuth (= 2.5.6)
+    - KakaoSDKCommon (= 2.5.6)
+    - KakaoSDKLink (= 2.5.6)
+    - KakaoSDKNavi (= 2.5.6)
+    - KakaoSDKStory (= 2.5.6)
+    - KakaoSDKTalk (= 2.5.6)
+    - KakaoSDKTemplate (= 2.5.6)
+    - KakaoSDKUser (= 2.5.6)
+  - KakaoSDKAuth (2.5.6):
+    - KakaoSDKCommon (= 2.5.6)
+  - KakaoSDKCommon (2.5.6):
+    - KakaoSDKCommon/Common (= 2.5.6)
+    - KakaoSDKCommon/Network (= 2.5.6)
+  - KakaoSDKCommon/Common (2.5.6)
+  - KakaoSDKCommon/Network (2.5.6):
+    - Alamofire (~> 5.1)
+    - KakaoSDKCommon/Common (= 2.5.6)
+  - KakaoSDKLink (2.5.6):
+    - KakaoSDKCommon (= 2.5.6)
+    - KakaoSDKTemplate (= 2.5.6)
+  - KakaoSDKNavi (2.5.6):
+    - KakaoSDKCommon/Common (= 2.5.6)
+  - KakaoSDKStory (2.5.6):
+    - KakaoSDKUser (= 2.5.6)
+  - KakaoSDKTalk (2.5.6):
+    - KakaoSDKTemplate (= 2.5.6)
+    - KakaoSDKUser (= 2.5.6)
+  - KakaoSDKTemplate (2.5.6):
+    - KakaoSDKCommon/Common (= 2.5.6)
+  - KakaoSDKUser (2.5.6):
+    - KakaoSDKAuth (= 2.5.6)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
     - nanopb/encode (= 2.30908.0)
   - nanopb/decode (2.30908.0)
   - nanopb/encode (2.30908.0)
-  - PromisesObjC (1.2.12)
+  - naveridlogin-sdk-ios (4.1.3)
+  - PromisesObjC (2.0.0)
   - SideMenu (6.5.0)
+  - SwiftKeychainWrapper (4.0.1)
 
 DEPENDENCIES:
   - Alamofire
   - Firebase/Messaging
   - Floaty (~> 4.2.0)
   - Hero
+  - KakaoSDK
+  - naveridlogin-sdk-ios
   - SideMenu
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
@@ -76,25 +113,47 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - Hero
+    - KakaoSDK
+    - KakaoSDKAuth
+    - KakaoSDKCommon
+    - KakaoSDKLink
+    - KakaoSDKNavi
+    - KakaoSDKStory
+    - KakaoSDKTalk
+    - KakaoSDKTemplate
+    - KakaoSDKUser
     - nanopb
+    - naveridlogin-sdk-ios
     - PromisesObjC
     - SideMenu
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
-  Firebase: 817b9171d0d51dccc458b94a5e8edff6b1dd323d
-  FirebaseCore: a6dba751680d7033b9d3831e1cfc95ead0605118
-  FirebaseCoreDiagnostics: 7e873baabcfaa9512f538554ae4fa0817aaafbdb
-  FirebaseInstallations: b69db7680870dbac17bba7a51fc0b5c4b365baa7
-  FirebaseMessaging: 42252b79b860482021483748669ec32e22196462
+  Firebase: ff8c73105b90e33e1dc6c8e5445d7adc2ccdc7c1
+  FirebaseCore: 1c1ca72483b59b17050f5b4cec4fb748425a3901
+  FirebaseCoreDiagnostics: 7bf55d386f9fc690d971b70a582142321a390eb8
+  FirebaseInstallations: f2bc590b291d25fb40a9a05b8281c02a881b5117
+  FirebaseMessaging: 0705ec705c21705efc51c071fba924c8e25c63e7
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
   Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
+  KakaoSDK: cf7977079b8b2925ee366ebe29aae51921e648ce
+  KakaoSDKAuth: 1e1fa737e78eed3f301ab5c164526781a37a42f9
+  KakaoSDKCommon: cdf340a8f671eef75f4ca012003cb350af3c4b6d
+  KakaoSDKLink: 59336155a065da278ba30dc656506295dc682979
+  KakaoSDKNavi: 8f74b7faad26e632c556bdf0584a30a3948f2c70
+  KakaoSDKStory: 5f32ad8525fa8b209ef91578f4be9c2c45a07f51
+  KakaoSDKTalk: 68c72269e9095afb9582f324b94f99dd6284e361
+  KakaoSDKTemplate: 0370e640abd33d0acb3d7bbe4ef3c02dc42a4576
+  KakaoSDKUser: f488aa4699b3fd3a836ab5c7e25e2cb4cea190c1
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
-  PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
+  PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
+  SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 94f528340a52af48ad710a4635398e804778cdbb
+PODFILE CHECKSUM: 0de71088d160a475ef4ee68e8aea86670c4457da
 
 COCOAPODS: 1.10.1

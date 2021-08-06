@@ -211,6 +211,16 @@ extension AdvisoryAnswerViewController: UITableViewDelegate {
     
 }
 
+extension AdvisoryAnswerViewController: SideMenuNavigationControllerDelegate {
+    func sideMenuWillAppear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.setSideMenuNavigation(viewcontroller: self)
+    }
+    
+    func sideMenuWillDisappear(menu: SideMenuNavigationController, animated: Bool) {
+        self.sideMenu?.deleteEffectViewNavigation(viewcontroller: self)
+    }
+}
+
 extension UIView {
     public func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         self.layoutIfNeeded()
