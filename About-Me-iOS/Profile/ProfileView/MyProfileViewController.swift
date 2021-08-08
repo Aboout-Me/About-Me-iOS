@@ -839,7 +839,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         if collectionView == self.myProfileCollectionView {
             let myProfileCell = collectionView.cellForItem(at: indexPath) as? MyProfileCollectionViewCell
             myProfileCell?.selectIndex = indexPath.item
-            if self.myProfileFlag == "answer" {
+            if myProfileFlag == "answer" && myProfileSubData.count != 0 {
                 let profileAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
                 profileAnswerVC.answerId = self.myProfileSubData[indexPath.item].answerId
                 profileAnswerVC.title = self.myProfileData?.nickName

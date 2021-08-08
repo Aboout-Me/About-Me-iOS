@@ -381,7 +381,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         } else {
             homeBeforeLastAnswerButton.isHidden = false
         }
-        if homeData[indexPath.item].color == "red" {
+        if homeData[indexPath.item].color == "0" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#열정"
@@ -390,7 +390,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryRed
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryRed
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryRed
-        } else if homeData[indexPath.item].color == "yellow" {
+        } else if homeData[indexPath.item].color == "1" {
             cell.homeBeforeCharacterLabel.text = "소소한 일상"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#일상"
@@ -400,7 +400,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryYellow
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryYellow
         
-        } else if homeData[indexPath.item].color == "green" {
+        } else if homeData[indexPath.item].color == "2" {
             cell.homeBeforeCharacterLabel.text = "기억상자"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#힐링"
@@ -409,7 +409,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryGreen
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryGreen
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryGreen
-        } else if homeData[indexPath.item].color == "pink" {
+        } else if homeData[indexPath.item].color == "3" {
             cell.homeBeforeCharacterLabel.text = "관계의 미학"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#연애"
@@ -479,13 +479,13 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             homeBeforeLastAnswerButton.isHidden = false
         }
         print("colletionView point\(point)")
-        if homeData[currentPage].color == "red" {
+        if homeData[currentPage].color == "0" {
             homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-        } else if homeData[currentPage].color == "yellow" {
+        } else if homeData[currentPage].color == "1" {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-        } else if homeData[currentPage].color == "green" {
+        } else if homeData[currentPage].color == "2" {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-        } else if homeData[currentPage].color == "pink" {
+        } else if homeData[currentPage].color == "3" {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
         } else {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")

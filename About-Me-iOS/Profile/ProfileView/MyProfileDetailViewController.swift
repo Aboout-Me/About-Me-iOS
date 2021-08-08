@@ -71,8 +71,8 @@ class MyProfileDetailViewController: UIViewController {
         self.setCategoryViewLayoutInit()
         self.setWeeklyViewLayoutInit()
         let date = Date()
-        let calendar = Calendar.current.dateComponents([.weekdayOrdinal], from: date)
-        self.sequence = calendar.weekdayOrdinal! - 1
+        let calendar = Calendar.current.dateComponents([.weekday], from: date)
+        self.sequence = calendar.weekday! - 1
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -265,10 +265,9 @@ class MyProfileDetailViewController: UIViewController {
     
     private func setnowDate() {
         let date = Date()
-        let calendar = Calendar.current.dateComponents([.weekdayOrdinal], from: date)
+        let calendar = Calendar.current.dateComponents([.weekday], from: date)
         print("now weekDay \(calendar)")
-        
-        self.weekDay = calendar.weekdayOrdinal!
+        self.weekDay = calendar.weekday!
         
         if self.weekDay == 1 {
             self.myProfileWeeklyTitleLabel.text = self.weeklyListData[0].date
@@ -287,7 +286,7 @@ class MyProfileDetailViewController: UIViewController {
     
     private func updateDate() {
         let date = Date()
-        let calendar = Calendar.current.dateComponents([.weekdayOrdinal], from: date)
+        let calendar = Calendar.current.dateComponents([.weekday], from: date)
         print("update weekDay \(calendar)")
         
         self.weekDay = self.weekDay + 1
@@ -307,7 +306,7 @@ class MyProfileDetailViewController: UIViewController {
     
     private func previousDate() {
         let previousDate = Date()
-        let calnedar = Calendar.current.dateComponents([.weekdayOrdinal], from: previousDate)
+        let calnedar = Calendar.current.dateComponents([.weekday], from: previousDate)
         print("previous weekDay \(calnedar)")
         self.weekDay = self.weekDay - 1
         print("weekDay Number \(self.weekDay)")
@@ -336,6 +335,7 @@ class MyProfileDetailViewController: UIViewController {
                 self.setnowDate()
                 print("get Sequence \(sequence)")
                 print("get weeklyListData \(self.weeklyListData.endIndex)")
+                print("get weeklyListData startIndex\(self.weeklyListData.startIndex)")
                 print("test color",self.weeklyData)
                 print("test Data \(self.weeklyData[0])")
                 if list.weeklyProgressingList.count == 1 {
@@ -347,7 +347,8 @@ class MyProfileDetailViewController: UIViewController {
                     self.setWeeklyServerProcessDidFinsh()
                     if self.sequence == self.weeklyListData.endIndex - 1 {
                         self.myProfileWeeklyNextButton.isEnabled = false
-                    } else if self.sequence == self.weeklyListData.startIndex {
+                    }
+                    if self.sequence == self.weeklyListData.startIndex {
                         self.myProfileWeeklyPreviousButton.isEnabled = false
                     }
                 }
