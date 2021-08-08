@@ -69,6 +69,7 @@ class SideOnlyViewController: UIViewController {
         self.socialButton.addTarget(self, action: #selector(self.showSocialButtonDidTap(_:)), for: .touchUpInside)
         self.myProfileButton.addTarget(self, action: #selector(self.showMyProfileButtonDidTap(_:)), for: .touchUpInside)
         self.myFeedButton.addTarget(self, action: #selector(self.showMyFeedButtonDidTap(_:)), for: .touchUpInside)
+        self.logoutButton.addTarget(self, action: #selector(self.logoutButtonDidTap(_:)), for: .touchUpInside)
     }
     
     @objc
@@ -123,5 +124,18 @@ class SideOnlyViewController: UIViewController {
     @objc
     private func showMySetButtonDidTap(_ sender: UIButton) {
         
+    }
+    
+    @objc
+    private func logoutButtonDidTap(_ sender: UIButton) {
+        UserDefaults.standard.removeObject(forKey: "USER_ID")
+        UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
+        print("OOKKOKOK")
+//        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+//        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+//        guard let loginVC = loginVC else { return }
+//        let navigationController = UINavigationController(rootViewController: loginVC)
+//        UIApplication.shared.windows.first?.rootViewController = navigationController
+//        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 }

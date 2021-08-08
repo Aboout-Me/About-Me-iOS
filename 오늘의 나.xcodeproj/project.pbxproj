@@ -185,7 +185,6 @@
 		07A8AE5226B04FCA00FE2027 /* social_white_message_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE4F26B04FC900FE2027 /* social_white_message_off.png */; };
 		07A8AE5326B04FCA00FE2027 /* social_white_message_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE5026B04FCA00FE2027 /* social_white_message_off@3x.png */; };
 		07ABFD0D2668F15500EAD6AC /* SocialDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ABFD0C2668F15500EAD6AC /* SocialDetailResponse.swift */; };
-		07AD884C26BC493700218499 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07AD884A26BC493700218499 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07B05726266687CA002085B7 /* SocialCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B05724266687CA002085B7 /* SocialCommentCell.swift */; };
 		07B05727266687CA002085B7 /* SocialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B05725266687CA002085B7 /* SocialCommentCell.xib */; };
 		07B89EAF268A1002007380A5 /* ProfileServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B89EA1268A1002007380A5 /* ProfileServerApi.swift */; };
@@ -231,6 +230,7 @@
 		07F8FDC02694ABCC00B306B2 /* s_card_purple@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDBA2694ABCC00B306B2 /* s_card_purple@3x.png */; };
 		07F8FDC12694ABCC00B306B2 /* s_card_purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 07F8FDBB2694ABCC00B306B2 /* s_card_purple.png */; };
 		07FA86CD261DEDE80008D6EA /* AdvisoryQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */; };
+		1840411226BF86C500035C27 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1840411126BF86C500035C27 /* UserProfile.swift */; };
 		18A07A9426A3E64A00BA151D /* SendInquireList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A07A9326A3E64A00BA151D /* SendInquireList.swift */; };
 		18A07A9626A3E6F400BA151D /* SettingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A07A9526A3E6F400BA151D /* SettingApiService.swift */; };
 		18BB80C2267F30D600D7FD89 /* Home_tempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C0267F30D600D7FD89 /* Home_tempViewController.swift */; };
@@ -244,7 +244,7 @@
 		18BB80D22685C2EF00D7FD89 /* ProfileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80D12685C2EF00D7FD89 /* ProfileList.swift */; };
 		18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */; };
 		18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */; };
-		C55A34CF439BA68A47F77D58 /* Pods_오늘의_나.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8123C63EF76A4DBC2AFF9D7 /* Pods_오늘의_나.framework */; };
+		AA08A5BCEF386BA1FA1D4B8B /* Pods_오늘의_나.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73DD8AB0FB4900602D568084 /* Pods_오늘의_나.framework */; };
 		FF04E01226B66CE3002131DC /* PushModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04E01126B66CE3002131DC /* PushModelList.swift */; };
 		FF3350542685011400D98DD9 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */; };
 		FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */; };
@@ -539,6 +539,7 @@
 		07F8FDBA2694ABCC00B306B2 /* s_card_purple@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "s_card_purple@3x.png"; sourceTree = "<group>"; };
 		07F8FDBB2694ABCC00B306B2 /* s_card_purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = s_card_purple.png; sourceTree = "<group>"; };
 		07FA86CC261DEDE80008D6EA /* AdvisoryQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvisoryQuestionViewController.swift; sourceTree = "<group>"; };
+		1840411126BF86C500035C27 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		1862A94B26BBC8AD00B7F7C1 /* 오늘의 나Release.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "오늘의 나Release.entitlements"; sourceTree = "<group>"; };
 		187558EC269ED6AF00B9C5B8 /* 오늘의 나.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "오늘의 나.entitlements"; sourceTree = "<group>"; };
 		18A07A9326A3E64A00BA151D /* SendInquireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInquireList.swift; sourceTree = "<group>"; };
@@ -555,8 +556,7 @@
 		18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewController.swift; sourceTree = "<group>"; };
 		18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsListViewController.xib; sourceTree = "<group>"; };
 		340738B870754F10FBD0EA70 /* Pods-오늘의 나.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.debug.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.debug.xcconfig"; sourceTree = "<group>"; };
-		A8123C63EF76A4DBC2AFF9D7 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		73DD8AB0FB4900602D568084 /* Pods___________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73DD8AB0FB4900602D568084 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF04E01126B66CE3002131DC /* PushModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushModelList.swift; sourceTree = "<group>"; };
 		FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
 		FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileAnswerDetailViewController.swift; sourceTree = "<group>"; };
@@ -630,7 +630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C55A34CF439BA68A47F77D58 /* Pods_오늘의_나.framework in Frameworks */,
+				AA08A5BCEF386BA1FA1D4B8B /* Pods_오늘의_나.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,6 +869,7 @@
 				07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */,
 				FF3350652688F09D00D98DD9 /* UtilModelList.swift */,
 				FF3350672688F40000D98DD9 /* UtilApi.swift */,
+				1840411126BF86C500035C27 /* UserProfile.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -876,7 +877,6 @@
 		18615D0226BEDE1800889C87 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				07AD884A26BC493700218499 /* Pods_오늘의_나.framework */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -918,8 +918,7 @@
 		DBC842E8AFC225550DEFB234 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A8123C63EF76A4DBC2AFF9D7 /* Pods_오늘의_나.framework */,
-				73DD8AB0FB4900602D568084 /* Pods___________.framework */,
+				73DD8AB0FB4900602D568084 /* Pods_오늘의_나.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1631,6 +1630,7 @@
 				FF3350542685011400D98DD9 /* MyProfileDetailViewController.swift in Sources */,
 				0725AB3C263AC7880082A20D /* AdvisoryList.swift in Sources */,
 				18BB80D0267F30E100D7FD89 /* SettingsViewController.swift in Sources */,
+				1840411226BF86C500035C27 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

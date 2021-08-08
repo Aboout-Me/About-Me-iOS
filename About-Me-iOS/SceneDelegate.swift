@@ -16,28 +16,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // MARK: - RootViewController set
-        if let windowScene = scene as? UIWindowScene {
-            let date = Date()
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd"
-            let todayDateValue = dateFormatter.string(from: date)
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            
-            self.window = UIWindow(windowScene: windowScene)
-            if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
-                let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-                guard let homeAfterVC = homeAfterView else { return }
-                let navigationController = UINavigationController(rootViewController: homeAfterVC)
-                self.window!.rootViewController = navigationController
-                self.window!.makeKeyAndVisible()
-            } else {
-                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-                guard let homeBeforeVC = homeBeforeView else { return }
-                let navigationController = UINavigationController(rootViewController: homeBeforeVC)
-                self.window!.rootViewController = navigationController
-                self.window!.makeKeyAndVisible()
-            }
+        if UserDefaults.standard.string(forKey: "USER_ID") != nil {
+            if let windowScene = scene as? UIWindowScene {
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let todayDateValue = dateFormatter.string(from: date)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
+                self.window = UIWindow(windowScene: windowScene)
+                if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
+                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                    guard let homeAfterVC = homeAfterView else { return }
+                    let navigationController = UINavigationController(rootViewController: homeAfterVC)
+                    self.window!.rootViewController = navigationController
+                    self.window!.makeKeyAndVisible()
+                } else {
+                    let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                    guard let homeBeforeVC = homeBeforeView else { return }
+                    let navigationController = UINavigationController(rootViewController: homeBeforeVC)
+                    self.window!.rootViewController = navigationController
+                    self.window!.makeKeyAndVisible()
+                }
+
+            }
         }
     }
 

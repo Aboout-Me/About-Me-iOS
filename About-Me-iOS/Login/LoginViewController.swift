@@ -187,6 +187,35 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
 @IBAction func buttonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "presentToConcierge", sender: nil)
     }
+    
+    @IBAction func loginButtonDidTap(_ sender: Any) {
+        USER_NICKNAME = "테스트입니다."
+        USER_ID = 3
+        UserDefaults.standard.setValue(USER_ID, forKey: "USER_ID")
+        UserDefaults.standard.setValue(USER_NICKNAME, forKey: "USER_NICKNAME")
+
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayDateValue = dateFormatter.string(from: date)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+
+        if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
+            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+            guard let homeAfterVC = homeAfterView else { return }
+            let navigationController = UINavigationController(rootViewController: homeAfterVC)
+            UIApplication.shared.windows.first?.rootViewController = navigationController
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+        } else {
+            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+            guard let homeBeforeVC = homeBeforeView else { return }
+            let navigationController = UINavigationController(rootViewController: homeBeforeVC)
+            navigationController.modalPresentationStyle = .fullScreen
+            UIApplication.shared.windows.first?.rootViewController = navigationController
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+        }
+    }
+    
 }
 
 // MARK: - 애플 로그인 파트
