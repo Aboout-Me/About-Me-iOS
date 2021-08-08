@@ -9,12 +9,9 @@ import Alamofire
 
 //GET http://3.36.188.237:8080/Mypage/10Q10A/theme/{user}
 
-let API_URL = "http://3.36.188.237:8080"
-let userId = 1
-
 struct AdvisoryApiService {
     static func getAdvisoryAnswerList(completion: @escaping (AdvisoryList?) -> Void) {
-        let urlComponent = URLComponents(string: "\(API_URL)/MyPage/10Q10A/theme/\(userId)")
+        let urlComponent = URLComponents(string: "\(API_URL)/MyPage/10Q10A/theme/\(USER_ID)")
         guard let url = urlComponent?.url else { return }
         print(url)
         
@@ -40,7 +37,7 @@ struct AdvisoryApiService {
     }
     
     static func getAdvisoryDetailList(stage: Int, theme: String, completion: @escaping (AdvisoryDetailList) -> Void) {
-        let urlString = "\(API_URL)/MyPage/10Q10A/listDetail/\(userId)/\(stage)/\(theme)"
+        let urlString = "\(API_URL)/MyPage/10Q10A/listDetail/\(USER_ID)/\(stage)/\(theme)"
         let encodedString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URL(string: encodedString) else { return }
         print(url)
