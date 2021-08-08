@@ -130,12 +130,11 @@ class SideOnlyViewController: UIViewController {
     private func logoutButtonDidTap(_ sender: UIButton) {
         UserDefaults.standard.removeObject(forKey: "USER_ID")
         UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
-        print("OOKKOKOK")
-//        let storyboard = UIStoryboard(name: "Login", bundle: nil)
-//        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
-//        guard let loginVC = loginVC else { return }
-//        let navigationController = UINavigationController(rootViewController: loginVC)
-//        UIApplication.shared.windows.first?.rootViewController = navigationController
-//        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+        guard let loginVC = loginView else { return }
+        let navigationController = UINavigationController(rootViewController: loginVC)
+        UIApplication.shared.windows.first?.rootViewController = navigationController
+        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 }
