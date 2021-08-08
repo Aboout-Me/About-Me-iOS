@@ -9,7 +9,7 @@ import Alamofire
 
 struct SocialApiService {
     static func getSocialList(state: String, color: String?, completion: @escaping ([SocialPostList]?) -> Void) {
-        var urlString = "\(API_URL)/Board/\(state)/\(userId)"
+        var urlString = "\(API_URL)/Board/\(state)/\(USER_ID)"
         if let color = color, color != "" {
             urlString.append("?color=\(color)")
         }
@@ -40,7 +40,7 @@ struct SocialApiService {
     }
     
     static func getSocialDetail(answerId: Int, authorId: Int, completion: @escaping (SocialDetailResponse?) -> Void) {
-        var urlString = "\(API_URL)/Board/info?answer_id=\(answerId)&user_id=\(userId)"
+        var urlString = "\(API_URL)/Board/info?answer_id=\(answerId)&user_id=\(USER_ID)"
         
         let urlComponent = URLComponents(string: urlString)
         guard let url = urlComponent?.url else { return }
@@ -71,7 +71,7 @@ struct SocialApiService {
         let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment")
         let parameters: [String: Any] = [
             "answerId": answerId,
-            "authorId": userId,
+            "authorId": USER_ID,
             "comment": comment
         ]
         guard let url = urlComponent?.url else { return }
@@ -96,7 +96,7 @@ struct SocialApiService {
         let parameters: [String: Any] = [
             "questId": questId,
             "authorId": authorId,
-            "userId": userId
+            "userId": USER_ID
         ]
         guard let url = urlComponent?.url else { return }
         
@@ -120,7 +120,7 @@ struct SocialApiService {
         let parameters: [String: Any] = [
             "questId": questId,
 //            "authorId": authorId,
-            "userId": userId
+            "userId": USER_ID
         ]
         guard let url = urlComponent?.url else { return }
         
@@ -140,7 +140,7 @@ struct SocialApiService {
     }
     
     static func getSocialSearch(keyword: String, completion: @escaping (SocialSearchResponse) -> Void) {
-        let urlComponent = URLComponents(string: "\(API_URL)/Board/\(userId)/search?keyword=\(keyword)")
+        let urlComponent = URLComponents(string: "\(API_URL)/Board/\(USER_ID)/search?keyword=\(keyword)")
         guard let url = urlComponent?.url else { return }
         print(url)
         
@@ -195,7 +195,7 @@ struct SocialApiService {
     }
     
     static func deleteComment(commentId: Int, completion: @escaping (SocialCommentDeleteResponse) -> Void) {
-        let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment?commentId=\(commentId)&userId=\(userId)")
+        let urlComponent = URLComponents(string:  "\(API_URL)/Board/comment?commentId=\(commentId)&userId=\(USER_ID)")
 
         guard let url = urlComponent?.url else { return }
         

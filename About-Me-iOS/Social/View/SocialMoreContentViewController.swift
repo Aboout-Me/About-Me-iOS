@@ -241,8 +241,8 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
             let detailVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
             if self.state == .none {
                 let post = self.feedList[indexPath.row]
-                detailVC.title = "" // TODO
-                detailVC.authorId = userId
+                detailVC.title = USER_NICKNAME
+                detailVC.authorId = USER_ID
                 detailVC.answerId = post.answerId
             }
             else {
