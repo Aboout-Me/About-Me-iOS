@@ -416,12 +416,35 @@ extension AdvisoryQuestionViewController: AdvisoryDelegate {
         let answerList = self.makeAnswerTemplate()
         print("answerList: \(answerList)")
         
-        AdvisoryApiService.saveAndUpdateAdvisoryAnswerList(answerList: answerList) { response in
-            print(response)
-            if response.code == 200 {
-                completion()
-            } else {
-                // TODO
+        if self.advisoryTitle == "" {
+            let alert = UIAlertController(title: "제목을 입력해주세요.", message: nil, preferredStyle: UIAlertController.Style.alert)
+            
+            let quitAction = UIAlertAction(title: "확인", style: .destructive) { _ in
+                self.dismiss(animated: false, completion: nil)
+            }
+            
+            alert.addAction(quitAction)
+            self.dismiss(animated: false) {
+                self.present(alert, animated: false, completion: nil)
+            }
+        }
+        else {
+            AdvisoryApiService.saveAndUpdateAdvisoryAnswerList(answerList: answerList) { response in
+                print(response)
+                if response.code == 200 {
+                    completion()
+                } else {
+                    let alert = UIAlertController(title: "잠시 후 다시 시도해주세요.", message: response.message, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let quitAction = UIAlertAction(title: "확인", style: .destructive) { _ in
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                    
+                    alert.addAction(quitAction)
+                    self.dismiss(animated: false) {
+                        self.present(alert, animated: false, completion: nil)
+                    }
+                }
             }
         }
     }

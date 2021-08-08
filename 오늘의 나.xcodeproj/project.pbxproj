@@ -245,6 +245,7 @@
 		18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */; };
 		18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */; };
 		C55A34CF439BA68A47F77D58 /* Pods_오늘의_나.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8123C63EF76A4DBC2AFF9D7 /* Pods_오늘의_나.framework */; };
+		FF04E01226B66CE3002131DC /* PushModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04E01126B66CE3002131DC /* PushModelList.swift */; };
 		FF3350542685011400D98DD9 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */; };
 		FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */; };
 		FF3350572685011400D98DD9 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3350522685011400D98DD9 /* MyProfileViewController.swift */; };
@@ -310,20 +311,6 @@
 		FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		07AD884D26BC493700218499 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				07AD884C26BC493700218499 /* Pods_오늘의_나.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0701122E268DDDF7008BD686 /* SocialSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSearchResponse.swift; sourceTree = "<group>"; };
@@ -569,6 +556,8 @@
 		18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsListViewController.xib; sourceTree = "<group>"; };
 		340738B870754F10FBD0EA70 /* Pods-오늘의 나.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-오늘의 나.debug.xcconfig"; path = "Target Support Files/Pods-오늘의 나/Pods-오늘의 나.debug.xcconfig"; sourceTree = "<group>"; };
 		A8123C63EF76A4DBC2AFF9D7 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		73DD8AB0FB4900602D568084 /* Pods___________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods___________.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF04E01126B66CE3002131DC /* PushModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushModelList.swift; sourceTree = "<group>"; };
 		FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
 		FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileAnswerDetailViewController.swift; sourceTree = "<group>"; };
 		FF3350522685011400D98DD9 /* MyProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
@@ -715,6 +704,7 @@
 				E45D6508C2D62EF6EF67D7BC /* Pods */,
 				DBC842E8AFC225550DEFB234 /* Frameworks */,
 				18615D0226BEDE1800889C87 /* Recovered References */,
+				FF14468F26BD3CE200B13E92 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -929,6 +919,7 @@
 			isa = PBXGroup;
 			children = (
 				A8123C63EF76A4DBC2AFF9D7 /* Pods_오늘의_나.framework */,
+				73DD8AB0FB4900602D568084 /* Pods___________.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -940,6 +931,14 @@
 				FFE458CCCE67B65365B80D6C /* Pods-오늘의 나.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FF14468F26BD3CE200B13E92 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				07AD884A26BC493700218499 /* Pods_오늘의_나.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		FF33504D2685011400D98DD9 /* ProfileView */ = {
@@ -1176,6 +1175,7 @@
 				FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */,
 				FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */,
 				FF3350632687843000D98DD9 /* LastAnswerCardList.swift */,
+				FF04E01126B66CE3002131DC /* PushModelList.swift */,
 			);
 			path = ServerApi;
 			sourceTree = "<group>";
@@ -1222,7 +1222,6 @@
 				0715A33B260CD1860077882A /* Frameworks */,
 				0715A33C260CD1860077882A /* Resources */,
 				0EB5905740CB90C3656C85DF /* [CP] Embed Pods Frameworks */,
-				07AD884D26BC493700218499 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1585,6 +1584,7 @@
 				FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */,
 				078BCF60265E9D3400303BB2 /* SocialSearchViewController.swift in Sources */,
 				07F33948264D298C00B5CFC0 /* UIColorExtensions.swift in Sources */,
+				FF04E01226B66CE3002131DC /* PushModelList.swift in Sources */,
 				07B89EAF268A1002007380A5 /* ProfileServerApi.swift in Sources */,
 				0714AE74265D2FE3005C3C6E /* SocialContentCell.swift in Sources */,
 				07B89EB9268A1002007380A5 /* ShareProgressList.swift in Sources */,

@@ -71,6 +71,12 @@ class LastAnswerViewController: UIViewController {
         answerFloatingButton.selectedColor = UIColor.gray999
         answerFloatingButton.plusColor = .white
         answerFloatingButton.sticky = true
+        let collectionviewFlowLayout = UICollectionViewFlowLayout()
+        collectionviewFlowLayout.scrollDirection = .vertical
+        collectionviewFlowLayout.minimumLineSpacing = 15
+        collectionviewFlowLayout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        collectionviewFlowLayout.itemSize = CGSize(width: UIScreen.main.bounds.size.width - 40, height: 176)
+        answerCollectionView.collectionViewLayout = collectionviewFlowLayout
         answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
@@ -156,6 +162,7 @@ class LastAnswerViewController: UIViewController {
             if case let .success(data) = result, let list = data {
                 print(list)
                 self.lastAnswerData = list.postList
+                self.lastAnswerData.reverse()
                 DispatchQueue.main.async {
                     if self.lastAnswerData[0].color == "red" {
                         self.backgroundImageView.image = UIImage(named: "imgBackgroundRed")
@@ -328,7 +335,7 @@ class LastAnswerViewController: UIViewController {
 }
 
 
-extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         return lastAnswerData.count
@@ -374,21 +381,6 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
         lastAnswerVC.title = "" // TODO - MyNickname
         lastAnswerVC.authorId = 1
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        return CGSize(width: UIScreen.main.bounds.size.width - 40, height: 367)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        
-        return 15
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 15, left: 20, bottom: 15, right: 20)
     }
     
     

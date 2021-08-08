@@ -163,8 +163,13 @@ class SocialOtherProfileViewController: UIViewController {
     private func configureNavigation() {
         let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "arrow-left.png"), style: .plain, target: self, action: #selector(backIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
-        self.navigationController?.navigationBar.tintColor = .white
         self.title = "프로필"
+        let label = UILabel()
+        label.textColor = .white
+        label.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        guard let labelText = self.title else { return }
+        label.text = labelText
+        self.navigationItem.titleView = label
     }
     
     private func getOtherProfile(color: String) {
