@@ -15,25 +15,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
         // MARK: - RootViewController set
-        if let windowScene = scene as? UIWindowScene {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-            self.window = UIWindow(windowScene: windowScene)
-            if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
-                let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-                guard let homeAfterVC = homeAfterView else { return }
-                let navigationController = UINavigationController(rootViewController: homeAfterVC)
-                self.window!.rootViewController = navigationController
-                self.window!.makeKeyAndVisible()
-            } else {
-                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-                guard let homeBeforeVC = homeBeforeView else { return }
-                let navigationController = UINavigationController(rootViewController: homeBeforeVC)
-                self.window!.rootViewController = navigationController
-                self.window!.makeKeyAndVisible()
-            }
-
-        }
+//        if let windowScene = scene as? UIWindowScene {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//            self.window = UIWindow(windowScene: windowScene)
+//            if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
+//                let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+//                guard let homeAfterVC = homeAfterView else { return }
+//                let navigationController = UINavigationController(rootViewController: homeAfterVC)
+//                self.window!.rootViewController = navigationController
+//                self.window!.makeKeyAndVisible()
+//            } else {
+//                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+//                guard let homeBeforeVC = homeBeforeView else { return }
+//                let navigationController = UINavigationController(rootViewController: homeBeforeVC)
+//                self.window!.rootViewController = navigationController
+//                self.window!.makeKeyAndVisible()
+//            }
+//
+//        }
         
     }
 

@@ -8,6 +8,9 @@ import SwiftKeychainWrapper
 // userId = 1
 
 struct LoginApiService {
+    
+    // MARK: - 회원가입 : 카카오, 네이버
+    
     static func postSignUp(authType: String, accessToken: String, escapingHandler : @escaping (Int, Int, String) -> ()) -> Void {
         
         var userIdForSignUp: Int = -1
@@ -69,6 +72,8 @@ struct LoginApiService {
         }
     }
     
+    // MARK: - 회원가입 : 애플
+    
     static func postSignUpForApple(code: String, id_token: String, escapingHandler : @escaping (Int, Int) -> ()) -> Void {
         
         let url = "\(API_URL)/apple/auth/signUp"
@@ -79,6 +84,7 @@ struct LoginApiService {
         let signUpParams = SignUpListForApple(code: code, id_token: id_token)
         
         let request = AF.request(url, method: .post, parameters: signUpParams, encoder: URLEncodedFormParameterEncoder.default)
+        
         request.validate(statusCode: 200...500).responseString { response in
             status = response.response!.statusCode
             switch response.result {
@@ -122,16 +128,21 @@ struct LoginApiService {
         }
     }
     
+    // MARK: - 로그인 : 카카오, 네이버
+    
     static func getSignIn(authType: String, accessToken: String, escapingHandler : @escaping (Int, String) -> ()) -> Void {
+        var appdelegate = UIApplication.shared.delegate as? AppDelegate
+        let fcmToken = (appdelegate?.fcmtoken)!
+        print("fcm :\(fcmToken)")
         
         let url = "\(API_URL)/auth/signin"
         var userIdForLogin: Int = -1
         var nickName: String = ""
-        var fcmToken: String = ""
         
         let headers: HTTPHeaders = [
             "token": accessToken
         ]
+        print("at :\(accessToken)")
         let signInParams = SignInList(type: authType, fcmToken: fcmToken)
         
         let request = AF.request(url, method: .get, parameters: signInParams, encoder: URLEncodedFormParameterEncoder.default, headers: headers)
@@ -159,6 +170,8 @@ struct LoginApiService {
             }
         }
     }
+    
+    // MARK: - 로그인 : 애플
     
     static func getSignInForApple(code: String, id_token: String, escapingHandler : @escaping (Int) -> ()) -> Void {
         
@@ -191,6 +204,8 @@ struct LoginApiService {
         }
     }
     
+    // MARK: - 회원정보추가(회원가입 시)
+    
     static func putProfileForSignUp(birthday: String, email: String, nickName: String, gender: String, introduce: String, userId: Int)
     {
         let url = "\(API_URL)/MyPage/profile"
@@ -221,6 +236,9 @@ struct LoginApiService {
             }
         }
     }
+    
+    // MARK: - 회원정보수정(설정)
+    
     static func putProfileForEditing(nickName: String, introduce: String, userId: Int)
     {
         let url = "\(API_URL)/MyPage/profile"
