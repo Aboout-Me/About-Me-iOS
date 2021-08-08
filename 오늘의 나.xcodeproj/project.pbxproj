@@ -185,7 +185,6 @@
 		07A8AE5226B04FCA00FE2027 /* social_white_message_off.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE4F26B04FC900FE2027 /* social_white_message_off.png */; };
 		07A8AE5326B04FCA00FE2027 /* social_white_message_off@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 07A8AE5026B04FCA00FE2027 /* social_white_message_off@3x.png */; };
 		07ABFD0D2668F15500EAD6AC /* SocialDetailResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07ABFD0C2668F15500EAD6AC /* SocialDetailResponse.swift */; };
-		07AD884C26BC493700218499 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 07AD884A26BC493700218499 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		07B05726266687CA002085B7 /* SocialCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B05724266687CA002085B7 /* SocialCommentCell.swift */; };
 		07B05727266687CA002085B7 /* SocialCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 07B05725266687CA002085B7 /* SocialCommentCell.xib */; };
 		07B89EAF268A1002007380A5 /* ProfileServerApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07B89EA1268A1002007380A5 /* ProfileServerApi.swift */; };
@@ -311,20 +310,6 @@
 		FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */; };
 		FFFDB827261F235100947C44 /* HomeBeforeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		07AD884D26BC493700218499 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				07AD884C26BC493700218499 /* Pods_오늘의_나.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0701122E268DDDF7008BD686 /* SocialSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSearchResponse.swift; sourceTree = "<group>"; };
@@ -1226,7 +1211,6 @@
 				0715A33B260CD1860077882A /* Frameworks */,
 				0715A33C260CD1860077882A /* Resources */,
 				0EB5905740CB90C3656C85DF /* [CP] Embed Pods Frameworks */,
-				07AD884D26BC493700218499 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);

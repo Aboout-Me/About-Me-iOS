@@ -158,6 +158,10 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let rootView = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else { return }
         let navigationController = rootView as? UINavigationController
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayValueDate = dateFormatter.string(from: date)
         self.badgeCount = 0
         print("test userInfo ",userInfo.userInfo)
         if UIApplication.shared.applicationState == .active {
@@ -165,7 +169,7 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
             guard let noticeVC = notionView else { return }
             navigationController?.pushViewController(noticeVC, animated: true)
         } else if UIApplication.shared.applicationState == .inactive || UIApplication.shared.applicationState == .background {
-            if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
+            if UserDefaults.standard.string(forKey: "last_answerDate") == todayValueDate {
                 let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                 guard let homeAfterVC = homeAfterView else { return }
                 navigationController?.pushViewController(homeAfterVC, animated: true)

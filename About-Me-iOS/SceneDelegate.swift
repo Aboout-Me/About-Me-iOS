@@ -17,10 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // MARK: - RootViewController set
         if let windowScene = scene as? UIWindowScene {
+            let date = Date()
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            let todayDateValue = dateFormatter.string(from: date)
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+            
             self.window = UIWindow(windowScene: windowScene)
-            if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
+            if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
                 let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                 guard let homeAfterVC = homeAfterView else { return }
                 let navigationController = UINavigationController(rootViewController: homeAfterVC)

@@ -57,6 +57,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
+        removeUserDefaultData()
     }
     
     deinit {
@@ -176,10 +177,19 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     private func removeUserDefaultData() {
-        if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
+        let date = Date()
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let todayDate = dateFormatter.string(from: date)
+        if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
             UserDefaults.standard.removeObject(forKey: "card_seq")
             UserDefaults.standard.removeObject(forKey: "answer_Id")
             UserDefaults.standard.synchronize()
+        } else if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 && UserDefaults.standard.string(forKey: "last_answerDate") == todayDate {
+            let storybaotd = UIStoryboard(name: "Main", bundle: nil)
+            let homeAfterView = storybaotd.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+            guard let homeAfterVC = homeAfterView else { return }
+            self.navigationController?.pushViewController(homeAfterVC, animated: true)
         }
     }
     
@@ -200,7 +210,15 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             }
         }
     }
-        
+    
+    public func saveValueDate() {
+        let lastDate = Date()
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy-MM-dd"
+        let currentDate = dateformatter.string(from: lastDate)
+        UserDefaults.standard.set(currentDate, forKey: "last_answerDate")
+    }
+    
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
         let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: 1)
@@ -208,6 +226,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             if case let .success(data) = result, let list = data {
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
                 print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
+                self.saveValueDate()
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
                     UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
