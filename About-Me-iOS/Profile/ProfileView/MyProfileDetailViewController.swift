@@ -239,7 +239,7 @@ class MyProfileDetailViewController: UIViewController {
     }
     
     private func getCategoryList() {
-        ProfileServerApi.getCategoryProgress(userId: 1) { result in
+        ProfileServerApi.getCategoryProgress(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 DispatchQueue.main.async {
                     self.categoryData = list
@@ -324,7 +324,7 @@ class MyProfileDetailViewController: UIViewController {
     }
     
     private func getWeeklyList(){
-        ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
+        ProfileServerApi.getWeeklyProgress(userId: USER_ID) { [self] result in
             if case let .success(data) = result, let list = data {
                 self.weeklyData = list.weeklyProgressingList[sequence].week!
                 self.weeklyListData = list.weeklyProgressingList
@@ -507,7 +507,7 @@ class MyProfileDetailViewController: UIViewController {
     
     @objc
     private func weeklyNextButtonDidTap(_ sender: UIButton) {
-        ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
+        ProfileServerApi.getWeeklyProgress(userId: USER_ID) { [self] result in
             if case let .success(data) = result, let list = data {
                 self.sequence += 1
                 print("list end count \(sequence)")
@@ -529,7 +529,7 @@ class MyProfileDetailViewController: UIViewController {
     
     @objc
     private func weeklyPreviousButtonDidTap(_ sender: UIButton) {
-        ProfileServerApi.getWeeklyProgress(userId: 1) { [self] result in
+        ProfileServerApi.getWeeklyProgress(userId: USER_ID) { [self] result in
             if case let .success(data) = result, let list = data {
                 self.sequence -= 1
                 print("list count \(sequence)")

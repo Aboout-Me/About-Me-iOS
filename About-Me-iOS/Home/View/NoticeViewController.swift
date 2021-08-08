@@ -41,7 +41,7 @@ class NoticeViewController: UIViewController {
     }
     
     private func getPushList() {
-        UtilApi.getPushList(userId: 4) { result in
+        UtilApi.getPushList(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 print("push result value \(result)")
                 self.noticeData = list.body

@@ -194,7 +194,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     private func getHomeCardList() {
-        HomeServerApi.getHomeCardList(userId: 1) { result in
+        HomeServerApi.getHomeCardList(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 print(self.homeData)
                 DispatchQueue.main.async {
@@ -221,7 +221,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
-        let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: 1)
+        let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: USER_ID)
         HomeServerApi.postHomecardListSave(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")

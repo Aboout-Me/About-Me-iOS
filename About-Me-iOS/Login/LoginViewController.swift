@@ -188,7 +188,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         performSegue(withIdentifier: "presentToConcierge", sender: nil)
     }
     
-    @IBAction func loginButtonDidTap(_ sender: Any) {
+    @IBAction func loginButtonDidTap(_ sender: UIButton) {
         USER_NICKNAME = "테스트입니다."
         USER_ID = 3
         UserDefaults.standard.setValue(USER_ID, forKey: "USER_ID")
