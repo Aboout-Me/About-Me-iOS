@@ -7,5 +7,5 @@
 
 import Foundation
 
-var USER_ID: Int?
-var USER_NICKNAME: String?
+var USER_ID: Int = UserDefaults.standard.integer(forKey: "USER_ID")
+var USER_NICKNAME: String? = UserDefaults.standard.string(forKey: "USER_NICKNAME") ?? nil
