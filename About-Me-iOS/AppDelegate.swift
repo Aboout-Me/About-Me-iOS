@@ -162,24 +162,37 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let todayValueDate = dateFormatter.string(from: date)
-        self.badgeCount = 0
+        badgeCount = 0
         print("test userInfo ",userInfo.userInfo)
         if UIApplication.shared.applicationState == .active {
             let notionView = storyboard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
             guard let noticeVC = notionView else { return }
             navigationController?.pushViewController(noticeVC, animated: true)
         } else if UIApplication.shared.applicationState == .inactive || UIApplication.shared.applicationState == .background {
-            if UserDefaults.standard.string(forKey: "last_answerDate") == todayValueDate {
-                let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-                guard let homeAfterVC = homeAfterView else { return }
-                navigationController?.pushViewController(homeAfterVC, animated: true)
-            } else {
-                let navigationController = rootView as? UINavigationController
-                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-                guard let homeBeforeVC = homeBeforeView else { return }
-                navigationController?.pushViewController(homeBeforeVC, animated: true)
-            }
+            isWriteCardValue()
         }
         completionHandler()
     }
+    
+    private func isWriteCardValue() {
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let rootView = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else { return }
+            let navigationController = rootView as? UINavigationController
+            if case let .success(data) = result, let list = data {
+                print("AppDelegate IsDailyWrite ValueCheck\(list.isWritten)")
+                if list.isWritten == false {
+                    let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                    guard let homeBeforeVC = homeBeforeView else { return }
+                    navigationController?.pushViewController(homeBeforeVC, animated: true)
+                } else {
+                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                    guard let homeAfterVC = homeAfterView else { return }
+                    navigationController?.pushViewController(homeAfterVC, animated: true)
+                }
+            }
+        }
+    }
+    
+    
 }

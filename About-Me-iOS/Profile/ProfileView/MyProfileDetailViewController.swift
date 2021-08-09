@@ -515,6 +515,7 @@ class MyProfileDetailViewController: UIViewController {
                 print("list end index count \(self.weeklyListData.endIndex)")
                 if self.sequence == self.weeklyListData.endIndex - 1 {
                     self.myProfileWeeklyNextButton.isEnabled = false
+                    self.myProfileWeeklyPreviousButton.isEnabled = true
                     self.weeklyData = list.weeklyProgressingList[sequence].week!
                 } else {
                     self.myProfileWeeklyPreviousButton.isEnabled = true
@@ -537,6 +538,7 @@ class MyProfileDetailViewController: UIViewController {
                 print("list start count \(self.weeklyListData.startIndex)")
                 if self.sequence == self.weeklyListData.startIndex {
                     self.myProfileWeeklyPreviousButton.isEnabled = false
+                    self.myProfileWeeklyNextButton.isEnabled = true
                     self.weeklyData = list.weeklyProgressingList[sequence].week!
                 } else {
                     self.myProfileWeeklyNextButton.isEnabled = true

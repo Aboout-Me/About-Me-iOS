@@ -194,6 +194,30 @@ struct HomeServerApi {
             }
     }
     
+    static func getIsDailyWrite(userId: Int, completionHandler: @escaping(Result<HomeWriteCardList>) -> ()) {
+        let urlString: URL = URL(string: "http://3.36.188.237:8080/Board/isDailyWirtten/\(userId)")!
+        
+        AF.request(urlString, method: .get, encoding: JSONEncoding.default)
+            .responseData { response in
+                debugPrint(response)
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let decoder = JSONDecoder()
+                        let dailyWriteList = try decoder.decode(HomeWriteCardList.self, from: response)
+                        if dailyWriteList.code == 200 {
+                            let result = Result<HomeWriteCardList>.success(data: dailyWriteList)
+                            completionHandler(result)
+                        }
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
 }
 extension HomeServerApi {
     enum Result<T> {

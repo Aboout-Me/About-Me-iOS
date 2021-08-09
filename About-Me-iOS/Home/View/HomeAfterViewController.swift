@@ -48,7 +48,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        isEqualDateValue()
+        isWriteCardCheck()
         setLayoutInit()
         setSideMenuLayoutInit()
         getUtilList()
@@ -65,7 +65,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
-        isEqualDateValue()
+        isWriteCardCheck()
         getUtilList()
     }
     
@@ -133,6 +133,22 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         if UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
             UserDefaults.standard.removeObject(forKey: "answer_Id")
             self.navigationController?.popViewController(animated: true)
+        }
+    }
+    
+    private func isWriteCardCheck() {
+        let toDate = Date()
+        let dateFormmater = DateFormatter()
+        dateFormmater.dateFormat = "yyyy-MM-dd"
+        let todayDate = dateFormmater.string(from: toDate)
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            if case let .success(data) = result, let list = data {
+                if list.isWritten == false && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
+                    UserDefaults.standard.removeObject(forKey: "answer_Id")
+                    UserDefaults.standard.synchronize()
+                    self.navigationController?.popViewController(animated: true)
+                }
+            }
         }
     }
     

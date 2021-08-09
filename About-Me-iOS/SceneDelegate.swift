@@ -24,20 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 let todayDateValue = dateFormatter.string(from: date)
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-                self.window = UIWindow(windowScene: windowScene)
-                if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
-                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-                    guard let homeAfterVC = homeAfterView else { return }
-                    let navigationController = UINavigationController(rootViewController: homeAfterVC)
-                    self.window!.rootViewController = navigationController
-                    self.window!.makeKeyAndVisible()
-                } else {
-                    let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-                    guard let homeBeforeVC = homeBeforeView else { return }
-                    let navigationController = UINavigationController(rootViewController: homeBeforeVC)
-                    self.window!.rootViewController = navigationController
-                    self.window!.makeKeyAndVisible()
-                }
+                window = UIWindow(windowScene: windowScene)
+                isSceneDailyCheck()
 
             }
         }
@@ -98,6 +86,28 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let url = URLContexts.first?.url {
             if (AuthApi.isKakaoTalkLoginUrl(url)) {
                 _ = AuthController.handleOpenUrl(url: url)
+            }
+        }
+    }
+    
+    private func isSceneDailyCheck() {
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            if case let .success(data) = result, let list = data {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                print("isScene Daily Check Value \(list.isWritten)")
+                if list.isWritten == false {
+                    let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                    guard let homeBeforeVC = homeBeforeView else { return }
+                    let navigationController = UINavigationController(rootViewController: homeBeforeVC)
+                    self.window!.rootViewController = navigationController
+                    self.window!.makeKeyAndVisible()
+                } else {
+                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                    guard let homeAfterVC = homeAfterView else { return }
+                    let navigationController = UINavigationController(rootViewController: homeAfterVC)
+                    self.window!.rootViewController = navigationController
+                    self.window!.makeKeyAndVisible()
+                }
             }
         }
     }

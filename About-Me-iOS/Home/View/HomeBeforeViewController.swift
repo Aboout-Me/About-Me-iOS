@@ -42,7 +42,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         getHomeCardList()
         setLayoutInit()
         setSideMenuLayoutInit()
-        removeUserDefaultData()
+        getWriteCardList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +57,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
-        removeUserDefaultData()
+        getWriteCardList()
     }
     
     deinit {
@@ -176,20 +176,25 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func removeUserDefaultData() {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todayDate = dateFormatter.string(from: date)
-        if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
-            UserDefaults.standard.removeObject(forKey: "card_seq")
-            UserDefaults.standard.removeObject(forKey: "answer_Id")
-            UserDefaults.standard.synchronize()
-        } else if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 && UserDefaults.standard.string(forKey: "last_answerDate") == todayDate {
-            let storybaotd = UIStoryboard(name: "Main", bundle: nil)
-            let homeAfterView = storybaotd.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-            guard let homeAfterVC = homeAfterView else { return }
-            self.navigationController?.pushViewController(homeAfterVC, animated: true)
+    private func getWriteCardList() {
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            if case let .success(data) = result, let list = data {
+                let date = Date()
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                let todayDate = dateFormatter.string(from: date)
+                if list.isWritten == true && UserDefaults.standard.string(forKey: "last_answerDate") == todayDate {
+                    print("getIsDailyWrite Data \(list.isWritten)")
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeAfterVC = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                    guard let homeAfterView = homeAfterVC else { return }
+                    self.navigationController?.pushViewController(homeAfterView, animated: true)
+                } else if list.isWritten == false && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
+                    UserDefaults.standard.removeObject(forKey: "card_seq")
+                    UserDefaults.standard.removeObject(forKey: "answer_Id")
+                    UserDefaults.standard.synchronize()
+                }
+            }
         }
     }
     
@@ -377,11 +382,11 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let center = view.convert(homeBeforeCollectionView.center, to: homeBeforeCollectionView)
         guard let indexpath = homeBeforeCollectionView.indexPathForItem(at: center) else { return UICollectionViewCell() }
         if homeData[indexpath.item].lev == "1" {
-            homeBeforeLastAnswerButton.isHidden = true
+            homeBeforeLastAnswerButton.isHidden = false
         } else {
             homeBeforeLastAnswerButton.isHidden = false
         }
-        if homeData[indexPath.item].color == "0" {
+        if homeData[indexPath.item].color == "red" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#열정"
@@ -390,7 +395,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryRed
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryRed
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryRed
-        } else if homeData[indexPath.item].color == "1" {
+        } else if homeData[indexPath.item].color == "yellow" {
             cell.homeBeforeCharacterLabel.text = "소소한 일상"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#일상"
@@ -400,7 +405,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryYellow
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryYellow
         
-        } else if homeData[indexPath.item].color == "2" {
+        } else if homeData[indexPath.item].color == "green" {
             cell.homeBeforeCharacterLabel.text = "기억상자"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#힐링"
@@ -409,7 +414,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryGreen
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryGreen
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryGreen
-        } else if homeData[indexPath.item].color == "3" {
+        } else if homeData[indexPath.item].color == "pink" {
             cell.homeBeforeCharacterLabel.text = "관계의 미학"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#연애"
@@ -418,7 +423,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryPink
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryPink
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPink
-        } else  {
+        } else {
             cell.homeBeforeCharacterLabel.text = "상상 플러스"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#만약에"
@@ -479,13 +484,13 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             homeBeforeLastAnswerButton.isHidden = false
         }
         print("colletionView point\(point)")
-        if homeData[currentPage].color == "0" {
+        if homeData[currentPage].color == "red" {
             homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-        } else if homeData[currentPage].color == "1" {
+        } else if homeData[currentPage].color == "yellow" {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-        } else if homeData[currentPage].color == "2" {
+        } else if homeData[currentPage].color == "green" {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-        } else if homeData[currentPage].color == "3" {
+        } else if homeData[currentPage].color == "pink" {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
         } else {
             self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
