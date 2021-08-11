@@ -18,12 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // MARK: - RootViewController set
         if UserDefaults.standard.string(forKey: "USER_ID") != nil {
             if let windowScene = scene as? UIWindowScene {
-                let date = Date()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                let todayDateValue = dateFormatter.string(from: date)
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
                 window = UIWindow(windowScene: windowScene)
                 isSceneDailyCheck()
 

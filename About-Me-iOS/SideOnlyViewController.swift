@@ -74,19 +74,22 @@ class SideOnlyViewController: UIViewController {
     
     @objc
     private func showQuestionButtonDidTap(_ sender: UIButton) {
-        if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as?
-            HomeAfterViewController
-            guard let homeAfterVC = homeAfterView else { return }
-            self.navigationController?.pushViewController(homeAfterVC, animated: true)
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-            guard let homeBeforeVC = homeBeforeView else { return }
-            self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            if case let .success(data) = result, let list = data {
+                if list.isWritten == true {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as?
+                    HomeAfterViewController
+                    guard let homeAfterVC = homeAfterView else { return }
+                    self.navigationController?.pushViewController(homeAfterVC, animated: true)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                    guard let homeBeforeVC = homeBeforeView else { return }
+                    self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+                }
+            }
         }
-        
     }
     
     @objc

@@ -125,25 +125,10 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
 
     }
     
-    public func isEqualDateValue() {
-        let toDate = Date()
-        let dateFormmater = DateFormatter()
-        dateFormmater.dateFormat = "yyyy-MM-dd"
-        let todayDate = dateFormmater.string(from: toDate)
-        if UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
-            UserDefaults.standard.removeObject(forKey: "answer_Id")
-            self.navigationController?.popViewController(animated: true)
-        }
-    }
-    
     private func isWriteCardCheck() {
-        let toDate = Date()
-        let dateFormmater = DateFormatter()
-        dateFormmater.dateFormat = "yyyy-MM-dd"
-        let todayDate = dateFormmater.string(from: toDate)
         HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
-                if list.isWritten == false && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
+                if list.isWritten == false {
                     UserDefaults.standard.removeObject(forKey: "answer_Id")
                     UserDefaults.standard.synchronize()
                     self.navigationController?.popViewController(animated: true)

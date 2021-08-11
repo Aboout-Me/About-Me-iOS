@@ -152,6 +152,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         questionToolBar.sizeToFit()
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
+        editAnswerSheetView.tag = 2
         editAnswerSheetView.postQuestionLabel.attributedText = NSAttributedString(string:"\(questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         editAnswerSheetView.postNavigationTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
         editAnswerSheetView.postQuestionLabel.textColor = .gray333
@@ -179,17 +180,13 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private func getWriteCardList() {
         HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
-                let date = Date()
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                let todayDate = dateFormatter.string(from: date)
-                if list.isWritten == true && UserDefaults.standard.string(forKey: "last_answerDate") == todayDate {
+                if list.isWritten == true {
                     print("getIsDailyWrite Data \(list.isWritten)")
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeAfterVC = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                     guard let homeAfterView = homeAfterVC else { return }
                     self.navigationController?.pushViewController(homeAfterView, animated: true)
-                } else if list.isWritten == false && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
+                } else {
                     UserDefaults.standard.removeObject(forKey: "card_seq")
                     UserDefaults.standard.removeObject(forKey: "answer_Id")
                     UserDefaults.standard.synchronize()
@@ -216,13 +213,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         }
     }
     
-    public func saveValueDate() {
-        let lastDate = Date()
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy-MM-dd"
-        let currentDate = dateformatter.string(from: lastDate)
-        UserDefaults.standard.set(currentDate, forKey: "last_answerDate")
-    }
     
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
@@ -231,7 +221,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             if case let .success(data) = result, let list = data {
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
                 print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
-                self.saveValueDate()
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
                     UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
@@ -270,8 +259,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
     
-    // TODO: - KeyBoardEvent
-    
     @objc
     public func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -305,17 +292,15 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     @objc
-    private func showAlarmButtonDidTap() {
+    private func showAlarmButtonDidTap(_ sender: UIButton) {
+        let window = UIApplication.shared.windows.first
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let noticeView = storyboard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
         guard let noticeVC = noticeView else { return }
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
-        } completion: { success in
-            if success {
-                self.navigationController?.pushViewController(noticeVC, animated: true)
-            }
+        if let editView = window?.viewWithTag(2) {
+            editView.removeFromSuperview()
         }
+        self.navigationController?.pushViewController(noticeVC, animated: true)
     }
     
     @objc
@@ -380,11 +365,12 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         ParagraphStyle.lineSpacing = 6
         print("색상 테스트\(homeData[indexPath.item].color)")
         let center = view.convert(homeBeforeCollectionView.center, to: homeBeforeCollectionView)
-        guard let indexpath = homeBeforeCollectionView.indexPathForItem(at: center) else { return UICollectionViewCell() }
-        if homeData[indexpath.item].lev == "1" {
-            homeBeforeLastAnswerButton.isHidden = false
-        } else {
-            homeBeforeLastAnswerButton.isHidden = false
+        if let indexRow = homeBeforeCollectionView.indexPathForItem(at: center) {
+            if homeData[indexRow.item].lev == "1" {
+                homeBeforeLastAnswerButton.isHidden = true
+            } else {
+                homeBeforeLastAnswerButton.isHidden = false
+            }
         }
         if homeData[indexPath.item].color == "red" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"

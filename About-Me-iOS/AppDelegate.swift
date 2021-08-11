@@ -158,10 +158,6 @@ extension AppDelegate: MessagingDelegate,UNUserNotificationCenterDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let rootView = (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.window?.rootViewController else { return }
         let navigationController = rootView as? UINavigationController
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todayValueDate = dateFormatter.string(from: date)
         badgeCount = 0
         print("test userInfo ",userInfo.userInfo)
         if UIApplication.shared.applicationState == .active {
