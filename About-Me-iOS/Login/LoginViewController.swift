@@ -19,6 +19,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     @IBOutlet weak var logoDescription: UILabel!
     @IBOutlet var logoImage: UIImageView!
     let img = UIImage(named: "logoImage.png")
+    @IBOutlet weak var idTextField: UITextField!
     
 //    var accessToken: String = ""
 //    var refreshToken: String = ""
@@ -189,30 +190,43 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     }
     
     @IBAction func loginButtonDidTap(_ sender: UIButton) {
-        USER_NICKNAME = "테스트입니다."
-        USER_ID = 3
-        UserDefaults.standard.setValue(USER_ID, forKey: "USER_ID")
-        UserDefaults.standard.setValue(USER_NICKNAME, forKey: "USER_NICKNAME")
+        if let text = idTextField.text, let textInt = Int(text) {
+            ProfileServerApi.getMyProfilePage(userId: textInt, colorParameter: nil) { result in
+                if case let .success(data) = result, let list = data {
+                    DispatchQueue.main.async {
+                        USER_NICKNAME = list.nickName
+                        USER_ID = textInt
+                        UserDefaults.standard.setValue(USER_ID, forKey: "USER_ID")
+                        UserDefaults.standard.setValue(USER_NICKNAME, forKey: "USER_NICKNAME")
 
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todayDateValue = dateFormatter.string(from: date)
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let date = Date()
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd"
+                        let todayDateValue = dateFormatter.string(from: date)
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
-            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-            guard let homeAfterVC = homeAfterView else { return }
-            let navigationController = UINavigationController(rootViewController: homeAfterVC)
-            UIApplication.shared.windows.first?.rootViewController = navigationController
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
+                            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                            guard let homeAfterVC = homeAfterView else { return }
+                            let navigationController = UINavigationController(rootViewController: homeAfterVC)
+                            UIApplication.shared.windows.first?.rootViewController = navigationController
+                            UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        } else {
+                            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                            guard let homeBeforeVC = homeBeforeView else { return }
+                            let navigationController = UINavigationController(rootViewController: homeBeforeVC)
+                            navigationController.modalPresentationStyle = .fullScreen
+                            UIApplication.shared.windows.first?.rootViewController = navigationController
+                            UIApplication.shared.windows.first?.makeKeyAndVisible()
+                        }
+                    }
+                }
+            }
         } else {
-            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-            guard let homeBeforeVC = homeBeforeView else { return }
-            let navigationController = UINavigationController(rootViewController: homeBeforeVC)
-            navigationController.modalPresentationStyle = .fullScreen
-            UIApplication.shared.windows.first?.rootViewController = navigationController
-            UIApplication.shared.windows.first?.makeKeyAndVisible()
+            let alert = UIAlertController.init(title: nil, message: "아이디를 입력해주세요.", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+            alert.addAction(cancelAction)
+            present(alert, animated: false, completion: nil)
         }
     }
     

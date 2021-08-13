@@ -192,6 +192,11 @@ class SideOnlyViewController: UIViewController {
             print("=========")
             print("로그아웃 오류 : UserDefaults에서 AUTH_TYPE 가져오기 실패")
             print("=========")
+            let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+            guard let loginVC = loginView else { return }
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            UIApplication.shared.windows.first?.rootViewController = navigationController
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
         
         //        let storyboard = UIStoryboard(name: "Login", bundle: nil)
