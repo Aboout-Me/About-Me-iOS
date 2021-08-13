@@ -42,6 +42,8 @@ struct LoginApiService {
                             print(error)
                         }
                     }
+                    
+                    escapingHandler(status, userIdForSignUp, userNickName)
                 }
                 else if response.response?.statusCode == 401 {
                     print("postSignUp : 401(인증에러)")
@@ -54,6 +56,8 @@ struct LoginApiService {
                     getSignIn(authType: authType, accessToken: accessToken){ (userIdForLogin, nickName) -> () in
                         userIdForSignUp = userIdForLogin
                         userNickName = nickName
+                        
+                        escapingHandler(status, userIdForSignUp, userNickName)
                     }
                 }
                 else{
@@ -61,7 +65,7 @@ struct LoginApiService {
                     print("status Code: \(response.response!.statusCode)")
                 }
                 
-                escapingHandler(status, userIdForSignUp, userNickName)
+//                escapingHandler(status, userIdForSignUp, userNickName)
                 
             case .failure(let error):
                 print("postSignUp 실패")
@@ -112,12 +116,11 @@ struct LoginApiService {
                     getSignInForApple(code: code, id_token: id_token){ (userIdForLogin) -> () in
                         userIdForSignUp = userIdForLogin
                     }
+                    escapingHandler(status, userIdForSignUp)
                 }
                 else{
                     print("postSignUp : statusCode 오류")
                 }
-                
-                escapingHandler(status, userIdForSignUp)
                 
             case .failure(let error):
                 print("postSignUp 실패")
@@ -151,17 +154,21 @@ struct LoginApiService {
             case .success:
                 print("getSignIn 성공")
                 print("response.value : \(response.value)")
+                print("response.data : \(response.data)")
                 if let data = response.data {
                     do {
                         let responseDecoded = try JSONDecoder().decode(SignInResponse.self, from: data)
                         userIdForLogin = responseDecoded.userId
                         nickName = responseDecoded.nickName
+                        
                         print(" ** userIdForLogin \(userIdForLogin)")
+                        
+                        escapingHandler(userIdForLogin, nickName)
                     }catch let error as NSError{
                         print(error)
                     }
                 }
-                escapingHandler(userIdForLogin, nickName)
+                
                 
             case .failure(let error):
                 print("getSignIn 실패")

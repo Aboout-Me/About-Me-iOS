@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import KakaoSDKCommon
+import KakaoSDKAuth
+import KakaoSDKUser
+import NaverThirdPartyLogin
 
 class SideOnlyViewController: UIViewController {
     @IBOutlet weak var todayQuestionButton: UIButton!
@@ -134,10 +138,72 @@ class SideOnlyViewController: UIViewController {
         UserDefaults.standard.removeObject(forKey: "USER_ID")
         UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
         let storyboard = UIStoryboard(name: "Login", bundle: nil)
-        let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
-        guard let loginVC = loginView else { return }
-        let navigationController = UINavigationController(rootViewController: loginVC)
-        UIApplication.shared.windows.first?.rootViewController = navigationController
-        UIApplication.shared.windows.first?.makeKeyAndVisible()
+        
+        if let AUTH_TYPE = UserDefaults.standard.string(forKey: "AUTH_TYPE") {
+            if AUTH_TYPE == "Kakao" {
+                UserApi.shared.logout {(error) in
+                    if let error = error {
+                        print(error)
+                    }
+                    else {
+                        print("logout() success.")
+                        
+                        UserDefaults.standard.removeObject(forKey: "USER_ID")
+                        UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
+                        UserDefaults.standard.removeObject(forKey: "AUTH_TYPE")
+                        
+                        print("카카오 로그아웃 성공")
+                        
+                        let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                        guard let loginVC = loginView else { return }
+                        let navigationController = UINavigationController(rootViewController: loginVC)
+                        UIApplication.shared.windows.first?.rootViewController = navigationController
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
+                    }
+                }
+            }
+            else if AUTH_TYPE == "Naver" {
+                let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+                
+                loginInstance?.requestDeleteToken()
+                
+                UserDefaults.standard.removeObject(forKey: "USER_ID")
+                UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
+                UserDefaults.standard.removeObject(forKey: "AUTH_TYPE")
+                
+                print("네이버 로그아웃 성공")
+                
+                let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                guard let loginVC = loginView else { return }
+                let navigationController = UINavigationController(rootViewController: loginVC)
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
+            }
+            else if AUTH_TYPE == "Apple" {
+                // 개발예정
+            }
+            else {
+                print("=========")
+                print("로그아웃 오류 : AUTH_TYPE 식별실패")
+                print("=========")
+            }
+        }
+        else {
+            print("=========")
+            print("로그아웃 오류 : UserDefaults에서 AUTH_TYPE 가져오기 실패")
+            print("=========")
+            let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+            guard let loginVC = loginView else { return }
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            UIApplication.shared.windows.first?.rootViewController = navigationController
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
+        }
+        
+        //        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        //        let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+        //        guard let loginVC = loginVC else { return }
+        //        let navigationController = UINavigationController(rootViewController: loginVC)
+        //        UIApplication.shared.windows.first?.rootViewController = navigationController
+        //        UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 }
