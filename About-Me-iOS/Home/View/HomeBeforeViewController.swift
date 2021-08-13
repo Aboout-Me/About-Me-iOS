@@ -17,6 +17,8 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     @IBOutlet weak var homeBeforeLastAnswerButton: UIButton!
     private var homeData = [HomeCardListModel]()
     private var sideMenu: SideMenuNavigationController?
+    @IBOutlet weak var homeBeforeLastAnswerButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var homeBeforeLastAnswerButtonTopConstraint: NSLayoutConstraint!
     private var questionTitleText: String = ""
     private let lineSpacing: CGFloat = 15
     private var currentPage:Int = 0
@@ -202,6 +204,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                 DispatchQueue.main.async {
                     self.homeData = list.dailyLists
                     self.homeBeforeCollectionView.reloadData()
+                    self.homeBeforeCollectionView.layoutIfNeeded()
                 }
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Error Message", message: error, preferredStyle: .alert)
@@ -364,14 +367,15 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let ParagraphStyle = NSMutableParagraphStyle()
         ParagraphStyle.lineSpacing = 6
         print("색상 테스트\(homeData[indexPath.item].color)")
-        let center = view.convert(homeBeforeCollectionView.center, to: homeBeforeCollectionView)
-        if let indexRow = homeBeforeCollectionView.indexPathForItem(at: center) {
-            if homeData[indexRow.item].lev == "1" {
+            if homeData[indexPath.item].lev == "1" {
                 homeBeforeLastAnswerButton.isHidden = true
+                homeBeforeLastAnswerButtonHeightConstraint.constant = 0
+                homeBeforeLastAnswerButtonTopConstraint.constant = 0
             } else {
                 homeBeforeLastAnswerButton.isHidden = false
+                homeBeforeLastAnswerButtonHeightConstraint.constant = 60
+                homeBeforeLastAnswerButtonTopConstraint.constant = 16
             }
-        }
         if homeData[indexPath.item].color == "red" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
@@ -466,8 +470,12 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         currentPage = indexPath.item
         if homeData[currentPage].lev == "1" {
             homeBeforeLastAnswerButton.isHidden = true
+            homeBeforeLastAnswerButtonHeightConstraint.constant = 0
+            homeBeforeLastAnswerButtonTopConstraint.constant = 0
         } else {
             homeBeforeLastAnswerButton.isHidden = false
+            homeBeforeLastAnswerButtonHeightConstraint.constant = 60
+            homeBeforeLastAnswerButtonTopConstraint.constant = 16
         }
         print("colletionView point\(point)")
         if homeData[currentPage].color == "red" {
