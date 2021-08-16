@@ -194,7 +194,7 @@ class LastAnswerViewController: UIViewController {
     }
     
     private func deleteLastAnswerCardList() {
-        HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].cardSeq) { result in
+        HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].answer_id) { result in
             if case let .success(data) = result, let _ = data {
                 self.navigationController?.popViewController(animated: true)
             }
