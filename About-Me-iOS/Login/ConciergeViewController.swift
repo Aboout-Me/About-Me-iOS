@@ -23,6 +23,7 @@ class ConciergeViewController: UIViewController {
         
         // 회원가입 또는 로그인 API 호출
         print("== Concierge ==")
+        print("email = \(userEmail)")
         print("auth type = \(authType)")
         print("===============")
         
@@ -64,6 +65,8 @@ class ConciergeViewController: UIViewController {
                 print("유저아이디 = \(self.userId)")
                 print("===============")
                 
+                USER_ID = self.userId
+                USER_NICKNAME = self.nickName
                 UserDefaults.standard.setValue(self.userId, forKey: "USER_ID")
                 UserDefaults.standard.setValue(self.nickName, forKey: "USER_NICKNAME")
                 UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
@@ -76,10 +79,11 @@ class ConciergeViewController: UIViewController {
                 print("유저아이디 = \(self.userId)")
                 print("===============")
                 
+                USER_ID = self.userId
+                USER_NICKNAME = self.nickName
                 UserDefaults.standard.setValue(self.userId, forKey: "USER_ID")
                 UserDefaults.standard.setValue(self.nickName, forKey: "USER_NICKNAME")
                 UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
-
             }
             // 에러
             else  {

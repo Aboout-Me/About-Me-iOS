@@ -20,15 +20,21 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     @IBOutlet var logoImage: UIImageView!
     let img = UIImage(named: "logoImage.png")
     
-//    var accessToken: String = ""
-//    var refreshToken: String = ""
+    //    var accessToken: String = ""
+    //    var refreshToken: String = ""
     var authType: String = ""
     var userEmail: String = ""
-
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
-//        addButton()
+        //
+        print("**유저디폴트확인**")
+        print(UserDefaults.standard.string(forKey: "USER_ID"))
+        print(UserDefaults.standard.string(forKey: "USER_NICKNAME"))
+        print(UserDefaults.standard.string(forKey: "AUTH_TYPE"))
+        print("**************")
+        //
         loginInstance?.delegate = self
         
         self.view.backgroundColor = UIColor(red: (255/255.0), green: (255/255.0), blue: (255/255.0), alpha: 1.0)
@@ -63,6 +69,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("== LoginVC == ")
+        print("email = \(userEmail)")
         print("auth type = \(authType)")
         print("===============")
         
@@ -70,12 +77,17 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         ConciergeVC.authType = self.authType
         ConciergeVC.userEmail = self.userEmail
     }
-
-
+    
+    
     
     // MARK: - 네이버 로그인 파트
     
     let loginInstance = NaverThirdPartyLoginConnection.getSharedInstance()
+    
+    // 로그아웃 임시버튼
+    @IBAction func naverLogoutButtonDidTap(_ sender: Any) {
+        loginInstance?.requestDeleteToken()
+    }
     
     // 로그인에 성공한 경우 호출
     func oauth20ConnectionDidFinishRequestACTokenWithAuthCode() {
@@ -103,63 +115,61 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         loginInstance?.requestThirdPartyLogin()
     }
     
-    @IBAction func naverLogoutButtonDidTap(_ sender: Any) {
-        loginInstance?.requestDeleteToken()
-    }
-    
     // RESTful API, id가져오기
     func getInfo() {
-      guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
-      
-      if !isValidAccessToken {
-        return
-      }
-      
-      guard let tokenType = loginInstance?.tokenType else { return }
+        print("네이버 유저정보 가져오기 성공")
+        guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+        
+        if !isValidAccessToken { return }
+        
+        guard let tokenType = loginInstance?.tokenType else { return }
+        
         let _: Bool = KeychainWrapper.standard.set(loginInstance!.accessToken, forKey: "accessToken")
         oauth20ConnectionDidFinishRequestACTokenWithRefreshToken()
         
-      let urlStr = "https://openapi.naver.com/v1/nid/me"
-      let url = URL(string: urlStr)!
-      
-      let authorization = "\(tokenType) \(KeychainWrapper.standard.string(forKey: "accessToken")!)"
-      
-      let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
-      
-      req.responseJSON { response in
-        guard let result = response.value as? [String: Any] else { return }
-        guard let object = result["response"] as? [String: Any] else { return }
-        guard let name = object["name"] as? String else { return }
-        guard let email = object["email"] as? String else { return }
-        guard let id = object["id"] as? String else {return}
-        print("naver user id : \(id)")
-        self.userEmail = email
-      }
+        let urlStr = "https://openapi.naver.com/v1/nid/me"
+        let url = URL(string: urlStr)!
+        
+        let authorization = "\(tokenType) \(KeychainWrapper.standard.string(forKey: "accessToken")!)"
+        
+        print("1")
+        let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
+        print("2")
+        req.responseJSON { response in
+            print(response)
+            guard let result = response.value as? [String: Any] else { return }
+            guard let object = result["response"] as? [String: Any] else { return }
+            guard let email = object["email"] as? String else { return }
+            print("네이버 이메일 : \(email)")
+            self.userEmail = email
+        }
+        print("3")
     }
+    
     
     // MARK: - 카카오 로그인 파트
     
     @IBAction func kakaoLoginButtionDidTap(_ sender: Any) {
         UserApi.shared.loginWithKakaoAccount {(oauthToken, error) in
-                if let error = error {
-                    print("카카오 로그인 에러, error : \(error)")
-                }
-                else {
-                    print("카카오 로그인 호출 성공")
-                    
-                    self.authType = "Kakao"
-                    
-                    // do something
-                    _ = oauthToken
-                    
-                    // token
-                    let _: Bool = KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "accessToken")
-                    print("access token = \(KeychainWrapper.standard.string(forKey: "accessToken")!)")
-                    let _: Bool = KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "refreshToken")
-                    
-                    // 카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
-                    self.setUserInfo()
-                }
+            if let error = error {
+                print("카카오 로그인 에러, error : \(error)")
+            }
+            else {
+                print("카카오 로그인 호출 성공")
+                
+                self.authType = "Kakao"
+                
+                // do something
+                _ = oauthToken
+                
+                // token
+                let _: Bool = KeychainWrapper.standard.set(oauthToken!.accessToken, forKey: "accessToken")
+                print("access token = \(KeychainWrapper.standard.string(forKey: "accessToken")!)")
+                let _: Bool = KeychainWrapper.standard.set(oauthToken!.refreshToken, forKey: "refreshToken")
+                
+                // 카카오 로그인을 통해 사용자 토큰을 발급 받은 후 사용자 관리 API 호출
+                self.setUserInfo()
+            }
         }
     }
     
@@ -177,14 +187,14 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                 guard let email = user?.kakaoAccount?.email else { return }
                 self.userEmail = email
                 
-//                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
-//                    let data = try? Data(contentsOf: url) {
-//                    self.profileImageView.image = UIImage(data: data)
-//                }
+                //                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
+                //                    let data = try? Data(contentsOf: url) {
+                //                    self.profileImageView.image = UIImage(data: data)
+                //                }
             }
-         }
+        }
     }
-@IBAction func buttonPressed(_ sender: UIButton) {
+    @IBAction func buttonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "presentToConcierge", sender: nil)
     }
     
@@ -193,13 +203,13 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         USER_ID = 3
         UserDefaults.standard.setValue(USER_ID, forKey: "USER_ID")
         UserDefaults.standard.setValue(USER_NICKNAME, forKey: "USER_NICKNAME")
-
+        
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let todayDateValue = dateFormatter.string(from: date)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+        
         if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
             let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
             guard let homeAfterVC = homeAfterView else { return }
@@ -221,11 +231,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
 // MARK: - 애플 로그인 파트
 extension LoginViewController: ASAuthorizationControllerDelegate {
     
-//    func addButton() {
-//        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
-//        button.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
-//        appleloginView.addArrangedSubview(button)
-//    }
+    //    func addButton() {
+    //        let button = ASAuthorizationAppleIDButton(authorizationButtonType: .signIn, authorizationButtonStyle: .black)
+    //        button.addTarget(self, action: #selector(handleAppleSignInButton), for: .touchUpInside)
+    //        appleloginView.addArrangedSubview(button)
+    //    }
     
     @objc func handleAppleSignInButton() {
         let request = ASAuthorizationAppleIDProvider().createRequest()
@@ -237,12 +247,12 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-     
+        
         self.authType = "Apple"
         
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-//            let user = credential.user
-//            print("User: \(user)")
+            //            let user = credential.user
+            //            print("User: \(user)")
             self.userEmail = credential.email!
             print("애플로그인 Email: \(self.userEmail)")
             print("apple token : \(credential.identityToken)")
@@ -250,7 +260,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
         }
     }
- 
+    
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("애플 로그인 error : \(error)")
     }

@@ -54,16 +54,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         instance?.isOnlyPortraitSupportedInIphone()
         
         // 애플리케이션을 등록할 때 입력한 URL Scheme
-        instance?.serviceUrlScheme = kServiceAppUrlScheme
+        instance?.serviceUrlScheme = "naverlogin"
         
         // 애플리케이션 등록 후 발급받은 클라이언트 아이디
-        instance?.consumerKey = kConsumerKey
+        instance?.consumerKey = "lHM0yZEtTVWC9eBcZl7E"
         
         // 애플리케이션 등록 후 발급받은 클라이언트 시크릿
-        instance?.consumerSecret = kConsumerSecret
+        instance?.consumerSecret = "aKPtEBzXpN"
         
         // 애플리케이션 이름
-        instance?.appName = kServiceAppName
+        instance?.appName = "오늘의나"
         
         let frame = UIScreen.main.bounds
         window = UIWindow(frame: frame)
