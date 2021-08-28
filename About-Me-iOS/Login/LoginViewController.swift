@@ -251,11 +251,15 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         self.authType = "Apple"
         
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            //            let user = credential.user
-            //            print("User: \(user)")
-            self.userEmail = credential.email!
+            let user = credential.user
+            guard let appleEmail = credential.email else {
+                print("애플 이메일 가져오기 에러")
+                return
+            }
+            self.userEmail = appleEmail
             print("애플로그인 Email: \(self.userEmail)")
-            print("apple token : \(credential.identityToken)")
+            print("apple token : \(String(decoding: credential.identityToken!, as: UTF8.self))")
+            print("code : \(String(decoding: credential.authorizationCode!, as: UTF8.self))")
             let _: Bool = KeychainWrapper.standard.set(credential.identityToken!, forKey: "id_token")
             let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
         }

@@ -162,7 +162,12 @@ class SideOnlyViewController: UIViewController {
                 print("네이버 로그아웃 성공")
             }
             else if AUTH_TYPE == "Apple" {
-                // 개발예정
+                
+                UserDefaults.standard.removeObject(forKey: "USER_ID")
+                UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
+                UserDefaults.standard.removeObject(forKey: "AUTH_TYPE")
+                
+                print("애플 로그아웃 성공")
             }
             else {
                 print("=========")
