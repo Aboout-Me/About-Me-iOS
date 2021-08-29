@@ -9,7 +9,7 @@ import Alamofire
 
 struct MyFeedApiService {
     static func getFeedList(color: String?, completion: @escaping ([FeedPost]?) -> Void) {
-        var urlString = "\(API_URL)/MyPage/PostList/\(userId)"
+        var urlString = "\(API_URL)/MyPage/PostList/\(USER_ID)"
         if let color = color, color != "" {
             urlString.append("?color=\(color)")
         }

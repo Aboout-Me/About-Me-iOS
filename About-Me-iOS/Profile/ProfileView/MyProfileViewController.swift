@@ -261,7 +261,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         ]
         self.myProfileFlag = "answer"
         if self.myProfileTagIndex == 0 && self.myProfileColor == "" {
-            ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:nil ) { result in
+            ProfileServerApi.getMyProfilePage(userId: USER_ID, colorParameter:nil ) { result in
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileData = list
@@ -273,7 +273,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 }
             }
         } else {
-            ProfileServerApi.getMyProfilePage(userId: 1, colorParameter:Parameter ) { result in
+            ProfileServerApi.getMyProfilePage(userId: USER_ID, colorParameter:Parameter ) { result in
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileData = list
@@ -293,7 +293,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         ]
         self.myProfileFlag = "likes"
         if self.myProfileTagIndex == 0 && self.myProfileColor == "" {
-            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: nil) { result in
+            ProfileServerApi.getMyProfileLikeList(userId: USER_ID, crush: self.myProfileFlag, crushParameter: nil) { result in
                 if case let .success(data) = result, let list = data {
                     // TO DO 
                     DispatchQueue.main.async {
@@ -309,7 +309,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 }
             }
         } else {
-            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: likeParameter) { result in
+            ProfileServerApi.getMyProfileLikeList(userId: USER_ID, crush: self.myProfileFlag, crushParameter: likeParameter) { result in
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         print("Likes Sub Data :  {\(self.myProfileLikeScrapSubData)}")
@@ -333,7 +333,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         ]
         self.myProfileFlag = "scrap"
         if self.myProfileTagIndex == 0 && self.myProfileColor == "" {
-            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: nil) { result in
+            ProfileServerApi.getMyProfileLikeList(userId: USER_ID, crush: self.myProfileFlag, crushParameter: nil) { result in
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileLikeScrapData = list
@@ -348,7 +348,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
                 }
             }
         } else {
-            ProfileServerApi.getMyProfileLikeList(userId: 1, crush: self.myProfileFlag, crushParameter: scrapParameter) { result in
+            ProfileServerApi.getMyProfileLikeList(userId: USER_ID, crush: self.myProfileFlag, crushParameter: scrapParameter) { result in
                 if case let .success(data) = result, let list = data {
                     DispatchQueue.main.async {
                         self.myProfileLikeScrapData = list
@@ -839,7 +839,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
         if collectionView == self.myProfileCollectionView {
             let myProfileCell = collectionView.cellForItem(at: indexPath) as? MyProfileCollectionViewCell
             myProfileCell?.selectIndex = indexPath.item
-            if self.myProfileFlag == "answer" {
+            if myProfileFlag == "answer" && myProfileSubData.count != 0 {
                 let profileAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
                 profileAnswerVC.answerId = self.myProfileSubData[indexPath.item].answerId
                 profileAnswerVC.title = self.myProfileData?.nickName

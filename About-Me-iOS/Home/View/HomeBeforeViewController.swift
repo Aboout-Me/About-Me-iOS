@@ -17,6 +17,8 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     @IBOutlet weak var homeBeforeLastAnswerButton: UIButton!
     private var homeData = [HomeCardListModel]()
     private var sideMenu: SideMenuNavigationController?
+    @IBOutlet weak var homeBeforeLastAnswerButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var homeBeforeLastAnswerButtonTopConstraint: NSLayoutConstraint!
     private var questionTitleText: String = ""
     private let lineSpacing: CGFloat = 15
     private var currentPage:Int = 0
@@ -42,7 +44,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         getHomeCardList()
         setLayoutInit()
         setSideMenuLayoutInit()
-        removeUserDefaultData()
+        getWriteCardList()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +59,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
-        removeUserDefaultData()
+        getWriteCardList()
     }
     
     deinit {
@@ -152,6 +154,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         questionToolBar.sizeToFit()
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
+        editAnswerSheetView.tag = 2
         editAnswerSheetView.postQuestionLabel.attributedText = NSAttributedString(string:"\(questionTitleText)", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         editAnswerSheetView.postNavigationTitleLabel.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
         editAnswerSheetView.postQuestionLabel.textColor = .gray333
@@ -176,30 +179,32 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         NotificationCenter.default.addObserver(self, selector: #selector(HomeBeforeViewController.keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    private func removeUserDefaultData() {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let todayDate = dateFormatter.string(from: date)
-        if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 && UserDefaults.standard.string(forKey: "last_answerDate") != todayDate {
-            UserDefaults.standard.removeObject(forKey: "card_seq")
-            UserDefaults.standard.removeObject(forKey: "answer_Id")
-            UserDefaults.standard.synchronize()
-        } else if UserDefaults.standard.integer(forKey: "card_seq") != 0 && UserDefaults.standard.integer(forKey: "answer_Id") != 0 && UserDefaults.standard.string(forKey: "last_answerDate") == todayDate {
-            let storybaotd = UIStoryboard(name: "Main", bundle: nil)
-            let homeAfterView = storybaotd.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-            guard let homeAfterVC = homeAfterView else { return }
-            self.navigationController?.pushViewController(homeAfterVC, animated: true)
+    private func getWriteCardList() {
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            if case let .success(data) = result, let list = data {
+                if list.isWritten == true {
+                    print("getIsDailyWrite Data \(list.isWritten)")
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeAfterVC = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                    guard let homeAfterView = homeAfterVC else { return }
+                    self.navigationController?.pushViewController(homeAfterView, animated: true)
+                } else {
+                    UserDefaults.standard.removeObject(forKey: "card_seq")
+                    UserDefaults.standard.removeObject(forKey: "answer_Id")
+                    UserDefaults.standard.synchronize()
+                }
+            }
         }
     }
     
     private func getHomeCardList() {
-        HomeServerApi.getHomeCardList(userId: 1) { result in
+        HomeServerApi.getHomeCardList(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 print(self.homeData)
                 DispatchQueue.main.async {
                     self.homeData = list.dailyLists
                     self.homeBeforeCollectionView.reloadData()
+                    self.homeBeforeCollectionView.layoutIfNeeded()
                 }
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Error Message", message: error, preferredStyle: .alert)
@@ -211,22 +216,14 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         }
     }
     
-    public func saveValueDate() {
-        let lastDate = Date()
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy-MM-dd"
-        let currentDate = dateformatter.string(from: lastDate)
-        UserDefaults.standard.set(currentDate, forKey: "last_answerDate")
-    }
     
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
-        let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: 1)
+        let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: USER_ID)
         HomeServerApi.postHomecardListSave(parameter: parameter) { result in
             if case let .success(data) = result, let list = data {
                 print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
                 print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
-                self.saveValueDate()
                 DispatchQueue.main.async {
                     UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
                     UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
@@ -265,8 +262,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationController?.pushViewController(homeAfterVC, animated: true)
     }
     
-    // TODO: - KeyBoardEvent
-    
     @objc
     public func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame:NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
@@ -300,17 +295,15 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     @objc
-    private func showAlarmButtonDidTap() {
+    private func showAlarmButtonDidTap(_ sender: UIButton) {
+        let window = UIApplication.shared.windows.first
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let noticeView = storyboard.instantiateViewController(withIdentifier: "NoticeVC") as? NoticeViewController
         guard let noticeVC = noticeView else { return }
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
-        } completion: { success in
-            if success {
-                self.navigationController?.pushViewController(noticeVC, animated: true)
-            }
+        if let editView = window?.viewWithTag(2) {
+            editView.removeFromSuperview()
         }
+        self.navigationController?.pushViewController(noticeVC, animated: true)
     }
     
     @objc
@@ -374,13 +367,15 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let ParagraphStyle = NSMutableParagraphStyle()
         ParagraphStyle.lineSpacing = 6
         print("색상 테스트\(homeData[indexPath.item].color)")
-        let center = view.convert(homeBeforeCollectionView.center, to: homeBeforeCollectionView)
-        guard let indexpath = homeBeforeCollectionView.indexPathForItem(at: center) else { return UICollectionViewCell() }
-        if homeData[indexpath.item].lev == "1" {
-            homeBeforeLastAnswerButton.isHidden = true
-        } else {
-            homeBeforeLastAnswerButton.isHidden = false
-        }
+            if homeData[indexPath.item].lev == "1" {
+                homeBeforeLastAnswerButton.isHidden = true
+                homeBeforeLastAnswerButtonHeightConstraint.constant = 0
+                homeBeforeLastAnswerButtonTopConstraint.constant = 0
+            } else {
+                homeBeforeLastAnswerButton.isHidden = false
+                homeBeforeLastAnswerButtonHeightConstraint.constant = 60
+                homeBeforeLastAnswerButtonTopConstraint.constant = 16
+            }
         if homeData[indexPath.item].color == "red" {
             cell.homeBeforeCharacterLabel.text = "열정 충만"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
@@ -418,7 +413,7 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
             cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryPink
             cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryPink
             cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPink
-        } else  {
+        } else {
             cell.homeBeforeCharacterLabel.text = "상상 플러스"
             cell.homeBeforeCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             cell.homeBeforeFirstTagLabel.text = "#만약에"
@@ -475,8 +470,12 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         currentPage = indexPath.item
         if homeData[currentPage].lev == "1" {
             homeBeforeLastAnswerButton.isHidden = true
+            homeBeforeLastAnswerButtonHeightConstraint.constant = 0
+            homeBeforeLastAnswerButtonTopConstraint.constant = 0
         } else {
             homeBeforeLastAnswerButton.isHidden = false
+            homeBeforeLastAnswerButtonHeightConstraint.constant = 60
+            homeBeforeLastAnswerButtonTopConstraint.constant = 16
         }
         print("colletionView point\(point)")
         if homeData[currentPage].color == "red" {

@@ -154,7 +154,7 @@ class LastAnswerViewController: UIViewController {
     
     private func getLastAnswerCardList() {
         let parameter = [
-            "user_id" : 1,
+            "user_id" : USER_ID,
             "quest_id" : questId
         ]
         
@@ -194,7 +194,7 @@ class LastAnswerViewController: UIViewController {
     }
     
     private func deleteLastAnswerCardList() {
-        HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].cardSeq) { result in
+        HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].answer_id) { result in
             if case let .success(data) = result, let _ = data {
                 self.navigationController?.popViewController(animated: true)
             }
@@ -378,7 +378,7 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
         selectedIndex = indexPath.item
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
         lastAnswerVC.answerId = lastAnswerData[indexPath.item].answer_id
-        lastAnswerVC.title = "" // TODO - MyNickname
+        lastAnswerVC.title = "\(USER_NICKNAME)"
         lastAnswerVC.authorId = 1
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }

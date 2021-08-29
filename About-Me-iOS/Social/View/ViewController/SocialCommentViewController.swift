@@ -173,7 +173,7 @@ extension SocialCommentViewController: UITableViewDataSource {
         cell.color = comments[indexPath.row].color
         cell.buttonClosure = { [weak self] in
             guard let self = self else { return }
-            if comments[indexPath.row].authorId == userId {
+            if comments[indexPath.row].authorId == USER_ID {
                 let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
                 myMoreView.modalPresentationStyle = .overCurrentContext
                 myMoreView.deleteType = "comment"
@@ -191,7 +191,7 @@ extension SocialCommentViewController: UITableViewDataSource {
                 moreView.modalPresentationStyle = .overCurrentContext
                 moreView.suedUserId = comments[indexPath.row].authorId
                 moreView.targetQuestionId = comments[indexPath.row].commentId
-                if self.authorId == userId {
+                if self.authorId == USER_ID {
                     moreView.sueType = "comment"
                 }
                 moreView.closure = {

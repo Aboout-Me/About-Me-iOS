@@ -74,7 +74,12 @@ class SocialMoreContentViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.tintColor = .white
         
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationController?.navigationBar.compactAppearance = navigationApp
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.systemFont(ofSize: 18)]
+        self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
     }
     
     private func configureFeedNavigation() {
@@ -241,8 +246,8 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
             let detailVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
             if self.state == .none {
                 let post = self.feedList[indexPath.row]
-                detailVC.title = "" // TODO
-                detailVC.authorId = userId
+                detailVC.title = USER_NICKNAME
+                detailVC.authorId = USER_ID
                 detailVC.answerId = post.answerId
             }
             else {

@@ -67,7 +67,7 @@ class SocialDetailViewController: UIViewController {
         commentVC.profileClosure = {
             let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
             otherProfileVC.otherId = self.authorId
-            otherProfileVC.userId = userId
+            otherProfileVC.userId = USER_ID
             self.navigationController?.pushViewController(otherProfileVC, animated: true)
         }
         self.present(commentVC, animated: true, completion: nil)
@@ -89,7 +89,7 @@ class SocialDetailViewController: UIViewController {
     
     @IBAction func moreButtonDidTap(_ sender: Any) {
         if let post = post {
-            if post.userId == userId {
+            if post.userId == USER_ID {
                 let myMoreView = SocialMyMoreView(nibName: "SocialMyMoreView", bundle: nil)
                 myMoreView.modalPresentationStyle = .overCurrentContext
                 myMoreView.deleteType = "board"
@@ -113,7 +113,7 @@ class SocialDetailViewController: UIViewController {
                 moreView.profileClosure = {
                     let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
                     otherProfileVC.otherId = post.userId
-                    otherProfileVC.userId = userId
+                    otherProfileVC.userId = USER_ID
                     self.navigationController?.pushViewController(otherProfileVC, animated: true)
                 }
                 self.present(moreView, animated: true, completion: nil)
@@ -181,7 +181,7 @@ class SocialDetailViewController: UIViewController {
     @objc private func titleDidTap(_ sender: UIButton) {
         let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
         otherProfileVC.otherId = self.authorId
-        otherProfileVC.userId = userId
+        otherProfileVC.userId = USER_ID
         self.navigationController?.pushViewController(otherProfileVC, animated: true)
     }
 }

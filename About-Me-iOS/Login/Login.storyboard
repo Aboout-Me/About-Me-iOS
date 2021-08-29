@@ -95,6 +95,12 @@
                                     <action selector="loginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHe-PY-fQy"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99j-Vf-Pds">
+                                <rect key="frame" x="74" y="161" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-s9-Jds">
                                 <rect key="frame" x="161.5" y="460" width="91" height="30"/>
                                 <state key="normal" title="네이버로그아웃"/>
@@ -130,6 +136,7 @@
                     <navigationItem key="navigationItem" id="OnO-xV-qsf"/>
                     <connections>
                         <outlet property="appleloginButton" destination="ZhJ-ew-ysR" id="t4B-2Z-PIz"/>
+                        <outlet property="idTextField" destination="99j-Vf-Pds" id="mlp-nW-gRM"/>
                         <outlet property="kakaologinButton" destination="dgh-m0-vZs" id="BVd-Dy-cGP"/>
                         <outlet property="logoDescription" destination="XEy-sZ-Srf" id="upv-Vb-0Sn"/>
                         <outlet property="logoImage" destination="mo2-PM-K9o" id="TUr-bp-U51"/>

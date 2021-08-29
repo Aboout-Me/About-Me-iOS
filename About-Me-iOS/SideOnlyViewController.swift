@@ -78,19 +78,22 @@ class SideOnlyViewController: UIViewController {
     
     @objc
     private func showQuestionButtonDidTap(_ sender: UIButton) {
-        if UserDefaults.standard.integer(forKey: "answer_Id") != 0 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as?
-                HomeAfterViewController
-            guard let homeAfterVC = homeAfterView else { return }
-            self.navigationController?.pushViewController(homeAfterVC, animated: true)
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-            guard let homeBeforeVC = homeBeforeView else { return }
-            self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+        HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
+            if case let .success(data) = result, let list = data {
+                if list.isWritten == true {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as?
+                    HomeAfterViewController
+                    guard let homeAfterVC = homeAfterView else { return }
+                    self.navigationController?.pushViewController(homeAfterVC, animated: true)
+                } else {
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                    guard let homeBeforeVC = homeBeforeView else { return }
+                    self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+                }
+            }
         }
-        
     }
     
     @objc
@@ -132,6 +135,9 @@ class SideOnlyViewController: UIViewController {
     
     @objc
     private func logoutButtonDidTap(_ sender: UIButton) {
+        UserDefaults.standard.removeObject(forKey: "USER_ID")
+        UserDefaults.standard.removeObject(forKey: "USER_NICKNAME")
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
         
         if let AUTH_TYPE = UserDefaults.standard.string(forKey: "AUTH_TYPE") {
             if AUTH_TYPE == "Kakao" {
@@ -147,6 +153,12 @@ class SideOnlyViewController: UIViewController {
                         UserDefaults.standard.removeObject(forKey: "AUTH_TYPE")
                         
                         print("카카오 로그아웃 성공")
+                        
+                        let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                        guard let loginVC = loginView else { return }
+                        let navigationController = UINavigationController(rootViewController: loginVC)
+                        UIApplication.shared.windows.first?.rootViewController = navigationController
+                        UIApplication.shared.windows.first?.makeKeyAndVisible()
                     }
                 }
             }
@@ -160,6 +172,12 @@ class SideOnlyViewController: UIViewController {
                 UserDefaults.standard.removeObject(forKey: "AUTH_TYPE")
                 
                 print("네이버 로그아웃 성공")
+                
+                let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                guard let loginVC = loginView else { return }
+                let navigationController = UINavigationController(rootViewController: loginVC)
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
             }
             else if AUTH_TYPE == "Apple" {
                 
@@ -179,6 +197,11 @@ class SideOnlyViewController: UIViewController {
             print("=========")
             print("로그아웃 오류 : UserDefaults에서 AUTH_TYPE 가져오기 실패")
             print("=========")
+            let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+            guard let loginVC = loginView else { return }
+            let navigationController = UINavigationController(rootViewController: loginVC)
+            UIApplication.shared.windows.first?.rootViewController = navigationController
+            UIApplication.shared.windows.first?.makeKeyAndVisible()
         }
         
         //        let storyboard = UIStoryboard(name: "Login", bundle: nil)
