@@ -29,9 +29,10 @@ class ConciergeViewController: UIViewController {
         
         // 애플 로그인의 경우
         if authType == "Apple" {
-            LoginApiService.postSignUpForApple(code: KeychainWrapper.standard.string(forKey: "code")! , id_token: KeychainWrapper.standard.string(forKey: "id_token")!) { (statusCode, userId) -> () in
+            LoginApiService.postSignUpForApple(code: KeychainWrapper.standard.string(forKey: "code")! , id_token: KeychainWrapper.standard.string(forKey: "id_token")!) { (statusCode, userId, userNickName) -> () in
                 self.status = statusCode
                 self.userId = userId
+                self.nickName = userNickName
             }
         }
         // 카카오, 네이버 로그인의 경우
@@ -58,7 +59,7 @@ class ConciergeViewController: UIViewController {
           // 1초 후 실행될 부분
             
             print("statusCode = \(self.status)")
-            // 회원가입인 경우
+            // 회원가입
             if self.status == 200 {
                 self.performSegue(withIdentifier: "toOnboarding", sender: nil)
                 print("== 회원가입 ==")
@@ -72,7 +73,7 @@ class ConciergeViewController: UIViewController {
                 UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
 
             }
-            // 기존유저의 로그인인 경우
+            // 로그인
             else if self.status == 409 {
                 self.performSegue(withIdentifier: "toHome_temp", sender: nil)
                 print("== 로그인 ==")
