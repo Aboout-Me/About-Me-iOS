@@ -203,6 +203,9 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                 print(self.homeData)
                 DispatchQueue.main.async {
                     self.homeData = list.dailyLists
+                    if self.homeData[0].color != "red" {
+                        self.homeData.reverse()
+                    }
                     self.homeBeforeCollectionView.reloadData()
                     self.homeBeforeCollectionView.layoutIfNeeded()
                 }
