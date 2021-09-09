@@ -276,11 +276,9 @@ class MyProfileDetailViewController: UIViewController {
         } else if weekDay == 2 {
             myProfileWeeklyTitleLabel.text = weeklyListData[2].date
         } else if weekDay == 3 {
-            if weeklyListData.endIndex == 3 {
-                myProfileWeeklyTitleLabel.text = weeklyListData[3].date
-            } else {
-                myProfileWeeklyTitleLabel.text = weeklyListData[4].date
-            }
+            myProfileWeeklyTitleLabel.text = weeklyListData[3].date
+        } else {
+            myProfileWeeklyTitleLabel.text = weeklyListData[4].date
         }
     }
     

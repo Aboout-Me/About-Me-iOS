@@ -33,5 +33,5 @@ struct HomeCardListModel: Codable {
 struct HomeWriteCardList: Codable {
     var code: Int
     var message: String
-    var isWritten: Bool
+    var isWritten: Bool?
 }
