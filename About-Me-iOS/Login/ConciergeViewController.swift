@@ -58,7 +58,7 @@ class ConciergeViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
           // 1초 후 실행될 부분
             
-            print("statusCode = \(self.status)")
+            print("**statusCode = \(self.status)")
             // 회원가입
             if self.status == 200 {
                 self.performSegue(withIdentifier: "toOnboarding", sender: nil)
@@ -75,7 +75,7 @@ class ConciergeViewController: UIViewController {
             }
             // 로그인
             else if self.status == 409 {
-                self.performSegue(withIdentifier: "toHome_temp", sender: nil)
+                self.performSegue(withIdentifier: "toHome", sender: nil)
                 print("== 로그인 ==")
                 print("유저아이디 = \(self.userId)")
                 print("===============")

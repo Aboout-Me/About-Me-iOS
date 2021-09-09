@@ -186,6 +186,12 @@ class SideOnlyViewController: UIViewController {
                 UserDefaults.standard.removeObject(forKey: "AUTH_TYPE")
                 
                 print("애플 로그아웃 성공")
+                
+                let loginView = storyboard.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                guard let loginVC = loginView else { return }
+                let navigationController = UINavigationController(rootViewController: loginVC)
+                UIApplication.shared.windows.first?.rootViewController = navigationController
+                UIApplication.shared.windows.first?.makeKeyAndVisible()
             }
             else {
                 print("=========")

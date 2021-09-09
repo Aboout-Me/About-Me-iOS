@@ -119,11 +119,17 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     // RESTful API, id가져오기
     func getInfo() {
         print("네이버 유저정보 가져오기 성공")
-        guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else { return }
+        guard let isValidAccessToken = loginInstance?.isValidAccessTokenExpireTimeNow() else {
+            return
+        }
         
-        if !isValidAccessToken { return }
+        if !isValidAccessToken {
+            return
+        }
         
-        guard let tokenType = loginInstance?.tokenType else { return }
+        guard let tokenType = loginInstance?.tokenType else {
+            return
+        }
         
         let _: Bool = KeychainWrapper.standard.set(loginInstance!.accessToken, forKey: "accessToken")
         oauth20ConnectionDidFinishRequestACTokenWithRefreshToken()
@@ -133,9 +139,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         
         let authorization = "\(tokenType) \(KeychainWrapper.standard.string(forKey: "accessToken")!)"
         
-        print("1")
         let req = AF.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: ["Authorization": authorization])
-        print("2")
         req.responseJSON { response in
             print(response)
             guard let result = response.value as? [String: Any] else { return }
@@ -144,7 +148,6 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
             print("네이버 이메일 : \(email)")
             self.userEmail = email
         }
-        print("3")
     }
     
     
@@ -174,6 +177,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         }
     }
     
+    
     func setUserInfo() {
         UserApi.shared.me() {(user, error) in
             if let error = error {
@@ -188,6 +192,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                 guard let email = user?.kakaoAccount?.email else { return }
                 self.userEmail = email
                 
+                
                 //                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
                 //                    let data = try? Data(contentsOf: url) {
                 //                    self.profileImageView.image = UIImage(data: data)
@@ -195,7 +200,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
             }
         }
     }
-    @IBAction func buttonPressed(_ sender: UIButton) {
+    
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
         performSegue(withIdentifier: "presentToConcierge", sender: nil)
     }
     
@@ -208,13 +214,13 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
                         USER_ID = textInt
                         UserDefaults.standard.setValue(USER_ID, forKey: "USER_ID")
                         UserDefaults.standard.setValue(USER_NICKNAME, forKey: "USER_NICKNAME")
-
+                        
                         let date = Date()
                         let dateFormatter = DateFormatter()
                         dateFormatter.dateFormat = "yyyy-MM-dd"
                         let todayDateValue = dateFormatter.string(from: date)
                         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
+                        
                         if UserDefaults.standard.string(forKey: "last_answerDate") == todayDateValue {
                             let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                             guard let homeAfterVC = homeAfterView else { return }
@@ -266,16 +272,19 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         
         if let credential = authorization.credential as? ASAuthorizationAppleIDCredential {
             let user = credential.user
+            
+            print("apple token : \(String(decoding: credential.identityToken!, as: UTF8.self))")
+            print("code : \(String(decoding: credential.authorizationCode!, as: UTF8.self))")
+            let _: Bool = KeychainWrapper.standard.set(credential.identityToken!, forKey: "id_token")
+            let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
+            
             guard let appleEmail = credential.email else {
                 print("애플 이메일 가져오기 에러")
                 return
             }
             self.userEmail = appleEmail
             print("애플로그인 Email: \(self.userEmail)")
-            print("apple token : \(String(decoding: credential.identityToken!, as: UTF8.self))")
-            print("code : \(String(decoding: credential.authorizationCode!, as: UTF8.self))")
-            let _: Bool = KeychainWrapper.standard.set(credential.identityToken!, forKey: "id_token")
-            let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
+            
         }
     }
     

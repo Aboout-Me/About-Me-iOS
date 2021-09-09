@@ -53,8 +53,8 @@ struct LoginApiService {
                 }
                 else if response.response?.statusCode == 409 {
                     print("postSignUp : 409(기존유저->로그인)")
-                    getSignIn(authType: authType, accessToken: accessToken){ (userIdForLogin, nickName) -> () in
-                        userIdForSignUp = userIdForLogin
+                    getSignIn(authType: authType, accessToken: accessToken){ (userIdForSignIn, nickName) -> () in
+                        userIdForSignUp = userIdForSignIn
                         userNickName = nickName
                         
                         escapingHandler(status, userIdForSignUp, userNickName)
@@ -79,12 +79,12 @@ struct LoginApiService {
     // MARK: - 로그인 : 카카오, 네이버
     
     static func getSignIn(authType: String, accessToken: String, escapingHandler : @escaping (Int, String) -> ()) -> Void {
-        var appdelegate = UIApplication.shared.delegate as? AppDelegate
+        let appdelegate = UIApplication.shared.delegate as? AppDelegate
         let fcmToken = (appdelegate?.fcmtoken)!
         print("fcm :\(fcmToken)")
         
         let url = "\(API_URL)/auth/signin"
-        var userIdForLogin: Int = -1
+        var userIdForSignIn: Int = -1
         var nickName: String = ""
         
         let headers: HTTPHeaders = [
@@ -101,13 +101,13 @@ struct LoginApiService {
                 if let data = response.data {
                     do {
                         let responseDecoded = try JSONDecoder().decode(SignInResponse.self, from: data)
-                        userIdForLogin = responseDecoded.userId
+                        userIdForSignIn = responseDecoded.userId
                         nickName = responseDecoded.nickName
                         
-                        print(" ** userIdForLogin \(userIdForLogin)")
-                        print(" ** nickNameForLogin \(nickName)")
+                        print(" ** userIdForSignIn \(userIdForSignIn)")
+                        print(" ** nickNameForSignIn \(nickName)")
                         
-                        escapingHandler(userIdForLogin, nickName)
+                        escapingHandler(userIdForSignIn, nickName)
                     }catch let error as NSError{
                         print(error)
                     }
@@ -116,12 +116,12 @@ struct LoginApiService {
             case .failure(let error):
                 print("getSignIn 실패")
                 print(error)
-                escapingHandler(userIdForLogin, nickName)
+                escapingHandler(userIdForSignIn, nickName)
             }
         }
     }
     
-    // MARK: - 회원가입, 로그인 : 애플
+    // MARK: - 회원가입 : 애플
     
     static func postSignUpForApple(code: String, id_token: String, escapingHandler : @escaping (Int, Int, String) -> ()) -> Void {
         
@@ -131,21 +131,23 @@ struct LoginApiService {
         var status: Int = -1
         var userNickName: String = ""
         
-        let signUpParams = SignUpListForApple(code: code, id_token: id_token)
+        let parameters: Parameters = [
+            "code": code,
+            "id_token": id_token
+        ]
         
-        let request = AF.request(url, method: .post, parameters: signUpParams, encoder: URLEncodedFormParameterEncoder.default)
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
         
         request.validate(statusCode: 200...500).responseString { response in
             status = response.response!.statusCode
             switch response.result {
             case .success:
-                print("postSignUp 성공")
+                print("postSignUp(애플) 성공")
                 print(response.value)
                 
                 if response.response?.statusCode == 200 {
                     print("postSignUp : 200(신규회원)")
                     if let data = response.data {
-                        print("postSignUp response : \(data)")
                         do {
                             let responseDecoded = try JSONDecoder().decode(SignUpResponse.self, from: data)
                             userIdForSignUp = responseDecoded.userId
@@ -163,23 +165,12 @@ struct LoginApiService {
                 }
                 else if response.response?.statusCode == 409 {
                     print("postSignUp : 409(기존유저->로그인)")
-//                    getSignInForApple(code: code, id_token: id_token){ (userIdForLogin, nickName) -> () in
-//                        userIdForSignUp = userIdForLogin
-//                        userNickName = nickName
-//
-//                        escapingHandler(status, userIdForSignUp, userNickName)
-//                    }
-                    if let data = response.data {
-                        print("postSignUp response : \(data)")
-                        do {
-                            let responseDecoded = try JSONDecoder().decode(SignUpResponse.self, from: data)
-                            userIdForSignUp = responseDecoded.userId
-                        }catch let error as NSError{
-                            print(error)
-                        }
+                    postSignInForApple(code: code, id_token: id_token){ (userIdForSignIn, nickName) -> () in
+                        userIdForSignUp = userIdForSignIn
+                        userNickName = nickName
+                        
+                        escapingHandler(status, userIdForSignUp, userNickName)
                     }
-                    escapingHandler(status, userIdForSignUp, userNickName)
-                    
                 }
                 else{
                     print("postSignUp : statusCode 오류")
@@ -187,7 +178,7 @@ struct LoginApiService {
                 }
                 
             case .failure(let error):
-                print("postSignUp 실패")
+                print("postSignUp(애플) 실패")
                 print(error)
                 
                 escapingHandler(status, userIdForSignUp, userNickName)
@@ -195,48 +186,51 @@ struct LoginApiService {
         }
     }
     
-
-//    // MARK: - 로그인 : 애플
-//
-//    static func getSignInForApple(code: String, id_token: String, escapingHandler : @escaping (Int, String) -> ()) -> Void {
-//        var appdelegate = UIApplication.shared.delegate as? AppDelegate
-//        let fcmToken = (appdelegate?.fcmtoken)!
-//        print("fcm :\(fcmToken)")
-//
-//        let url = "\(API_URL)/apple/auth/login"
-//        var userIdForLogin: Int = -1
-//        var nickName: String = ""
-//
-//        let signUpParams = SignUpListForApple(code: code, id_token: id_token)
-//
-//        let request = AF.request(url, method: .get, parameters: signUpParams, encoder: URLEncodedFormParameterEncoder.default)
-//        request.validate(statusCode: 200...500).responseString { response in
-//            switch response.result {
-//            case .success:
-//                print("getSignIn 성공")
-//                print("response.value : \(response.value)")
-//                if let data = response.data {
-//                    do {
-//                        let responseDecoded = try JSONDecoder().decode(SignInResponse.self, from: data)
-//                        userIdForLogin = responseDecoded.userId
-//                        nickName = responseDecoded.nickName
-//
-//                        print(" ** userIdForLogin \(userIdForLogin)")
-//                        print(" ** nickNameForLogin \(nickName)")
-//
-//                        escapingHandler(userIdForLogin, nickName)
-//                    }catch let error as NSError{
-//                        print(error)
-//                    }
-//                }
-//
-//            case .failure(let error):
-//                print("getSignIn 실패")
-//                print(error)
-//                escapingHandler(userIdForLogin, nickName)
-//            }
-//        }
-//    }
+    // MARK: - 로그인 : 애플
+    
+    static func postSignInForApple(code: String, id_token: String, escapingHandler : @escaping (Int, String) -> ()) -> Void {
+        let appdelegate = UIApplication.shared.delegate as? AppDelegate
+        let fcmToken = (appdelegate?.fcmtoken)!
+        print("fcm :\(fcmToken)")
+        
+        let url = "\(API_URL)/apple/auth/signIn"
+        var userIdForSignIn: Int = -1
+        var nickName: String = ""
+        
+        let parameters: Parameters = [
+            "code": code,
+            "id_token": id_token,
+            "fcmToken": fcmToken
+        ]
+        
+        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+        
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print("postSignIn(애플) 성공")
+                if let data = response.data {
+                    do {
+                        let responseDecoded = try JSONDecoder().decode(SignInResponseForApple.self, from: data)
+                        userIdForSignIn = responseDecoded.userId
+                        // nickName = responseDecoded.nickName
+                        
+                        print(" ** userIdForSignIn \(userIdForSignIn)")
+                        // print(" ** nickNameForSignIn \(nickName)")
+                        
+                        escapingHandler(userIdForSignIn, nickName)
+                    }catch let error as NSError{
+                        print(error)
+                    }
+                }
+                
+            case .failure(let error):
+                print("postSignIn(애플) 실패")
+                print(error)
+                escapingHandler(userIdForSignIn, nickName)
+            }
+        }
+    }
     
     // MARK: - 회원정보추가(회원가입 시)
     

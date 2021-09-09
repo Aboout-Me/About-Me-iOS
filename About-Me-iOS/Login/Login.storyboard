@@ -37,7 +37,7 @@
                                     <color key="titleColor" systemColor="systemPinkColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="buttonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ays-HQ-Hrn"/>
+                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="88y-Bu-MU7"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="logo description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEy-sZ-Srf">
@@ -193,7 +193,7 @@
                     <connections>
                         <outlet property="logoDescription" destination="w02-1k-ae6" id="sPs-gv-RZn"/>
                         <outlet property="logoImage" destination="HOF-HZ-zh9" id="JcE-DE-vhy"/>
-                        <segue destination="SNz-cL-UcT" kind="presentation" identifier="toHome_temp" id="3iZ-Pp-FHA"/>
+                        <segue destination="SNz-cL-UcT" kind="show" identifier="toHome" id="3iZ-Pp-FHA"/>
                         <segue destination="7UX-8N-gm8" kind="show" identifier="toOnboarding" id="TtE-hc-8vg"/>
                     </connections>
                 </viewController>
@@ -201,15 +201,15 @@
             </objects>
             <point key="canvasLocation" x="1700.0000000000002" y="77.678571428571431"/>
         </scene>
-        <!--Home_tempViewController-->
+        <!--HomeVC-->
         <scene sceneID="faH-X8-HHE">
             <objects>
-                <viewControllerPlaceholder storyboardName="Home_temp" referencedIdentifier="Home_tempViewController" id="SNz-cL-UcT" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="HomeVC" id="SNz-cL-UcT" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="CWD-WS-xQZ"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qSu-uG-0rX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2468.840579710145" y="314.73214285714283"/>
+            <point key="canvasLocation" x="2467" y="338"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="WrF-Qd-VIu">
@@ -262,11 +262,12 @@
                     <connections>
                         <outlet property="pageControl" destination="SAr-Ki-IZM" id="uuT-Cn-BYH"/>
                         <outlet property="scrollView" destination="vT3-Wg-wRT" id="AiL-wP-9hO"/>
+                        <segue destination="DhQ-WX-7rz" kind="show" identifier="toHome" id="Efj-fx-7hB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aji-pn-47C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3328.985507246377" y="-90.401785714285708"/>
+            <point key="canvasLocation" x="3317" y="-90"/>
         </scene>
         <!--Additional Profile View Controller-->
         <scene sceneID="1gh-HP-BlN">
@@ -407,29 +408,15 @@
             </objects>
             <point key="canvasLocation" x="2544.9275362318845" y="-90.401785714285708"/>
         </scene>
-        <!--Home temp View Controller-->
-        <scene sceneID="L8e-yT-2De">
+        <!--HomeVC-->
+        <scene sceneID="EWC-GA-JTT">
             <objects>
-                <viewController storyboardIdentifier="Home_tempViewController" id="azs-J8-ZBc" customClass="Home_tempViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ORA-lN-Bzh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Here is Home!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W7B-Pm-pQr">
-                                <rect key="frame" x="87" y="415" width="241" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="UVT-An-ITC"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="o4I-m1-hig" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="HomeVC" id="DhQ-WX-7rz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="aqf-Zo-CLL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uzm-hg-UPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4171" y="-90"/>
+            <point key="canvasLocation" x="3881" y="-90"/>
         </scene>
     </scenes>
     <resources>

@@ -85,6 +85,21 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             
             pageControl.bottomAnchor.constraint(equalTo: imageView.topAnchor
                        ,constant: -20).isActive = true
+            
+            // 마지막 페이지 버튼 추가
+            let startButton = UIButton(frame: CGRect(x: scrollWidth/2-100, y: scrollHeight-144, width: 200, height: 50))
+            
+            startButton.backgroundColor =  UIColor(red: (34/255.0), green: (34/255.0), blue: (34/255.0), alpha: 1.0)
+            startButton.layer.cornerRadius = 25
+            
+            startButton.setTitle("오늘의 나 시작하기   〉", for: .normal)
+            startButton.setTitleColor(.white, for: .normal)
+            startButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
+            startButton.addTarget(self, action: #selector(self.startButtonDidTapped), for: .touchUpInside)
+            
+            if index == 3 {
+                slide.addSubview(startButton)
+            }
         }
 
         // 모든 슬라이드를 수용하기 위한 scrollview의 width 설정
@@ -99,6 +114,11 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         pageControl.pageIndicatorTintColor = UIColor(red: (204/255.0), green: (204/255.0), blue: (204/255.0), alpha: 1.0)
         pageControl.currentPageIndicatorTintColor = .black
     }
+    
+    @objc func startButtonDidTapped(_ sender:UIButton!)
+        {
+            performSegue(withIdentifier: "toHome", sender: nil)
+        }
 
     // indicator
     @IBAction func pageChanged(_ sender: Any) {
