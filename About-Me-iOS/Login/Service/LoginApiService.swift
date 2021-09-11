@@ -291,4 +291,51 @@ struct LoginApiService {
             }
         }
     }
+    
+    static func putProfileForAlert(push_yn: String, userId: Int)
+    {
+        let url = "\(API_URL)/MyPage/profile"
+        
+        let parameters: Parameters = [
+            "push_yn": push_yn,
+            "userId": userId
+        ]
+        
+        let request = AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print("putProfileForAlert 성공")
+                print(response.value)
+                
+            case .failure(let error):
+                print("putProfileForAlert 실패")
+                print(error)
+            }
+        }
+    }
+    static func putProfileForQuestionAlert(push_time: String, userId: Int)
+    {
+        let url = "\(API_URL)/MyPage/profile"
+        
+        let parameters: Parameters = [
+            "push_time": push_time,
+            "userId": userId
+        ]
+        
+        let request = AF.request(url, method: .put, parameters: parameters, encoding: JSONEncoding.default)
+        
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                print("putProfileForQuestionAlert 성공")
+                print(response.value)
+                
+            case .failure(let error):
+                print("putProfileForQuestionAlert 실패")
+                print(error)
+            }
+        }
+    }
 }
