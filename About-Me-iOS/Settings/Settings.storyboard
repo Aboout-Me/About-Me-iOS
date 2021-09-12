@@ -217,9 +217,15 @@
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m8F-qe-6rT">
                                 <rect key="frame" x="345" y="27" width="51" height="31"/>
+                                <connections>
+                                    <action selector="alertSwitchDidTapped:" destination="Spx-uM-PPj" eventType="valueChanged" id="Vgg-I6-W4q"/>
+                                </connections>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lHR-Gy-Vee">
                                 <rect key="frame" x="345" y="112" width="51" height="31"/>
+                                <connections>
+                                    <action selector="questionSwitchDidTapped:" destination="Spx-uM-PPj" eventType="valueChanged" id="O2j-FO-sKe"/>
+                                </connections>
                             </switch>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    알림 허용" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FOt-1f-OmF">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="85"/>

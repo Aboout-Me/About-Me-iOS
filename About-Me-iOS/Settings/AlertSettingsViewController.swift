@@ -74,5 +74,22 @@ class AlertSettingsViewController: UIViewController {
         }
     }
 
-
+    @IBAction func alertSwitchDidTapped(_ sender: Any) {
+        if alertAgreementSwitch.isOn {
+            LoginApiService.putProfileForAlert(push_yn: "N", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+        }
+        else {
+            LoginApiService.putProfileForAlert(push_yn: "Y", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+        }
+    }
+    
+    @IBAction func questionSwitchDidTapped(_ sender: Any) {
+        if questionsAlertSwitch.isOn {
+            LoginApiService.putProfileForQuestionAlert(push_time: "N", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+        }
+        else {
+            LoginApiService.putProfileForQuestionAlert(push_time: "Y", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+        }
+    }
+    
 }
