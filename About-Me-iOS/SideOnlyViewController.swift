@@ -27,7 +27,13 @@ class SideOnlyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setSideLayoutInit()
+        setSideLayoutInit()
+        getUserProfileInfo()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        getUserProfileInfo()
     }
     
     private func setSideLayoutInit() {
@@ -216,5 +222,24 @@ class SideOnlyViewController: UIViewController {
         //        let navigationController = UINavigationController(rootViewController: loginVC)
         //        UIApplication.shared.windows.first?.rootViewController = navigationController
         //        UIApplication.shared.windows.first?.makeKeyAndVisible()
+    }
+    
+    
+    public func getUserProfileInfo(){
+        ProfileServerApi.getUserProfileProgress(userId: USER_ID) { [self] result in
+            if case let .success(data) = result, let list = data {
+                if list.data.isEmpty == true {
+                    myFeedButton.isEnabled = false
+                    advisoryAnswerButton.isEnabled = false
+                    socialButton.isEnabled = false
+                    myProfileButton.isEnabled = false
+                } else {
+                    myFeedButton.isEnabled = true
+                    advisoryAnswerButton.isEnabled = true
+                    socialButton.isEnabled = true
+                    myProfileButton.isEnabled = true
+                }
+            }
+        }
     }
 }
