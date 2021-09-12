@@ -9,6 +9,31 @@ import Alamofire
 
 
 struct ProfileServerApi {
+    static func getUserProfileProgress(userId: Int, completionHandler: @escaping(Result<CategoryProgressList>) -> ()) {
+        let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/Progressing/\(userId)")!
+        AF.request(urlString, method: .get, encoding: JSONEncoding.default)
+            .validate()
+            .responseData { response in
+                debugPrint(response)
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let decoder = JSONDecoder()
+                        let userProfileList = try decoder.decode(CategoryProgressList.self, from: response)
+                        let result = Result<CategoryProgressList>.success(data: userProfileList)
+                        completionHandler(result)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
+    
+    
+    
     static func getCategoryProgress(userId: Int, completionHandler: @escaping(Result<[CategoryProgressModel]>) -> ()){
         let urlString: URL = URL(string: "http://3.36.188.237:8080/MyPage/Progressing/\(userId)")!
         AF.request(urlString, method: .get, encoding: JSONEncoding.default)
