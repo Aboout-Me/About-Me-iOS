@@ -234,10 +234,18 @@ class SideOnlyViewController: UIViewController {
                     socialButton.isEnabled = false
                     myProfileButton.isEnabled = false
                 } else {
-                    myFeedButton.isEnabled = true
-                    advisoryAnswerButton.isEnabled = true
-                    socialButton.isEnabled = true
-                    myProfileButton.isEnabled = true
+                    if list.data[0].experience.isZero && list.data[1].experience.isZero && list.data[2].experience.isZero && list.data[3].experience.isZero && list.data[4].experience.isZero {
+                        myFeedButton.isEnabled = false
+                        advisoryAnswerButton.isEnabled = false
+                        socialButton.isEnabled = false
+                        myProfileButton.isEnabled = false
+                        
+                    } else {
+                        myFeedButton.isEnabled = true
+                        advisoryAnswerButton.isEnabled = true
+                        socialButton.isEnabled = true
+                        myProfileButton.isEnabled = true
+                    }
                 }
             }
         }
