@@ -313,6 +313,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
+                                    <action selector="nextButtonDidTapped:" destination="7UX-8N-gm8" eventType="touchUpInside" id="vPa-Ku-n8e"/>
                                     <segue destination="1Qt-nU-lk4" kind="show" id="iZM-Ud-SpX"/>
                                 </connections>
                             </button>
