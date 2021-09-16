@@ -166,6 +166,9 @@ class AdditionalProfileViewController: UIViewController {
             nextButton.isEnabled = false
         }
     }
+    @IBAction func nextButtonDidTapped(_ sender: Any) {
+        UserDefaults.standard.setValue(nicknameTextfield.text, forKey: "USER_NICKNAME")
+    }
     
     @IBAction func manButtonDidTapped(_ sender: UIButton) {
         manButton.layer.borderColor = UIColor.black.cgColor
