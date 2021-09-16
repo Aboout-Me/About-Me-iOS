@@ -167,6 +167,7 @@ class AdditionalProfileViewController: UIViewController {
         }
     }
     @IBAction func nextButtonDidTapped(_ sender: Any) {
+        USER_NICKNAME = nicknameTextfield.text
         UserDefaults.standard.setValue(nicknameTextfield.text, forKey: "USER_NICKNAME")
     }
     

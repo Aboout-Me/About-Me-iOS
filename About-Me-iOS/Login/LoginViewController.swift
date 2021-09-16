@@ -284,7 +284,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             }
             self.userEmail = appleEmail
             print("애플로그인 Email: \(self.userEmail)")
-            
+        
         }
     }
     
