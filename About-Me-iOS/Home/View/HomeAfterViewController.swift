@@ -454,7 +454,7 @@ extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewData
         } else if homeAfterData?.post.color == "pink" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("관계의미학", for: .normal)
-        } else {
+        } else if homeAfterData?.post.color == "purple" {
             homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             homeAfterCell?.homeAfterTagButton.setTitle("상상플러스", for: .normal)
         }

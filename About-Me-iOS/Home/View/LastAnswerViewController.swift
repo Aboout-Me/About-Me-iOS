@@ -379,7 +379,7 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
         lastAnswerVC.answerId = lastAnswerData[indexPath.item].answer_id
         lastAnswerVC.title = "\(USER_NICKNAME)"
-        lastAnswerVC.authorId = 1
+        lastAnswerVC.authorId = USER_ID
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }
     

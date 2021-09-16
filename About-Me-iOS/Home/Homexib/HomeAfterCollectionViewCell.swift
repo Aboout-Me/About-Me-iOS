@@ -63,5 +63,7 @@ class HomeAfterCollectionViewCell: UICollectionViewCell {
         homeAfterTagButton.layer.cornerRadius = 3
         homeAfterTagButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         homeAfterTagButton.isEnabled = false
+        homeAfterTagButton.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
+        homeAfterTagButton.setTitle("열정충만", for: .normal)
     }
 }
