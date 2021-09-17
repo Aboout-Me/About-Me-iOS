@@ -84,7 +84,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    private func isSceneDailyCheck() {
+    public func isSceneDailyCheck() {
         HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

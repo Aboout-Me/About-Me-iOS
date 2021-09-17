@@ -95,7 +95,7 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             startButton.setTitle("오늘의 나 시작하기   〉", for: .normal)
             startButton.setTitleColor(.white, for: .normal)
             startButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 16)
-            startButton.addTarget(self, action: #selector(self.startButtonDidTapped), for: .touchUpInside)
+            startButton.addTarget(self, action: #selector(self.HomeButtonDidTapped(_:)), for: .touchUpInside)
             
             if index == 3 {
                 slide.addSubview(startButton)
@@ -114,11 +114,12 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
         pageControl.pageIndicatorTintColor = UIColor(red: (204/255.0), green: (204/255.0), blue: (204/255.0), alpha: 1.0)
         pageControl.currentPageIndicatorTintColor = .black
     }
-    
-    @objc func startButtonDidTapped(_ sender:UIButton!)
-        {
-            performSegue(withIdentifier: "toHome", sender: nil)
-        }
+        
+    @objc
+    public func HomeButtonDidTapped(_ sender: UIButton) {
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+        sceneDelegate?.isSceneDailyCheck()
+    }
 
     // indicator
     @IBAction func pageChanged(_ sender: Any) {
