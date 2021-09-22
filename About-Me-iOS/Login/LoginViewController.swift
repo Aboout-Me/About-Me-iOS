@@ -147,7 +147,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
             guard let email = object["email"] as? String else { return }
             print("네이버 이메일 : \(email)")
             self.userEmail = email
+            
+            // 유저정보를 받고 세팅 이후 ConciergeVC로
+            self.performSegue(withIdentifier: "presentToConcierge", sender: nil)
         }
+        
     }
     
     
@@ -186,23 +190,15 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
             else {
                 print("카카오 유저정보 가져오기 성공")
                 
-                //do something
                 _ = user
                 
                 guard let email = user?.kakaoAccount?.email else { return }
                 self.userEmail = email
                 
-                
-                //                if let url = user?.kakaoAccount?.profile?.profileImageUrl,
-                //                    let data = try? Data(contentsOf: url) {
-                //                    self.profileImageView.image = UIImage(data: data)
-                //                }
+                // 유저정보를 받고 세팅 이후 ConciergeVC로
+                self.performSegue(withIdentifier: "presentToConcierge", sender: nil)
             }
         }
-    }
-    
-    @IBAction func loginButtonPressed(_ sender: UIButton) {
-        performSegue(withIdentifier: "presentToConcierge", sender: nil)
     }
     
     @IBAction func loginButtonDidTap(_ sender: UIButton) {
@@ -279,12 +275,17 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             let _: Bool = KeychainWrapper.standard.set(credential.authorizationCode!, forKey: "code")
             
             guard let appleEmail = credential.email else {
-                print("애플 이메일 가져오기 에러")
+                print("애플 이메일 가져오기 실패")
+                // 유저정보를 받고 세팅 이후 ConciergeVC로
+                self.performSegue(withIdentifier: "presentToConcierge", sender: nil)
+                
                 return
             }
             self.userEmail = appleEmail
             print("애플로그인 Email: \(self.userEmail)")
-        
+            
+            // 유저정보를 받고 세팅 이후 ConciergeVC로
+            self.performSegue(withIdentifier: "presentToConcierge", sender: nil)
         }
     }
     
