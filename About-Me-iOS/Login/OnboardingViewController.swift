@@ -55,9 +55,16 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             imageView.contentMode = .scaleToFill
             imageView.center = CGPoint(x:scrollWidth/2,y: scrollHeight - imageView.frame.height/2)
 
-            let description = UILabel.init(frame: CGRect(x:0,y:100,width:scrollWidth,height:70))
+            var yPosition: CGFloat = 100
+            var fontSize: CGFloat = 24
+            if scrollHeight < 800 {
+                yPosition = imageView.frame.minY - 110
+                fontSize = 20
+            }
+
+            let description = UILabel.init(frame: CGRect(x:0,y:yPosition,width:scrollWidth,height:70))
             description.numberOfLines = 2
-            description.font = UIFont(name: "GmarketSansMedium", size: 24)
+            description.font = UIFont(name: "GmarketSansMedium", size: fontSize)
             description.text = descs[index]
             
             let attrString = NSMutableAttributedString(string: description.text!)
@@ -83,8 +90,12 @@ class OnboardingViewController: UIViewController, UIScrollViewDelegate {
             slide.addSubview(description)
             scrollView.addSubview(slide)
             
+            var constant: CGFloat = -20
+            if scrollHeight < 800 {
+                constant = -10
+            }
             pageControl.bottomAnchor.constraint(equalTo: imageView.topAnchor
-                       ,constant: -20).isActive = true
+                       ,constant: constant).isActive = true
             
             // 마지막 페이지 버튼 추가
             let startButton = UIButton(frame: CGRect(x: scrollWidth/2-100, y: scrollHeight-144, width: 200, height: 50))
