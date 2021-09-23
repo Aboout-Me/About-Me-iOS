@@ -30,16 +30,6 @@
                                     <action selector="naverLoginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4pD-rs-uGz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1l8-Fo-IId">
-                                <rect key="frame" x="15" y="98" width="39" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="온보딩">
-                                    <color key="titleColor" systemColor="systemPinkColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="loginButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="88y-Bu-MU7"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="logo description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XEy-sZ-Srf">
                                 <rect key="frame" x="145.5" y="348" width="123" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -87,9 +77,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-Af-MjA">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-Af-MjA">
                                 <rect key="frame" x="26" y="163" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="login"/>
                                 <connections>
                                     <action selector="loginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHe-PY-fQy"/>
@@ -113,23 +102,22 @@
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1Qt-Xq-kqa"/>
+                            <constraint firstItem="0xp-dw-avY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="4Kd-LP-tpC"/>
                             <constraint firstItem="dgh-m0-vZs" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="8JF-KA-g1f"/>
                             <constraint firstItem="cB0-VQ-Hud" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="Ay9-kF-tob"/>
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Hkj-wh-KYg"/>
                             <constraint firstItem="ZhJ-ew-ysR" firstAttribute="width" secondItem="ZhJ-ew-ysR" secondAttribute="height" multiplier="5:1" id="HvW-mu-YIH"/>
                             <constraint firstItem="dgh-m0-vZs" firstAttribute="top" secondItem="cB0-VQ-Hud" secondAttribute="bottom" constant="10" id="Kle-4M-KgK"/>
                             <constraint firstItem="DkG-s9-Jds" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0334821" id="Kp6-K3-zbV"/>
-                            <constraint firstItem="0xp-dw-avY" firstAttribute="top" secondItem="1l8-Fo-IId" secondAttribute="bottom" id="OTP-XB-MhM"/>
-                            <constraint firstItem="1l8-Fo-IId" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Po5-Xw-PMo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZhJ-ew-ysR" secondAttribute="bottom" constant="25" id="RE5-Xg-xbZ"/>
                             <constraint firstItem="ZhJ-ew-ysR" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="StE-s4-DBZ"/>
-                            <constraint firstItem="1l8-Fo-IId" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="TKz-Pb-qMF"/>
                             <constraint firstItem="DkG-s9-Jds" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="am5-gy-SYQ"/>
                             <constraint firstItem="ZhJ-ew-ysR" firstAttribute="top" secondItem="dgh-m0-vZs" secondAttribute="bottom" constant="10" id="ctO-Yy-p66"/>
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="ejB-FM-52A"/>
                             <constraint firstItem="DkG-s9-Jds" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="iTd-HV-CYq"/>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="top" secondItem="mo2-PM-K9o" secondAttribute="bottom" constant="30" id="iqZ-AF-cGp"/>
                             <constraint firstItem="DkG-s9-Jds" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.219807" id="pzT-JR-H60"/>
+                            <constraint firstItem="XaA-Af-MjA" firstAttribute="top" secondItem="0xp-dw-avY" secondAttribute="bottom" constant="5" id="uFH-Ta-vAd"/>
                             <constraint firstItem="0xp-dw-avY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="yZJ-qv-a87"/>
                         </constraints>
                     </view>

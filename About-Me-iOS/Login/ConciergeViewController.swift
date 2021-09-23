@@ -33,6 +33,8 @@ class ConciergeViewController: UIViewController {
                 self.status = statusCode
                 self.userId = userId
                 self.nickName = userNickName
+                
+                self.apiDidNetworking()
             }
         }
         // 카카오, 네이버 로그인의 경우
@@ -41,6 +43,8 @@ class ConciergeViewController: UIViewController {
                 self.status = statusCode
                 self.userId = userId
                 self.nickName = userNickName
+                
+                self.apiDidNetworking()
             }
         }
 
@@ -53,43 +57,38 @@ class ConciergeViewController: UIViewController {
         AdditionalProfileVC.userId = self.userId
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-          // 1초 후 실행될 부분
+    func apiDidNetworking() {
+        print("**statusCode = \(self.status)")
+        // 회원가입
+        if self.status == 200 {
+            self.performSegue(withIdentifier: "toOnboarding", sender: nil)
+            print("== 회원가입 ==")
+            print("유저아이디 = \(self.userId)")
+            print("===============")
             
-            print("**statusCode = \(self.status)")
-            // 회원가입
-            if self.status == 200 {
-                self.performSegue(withIdentifier: "toOnboarding", sender: nil)
-                print("== 회원가입 ==")
-                print("유저아이디 = \(self.userId)")
-                print("===============")
-                
-                USER_ID = self.userId
-                USER_NICKNAME = self.nickName
-                UserDefaults.standard.setValue(self.userId, forKey: "USER_ID")
-                UserDefaults.standard.setValue(self.nickName, forKey: "USER_NICKNAME")
-                UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
+            USER_ID = self.userId
+            USER_NICKNAME = self.nickName
+            UserDefaults.standard.setValue(self.userId, forKey: "USER_ID")
+            UserDefaults.standard.setValue(self.nickName, forKey: "USER_NICKNAME")
+            UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
 
-            }
-            // 로그인
-            else if self.status == 409 {
-                self.performSegue(withIdentifier: "toHome", sender: nil)
-                print("== 로그인 ==")
-                print("유저아이디 = \(self.userId)")
-                print("===============")
-                
-                USER_ID = self.userId
-                USER_NICKNAME = self.nickName
-                UserDefaults.standard.setValue(self.userId, forKey: "USER_ID")
-                UserDefaults.standard.setValue(self.nickName, forKey: "USER_NICKNAME")
-                UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
-            }
-            // 에러
-            else  {
-                print("Concierge에서 performSegue 에러")
-            }
+        }
+        // 로그인
+        else if self.status == 409 {
+            self.performSegue(withIdentifier: "toHome", sender: nil)
+            print("== 로그인 ==")
+            print("유저아이디 = \(self.userId)")
+            print("===============")
+            
+            USER_ID = self.userId
+            USER_NICKNAME = self.nickName
+            UserDefaults.standard.setValue(self.userId, forKey: "USER_ID")
+            UserDefaults.standard.setValue(self.nickName, forKey: "USER_NICKNAME")
+            UserDefaults.standard.setValue(self.authType, forKey: "AUTH_TYPE")
+        }
+        // 에러
+        else  {
+            print("Concierge에서 performSegue 에러")
         }
     }
 }
