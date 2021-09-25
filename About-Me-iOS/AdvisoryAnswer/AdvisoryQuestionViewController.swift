@@ -344,12 +344,12 @@ class AdvisoryQuestionViewController: UIViewController {
             themeNew = advisoryTitle
         }
         answerLists = answerLists.sorted(by: { $0.level < $1.level })
-        return AdvisoryPostList(user: 1, stage: 1, theme: advisoryBeforeTitle, theme_new: themeNew, answerLists: answerLists)
+        return AdvisoryPostList(user: USER_ID, stage: 1, theme: advisoryBeforeTitle, theme_new: themeNew, answerLists: answerLists)
     }
     
     private func makeUpdateTemplate(level: Int) -> AdvisoryUpdateList {
         let answerList = AnswerList(level: level, question: questionDictionary[level]!, answer: answerDictionary[level]!)
-        return AdvisoryUpdateList(user: 1, stage: self.stage, theme: advisoryBeforeTitle, theme_new: advisoryTitle, answerLists: [answerList])
+        return AdvisoryUpdateList(user: USER_ID, stage: self.stage, theme: advisoryBeforeTitle, theme_new: advisoryTitle, answerLists: [answerList])
     }
     
 }
