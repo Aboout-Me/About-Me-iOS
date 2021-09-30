@@ -85,7 +85,7 @@ class QuestionsViewController: UIViewController {
         let paramters: Parameters = [ //Parameter : ServerAPI Request Param
             "message" : "\(questionContents.text!)",
             "reasonNum" : 7 + flag,
-            "userId" : 1680988527
+            "userId" : USER_ID
         ]
         SettingApiService.postSendInquire(parameter: paramters) { result in
             if case let .success(data) = result, let list = data {
