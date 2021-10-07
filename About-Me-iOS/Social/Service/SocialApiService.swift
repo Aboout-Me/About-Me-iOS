@@ -80,6 +80,7 @@ struct SocialApiService {
         request.validate(statusCode: 200...500).responseString { response in
             switch response.result {
             case .success:
+                debugPrint(response)
                 print(response.value)
                 let stringResponse = String(data: response.data!, encoding: .utf8)
 

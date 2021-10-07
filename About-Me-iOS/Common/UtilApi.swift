@@ -44,6 +44,7 @@ struct UtilApi {
         AF.request(urlString, method: .get, encoding: JSONEncoding.default)
             .validate()
             .responseData { response in
+                debugPrint(response)
                 switch response.result {
                 case let .success(response):
                     do {

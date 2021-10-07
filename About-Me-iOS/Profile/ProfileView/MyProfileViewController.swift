@@ -842,8 +842,8 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
             if myProfileFlag == "answer" && myProfileSubData.count != 0 {
                 let profileAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
                 profileAnswerVC.answerId = self.myProfileSubData[indexPath.item].answerId
-                profileAnswerVC.title = self.myProfileData?.nickName
-                profileAnswerVC.authorId = 1
+                profileAnswerVC.title = self.myProfileSubData[indexPath.item].writtenDate
+                profileAnswerVC.authorId = USER_ID
                 self.navigationController?.pushViewController(profileAnswerVC, animated: true)
             }
         } else {

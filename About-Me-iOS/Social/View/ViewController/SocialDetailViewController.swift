@@ -133,6 +133,11 @@ class SocialDetailViewController: UIViewController {
         button.setTitle(self.title, for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Medium", size: 18)
+        if USER_ID == authorId {
+            button.isEnabled = false
+        } else {
+            button.isEnabled = true
+        }
         button.addTarget(self, action: #selector(titleDidTap), for: .touchUpInside)
         self.navigationItem.titleView = button
     }
