@@ -64,9 +64,17 @@ class SocialDetailViewController: UIViewController {
         commentVC.answerId = self.answerId
         commentVC.authorId = self.authorId
         commentVC.comments = self.comments
-        commentVC.profileClosure = {
+        commentVC.profileClosure = { [weak self] in
+            guard let self = self else { return }
             let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
             otherProfileVC.otherId = self.authorId
+            otherProfileVC.userId = USER_ID
+            self.navigationController?.pushViewController(otherProfileVC, animated: true)
+        }
+        commentVC.otherProfileClosure = { [weak self] id in
+            guard let self = self else { return }
+            let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
+            otherProfileVC.otherId = id
             otherProfileVC.userId = USER_ID
             self.navigationController?.pushViewController(otherProfileVC, animated: true)
         }
