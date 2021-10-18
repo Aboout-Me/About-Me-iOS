@@ -28,13 +28,14 @@ class QuestionsViewController: UIViewController {
         self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(_:)))
         view.addGestureRecognizer(panGestureRecognizer!)
         
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(questionBackButtonDidTapped))
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationItem.title = "문의하기"
         self.navigationController?.navigationBar.tintColor = .black
-        self.title = "문의하기"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.gray333]
         
         chooseQuestionsButton.layer.borderWidth = 0.25
         chooseQuestionsButton.layer.borderColor = UIColor.lightGray.cgColor
@@ -129,6 +130,11 @@ class QuestionsViewController: UIViewController {
                 })
             }
         }
+    }
+    
+    @objc
+    func questionBackButtonDidTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func questionContentsIsEmpty() {

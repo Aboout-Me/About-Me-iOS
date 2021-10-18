@@ -20,17 +20,14 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        self.navigationController?.navigationBar.shadowImage = UIImage()
-//        self.navigationController?.navigationBar.isTranslucent = true
-//        self.navigationController?.view.backgroundColor = .clear
-//        self.navigationController?.navigationBar.tintColor = .black
-//        self.title = "프로필 편집"
-//        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-        
-        self.navigationItem.leftBarButtonItem?.title = ""
-        self.navigationItem.title = "프로필 편집"
-        self.navigationItem.backButtonTitle = ""
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ArrowLeft"), style: .plain, target: self, action: #selector(editProfileBackButtonDidTapped))
+        let navigationApp = UINavigationBarAppearance()
+        navigationApp.configureWithTransparentBackground()
+        self.navigationItem.leftBarButtonItem = leftBarButtonItem
+        self.navigationController?.navigationBar.standardAppearance = navigationApp
+        self.navigationItem.title = "프로필편집"
+        self.navigationController?.navigationBar.tintColor = .black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.gray333]
         
         nicknameTextfield.delegate = self
         introduceTextView.delegate = self
@@ -95,6 +92,12 @@ class EditProfileViewController: UIViewController {
             confirmButton.isEnabled = false
         }
     }
+    
+    @objc
+    func editProfileBackButtonDidTapped() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
 
     @IBAction func confirmButtonDidTapped(_ sender: UIButton) {
         if confirmButton.isEnabled {
