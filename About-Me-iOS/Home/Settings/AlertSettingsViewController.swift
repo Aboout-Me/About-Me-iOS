@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class AlertSettingsViewController: UIViewController {
 
@@ -15,6 +16,8 @@ class AlertSettingsViewController: UIViewController {
                            questionsAlert]
     @IBOutlet weak var alertAgreementSwitch: UISwitch!
     @IBOutlet weak var questionsAlertSwitch: UISwitch!
+    
+    var body: String = "" // 알림허용 여부(Y or N)
     
     var descs = ["    알림 허용\n    전체 알림 설정",
                  "    질문 알림\n    매일 오전 9시에 질문 알림"]
@@ -76,19 +79,29 @@ class AlertSettingsViewController: UIViewController {
 
     @IBAction func alertSwitchDidTapped(_ sender: Any) {
         if alertAgreementSwitch.isOn {
-            LoginApiService.putProfileForAlert(push_yn: "N", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+            SettingApiService.postAlertSetting(userId: UserDefaults.standard.integer(forKey: "USER_ID")) { (body) -> () in
+                self.body = body
+                print("알림 : \(self.body)")
+            }
         }
         else {
-            LoginApiService.putProfileForAlert(push_yn: "Y", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+            SettingApiService.postAlertSetting(userId: UserDefaults.standard.integer(forKey: "USER_ID")) { (body) -> () in
+                self.body = body
+                print("알림 : \(self.body)")
+            }
         }
     }
     
     @IBAction func questionSwitchDidTapped(_ sender: Any) {
         if questionsAlertSwitch.isOn {
-            LoginApiService.putProfileForQuestionAlert(push_time: "N", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+            Messaging.messaging().subscribe(toTopic: "notice") { error in
+              print("질문알림 On")
+            }
         }
         else {
-            LoginApiService.putProfileForQuestionAlert(push_time: "Y", userId: UserDefaults.standard.integer(forKey: "USER_ID"))
+            Messaging.messaging().unsubscribe(fromTopic: "notice") { error in
+              print("질문알림 Off")
+            }
         }
     }
     

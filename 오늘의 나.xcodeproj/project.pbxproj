@@ -239,9 +239,9 @@
 		18BB80CC267F30E100D7FD89 /* AlertSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C6267F30E100D7FD89 /* AlertSettingsViewController.swift */; };
 		18BB80CD267F30E100D7FD89 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */; };
 		18BB80CE267F30E100D7FD89 /* NoticesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C8267F30E100D7FD89 /* NoticesViewController.swift */; };
-		18BB80CF267F30E100D7FD89 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18BB80C9267F30E100D7FD89 /* Settings.storyboard */; };
 		18BB80D0267F30E100D7FD89 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */; };
 		18BB80D22685C2EF00D7FD89 /* ProfileList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80D12685C2EF00D7FD89 /* ProfileList.swift */; };
+		18D50732271D532B003E6BD0 /* AlertSettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D50731271D532B003E6BD0 /* AlertSettingList.swift */; };
 		18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */; };
 		18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */; };
 		FF04E01226B66CE3002131DC /* PushModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04E01126B66CE3002131DC /* PushModelList.swift */; };
@@ -563,9 +563,9 @@
 		18BB80C6267F30E100D7FD89 /* AlertSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertSettingsViewController.swift; sourceTree = "<group>"; };
 		18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		18BB80C8267F30E100D7FD89 /* NoticesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticesViewController.swift; sourceTree = "<group>"; };
-		18BB80C9267F30E100D7FD89 /* Settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		18BB80D12685C2EF00D7FD89 /* ProfileList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileList.swift; sourceTree = "<group>"; };
+		18D50731271D532B003E6BD0 /* AlertSettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingList.swift; sourceTree = "<group>"; };
 		18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewController.swift; sourceTree = "<group>"; };
 		18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsListViewController.xib; sourceTree = "<group>"; };
 		E2FDA8BDD90FD33424898763 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -729,7 +729,6 @@
 		0715A340260CD1860077882A /* About-Me-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				18BB80C4267F30E100D7FD89 /* Settings */,
 				18BB80BF267F30D600D7FD89 /* Home_temp */,
 				07989A06267F2B0B006C52A0 /* Login */,
 				FF3BECCC265186FF006C585A /* Profile */,
@@ -896,6 +895,7 @@
 			children = (
 				18A07A9326A3E64A00BA151D /* SendInquireList.swift */,
 				18A07A9526A3E6F400BA151D /* SettingApiService.swift */,
+				18D50731271D532B003E6BD0 /* AlertSettingList.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -917,7 +917,6 @@
 				18BB80C6267F30E100D7FD89 /* AlertSettingsViewController.swift */,
 				18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */,
 				18BB80C8267F30E100D7FD89 /* NoticesViewController.swift */,
-				18BB80C9267F30E100D7FD89 /* Settings.storyboard */,
 				18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */,
 				18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */,
 				18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */,
@@ -972,6 +971,7 @@
 		FF40CC76264AE1840094651B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				18BB80C4267F30E100D7FD89 /* Settings */,
 				FF40CC79264AE1D00094651B /* View */,
 				FFF30AA426467A200076BF44 /* ServerApi */,
 				FFFDB823261F233800947C44 /* Homexib */,
@@ -1292,7 +1292,6 @@
 				07432F5D266374DF008786B0 /* ico_common_20_delete_line@2x.png in Resources */,
 				0705C8D2265BDEAA00E71E8E /* SocialContentViewCell.xib in Resources */,
 				FFFC0F882641A5B900C6372F /* Feed@3x.png in Resources */,
-				18BB80CF267F30E100D7FD89 /* Settings.storyboard in Resources */,
 				07F33943264D281900B5CFC0 /* confirm@2x.png in Resources */,
 				0714AE85265D3261005C3C6E /* like_off@3x.png in Resources */,
 				FFFC0F9A2641A68500C6372F /* SelfQuestion@3x.png in Resources */,
@@ -1629,6 +1628,7 @@
 				07F33946264D28CC00B5CFC0 /* UIViewExtensions.swift in Sources */,
 				074011A42695CCA700AFFA3D /* MyFeedCell.swift in Sources */,
 				FF351A9F2668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.swift in Sources */,
+				18D50732271D532B003E6BD0 /* AlertSettingList.swift in Sources */,
 				FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */,
 				FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */,
 				07011232268DEAFC008BD686 /* SocialSearchResponseCell.swift in Sources */,

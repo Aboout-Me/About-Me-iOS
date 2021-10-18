@@ -20,13 +20,17 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
-        self.navigationController?.navigationBar.tintColor = .black
-        self.title = "프로필 편집"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.navigationController?.navigationBar.isTranslucent = true
+//        self.navigationController?.view.backgroundColor = .clear
+//        self.navigationController?.navigationBar.tintColor = .black
+//        self.title = "프로필 편집"
+//        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
+        
+        self.navigationItem.leftBarButtonItem?.title = ""
+        self.navigationItem.title = "프로필 편집"
+        self.navigationItem.backButtonTitle = ""
         
         nicknameTextfield.delegate = self
         introduceTextView.delegate = self

@@ -43,16 +43,6 @@
                                     <constraint firstAttribute="height" constant="110" id="MpB-Ls-yOy"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0xp-dw-avY">
-                                <rect key="frame" x="15" y="128" width="30" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                <state key="normal" title="설정">
-                                    <color key="titleColor" systemColor="systemPinkColor"/>
-                                </state>
-                                <connections>
-                                    <segue destination="HhR-2h-rfU" kind="show" identifier="Settings" destinationCreationSelector="Settings" id="KQj-it-OTn"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgh-m0-vZs">
                                 <rect key="frame" x="57" y="707" width="300" height="60"/>
                                 <constraints>
@@ -77,8 +67,9 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-Af-MjA">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-Af-MjA">
                                 <rect key="frame" x="26" y="163" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="login"/>
                                 <connections>
                                     <action selector="loginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHe-PY-fQy"/>
@@ -102,7 +93,6 @@
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1Qt-Xq-kqa"/>
-                            <constraint firstItem="0xp-dw-avY" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="40" id="4Kd-LP-tpC"/>
                             <constraint firstItem="dgh-m0-vZs" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="8JF-KA-g1f"/>
                             <constraint firstItem="cB0-VQ-Hud" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="Ay9-kF-tob"/>
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Hkj-wh-KYg"/>
@@ -117,8 +107,6 @@
                             <constraint firstItem="DkG-s9-Jds" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="iTd-HV-CYq"/>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="top" secondItem="mo2-PM-K9o" secondAttribute="bottom" constant="30" id="iqZ-AF-cGp"/>
                             <constraint firstItem="DkG-s9-Jds" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.219807" id="pzT-JR-H60"/>
-                            <constraint firstItem="XaA-Af-MjA" firstAttribute="top" secondItem="0xp-dw-avY" secondAttribute="bottom" constant="5" id="uFH-Ta-vAd"/>
-                            <constraint firstItem="0xp-dw-avY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="yZJ-qv-a87"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OnO-xV-qsf"/>
@@ -135,16 +123,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="857.97101449275374" y="77.678571428571431"/>
-        </scene>
-        <!--SettingsViewController-->
-        <scene sceneID="Ggc-JK-ZQJ">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="SettingsViewController" storyboardName="Settings" referencedIdentifier="SettingsViewController" id="HhR-2h-rfU" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="ny6-tg-VOy"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HtE-sd-Gf8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="878" y="508"/>
         </scene>
         <!--Concierge View Controller-->
         <scene sceneID="J15-Ua-zRz">
@@ -426,9 +404,6 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

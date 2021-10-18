@@ -29,6 +29,19 @@ class SideOnlyViewController: UIViewController {
         super.viewDidLoad()
         setSideLayoutInit()
         getUserProfileInfo()
+        
+        // 모달프레젠트 설정
+        let vc = UIViewController()
+        vc.modalPresentationStyle = .fullScreen
+        
+        // 네비게이션바 설정
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.navigationBar.tintColor = .black
+        self.title = ""
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
     }
     
     override func viewWillAppear(_ animated: Bool) {
