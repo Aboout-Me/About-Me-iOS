@@ -49,6 +49,7 @@ struct SettingApiService {
         
         let request = AF.request(url, method: .post, parameters: alertSettingParams, encoder: URLEncodedFormParameterEncoder.default)
         request.validate(statusCode: 200...500).responseString { response in
+            debugPrint(response)
             status = response.response!.statusCode
             switch response.result {
             case .success:

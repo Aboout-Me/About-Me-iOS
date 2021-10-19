@@ -64,6 +64,8 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.navigationBar.standardAppearance.shadowColor = UIColor(white: 255/255, alpha: 0.2)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)!,NSAttributedString.Key.foregroundColor : UIColor.white]
     }
     override func viewWillDisappear(_ animated: Bool) {
         

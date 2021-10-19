@@ -37,6 +37,20 @@ class AlertSettingsViewController: UIViewController {
         alertAgreementSwitch.onTintColor = .black
         alertAgreementSwitch.tintColor = .lightGray
         
+        if let state = UserDefaults.standard.string(forKey: "alertState") {
+            if state.isEmpty || state == "Y" {
+                alertAgreementSwitch.isOn = true
+            } else  {
+                alertAgreementSwitch.isOn = false
+            }
+        }
+        
+        if UserDefaults.standard.bool(forKey: "questionalertState") == true {
+            questionsAlertSwitch.isOn = true
+        } else {
+            questionsAlertSwitch.isOn = false
+        }
+        
         questionsAlertSwitch.onTintColor = .black
         questionsAlertSwitch.tintColor = .lightGray
         
@@ -88,12 +102,14 @@ class AlertSettingsViewController: UIViewController {
         if alertAgreementSwitch.isOn {
             SettingApiService.postAlertSetting(userId: UserDefaults.standard.integer(forKey: "USER_ID")) { (body) -> () in
                 self.body = body
+                UserDefaults.standard.set(body, forKey: "alertState")
                 print("알림 : \(self.body)")
             }
         }
         else {
             SettingApiService.postAlertSetting(userId: UserDefaults.standard.integer(forKey: "USER_ID")) { (body) -> () in
                 self.body = body
+                UserDefaults.standard.set(body, forKey: "alertState")
                 print("알림 : \(self.body)")
             }
         }
@@ -103,11 +119,13 @@ class AlertSettingsViewController: UIViewController {
         if questionsAlertSwitch.isOn {
             Messaging.messaging().subscribe(toTopic: "notice") { error in
               print("질문알림 On")
+                UserDefaults.standard.setValue(self.questionsAlertSwitch.isOn, forKey: "questionalertState")
             }
         }
         else {
             Messaging.messaging().unsubscribe(fromTopic: "notice") { error in
               print("질문알림 Off")
+                UserDefaults.standard.setValue(self.questionsAlertSwitch.isOn, forKey: "questionalertState")
             }
         }
     }

@@ -56,6 +56,12 @@ class QuestionsViewController: UIViewController {
         submissionButtonisEnabled()
     }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?){
+        self.view.endEditing(true)
+    }
+
+    
     @IBAction func chooseQuestionsButtonDidTapped(_ sender: Any) {
         let questionsListVC = QuestionsListViewController(nibName: "QuestionsListViewController", bundle: nil)
         questionsListVC.modalPresentationStyle = .overCurrentContext
