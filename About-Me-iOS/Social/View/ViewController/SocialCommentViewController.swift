@@ -51,41 +51,6 @@ class SocialCommentViewController: UIViewController {
         self.pullControl.endRefreshing()
     }
     
-    @objc
-    func panGestureAction(_ panGesture: UIPanGestureRecognizer) {
-        let translation = panGesture.translation(in: view)
-        
-        if panGesture.state == .began {
-            originalPosition = view.center
-            currentPositionTouched = panGesture.location(in: view)
-        } else if panGesture.state == .changed {
-            view.frame.origin = CGPoint(
-                x: view.frame.origin.x,
-                y: view.frame.origin.y > translation.y ? view.frame.origin.y : translation.y
-            )
-        } else if panGesture.state == .ended {
-            let velocity = panGesture.velocity(in: view)
-            
-            if velocity.y >= 1500 {
-                UIView.animate(withDuration: 0.2
-                               , animations: {
-                                self.view.frame.origin = CGPoint(
-                                    x: self.view.frame.origin.x,
-                                    y: self.view.frame.size.height
-                                )
-                               }, completion: { (isCompleted) in
-                                if isCompleted {
-                                    self.dismiss(animated: false, completion: nil)
-                                }
-                               })
-            } else {
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.view.center = self.originalPosition!
-                })
-            }
-        }
-    }
-    
     @IBAction func commentButtonDidTap(_ sender: Any) {
         if let comment = commentTextField.text, comment != "",
            let answerId = self.answerId, let authorId = self.authorId {
@@ -127,8 +92,6 @@ class SocialCommentViewController: UIViewController {
         }
         self.roundView.layer.cornerRadius = 10
         
-        self.panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(panGestureAction(_:)))
-        self.commentTableView.addGestureRecognizer(panGestureRecognizer!)
         self.commentTableView.dataSource = self
         self.commentTableView.delegate = self
         self.pullControl.addTarget(self, action: #selector(refreshListData(_:)), for: .valueChanged)
