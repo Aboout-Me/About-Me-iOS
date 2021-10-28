@@ -24,7 +24,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private var currentPage:Int = 0
     private var selectIndex:Int = 0
     private var screenSize = UIScreen.main.bounds.size
-    public var isshare = "N"
+    public var isshare = "Y"
     private var rightBarButtonName = "Bell"
     
     
@@ -339,11 +339,11 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private func sharedBottomSheetButtonDidTap(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            isshare = "N"
+            isshare = "Y"
             editAnswerSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
         } else {
             sender.isSelected = true
-            isshare = "Y"
+            isshare = "N"
             editAnswerSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .selected)
         }
         
