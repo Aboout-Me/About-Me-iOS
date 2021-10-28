@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3P-m6-TnK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3P-m6-TnK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -67,20 +68,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaA-Af-MjA">
-                                <rect key="frame" x="26" y="163" width="34" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="login"/>
-                                <connections>
-                                    <action selector="loginButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LHe-PY-fQy"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="99j-Vf-Pds">
-                                <rect key="frame" x="74" y="161" width="97" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-s9-Jds">
                                 <rect key="frame" x="161.5" y="460" width="91" height="30"/>
                                 <state key="normal" title="네이버로그아웃"/>
@@ -112,7 +99,6 @@
                     <navigationItem key="navigationItem" id="OnO-xV-qsf"/>
                     <connections>
                         <outlet property="appleloginButton" destination="ZhJ-ew-ysR" id="t4B-2Z-PIz"/>
-                        <outlet property="idTextField" destination="99j-Vf-Pds" id="mlp-nW-gRM"/>
                         <outlet property="kakaologinButton" destination="dgh-m0-vZs" id="BVd-Dy-cGP"/>
                         <outlet property="logoDescription" destination="XEy-sZ-Srf" id="upv-Vb-0Sn"/>
                         <outlet property="logoImage" destination="mo2-PM-K9o" id="TUr-bp-U51"/>
@@ -209,7 +195,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="5sK-pY-M9n"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SAr-Ki-IZM">
-                                <rect key="frame" x="146.5" y="138" width="121.5" height="28"/>
+                                <rect key="frame" x="129.5" y="138" width="155.5" height="28"/>
                                 <color key="pageIndicatorTintColor" name="AccentColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="systemRedColor"/>
                             </pageControl>
