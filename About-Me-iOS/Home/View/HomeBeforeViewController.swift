@@ -7,7 +7,6 @@
 
 import UIKit
 import SideMenu
-import Hero
 import Floaty
 
 class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDelegate {
@@ -223,26 +222,29 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
         let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: USER_ID)
-        HomeServerApi.postHomecardListSave(parameter: parameter) { result in
-            if case let .success(data) = result, let list = data {
-                print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
-                print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
-                DispatchQueue.main.async {
-                    UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
-                    UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
-                    UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id")
+            HomeServerApi.postHomecardListSave(parameter: parameter) { result in
+                if case let .success(data) = result, let list = data {
+                    print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
+                    print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
+                    DispatchQueue(label: "homeBefore", attributes: .concurrent).async {
+                        UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
+                        UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
+                        UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id")
+                    }
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
+                    guard let homeAfterVC = homeAfterView else { return }
+                    self.navigationController?.pushViewController(homeAfterVC, animated: true)
+                } else if case let .failure(error) = result {
+                    let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
+                    let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    alert.addAction(alertButton)
+                    UserDefaults.standard.removeObject(forKey: "card_seq")
+                    UserDefaults.standard.removeObject(forKey: "answer_Id")
+                    UserDefaults.standard.synchronize()
+                    self.present(alert, animated: true, completion: nil)
                 }
-            } else if case let .failure(error) = result {
-                let alert = UIAlertController(title: "Post Error Message", message: error, preferredStyle: .alert)
-                let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alert.addAction(alertButton)
-                UserDefaults.standard.removeObject(forKey: "card_seq")
-                UserDefaults.standard.removeObject(forKey: "answer_Id")
-                UserDefaults.standard.synchronize()
-                self.present(alert, animated: true, completion: nil)
             }
-        }
-        
     }
     
     @objc
@@ -254,15 +256,13 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     @objc
     private func showQuestionViewDidTap() {
         editAnswerSheetView.postAnswerTextView.resignFirstResponder()
-        postHomeCardSave()
         UserDefaults.standard.set(editAnswerSheetView.postAnswerTextView.text, forKey: "myQuestionText")
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
-        })
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
-        guard let homeAfterVC = homeAfterView else { return }
-        self.navigationController?.pushViewController(homeAfterVC, animated: true)
+        DispatchQueue.global(qos: .userInteractive).sync {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
+            })
+        }
+        postHomeCardSave()
     }
     
     @objc
