@@ -61,7 +61,6 @@ class LastAnswerViewController: UIViewController {
         self.navigationItem.title = "나의 지난 응답"
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)]
-        backgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
         backgroundImageView.contentMode = .scaleToFill
         answerCollectionView.delegate = self
         answerCollectionView.dataSource = self
@@ -195,12 +194,21 @@ class LastAnswerViewController: UIViewController {
     }
     
     private func deleteLastAnswerCardList() {
-        HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].answer_id) { result in
+        print("Delte Test Select Data",selectedIndex)
+        print("Delete answerID: ", lastAnswerData[selectedIndex].answer_id)
+        print("answr ID :  " , UserDefaults.standard.string(forKey: "answer_Id"))
+        HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].answer_id) { [self] result in
             if case let .success(data) = result, let _ = data {
-//                if UserDefaults.standard.string(forKey: "answer_Id")  {
-//                    <#code#>
-//                }
-                self.navigationController?.popToRootViewController(animated: true)
+                if UserDefaults.standard.integer(forKey: "answer_Id") != self.lastAnswerData[selectedIndex].answer_id  {
+                    guard let viewControllers = self.navigationController?.viewControllers else { return }
+                    for viewcontroller in viewControllers {
+                        if let homeBeforeView = viewcontroller as? HomeBeforeViewController {
+                            self.navigationController?.popToViewController(homeBeforeView, animated: true)
+                        }
+                    }
+                } else {
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
         }
     }
@@ -239,11 +247,13 @@ class LastAnswerViewController: UIViewController {
                 removeView.removeFromSuperview()
             }
         }
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            DispatchQueue.global(qos: .userInteractive).sync {
-                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        DispatchQueue.global(qos: .userInteractive).async {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                        self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+                }, completion: nil)
             }
-        }, completion: nil)
+        }
     }
     
     @objc
@@ -254,11 +264,14 @@ class LastAnswerViewController: UIViewController {
                 cancelView.removeFromSuperview()
             }
         }
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
-            DispatchQueue.global(qos: .userInteractive).sync {
-                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        DispatchQueue.global(qos: .userInteractive).async {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+                    
+                        self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+                }, completion: nil)
             }
-        }, completion: nil)
+        }
     }
     
     @objc
@@ -270,9 +283,7 @@ class LastAnswerViewController: UIViewController {
             }
         }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            DispatchQueue.global(qos: .userInteractive).sync {
                 self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
-            }
         } completion: { success in
             if success {
                 self.deleteLastAnswerCardList()
@@ -291,16 +302,18 @@ class LastAnswerViewController: UIViewController {
             }
         }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            DispatchQueue.global(qos: .userInteractive).sync {
                 self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
-            }
         } completion: { success in
             if success {
                 window?.addSubview(self.postBottomView)
                 self.setPostBottomSheetViewLayout()
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                    self.postBottomView.frame = CGRect(x: 0, y: self.screenSize.height - (self.screenSize.height - height - 12), width: self.screenSize.width, height: self.screenSize.height + height + 12)
-                }, completion: nil)
+                DispatchQueue.global(qos: .userInteractive).async {
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                            self.postBottomView.frame = CGRect(x: 0, y: self.screenSize.height - (self.screenSize.height - height - 12), width: self.screenSize.width, height: self.screenSize.height + height + 12)
+                        }, completion: nil)
+                    }
+                }
             }
         }
     }
@@ -380,6 +393,14 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
             answerCell.answerCharacterLabel.text = "상상 플러스"
             answerCell.answerCharacterView.backgroundColor = .primaryPurple
         }
+        if lastAnswerData[indexPath.item].level == 1 {
+            answerCell.answerRankView.isHidden = true
+            answerCell.answerRankLabel.isHidden = true
+        } else {
+            answerCell.answerRankView.isHidden = false
+            answerCell.answerRankLabel.isHidden = false
+        }
+        
         answerCell.answerQuestionLabel.text = "\(lastAnswerData[indexPath.item].question)"
         answerCell.answerRankLabel.text = "Level \(lastAnswerData[indexPath.item].level)"
         answerCell.answerContentLabel.text = "\(lastAnswerData[indexPath.item].answer)"
@@ -387,6 +408,7 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
             self.setBottomSheetViewLayout()
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
                 self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height - 224, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+                self.selectedIndex = indexPath.item
             })
         }
         
@@ -395,7 +417,6 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedIndex = indexPath.item
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
         lastAnswerVC.answerId = lastAnswerData[indexPath.item].answer_id
         lastAnswerVC.title = "\(USER_NICKNAME!)"

@@ -31,7 +31,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let containerView = UIView(frame: self.view.frame)
         containerView.isOpaque = false
         containerView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        containerView.tag = 1
+        containerView.tag = 4
         return containerView
     }()
     
@@ -59,6 +59,8 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         setLayoutInit()
         setSideMenuLayoutInit()
         getUtilList()
+        print("Answe_ id Check viewdidload",UserDefaults.standard.string(forKey: "answer_Id"))
+        print("homeAfter 뷰 계층: \(self.navigationController?.viewControllers)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,6 +76,8 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
         isWriteCardCheck()
         getUtilList()
+        print("homeAfter ViewwillApper뷰 계층: \(self.navigationController?.viewControllers)")
+        print("Answe_ id Check viewwillapear",UserDefaults.standard.string(forKey: "answer_Id"))
     }
     
     private func setLayoutInit() {
@@ -229,9 +233,20 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     private func deleteHomeCardList() {
         print(UserDefaults.standard.integer(forKey: "answer_Id"))
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         HomeServerApi.deleteHomeCardList(seq: UserDefaults.standard.integer(forKey: "answer_Id")) { result in
             if case let .success(data) = result, let _ = data {
-                self.navigationController?.popViewController(animated: true)
+                guard let viewcontrollers = self.navigationController?.viewControllers else { return }
+                for viewcontroller in viewcontrollers {
+                    if viewcontrollers.first is HomeBeforeViewController {
+                        if let homeBeforeView = viewcontroller as? HomeBeforeViewController {
+                            self.navigationController?.popToViewController(homeBeforeView, animated: true)
+                        }
+                    } else {
+                        sceneDelegate?.isSceneDailyCheck()
+                    }
+                }
+                print("뷰 계층: \(self.navigationController?.viewControllers)")
             } else if case let .failure(error) = result {
                 let alert = UIAlertController(title: "Delete Error Message", message: error, preferredStyle: .alert)
                 let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
@@ -261,7 +276,6 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
                     self.homeAfterData = detailResponse!
                     self.setAnswerViewLayout()
                 }
-                print("get UtilList Data\(self.homeAfterData)")
             }
         }
     
@@ -290,10 +304,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         
         if self.homeAfterData?.post.level == 1 {
             self.homeAfterLastAnswerButton.isHidden = false
-            self.homeAfterLevelLabel.isHidden = false
-        } else {
-            self.homeAfterLastAnswerButton.isHidden = true
             self.homeAfterLevelLabel.isHidden = true
+            self.homeAfterLevelFlexView.isHidden = true
+        } else {
+            self.homeAfterLastAnswerButton.isHidden = false
+            self.homeAfterLevelLabel.isHidden = false
+            self.homeAfterLevelFlexView.isHidden = false
         }
         
         if let question = homeAfterData?.post.question {
@@ -379,14 +395,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let screenSize = UIScreen.main.bounds.size
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         DispatchQueue.main.async {
-            if let removeContainer = window?.viewWithTag(1) {
+            if let removeContainer = window?.viewWithTag(4) {
                 removeContainer.removeFromSuperview()
             }
         }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            DispatchQueue.global(qos: .userInteractive).sync {
             self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
-            }
         })
     }
     
@@ -395,23 +409,25 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     private func homeAfterEditButtonDidTap(_ sender: UIButton) {
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
-        DispatchQueue.main.async {
-            if let removeContainer = window?.viewWithTag(1) {
-                removeContainer.removeFromSuperview()
-            }
-        }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            DispatchQueue.global(qos: .userInteractive).sync {
-                self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+            DispatchQueue.main.async {
+                if let removeContainer = window?.viewWithTag(4) {
+                    removeContainer.removeFromSuperview()
+                }
             }
+                self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
         } completion: { (success) in
             if success {
                 let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
                 window?.addSubview(self.answerBottomSheetView)
                 self.answerEditBottomSheetLayoutInit()
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                    self.answerBottomSheetView.frame = CGRect(x: 0, y: screenSize.height - (screenSize.height - height - 12), width: screenSize.width, height: screenSize.height + height + 12)
-                })
+                DispatchQueue.global(qos: .userInteractive).async {
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                            self.answerBottomSheetView.frame = CGRect(x: 0, y: screenSize.height - (screenSize.height - height - 12), width: screenSize.width, height: screenSize.height + height + 12)
+                        })
+                    }
+                }
             }
         }
         
@@ -445,14 +461,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
         DispatchQueue.main.async {
-            if let deleteView = window?.viewWithTag(1) {
+            if let deleteView = window?.viewWithTag(4) {
                 deleteView.removeFromSuperview()
             }
         }
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
-            DispatchQueue.global(qos: .userInteractive).sync {
                 self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
-            }
         } completion: { success in
             if success {
                 self.deleteHomeCardList()
@@ -466,15 +480,15 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
         DispatchQueue.main.async {
-            if let cancelView = window?.viewWithTag(1) {
+            if let cancelView = window?.viewWithTag(4) {
                 cancelView.removeFromSuperview()
             }
         }
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            DispatchQueue.global(qos: .userInteractive).sync {
-                self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
-            }
-        }, completion: nil)
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                    self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }, completion: nil)
+        }
     }
     
     @objc

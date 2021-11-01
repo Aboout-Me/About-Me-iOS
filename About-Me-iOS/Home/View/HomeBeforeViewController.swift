@@ -44,6 +44,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         setLayoutInit()
         setSideMenuLayoutInit()
         getWriteCardList()
+        print("homeBefore 뷰 계층 \(self.navigationController?.viewControllers)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +60,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
         getWriteCardList()
+        print("homeBefore ViewwillApper \(self.navigationController?.viewControllers)")
     }
     
     deinit {
@@ -222,15 +224,15 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private func postHomeCardSave() {
         print("질문 일련번호 \(self.homeData[self.selectIndex].seq)")
         let parameter = HomeCardSaveParamter(answer: self.editAnswerSheetView.postAnswerTextView.text, color: self.homeData[self.selectIndex].color, level: Int(self.homeData[self.selectIndex].lev)!, share_yn: self.isshare, title: self.homeData[self.selectIndex].seq, user: USER_ID)
+        DispatchQueue(label: "Concurrent", attributes: .concurrent).async {
             HomeServerApi.postHomecardListSave(parameter: parameter) { result in
                 if case let .success(data) = result, let list = data {
                     print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
                     print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
-                    DispatchQueue(label: "homeBefore", attributes: .concurrent).async {
+                    print("answerIDcheck before: \(UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id"))")
                         UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
                         UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
                         UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id")
-                    }
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                     guard let homeAfterVC = homeAfterView else { return }
@@ -245,6 +247,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                     self.present(alert, animated: true, completion: nil)
                 }
             }
+        }
     }
     
     @objc
@@ -460,9 +463,13 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         let window = UIApplication.shared.windows.first
         window?.addSubview(self.editAnswerSheetView)
         homeBeforeBottomSheetLayoutInit()
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-            self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height - (self.screenSize.height - height - 12), width: self.screenSize.width, height: self.screenSize.height + height + 12)
-        })
+        DispatchQueue.global(qos: .userInteractive).async {
+            DispatchQueue.main.async {
+                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+                    self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height - (self.screenSize.height - height - 12), width: self.screenSize.width, height: self.screenSize.height + height + 12)
+                })
+            }
+        }
     }
 
     func scrollViewDidScroll(_ scrollView:UIScrollView) {
