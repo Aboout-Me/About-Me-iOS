@@ -10,13 +10,20 @@ import Floaty
 import SideMenu
 
 class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDelegate {
-    @IBOutlet weak var homeAfterCollectionView: UICollectionView!
+    @IBOutlet weak var homeAfterAnswerView: UIView!
+    @IBOutlet weak var homeAfterTagView: UIButton!
+    @IBOutlet weak var homeAfterEditButton: UIButton!
+    @IBOutlet weak var homeAfterQuestionLabel: UILabel!
+    @IBOutlet weak var homeAfterLevelFlexView: UIView!
+    @IBOutlet weak var homeAfterLevelLabel: UILabel!
+    @IBOutlet weak var homeAfterLineView: UIView!
+    @IBOutlet weak var homeAfterAnswerTextView: UITextView!
     @IBOutlet weak var homeAfterFloaingButton: Floaty!
     @IBOutlet weak var homeAfterBackgroundImageView: UIImageView!
     @IBOutlet weak var homeAfterLastAnswerButton: UIButton!
     public var afterSideMenu: SideMenuNavigationController?
     public var screenSize = UIScreen.main.bounds.size
-    public var isAfterShare = "N"
+    public var isAfterShare = "Y"
     private var homeAfterData: SocialDetailResponse? = nil
     private var rightBarButtonName = "Bell"
     
@@ -70,10 +77,6 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     private func setLayoutInit() {
-        let cellWidth = floor(view.frame.width * 0.85)
-        let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: cellWidth, height: 420)
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         let date = Date()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy.MM.dd"
@@ -88,16 +91,43 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationItem.title = dateString
-        homeAfterCollectionView.delegate = self
-        homeAfterCollectionView.dataSource = self
-        homeAfterCollectionView.backgroundColor = .clear
-        homeAfterCollectionView.collectionViewLayout = layout
-        let nib = UINib(nibName: "HomeAfterCollectionViewCell", bundle: nil)
-        homeAfterCollectionView.register(nib, forCellWithReuseIdentifier: "HomeAfterCell")
+        homeAfterBackgroundImageView.contentMode = .scaleToFill
+        homeAfterAnswerView.layer.borderColor = UIColor.clear.cgColor
+        homeAfterAnswerView.layer.cornerRadius = 10
+        homeAfterAnswerView.clipsToBounds = true
+        homeAfterAnswerView.backgroundColor = UIColor.white
+        
+        homeAfterTagView.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Bold", size: 12)
+        homeAfterTagView.titleLabel?.textAlignment = .center
+        homeAfterTagView.setTitleColor(.white, for: .normal)
+        homeAfterTagView.layer.masksToBounds = true
+        homeAfterTagView.layer.cornerRadius = 3
+        homeAfterTagView.contentEdgeInsets = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+        homeAfterTagView.isEnabled = false
+        
+        homeAfterLevelFlexView.layer.borderWidth = 1
+        homeAfterLevelFlexView.layer.borderColor = UIColor.gray555.cgColor
+        homeAfterLevelFlexView.layer.cornerRadius = 3
+        
+        homeAfterQuestionLabel.numberOfLines = 0
+        homeAfterQuestionLabel.textAlignment = .left
+        homeAfterQuestionLabel.font = UIFont(name: "GmarketSansMedium", size: 20)
+        homeAfterQuestionLabel.textColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        
+        homeAfterAnswerTextView.textAlignment = .left
+        homeAfterAnswerTextView.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
+        homeAfterAnswerTextView.textColor = UIColor(red: 51/255, green: 51/255, blue: 51/255, alpha: 1.0)
+        homeAfterAnswerTextView.isEditable = false
+        homeAfterAnswerTextView.isSelectable = false
+        homeAfterAnswerTextView.textContainer.lineBreakMode = .byTruncatingTail
+        homeAfterAnswerTextView.textContainer.lineFragmentPadding = 0
+        
+        
         homeAfterFloaingButton.buttonColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
         homeAfterFloaingButton.plusColor = UIColor.white
         homeAfterFloaingButton.selectedColor = UIColor.gray999
         homeAfterFloaingButton.sticky = true
+        
         homeAfterLastAnswerButton.setTitle("같은 질문 지난 응답 확인하기", for: .normal)
         homeAfterLastAnswerButton.setTitleColor(UIColor.gray333, for: .normal)
         homeAfterLastAnswerButton.titleLabel?.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 16)
@@ -123,6 +153,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             self.navigationController?.pushViewController(moreVC, animated: true)
         }
 
+        homeAfterEditButton.addTarget(self, action: #selector(HomeAfterViewController.showEditBottomSheetDidTap(_:)), for: .touchUpInside)
     }
     
     private func isWriteCardCheck() {
@@ -225,33 +256,54 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
     private func getUtilList() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             SocialApiService.getSocialDetail(answerId: UserDefaults.standard.integer(forKey: "answer_Id"), authorId: 1) { detailResponse in
                 DispatchQueue.main.async {
                     self.homeAfterData = detailResponse!
-                    if self.homeAfterData?.post.color == "red" {
-                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
-                    } else if self.homeAfterData?.post.color == "yellow" {
-                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
-                    } else if self.homeAfterData?.post.color == "green" {
-                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
-                    } else if self.homeAfterData?.post.color == "pink" {
-                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
-                    } else if self.homeAfterData?.post.color == "purple" {
-                        self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
-                    }
-                    
-                    if self.homeAfterData?.post.level == 1 {
-                        self.homeAfterLastAnswerButton.isHidden = false
-                    } else {
-                        self.homeAfterLastAnswerButton.isHidden = true
-                    }
-                    self.homeAfterCollectionView.reloadData()
+                    self.setAnswerViewLayout()
                 }
                 print("get UtilList Data\(self.homeAfterData)")
             }
         }
+    
+    private func setAnswerViewLayout() {
+        if self.homeAfterData?.post.color == "red" {
+            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+            homeAfterTagView.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
+            homeAfterTagView.setTitle("열정충만", for: .normal)
+        } else if self.homeAfterData?.post.color == "yellow" {
+            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+            homeAfterTagView.backgroundColor = UIColor(red: 242/255, green: 194/255, blue: 23/255, alpha: 1.0)
+            homeAfterTagView.setTitle("소소한일상", for: .normal)
+        } else if self.homeAfterData?.post.color == "green" {
+            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+            homeAfterTagView.backgroundColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
+            homeAfterTagView.setTitle("기억상자", for: .normal)
+        } else if self.homeAfterData?.post.color == "pink" {
+            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+            homeAfterTagView.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+            homeAfterTagView.setTitle("관계의미학", for: .normal)
+        } else if self.homeAfterData?.post.color == "purple" {
+            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+            homeAfterTagView.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+            homeAfterTagView.setTitle("상상플러스", for: .normal)
+        }
+        
+        if self.homeAfterData?.post.level == 1 {
+            self.homeAfterLastAnswerButton.isHidden = false
+            self.homeAfterLevelLabel.isHidden = false
+        } else {
+            self.homeAfterLastAnswerButton.isHidden = true
+            self.homeAfterLevelLabel.isHidden = true
+        }
+        
+        if let question = homeAfterData?.post.question {
+            homeAfterQuestionLabel.text = question
+        }
+        if let answer = homeAfterData?.post.answer {
+            homeAfterAnswerTextView.text = answer
+        }
     }
+    
     
     @objc
     private func hideAnswerBottomSheetDidTap() {
@@ -282,12 +334,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     private func shareEditViewButtonDidTap(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            isAfterShare = "N"
+            isAfterShare = "Y"
             answerBottomSheetView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         } else {
             sender.isSelected = true
-            isAfterShare = "Y"
+            isAfterShare = "N"
             answerBottomSheetView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .normal)
             UserDefaults.standard.set(sender.isSelected, forKey: "isshareValue")
         }
@@ -305,7 +357,7 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     @objc
     private func showEditBottomSheetDidTap(_ sender: UIButton) {
-        let window = UIApplication.shared.windows.first
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
         editBottomSheetLayoutInit()
         window?.addSubview(editBottomContainerView)
@@ -325,25 +377,33 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     @objc
     private func hideEditBottomSheetGestureAction(recognizer: UITapGestureRecognizer) {
         let screenSize = UIScreen.main.bounds.size
-        let window = UIApplication.shared.windows.first
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
+        DispatchQueue.main.async {
             if let removeContainer = window?.viewWithTag(1) {
                 removeContainer.removeFromSuperview()
             }
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            DispatchQueue.global(qos: .userInteractive).sync {
             self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }
         })
     }
     
     
     @objc
     private func homeAfterEditButtonDidTap(_ sender: UIButton) {
-        let window = UIApplication.shared.windows.first
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+        DispatchQueue.main.async {
             if let removeContainer = window?.viewWithTag(1) {
                 removeContainer.removeFromSuperview()
             }
-            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: screenSize.height + self.view.safeAreaInsets.bottom)
+            }
         } completion: { (success) in
             if success {
                 let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
@@ -382,13 +442,17 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     @objc
     private func homeAfterDeleteButtonDidTap(_ sender: UIButton) {
-        let window = UIApplication.shared.windows.first
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+        DispatchQueue.main.async {
             if let deleteView = window?.viewWithTag(1) {
                 deleteView.removeFromSuperview()
             }
-            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }
         } completion: { success in
             if success {
                 self.deleteHomeCardList()
@@ -399,14 +463,17 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     @objc
     private func homeAfterCancelButtonDidTap(_ sender: UIButton) {
-        let window = UIApplication.shared.windows.first
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         let screenSize = UIScreen.main.bounds.size
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        DispatchQueue.main.async {
             if let cancelView = window?.viewWithTag(1) {
                 cancelView.removeFromSuperview()
             }
-            self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.editBottomView.frame = CGRect(x: 0, y: screenSize.height, width: screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }
         }, completion: nil)
     }
     
@@ -433,50 +500,6 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     }
     
 }
-
-
-extension HomeAfterViewController: UICollectionViewDelegate,UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let homeAfterCell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeAfterCell", for: indexPath) as? HomeAfterCollectionViewCell
-        if homeAfterData?.post.color == "red" {
-            homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
-            homeAfterCell?.homeAfterTagButton.setTitle("열정충만", for: .normal)
-        } else if homeAfterData?.post.color == "yellow" {
-            homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 242/255, green: 194/255, blue: 23/255, alpha: 1.0)
-            homeAfterCell?.homeAfterTagButton.setTitle("소소한일상", for: .normal)
-        } else if homeAfterData?.post.color == "green" {
-            homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
-            homeAfterCell?.homeAfterTagButton.setTitle("기억상자", for: .normal)
-        } else if homeAfterData?.post.color == "pink" {
-            homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
-            homeAfterCell?.homeAfterTagButton.setTitle("관계의미학", for: .normal)
-        } else if homeAfterData?.post.color == "purple" {
-            homeAfterCell?.homeAfterTagButton.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
-            homeAfterCell?.homeAfterTagButton.setTitle("상상플러스", for: .normal)
-        }
-        if homeAfterData?.post.level == 1 {
-            homeAfterCell?.homeAfterLevelView.isHidden = true
-            homeAfterCell?.homeAfterLevelLabel.isHidden = true
-        } else {
-            homeAfterCell?.homeAfterLevelView.isHidden = false
-            homeAfterCell?.homeAfterLevelLabel.isHidden = false
-        }
-        if let questionText = homeAfterData?.post.question {
-            homeAfterCell?.homeAfterTitleLabel.text = "\(questionText)"
-        }
-        if let answerText = homeAfterData?.post.answer {
-            homeAfterCell?.homeAfterSubjectLabel.text = "\(answerText)"
-        }
-        homeAfterCell?.homeAfterEditButton.addTarget(self, action: #selector(HomeAfterViewController.showEditBottomSheetDidTap(_:)), for: .touchUpInside)
-        return homeAfterCell!
-    }
-    
-}
-
 
 extension HomeAfterViewController: UITextViewDelegate {
     

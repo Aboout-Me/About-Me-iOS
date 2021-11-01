@@ -17,7 +17,7 @@ class LastAnswerViewController: UIViewController {
     private var screenSize = UIScreen.main.bounds.size
     private var lastAnswerData = [LastAnswerListModel]()
     private var selectedIndex = 0
-    public var isLastShare = "N"
+    public var isLastShare = "Y"
     
     lazy var containerView: UIView = {
         let dimView = UIView(frame: self.view.frame)
@@ -62,6 +62,7 @@ class LastAnswerViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont(name: "AppleSDGothicNeo-Medium", size: 18)]
         backgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+        backgroundImageView.contentMode = .scaleToFill
         answerCollectionView.delegate = self
         answerCollectionView.dataSource = self
         let nib = UINib(nibName: "LastAnswerCollectionViewCell", bundle: nil)
@@ -111,7 +112,7 @@ class LastAnswerViewController: UIViewController {
         answerEditBottomView.cancelButton.addTarget(self, action: #selector(cancelButtonDidTap(_:)), for: .touchUpInside)
         answerEditBottomView.deleteButton.addTarget(self, action: #selector(deleteButtonDidTap(_:)), for: .touchUpInside)
         
-        let window = UIApplication.shared.windows.first
+        let window = UIApplication.shared.windows.first{$0.isKeyWindow}
         window?.addSubview(containerView)
         window?.addSubview(answerEditBottomView)
     }
@@ -196,7 +197,10 @@ class LastAnswerViewController: UIViewController {
     private func deleteLastAnswerCardList() {
         HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].answer_id) { result in
             if case let .success(data) = result, let _ = data {
-                self.navigationController?.popViewController(animated: true)
+//                if UserDefaults.standard.string(forKey: "answer_Id")  {
+//                    <#code#>
+//                }
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
@@ -229,34 +233,46 @@ class LastAnswerViewController: UIViewController {
     
     @objc
     private func hideEditBottomSheetView(_ gesture: UITapGestureRecognizer) {
-        let window = UIApplication.shared.windows.first
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
+        DispatchQueue.main.async {
             if let removeView = window?.viewWithTag(2) {
                 removeView.removeFromSuperview()
             }
-            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }
         }, completion: nil)
     }
     
     @objc
     private func cancelButtonDidTap(_ sender: UIButton) {
-        let window = UIApplication.shared.windows.first
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
+        DispatchQueue.main.async {
             if let cancelView = window?.viewWithTag(2) {
                 cancelView.removeFromSuperview()
             }
-            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }
         }, completion: nil)
     }
     
     @objc
     private func deleteButtonDidTap(_ sender: UIButton) {
-        let window = UIApplication.shared.windows.first
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
+        DispatchQueue.main.async {
             if let deleteView = window?.viewWithTag(2) {
                 deleteView.removeFromSuperview()
             }
-            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224 + self.view.safeAreaInsets.bottom)
+            }
         } completion: { success in
             if success {
                 self.deleteLastAnswerCardList()
@@ -268,12 +284,16 @@ class LastAnswerViewController: UIViewController {
     @objc
     private func editButtonDidTap(_ sender: UIButton) {
         let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        let window = UIApplication.shared.windows.first
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+        let window = UIApplication.shared.windows.first {$0.isKeyWindow}
+        DispatchQueue.main.async {
             if let view = window?.viewWithTag(2){
                 view.removeFromSuperview()
             }
-            self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
+        }
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut) {
+            DispatchQueue.global(qos: .userInteractive).sync {
+                self.answerEditBottomView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: 224)
+            }
         } completion: { success in
             if success {
                 window?.addSubview(self.postBottomView)
@@ -303,12 +323,12 @@ class LastAnswerViewController: UIViewController {
     private func postShareButtonDidTap(_ sender: UIButton) {
         if sender.isSelected {
             sender.isSelected = false
-            isLastShare = "N"
+            isLastShare = "Y"
             postBottomView.postShareButton.setImage(UIImage(named: "UnLockBlack"), for: .normal)
             
         } else {
             sender.isSelected = true
-            isLastShare = "Y"
+            isLastShare = "N"
             postBottomView.postShareButton.setImage(UIImage(named: "lockBlack"), for: .selected)
         }
     }
@@ -378,7 +398,7 @@ extension LastAnswerViewController: UICollectionViewDelegate, UICollectionViewDa
         selectedIndex = indexPath.item
         let lastAnswerVC = SocialDetailViewController(nibName: "SocialDetailViewController", bundle: nil)
         lastAnswerVC.answerId = lastAnswerData[indexPath.item].answer_id
-        lastAnswerVC.title = "\(USER_NICKNAME)"
+        lastAnswerVC.title = "\(USER_NICKNAME!)"
         lastAnswerVC.authorId = USER_ID
         self.navigationController?.pushViewController(lastAnswerVC, animated: true)
     }

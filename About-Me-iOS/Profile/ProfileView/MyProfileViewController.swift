@@ -700,9 +700,9 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                     }
                     var isFlag = self.myProfileSubData[indexPath.item].shareYN
                     if isFlag == true {
-                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "Lock.png"), for: .normal)
-                    } else {
                         myProfileCell?.myProfileContentButton.setImage(UIImage(named: "UnLock.png"), for: .normal)
+                    } else {
+                        myProfileCell?.myProfileContentButton.setImage(UIImage(named: "Lock.png"), for: .normal)
                     }
                     myProfileCell?.myProfileQuestionTitleLabel.text = "\(self.myProfileSubData[indexPath.item].question)"
                     myProfileCell?.myProfileContentDateLabel.text = self.myProfileSubData[indexPath.item].writtenDate
@@ -711,7 +711,7 @@ extension MyProfileViewController : UICollectionViewDelegate,UICollectionViewDat
                         ProfileServerApi.putMyProfileShareProgress(cardSeq: self.myProfileSubData[indexPath.item].answerId, level: self.myProfileSubData[indexPath.item].level) { result in
                             if case let .success(data) = result, let _ = data {
                                 isFlag = !isFlag
-                                    myProfileCell?.myProfileContentButton.setImage(isFlag ? UIImage(named: "Lock.png") : UIImage(named: "UnLock.png"), for: .normal)
+                                    myProfileCell?.myProfileContentButton.setImage(isFlag ? UIImage(named: "UnLock.png") : UIImage(named: "Lock.png"), for: .normal)
                                 print("true check \(self.myProfileSubData[indexPath.item].shareYN)")
                                 print("index did tap \(self.myProfileSubData[indexPath.item].answerId)")
                 
