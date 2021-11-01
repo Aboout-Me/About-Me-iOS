@@ -12,6 +12,9 @@ struct LoginApiService {
     // MARK: - 회원가입 : 카카오, 네이버
     
     static func postSignUp(authType: String, accessToken: String, escapingHandler : @escaping (Int, Int, String) -> ()) -> Void {
+        let appdelegate = UIApplication.shared.delegate as? AppDelegate
+        let fcmToken = (appdelegate?.fcmtoken)!
+        print("fcm :\(fcmToken)")
         
         var userIdForSignUp: Int = -1
         var status: Int = -1
@@ -22,7 +25,7 @@ struct LoginApiService {
         let headers: HTTPHeaders = [
             "token": accessToken
         ]
-        let signUpParams = SignUpList(type: authType)
+        let signUpParams = SignUpList(type: authType, fcmToken: fcmToken)
         
         let request = AF.request(url, method: .post, parameters: signUpParams, encoder: URLEncodedFormParameterEncoder.default, headers: headers)
         request.validate(statusCode: 200...500).responseString { response in
@@ -124,6 +127,9 @@ struct LoginApiService {
     // MARK: - 회원가입 : 애플
     
     static func postSignUpForApple(code: String, id_token: String, escapingHandler : @escaping (Int, Int, String) -> ()) -> Void {
+        let appdelegate = UIApplication.shared.delegate as? AppDelegate
+        let fcmToken = (appdelegate?.fcmtoken)!
+        print("fcm :\(fcmToken)")
         
         let url = "\(API_URL)/apple/auth/signUp"
         
@@ -133,7 +139,8 @@ struct LoginApiService {
         
         let parameters: Parameters = [
             "code": code,
-            "id_token": id_token
+            "id_token": id_token,
+            "fcmToken": fcmToken
         ]
         
         let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
