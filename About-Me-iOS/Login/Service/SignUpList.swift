@@ -2,10 +2,12 @@ import Foundation
 
 struct SignUpList: Encodable {
     var type: String
+    var fcmToken: String
 }
 struct SignUpListForApple: Encodable {
     var code: String
     var id_token: String
+    var fcmToken: String
 }
 struct SignInListForApple: Encodable {
     var code: String

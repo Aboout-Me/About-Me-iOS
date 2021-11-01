@@ -67,13 +67,6 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DkG-s9-Jds">
-                                <rect key="frame" x="161.5" y="460" width="91" height="30"/>
-                                <state key="normal" title="네이버로그아웃"/>
-                                <connections>
-                                    <action selector="naverLogoutButtonDidTap:" destination="BYZ-38-t0r" eventType="touchUpInside" id="egS-tz-vNX"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -84,15 +77,11 @@
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Hkj-wh-KYg"/>
                             <constraint firstItem="ZhJ-ew-ysR" firstAttribute="width" secondItem="ZhJ-ew-ysR" secondAttribute="height" multiplier="5:1" id="HvW-mu-YIH"/>
                             <constraint firstItem="dgh-m0-vZs" firstAttribute="top" secondItem="cB0-VQ-Hud" secondAttribute="bottom" constant="10" id="Kle-4M-KgK"/>
-                            <constraint firstItem="DkG-s9-Jds" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0334821" id="Kp6-K3-zbV"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ZhJ-ew-ysR" secondAttribute="bottom" constant="25" id="RE5-Xg-xbZ"/>
                             <constraint firstItem="ZhJ-ew-ysR" firstAttribute="centerX" secondItem="mo2-PM-K9o" secondAttribute="centerX" id="StE-s4-DBZ"/>
-                            <constraint firstItem="DkG-s9-Jds" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="am5-gy-SYQ"/>
                             <constraint firstItem="ZhJ-ew-ysR" firstAttribute="top" secondItem="dgh-m0-vZs" secondAttribute="bottom" constant="10" id="ctO-Yy-p66"/>
                             <constraint firstItem="mo2-PM-K9o" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="ejB-FM-52A"/>
-                            <constraint firstItem="DkG-s9-Jds" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="iTd-HV-CYq"/>
                             <constraint firstItem="XEy-sZ-Srf" firstAttribute="top" secondItem="mo2-PM-K9o" secondAttribute="bottom" constant="30" id="iqZ-AF-cGp"/>
-                            <constraint firstItem="DkG-s9-Jds" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.219807" id="pzT-JR-H60"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="OnO-xV-qsf"/>
