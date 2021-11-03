@@ -96,9 +96,15 @@ class AdvisoryAnswerViewController: UIViewController {
         self.floatyButton.sticky = true
         self.floatyButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-            guard let homeVC = homeView else { return }
-            self.navigationController?.pushViewController(homeVC, animated: true)
+            if UserDefaults.standard.bool(forKey: "isWrite") {
+                let homeAfterView = storyboard.instantiateViewController(identifier: "HomeAfterVC") as? HomeAfterViewController
+                guard let homeAfterVC = homeAfterView else { return }
+                self.navigationController?.pushViewController(homeAfterVC, animated: true)
+            } else {
+                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                guard let homeBeforeVC = homeBeforeView else { return }
+                self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+            }
         }
         self.floatyButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

@@ -101,12 +101,12 @@ class EditProfileViewController: UIViewController {
 
     @IBAction func confirmButtonDidTapped(_ sender: UIButton) {
         if confirmButton.isEnabled {
-            LoginApiService.putProfileForEditing(nickName: nicknameTextfield.text!, introduce: introduceTextView.text!, userId: UserDefaults.standard.integer(forKey: "USER_ID"))
-            USER_NICKNAME = nicknameTextfield.text
-            UserDefaults.standard.setValue(nicknameTextfield.text, forKey: "USER_NICKNAME")
-            
-            if let navController = self.navigationController {
-                navController.popViewController(animated: true)
+            LoginApiService.putProfileForEditing(nickName: nicknameTextfield.text!, introduce: introduceTextView.text!, userId: UserDefaults.standard.integer(forKey: "USER_ID")) { [self] in
+                USER_NICKNAME = nicknameTextfield.text
+                UserDefaults.standard.setValue(nicknameTextfield.text, forKey: "USER_NICKNAME")
+                if let navController = self.navigationController {
+                    navController.popViewController(animated: true)
+                }
             }
         }
     }

@@ -164,9 +164,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 if list.isWritten == false {
+                    UserDefaults.standard.set(list.isWritten, forKey: "isWrite")
                     UserDefaults.standard.removeObject(forKey: "answer_Id")
                     UserDefaults.standard.synchronize()
                     self.navigationController?.popViewController(animated: true)
+                } else {
+                    UserDefaults.standard.set(list.isWritten, forKey: "isWrite")
                 }
             }
         }
@@ -237,14 +240,12 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
         HomeServerApi.deleteHomeCardList(seq: UserDefaults.standard.integer(forKey: "answer_Id")) { result in
             if case let .success(data) = result, let _ = data {
                 guard let viewcontrollers = self.navigationController?.viewControllers else { return }
-                for viewcontroller in viewcontrollers {
-                    if viewcontrollers.first is HomeBeforeViewController {
-                        if let homeBeforeView = viewcontroller as? HomeBeforeViewController {
-                            self.navigationController?.popToViewController(homeBeforeView, animated: true)
-                        }
-                    } else {
-                        sceneDelegate?.isSceneDailyCheck()
+                if viewcontrollers.first is HomeBeforeViewController {
+                    if let homeBeforeView = viewcontrollers.first as? HomeBeforeViewController {
+                        self.navigationController?.popToViewController(homeBeforeView, animated: true)
                     }
+                } else {
+                    sceneDelegate?.isSceneDailyCheck()
                 }
                 print("뷰 계층: \(self.navigationController?.viewControllers)")
             } else if case let .failure(error) = result {

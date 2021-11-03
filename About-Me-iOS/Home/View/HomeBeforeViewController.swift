@@ -43,7 +43,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         getHomeCardList()
         setLayoutInit()
         setSideMenuLayoutInit()
-        getWriteCardList()
         print("homeBefore 뷰 계층 \(self.navigationController?.viewControllers)")
     }
     
@@ -185,11 +184,14 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
             if case let .success(data) = result, let list = data {
                 if list.isWritten == true {
                     print("getIsDailyWrite Data \(list.isWritten)")
+                    UserDefaults.standard.set(list.isWritten, forKey: "isWrite")
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeAfterVC = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                     guard let homeAfterView = homeAfterVC else { return }
                     self.navigationController?.pushViewController(homeAfterView, animated: true)
+                    print("뷰 계층 getWriteCardList \(self.navigationController?.viewControllers)")
                 } else {
+                    UserDefaults.standard.set(list.isWritten, forKey: "isWrite")
                     UserDefaults.standard.removeObject(forKey: "card_seq")
                     UserDefaults.standard.removeObject(forKey: "answer_Id")
                     UserDefaults.standard.synchronize()
@@ -229,10 +231,10 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
                 if case let .success(data) = result, let list = data {
                     print(list.dailyLists[0].cardSeq, "카드 일련 번호 입니다")
                     print(list.dailyLists[0].answer_id, "카드 answer_id 입니다!!!")
-                    print("answerIDcheck before: \(UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id"))")
                         UserDefaults.standard.set(list.dailyLists[0].quest_id, forKey: "quest_id")
                         UserDefaults.standard.set(list.dailyLists[0].cardSeq, forKey: "card_seq")
                         UserDefaults.standard.set(list.dailyLists[0].answer_id, forKey: "answer_Id")
+                    print("answerIDcheck before: \(UserDefaults.standard.string(forKey: "answer_Id")!)")
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                     guard let homeAfterVC = homeAfterView else { return }
@@ -260,7 +262,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private func showQuestionViewDidTap() {
         editAnswerSheetView.postAnswerTextView.resignFirstResponder()
         UserDefaults.standard.set(editAnswerSheetView.postAnswerTextView.text, forKey: "myQuestionText")
-        DispatchQueue.global(qos: .userInteractive).sync {
+        DispatchQueue.main.async {
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
                 self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height, width: self.screenSize.width, height: self.screenSize.height)
             })

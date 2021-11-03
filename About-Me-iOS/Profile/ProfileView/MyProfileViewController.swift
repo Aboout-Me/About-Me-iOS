@@ -178,9 +178,15 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileFloatingButton.sticky = true
         self.myProfileFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Write.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-            guard let homeBeforeVC = homeBeforeView else { return }
-            self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+            if UserDefaults.standard.bool(forKey: "isWrite") {
+                let homeAfterView = storyboard.instantiateViewController(identifier: "HomeAfterVC") as? HomeAfterViewController
+                guard let homeAfterVC = homeAfterView else { return }
+                self.navigationController?.pushViewController(homeAfterVC, animated: true)
+            } else {
+                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                guard let homeBeforeVC = homeBeforeView else { return }
+                self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+            }
         }
         self.myProfileFloatingButton.addItem("자문 자답", icon: UIImage(named: "SelfQuestion.png")) { item in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)

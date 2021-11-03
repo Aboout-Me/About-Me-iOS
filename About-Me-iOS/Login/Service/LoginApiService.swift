@@ -274,7 +274,7 @@ struct LoginApiService {
     
     // MARK: - 회원정보수정(설정)
     
-    static func putProfileForEditing(nickName: String, introduce: String, userId: Int)
+    static func putProfileForEditing(nickName: String, introduce: String, userId: Int,completionHandler: @escaping() -> () )
     {
         let url = "\(API_URL)/MyPage/profile"
         
@@ -291,7 +291,7 @@ struct LoginApiService {
             case .success:
                 print("putProfileForEditing 성공")
                 print(response.value)
-                
+                completionHandler()
             case .failure(let error):
                 print("putProfileForEditing 실패")
                 print(error)

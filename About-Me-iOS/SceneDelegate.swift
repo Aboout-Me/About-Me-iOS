@@ -88,14 +88,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         HomeServerApi.getIsDailyWrite(userId: USER_ID) { result in
             if case let .success(data) = result, let list = data {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let DailyWriteData = UserDefaults.standard
                 print("isScene Daily Check Value \(list.isWritten)")
                 if list.isWritten == false {
+                    DailyWriteData.set(list.isWritten, forKey: "isWrite")
                     let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
                     guard let homeBeforeVC = homeBeforeView else { return }
                     let navigationController = UINavigationController(rootViewController: homeBeforeVC)
                     self.window!.rootViewController = navigationController
                     self.window!.makeKeyAndVisible()
                 } else {
+                    DailyWriteData.set(list.isWritten, forKey: "isWrite")
                     let homeAfterView = storyboard.instantiateViewController(withIdentifier: "HomeAfterVC") as? HomeAfterViewController
                     guard let homeAfterVC = homeAfterView else { return }
                     let navigationController = UINavigationController(rootViewController: homeAfterVC)

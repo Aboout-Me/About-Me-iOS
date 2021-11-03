@@ -67,6 +67,7 @@ class SocialOtherProfileViewController: UIViewController {
         self.socialProfileMainCollectionView.register(emptyNib, forCellWithReuseIdentifier: "MyProfileEmptyCell")
         self.socialProfileMainCollectionView.tag = 1
         self.socialContentView.clipsToBounds = true
+        self.socialContentView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         self.socialContentView.layer.cornerRadius = 25
         self.socialCharacterImageContentView.clipsToBounds = true
         self.socialCharacterImageContentView.layer.cornerRadius = self.socialCharacterImageContentView.frame.width / 2
@@ -102,7 +103,7 @@ class SocialOtherProfileViewController: UIViewController {
         self.socialUserNicknameLabel.textColor = .gray555
         self.socialUserNicknameLabel.font = UIFont(name: "GmarketSansMedium", size: 14)
         self.socialUserNicknameLabel.textAlignment = .center
-        
+        self.socialBackgroundImageView.contentMode = .scaleToFill
         self.socialProfileTagCollectionView.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .top)
     }
     

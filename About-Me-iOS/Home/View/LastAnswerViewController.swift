@@ -49,6 +49,7 @@ class LastAnswerViewController: UIViewController {
         getLastAnswerCardList()
         setLastAnswerLayoutInit()
         print("test \(questId)")
+        print("LastAnswer ViewControllers \(self.navigationController?.viewControllers)")
     }
     
     deinit {
@@ -79,9 +80,15 @@ class LastAnswerViewController: UIViewController {
         answerCollectionView.collectionViewLayout = collectionviewFlowLayout
         answerFloatingButton.addItem("오늘의 질문", icon: UIImage(named: "Home_Write.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
-            guard let homeBeforeVC = homeBeforeView else { return }
-            self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+            if UserDefaults.standard.bool(forKey: "isWrite") {
+                let homeAfterView = storyboard.instantiateViewController(identifier: "HomeAfterVC") as? HomeAfterViewController
+                guard let homeAfterVC = homeAfterView else { return }
+                self.navigationController?.pushViewController(homeAfterVC, animated: true)
+            } else {
+                let homeBeforeView = storyboard.instantiateViewController(withIdentifier: "HomeVC") as? HomeBeforeViewController
+                guard let homeBeforeVC = homeBeforeView else { return }
+                self.navigationController?.pushViewController(homeBeforeVC, animated: true)
+            }
         }
         answerFloatingButton.addItem("자문 자답", icon: UIImage(named: "Question.png")) { _ in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -197,17 +204,27 @@ class LastAnswerViewController: UIViewController {
         print("Delte Test Select Data",selectedIndex)
         print("Delete answerID: ", lastAnswerData[selectedIndex].answer_id)
         print("answr ID :  " , UserDefaults.standard.string(forKey: "answer_Id"))
+        let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
         HomeServerApi.deleteHomeCardList(seq: self.lastAnswerData[selectedIndex].answer_id) { [self] result in
             if case let .success(data) = result, let _ = data {
-                if UserDefaults.standard.integer(forKey: "answer_Id") != self.lastAnswerData[selectedIndex].answer_id  {
-                    guard let viewControllers = self.navigationController?.viewControllers else { return }
-                    for viewcontroller in viewControllers {
-                        if let homeBeforeView = viewcontroller as? HomeBeforeViewController {
-                            self.navigationController?.popToViewController(homeBeforeView, animated: true)
+                if UserDefaults.standard.integer(forKey: "answer_Id") != lastAnswerData[selectedIndex].answer_id {
+                    guard let viewcontrollers = self.navigationController?.viewControllers else { return }
+                    if viewcontrollers.first is HomeAfterViewController {
+                        if let homeAfterView = viewcontrollers.first as? HomeAfterViewController {
+                            self.navigationController?.popToViewController(homeAfterView, animated: true)
                         }
+                    } else {
+                        sceneDelegate?.isSceneDailyCheck()
                     }
                 } else {
-                    self.navigationController?.popViewController(animated: true)
+                    guard let defaultViewControllers = self.navigationController?.viewControllers else { return }
+                    if defaultViewControllers.first is HomeBeforeViewController {
+                        if let homeBeforeView = defaultViewControllers.first as? HomeBeforeViewController {
+                            self.navigationController?.popToViewController(homeBeforeView, animated: true)
+                        }
+                    } else {
+                        sceneDelegate?.isSceneDailyCheck()
+                    }
                 }
             }
         }
