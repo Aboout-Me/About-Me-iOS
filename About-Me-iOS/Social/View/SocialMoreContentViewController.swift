@@ -17,6 +17,7 @@ class SocialMoreContentViewController: UIViewController {
     
     private let tags = [("전체", "", UIColor.clear), ("열정충만", "red", UIColor.primaryRed), ("소소한일상", "yellow", UIColor.primaryYellow), ("기억상자", "green", UIColor.primaryGreen), ("관계의미학", "pink", UIColor.primaryPink), ("상상플러스", "purple", UIColor.primaryPurple)]
     var state: Social = .none
+    var color: String = ""
     private var postList: [SocialPostList] = []
     private var feedList: [FeedPost] = []
     
@@ -41,7 +42,7 @@ class SocialMoreContentViewController: UIViewController {
             }
         } else {
             self.configureSocialNavigation()
-            SocialApiService.getSocialList(state: self.state.rawValue, color: nil) { socialList in
+            SocialApiService.getSocialList(state: self.state.rawValue, color: self.color) { socialList in
                 print("socialList: \(socialList)")
                 if let socialList = socialList {
                     self.postList = socialList
@@ -217,6 +218,7 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
             } else {
                 self.backgroundImageView.image = UIImage(named: "img_background_\(tags[indexPath.row].1).png")
             }
+            self.color = tags[indexPath.row].1
             
             if self.state == .none {
                 MyFeedApiService.getFeedList(color: tags[indexPath.row].1) { feedList in
