@@ -78,6 +78,11 @@ class SocialDetailViewController: UIViewController {
             otherProfileVC.userId = USER_ID
             self.navigationController?.pushViewController(otherProfileVC, animated: true)
         }
+        commentVC.closeClosure = { [weak self] comments in
+            guard let self = self else { return }
+            self.comments = comments
+            self.setComment(comment: comments)
+        }
         self.present(commentVC, animated: true, completion: nil)
     }
     
@@ -188,6 +193,12 @@ class SocialDetailViewController: UIViewController {
                                  for: .normal)
             scrapLabel.text = "\(post.scraps)"
             commentLabel.text = "\(post.comments)"
+        }
+    }
+    
+    private func setComment(comment: [SocialComment]?) {
+        if let comment = comment {
+            commentLabel.text = "\(comment.count)"
         }
     }
     
