@@ -279,6 +279,7 @@
 		FFAE74C826287D2B0054CB2D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74C726287D2B0054CB2D /* icon.png */; };
 		FFAE74CB2628AF7C0054CB2D /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CA2628AF7C0054CB2D /* check.png */; };
 		FFAE74CE2628B0CE0054CB2D /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = FFAE74CD2628B0CE0054CB2D /* delete.png */; };
+		FFB3164027366169006BE9D6 /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB3163F27366167006BE9D6 /* PrivacyViewController.swift */; };
 		FFB4D0732615E3900011F1D4 /* SideOnlyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */; };
 		FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */; };
 		FFC1752526A5BF260000F946 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFC1752426A5BF260000F946 /* GoogleService-Info.plist */; };
@@ -604,6 +605,7 @@
 		FFAE74C726287D2B0054CB2D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		FFAE74CA2628AF7C0054CB2D /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		FFAE74CD2628B0CE0054CB2D /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		FFB3163F27366167006BE9D6 /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		FFB4D0722615E3900011F1D4 /* SideOnlyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideOnlyViewController.swift; sourceTree = "<group>"; };
 		FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardDeleteList.swift; sourceTree = "<group>"; };
 		FFC1752426A5BF260000F946 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -918,6 +920,7 @@
 				18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */,
 				18BB80C8267F30E100D7FD89 /* NoticesViewController.swift */,
 				18BB80CA267F30E100D7FD89 /* SettingsViewController.swift */,
+				FFB3163F27366167006BE9D6 /* PrivacyViewController.swift */,
 				18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */,
 				18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */,
 			);
@@ -1554,6 +1557,7 @@
 				0705C8CA2658267D00E71E8E /* AdvisoryUpdateList.swift in Sources */,
 				072931F4267F025C00CCA6A8 /* AdvisoryStageViewController.swift in Sources */,
 				FF3350702689E59F00D98DD9 /* EditBottomSheetView.swift in Sources */,
+				FFB3164027366169006BE9D6 /* PrivacyViewController.swift in Sources */,
 				07B89EB1268A1002007380A5 /* MyProfileLikeScrapList.swift in Sources */,
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,

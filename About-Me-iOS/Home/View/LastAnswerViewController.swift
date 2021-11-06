@@ -23,7 +23,7 @@ class LastAnswerViewController: UIViewController {
         let dimView = UIView(frame: self.view.frame)
         dimView.isOpaque = false
         dimView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-        dimView.tag = 2
+        dimView.tag = 5
         return dimView
     }()
     
@@ -260,7 +260,7 @@ class LastAnswerViewController: UIViewController {
     private func hideEditBottomSheetView(_ gesture: UITapGestureRecognizer) {
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         DispatchQueue.main.async {
-            if let removeView = window?.viewWithTag(2) {
+            if let removeView = window?.viewWithTag(5) {
                 removeView.removeFromSuperview()
             }
         }
@@ -277,7 +277,7 @@ class LastAnswerViewController: UIViewController {
     private func cancelButtonDidTap(_ sender: UIButton) {
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         DispatchQueue.main.async {
-            if let cancelView = window?.viewWithTag(2) {
+            if let cancelView = window?.viewWithTag(5) {
                 cancelView.removeFromSuperview()
             }
         }
@@ -295,7 +295,7 @@ class LastAnswerViewController: UIViewController {
     private func deleteButtonDidTap(_ sender: UIButton) {
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         DispatchQueue.main.async {
-            if let deleteView = window?.viewWithTag(2) {
+            if let deleteView = window?.viewWithTag(5) {
                 deleteView.removeFromSuperview()
             }
         }
@@ -314,7 +314,7 @@ class LastAnswerViewController: UIViewController {
         let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
         let window = UIApplication.shared.windows.first {$0.isKeyWindow}
         DispatchQueue.main.async {
-            if let view = window?.viewWithTag(2){
+            if let view = window?.viewWithTag(5){
                 view.removeFromSuperview()
             }
         }

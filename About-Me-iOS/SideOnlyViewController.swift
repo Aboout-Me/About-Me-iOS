@@ -252,7 +252,10 @@ class SideOnlyViewController: UIViewController {
                         advisoryAnswerButton.isEnabled = false
                         socialButton.isEnabled = false
                         myProfileButton.isEnabled = false
-                        
+                        let userAlert = UIAlertController(title: "", message: "내 피드가 비어있습니다. \n오늘의 질문에 답변해주세요", preferredStyle: .alert)
+                        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                        userAlert.addAction(alertAction)
+                        self.present(userAlert, animated: true, completion: nil)
                     } else {
                         myFeedButton.isEnabled = true
                         advisoryAnswerButton.isEnabled = true
