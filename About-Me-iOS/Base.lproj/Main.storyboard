@@ -1245,7 +1245,7 @@
                         <viewLayoutGuide key="safeArea" id="QpI-Od-xzV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="4nr-5s-nvu" secondAttribute="bottom" constant="44" id="1bB-75-y5Y"/>
+                            <constraint firstItem="QpI-Od-xzV" firstAttribute="bottom" secondItem="4nr-5s-nvu" secondAttribute="bottom" constant="10" id="1bB-75-y5Y"/>
                             <constraint firstItem="Uy4-sB-2nN" firstAttribute="centerY" secondItem="EIm-EQ-lsA" secondAttribute="centerY" id="3mB-de-moG"/>
                             <constraint firstItem="dhn-wx-ymo" firstAttribute="top" secondItem="QpI-Od-xzV" secondAttribute="top" constant="34" id="4g0-FI-WKe"/>
                             <constraint firstAttribute="trailing" secondItem="4nr-5s-nvu" secondAttribute="trailing" constant="10" id="4vg-XU-tat"/>
