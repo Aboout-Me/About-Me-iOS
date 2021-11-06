@@ -30,6 +30,7 @@ class SocialCommentViewController: UIViewController {
     var comments: [SocialComment]?
     var profileClosure: (() -> Void)?
     var otherProfileClosure: ((Int) -> Void)?
+    var closeClosure: (([SocialComment]?) -> Void)?
     
     // MARK: - Lifecycle
     
@@ -39,6 +40,13 @@ class SocialCommentViewController: UIViewController {
         self.configure()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        if let comments = comments {
+            self.closeClosure?(comments)
+        }
+    }
+
     // MARK: - Selectors
     
     @IBAction func backButtonDidTap(_ sender: Any) {
