@@ -76,8 +76,8 @@
                     </constraints>
                     <state key="normal" image="WhiteArrow"/>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BQ-CN-yJ0">
-                    <rect key="frame" x="97" y="106" width="41.5" height="20.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BQ-CN-yJ0">
+                    <rect key="frame" x="97" y="106" width="297" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -220,6 +220,7 @@
                 <constraint firstAttribute="bottom" secondItem="H1O-76-zyO" secondAttribute="bottom" id="0Nn-QM-Oo9"/>
                 <constraint firstAttribute="bottom" secondItem="r1I-8A-QbG" secondAttribute="bottom" id="60D-mS-eXV"/>
                 <constraint firstItem="r1I-8A-QbG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6NL-oJ-Lxd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="0BQ-CN-yJ0" secondAttribute="trailing" constant="20" id="7Df-6T-7bg"/>
                 <constraint firstItem="H1O-76-zyO" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="94x-Dc-Grm"/>
                 <constraint firstItem="6lc-uS-MeJ" firstAttribute="leading" secondItem="lnj-aB-mXf" secondAttribute="trailing" constant="2" id="AKd-mn-2pz"/>
                 <constraint firstItem="7V6-XC-CbE" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="33" id="DHr-MV-aVY"/>

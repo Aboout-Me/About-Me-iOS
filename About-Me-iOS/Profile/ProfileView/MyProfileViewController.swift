@@ -109,7 +109,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileCharacterNameLabel.font = UIFont(name: "GmarketSansMedium", size: 16)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 4
-        self.myProfileCharacterContentLabel.numberOfLines = 0
+        self.myProfileCharacterContentLabel.numberOfLines = 2
         self.myProfileCharacterContentLabel.textColor = .white
         self.myProfileCharacterContentLabel.font = UIFont(name: "AppleSDGothicNeo-Regular", size: 13)
         self.myProfileCharacterContentLabel.textAlignment = .left
