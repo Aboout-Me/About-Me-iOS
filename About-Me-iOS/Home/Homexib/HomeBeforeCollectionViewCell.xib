@@ -158,10 +158,6 @@
                 <constraint firstAttribute="trailing" secondItem="E32-3J-9ff" secondAttribute="trailing" id="aFl-bY-RVe"/>
             </constraints>
             <size key="customSize" width="179" height="50"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabledForSubviews" value="YES"/>
-            </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="homeBeforeCharacterLabel" destination="c9x-kF-gTB" id="LqA-qm-tEx"/>
                 <outlet property="homeBeforeContainerView" destination="E32-3J-9ff" id="Jel-55-u77"/>

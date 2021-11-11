@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Hero
 class HomeBeforeCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var homeBeforeContainerView: UIView!

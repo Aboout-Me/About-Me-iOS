@@ -5,7 +5,6 @@ target '오늘의 나' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'Alamofire'
-  pod 'Hero'
   pod 'SideMenu'
   pod 'naveridlogin-sdk-ios'
   pod 'KakaoSDK'

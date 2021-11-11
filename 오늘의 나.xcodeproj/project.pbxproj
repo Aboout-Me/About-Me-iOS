@@ -101,6 +101,7 @@
 		18D50732271D532B003E6BD0 /* AlertSettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D50731271D532B003E6BD0 /* AlertSettingList.swift */; };
 		18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */; };
 		18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */; };
+		70561ECE34B5258E9AD11D60 /* Pods___________.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D26D61D9A82F0770BD5808 /* Pods___________.framework */; };
 		FF04E01226B66CE3002131DC /* PushModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04E01126B66CE3002131DC /* PushModelList.swift */; };
 		FF3350542685011400D98DD9 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */; };
 		FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */; };
@@ -258,6 +259,7 @@
 		18D50731271D532B003E6BD0 /* AlertSettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingList.swift; sourceTree = "<group>"; };
 		18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewController.swift; sourceTree = "<group>"; };
 		18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsListViewController.xib; sourceTree = "<group>"; };
+		B2D26D61D9A82F0770BD5808 /* Pods___________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods___________.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FDA8BDD90FD33424898763 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF04E01126B66CE3002131DC /* PushModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushModelList.swift; sourceTree = "<group>"; };
 		FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70561ECE34B5258E9AD11D60 /* Pods___________.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -584,6 +587,7 @@
 			isa = PBXGroup;
 			children = (
 				E2FDA8BDD90FD33424898763 /* Pods_오늘의_나.framework */,
+				B2D26D61D9A82F0770BD5808 /* Pods___________.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -738,7 +742,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */;
+			buildConfigurationList = 0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1162,7 +1166,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */ = {
+		0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0715A350260CD1870077882A /* Debug */,

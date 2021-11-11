@@ -48,7 +48,6 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (7.5.0):
     - GoogleUtilities/Logger
-  - Hero (1.6.1)
   - KakaoSDK (2.6.0):
     - KakaoSDKAuth (= 2.6.0)
     - KakaoSDKCommon (= 2.6.0)
@@ -95,7 +94,6 @@ DEPENDENCIES:
   - Alamofire
   - Firebase/Messaging
   - Floaty (~> 4.2.0)
-  - Hero
   - KakaoSDK
   - naveridlogin-sdk-ios
   - SideMenu
@@ -112,7 +110,6 @@ SPEC REPOS:
     - Floaty
     - GoogleDataTransport
     - GoogleUtilities
-    - Hero
     - KakaoSDK
     - KakaoSDKAuth
     - KakaoSDKCommon
@@ -138,7 +135,6 @@ SPEC CHECKSUMS:
   Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
-  Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
   KakaoSDK: fa00ea44415f172721d7469388c04db8912330cd
   KakaoSDKAuth: 037e6260f4468cbc3bde89a802864d6b58c5271c
   KakaoSDKCommon: 38154188336a1118f1b757f0fec54ff989365ddc
@@ -154,6 +150,6 @@ SPEC CHECKSUMS:
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 0de71088d160a475ef4ee68e8aea86670c4457da
+PODFILE CHECKSUM: 44742747452a4c14b7d128ba6648e49047d7a8a5
 
 COCOAPODS: 1.10.1
