@@ -260,8 +260,6 @@
 		FF599C5826A2B4F700A5D9A6 /* EditBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */; };
 		FF599C5926A2B4F700A5D9A6 /* PostBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
-		FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */; };
-		FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */; };
 		FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */; };
 		FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */; };
 		FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */; };
@@ -269,7 +267,6 @@
 		FF6922BE264315F700B0B533 /* Edit@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BB264315F700B0B533 /* Edit@3x.png */; };
 		FF6922BF264315F700B0B533 /* Edit@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6922BC264315F700B0B533 /* Edit@2x.png */; };
 		FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */; };
-		FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
 		FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */; };
 		FF9B5A7726A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */; };
@@ -586,8 +583,6 @@
 		FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditBottomSheetView.xib; sourceTree = "<group>"; };
 		FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostBottomSheetView.xib; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
-		FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterCollectionViewCell.swift; sourceTree = "<group>"; };
-		FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeAfterCollectionViewCell.xib; sourceTree = "<group>"; };
 		FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAnswerViewController.swift; sourceTree = "<group>"; };
 		FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastAnswerCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -595,7 +590,6 @@
 		FF6922BB264315F700B0B533 /* Edit@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@3x.png"; sourceTree = "<group>"; };
 		FF6922BC264315F700B0B533 /* Edit@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Edit@2x.png"; sourceTree = "<group>"; };
 		FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetView.swift; sourceTree = "<group>"; };
-		FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDetailViewController.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeEmptyTableViewCell.xib; sourceTree = "<group>"; };
@@ -987,7 +981,6 @@
 			children = (
 				0715A345260CD1860077882A /* HomeBeforeViewController.swift */,
 				FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */,
-				FF7CB4632625ECF70017783F /* HomeDetailViewController.swift */,
 				FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */,
 				FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */,
 			);
@@ -1207,8 +1200,6 @@
 				FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */,
 				FFFDB824261F235100947C44 /* HomeBeforeCollectionViewCell.swift */,
 				FFFDB825261F235100947C44 /* HomeBeforeCollectionViewCell.xib */,
-				FF68A733262D97F1007253E0 /* HomeAfterCollectionViewCell.swift */,
-				FF68A734262D97F1007253E0 /* HomeAfterCollectionViewCell.xib */,
 				FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */,
 				FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */,
 				FF33506F2689E59F00D98DD9 /* EditBottomSheetView.swift */,
@@ -1465,7 +1456,6 @@
 				07B89EC8268A1568007380A5 /* checked_solid.png in Resources */,
 				0714AE79265D3256005C3C6E /* ico_common_24_message_off.png in Resources */,
 				07432F712663D735008786B0 /* bookmark_off_dark@2x.png in Resources */,
-				FF68A736262D97F1007253E0 /* HomeAfterCollectionViewCell.xib in Resources */,
 				07A8AE1D26B0487A00FE2027 /* social_light_bookmark_off.png in Resources */,
 				07EAD055266FAF860099B604 /* img_background_red@3x.png in Resources */,
 				07A8AE2826B0488B00FE2027 /* social_light_like_off.png in Resources */,
@@ -1546,12 +1536,10 @@
 				07989A1B267F2B0B006C52A0 /* LoginApiService.swift in Sources */,
 				07ABFD0D2668F15500EAD6AC /* SocialDetailResponse.swift in Sources */,
 				07B89EBB268A1002007380A5 /* ScrapProgressList.swift in Sources */,
-				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				0705C8D1265BDEAA00E71E8E /* SocialContentViewCell.swift in Sources */,
 				18A07A9426A3E64A00BA151D /* SendInquireList.swift in Sources */,
 				07989A15267F2B0B006C52A0 /* LandscapeManager.swift in Sources */,
 				07989A1D267F2B0B006C52A0 /* SceneDelegate.swift in Sources */,
-				FF7CB4642625ECF70017783F /* HomeDetailViewController.swift in Sources */,
 				07989A1A267F2B0B006C52A0 /* AppDelegate.swift in Sources */,
 				FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */,
 				0705C8CA2658267D00E71E8E /* AdvisoryUpdateList.swift in Sources */,
@@ -1623,7 +1611,6 @@
 				FFF30AAA264682280076BF44 /* HomeCardList.swift in Sources */,
 				18BB80D22685C2EF00D7FD89 /* ProfileList.swift in Sources */,
 				075707202664F92D009F98B4 /* SocialDetailViewController.swift in Sources */,
-				FF68A735262D97F1007253E0 /* HomeAfterCollectionViewCell.swift in Sources */,
 				07B89EB8268A1002007380A5 /* WeeklyProgressList.swift in Sources */,
 				07B89EB2268A1002007380A5 /* MyProfilePageList.swift in Sources */,
 				0705C8CD265BDC5800E71E8E /* SocialHeaderCell.swift in Sources */,

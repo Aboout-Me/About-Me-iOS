@@ -75,6 +75,7 @@ class ConciergeViewController: UIViewController {
         }
         // 로그인
         else if self.status == 409 {
+            //MARK:
             self.performSegue(withIdentifier: "toHome", sender: nil)
             print("== 로그인 ==")
             print("유저아이디 = \(self.userId)")
