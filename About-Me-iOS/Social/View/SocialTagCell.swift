@@ -58,7 +58,7 @@ class SocialTagCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        titleLabel.textColor = .gray333
+        titleLabel.textColor = .gray777
     }
     
     required init?(coder: NSCoder) {
@@ -78,6 +78,7 @@ class SocialTagCell: UICollectionViewCell {
         titleLabel.centerY(inView: backView)
         
         titleLabel.anchor(left: backView.leftAnchor, right: backView.rightAnchor, paddingLeft: 20, paddingRight: 20)
+        titleLabel.textColor = .gray777
     }
     
 }

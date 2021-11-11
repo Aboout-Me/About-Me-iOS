@@ -228,8 +228,10 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
                     } else {
                         self.feedList = []
                     }
-                    self.bodyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
                     self.bodyCollectionView.reloadData()
+                    if self.feedList.count > 0 {
+                        self.bodyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                    }
                 }
             }
             else {
@@ -240,8 +242,10 @@ extension SocialMoreContentViewController: UICollectionViewDataSource {
                     } else {
                         self.postList = []
                     }
-                    self.bodyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
                     self.bodyCollectionView.reloadData()
+                    if self.postList.count > 0 {
+                        self.bodyCollectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                    }
                 }
             }
         } else {
