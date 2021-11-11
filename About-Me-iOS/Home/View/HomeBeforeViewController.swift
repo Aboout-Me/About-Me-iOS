@@ -78,7 +78,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private func setLayoutInit() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         let leftBarButtonItem,rightBarButtonItem: UIBarButtonItem
-        leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "newSideMenu"), style: .plain, target: self, action: #selector(HomeBeforeViewController.showSideButtonDidTap))
+        leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "NewMenu.png"), style: .plain, target: self, action: #selector(HomeBeforeViewController.showSideButtonDidTap))
         rightBarButtonItem = UIBarButtonItem(image: UIImage(named: appDelegate!.rightBarIcon ?? rightBarButtonName), style: .plain, target: self, action: #selector(HomeBeforeViewController.showAlarmButtonDidTap))
         let mainNib = UINib(nibName: "HomeBeforeCollectionViewCell", bundle: nil)
         let date = Date()
@@ -94,7 +94,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "GmarketSansMedium", size: 14)]
-        homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+        homeBeforeBackgroundImageView.image = UIImage(named: "img_background_red.png")
         let cellWidth = floor(view.frame.width * 0.85)
         let layout = HomeCollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -491,15 +491,15 @@ extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewD
         }
         print("colletionView point\(point)")
         if homeData[currentPage].color == "red" {
-            homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+            homeBeforeBackgroundImageView.image = UIImage(named: "img_background_red.png")
         } else if homeData[currentPage].color == "yellow" {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_yellow.png")
         } else if homeData[currentPage].color == "green" {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_green.png")
         } else if homeData[currentPage].color == "pink" {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_pink.png")
         } else {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_purple.png")
         }
     }
 }

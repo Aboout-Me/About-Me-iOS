@@ -91,7 +91,7 @@ extension NoticeViewController: UITableViewDelegate,UITableViewDataSource {
             } else if noticeData[indexPath.row].color == "pink" {
                 cell.noticeImageView.image = UIImage(named: "CharacterPink")
             } else if noticeData[indexPath.row].color == "purple" {
-                cell.noticeImageView.image = UIImage(named: "CharacterVilolet")
+                cell.noticeImageView.image = UIImage(named: "CharacterViolet")
             } else {
                 cell.noticeImageView.image = UIImage(named: "noticeFeed")
             }

@@ -32,7 +32,7 @@ class SocialCommentCell: UITableViewCell {
                 self.iconImageView.image = UIImage(named: "CharacterGreen")
             }
             else if color == "violet" {
-                self.iconImageView.image = UIImage(named: "CharacterVilolet")
+                self.iconImageView.image = UIImage(named: "CharacterViolet")
             }
         }
     }

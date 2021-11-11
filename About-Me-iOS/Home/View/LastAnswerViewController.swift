@@ -172,15 +172,15 @@ class LastAnswerViewController: UIViewController {
                 self.lastAnswerData.reverse()
                 DispatchQueue.main.async {
                     if self.lastAnswerData[0].color == "red" {
-                        self.backgroundImageView.image = UIImage(named: "imgBackgroundRed")
+                        self.backgroundImageView.image = UIImage(named: "img_background_red")
                     } else if self.lastAnswerData[0].color == "yellow" {
-                        self.backgroundImageView.image = UIImage(named: "imgBackgroundYellow")
+                        self.backgroundImageView.image = UIImage(named: "img_background_yellow")
                     } else if self.lastAnswerData[0].color == "green" {
-                        self.backgroundImageView.image = UIImage(named: "imgBackgroundGreen")
+                        self.backgroundImageView.image = UIImage(named: "img_background_green")
                     } else if self.lastAnswerData[0].color == "pink" {
-                        self.backgroundImageView.image = UIImage(named: "imgBackgroundPink")
+                        self.backgroundImageView.image = UIImage(named: "img_background_pink")
                     } else {
-                        self.backgroundImageView.image = UIImage(named: "imgBackgroundViolet")
+                        self.backgroundImageView.image = UIImage(named: "img_background_violet")
                     }
                     self.answerCollectionView.reloadData()
                 }

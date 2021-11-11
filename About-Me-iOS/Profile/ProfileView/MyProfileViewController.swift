@@ -99,7 +99,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
         self.myProfileCollectionView.dataSource = self
         self.myProfileTagCollectionView.delegate = self
         self.myProfileTagCollectionView.dataSource = self
-        self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+        self.myProfileBackgroundImageView.image = UIImage(named: "img_background_red.png")
         self.myProfileBackgroundImageView.contentMode = .scaleToFill
         self.myProfileTagCollectionView.showsHorizontalScrollIndicator = false
         self.myProfileTagCollectionView.allowsMultipleSelection = false
@@ -217,7 +217,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterRed")
-            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundRed")
+            self.myProfileBackgroundImageView.image = UIImage(named: "img_background_red")
             self.myProfileFirstTagLabel.text = "#열정"
             self.myProfileSecondTagLabel.text = "#진로"
             self.myProfileThirdTagLabel.text = "#미래"
@@ -226,7 +226,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "characterYellow")
-            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundYellow")
+            self.myProfileBackgroundImageView.image = UIImage(named: "img_background_yellow")
             self.myProfileFirstTagLabel.text = "#일상"
             self.myProfileSecondTagLabel.text = "#추억"
             self.myProfileThirdTagLabel.text = "#취향"
@@ -235,7 +235,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterGreen")
-            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundGreen")
+            self.myProfileBackgroundImageView.image = UIImage(named: "img_background_green")
             self.myProfileFirstTagLabel.text = "#힐링"
             self.myProfileSecondTagLabel.text = "#치유"
             self.myProfileThirdTagLabel.text = "#위로"
@@ -244,7 +244,7 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
             self.myProfileImageView.image = UIImage(named: "CharacterPink")
-            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundPink")
+            self.myProfileBackgroundImageView.image = UIImage(named: "img_background_pink")
             self.myProfileFirstTagLabel.text = "#연애"
             self.myProfileSecondTagLabel.text = "#사랑"
             self.myProfileThirdTagLabel.text = "#가치관"
@@ -252,8 +252,8 @@ class MyProfileViewController: UIViewController,SideMenuNavigationControllerDele
             self.myProfileNickNameLabel.text = "\(self.myProfileData!.nickName)"
             self.myProfileCharacterContentLabel.text = "\(self.myProfileData!.introduce)"
             self.myProfileCharacterNameLabel.text = "\(self.myProfileData!.color_tag)"
-            self.myProfileImageView.image = UIImage(named: "CharacterVilolet")
-            self.myProfileBackgroundImageView.image = UIImage(named: "imgBackgroundViolet")
+            self.myProfileImageView.image = UIImage(named: "CharacterViolet")
+            self.myProfileBackgroundImageView.image = UIImage(named: "img_background_purple")
             self.myProfileFirstTagLabel.text = "#만약에"
             self.myProfileSecondTagLabel.text = "#상상"
             self.myProfileThirdTagLabel.text = "희망"

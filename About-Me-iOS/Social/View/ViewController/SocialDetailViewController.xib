@@ -33,7 +33,7 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imgBackgroundRed.png" translatesAutoresizingMaskIntoConstraints="NO" id="efK-Ml-CGy">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img_background_red" translatesAutoresizingMaskIntoConstraints="NO" id="efK-Ml-CGy">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c1-fv-dmt">
@@ -229,7 +229,7 @@
     </objects>
     <resources>
         <image name="ico_common_24_edit_circle_L.png" width="24" height="24"/>
-        <image name="imgBackgroundRed.png" width="375" height="812"/>
+        <image name="img_background_red" width="375" height="812"/>
         <image name="social_light_bookmark_off.png" width="20" height="20"/>
         <image name="social_light_like_off.png" width="20" height="20"/>
         <image name="social_light_message_off.png" width="20" height="20"/>

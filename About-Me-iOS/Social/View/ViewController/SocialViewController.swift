@@ -58,7 +58,7 @@ class SocialViewController: UIViewController {
     // MARK: - Helpers
     
     private func configureNavigation() {
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "menu_white.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "Menu.png"), style: .plain, target: self, action: #selector(menuIconDidTap))
         let rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchIconDidTap))
         self.navigationItem.leftBarButtonItem = leftBarButtonItem
         self.navigationItem.rightBarButtonItem = rightBarButtonItem

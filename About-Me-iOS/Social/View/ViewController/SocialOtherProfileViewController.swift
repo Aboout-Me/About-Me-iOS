@@ -109,7 +109,7 @@ class SocialOtherProfileViewController: UIViewController {
     
     private func setCharacterColor() {
         if self.socialProfileData?.color == "red" {
-            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundRed")
+            self.socialBackgroundImageView.image = UIImage(named: "img_background_red")
             self.socialCharacterImageView.image = UIImage(named: "CharacterRed")
             self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
             self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
@@ -119,7 +119,7 @@ class SocialOtherProfileViewController: UIViewController {
             self.socialSecondTagLabel.text = "#진로"
             self.socialThirdTagLabel.text = "#미래"
         } else if self.socialProfileData?.color == "yellow" {
-            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundYellow")
+            self.socialBackgroundImageView.image = UIImage(named: "img_background_yellow")
             self.socialCharacterImageView.image = UIImage(named: "characterYellow")
             self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
             self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
@@ -129,7 +129,7 @@ class SocialOtherProfileViewController: UIViewController {
             self.socialSecondTagLabel.text = "#추억"
             self.socialThirdTagLabel.text = "#취향"
         } else if self.socialProfileData?.color == "green" {
-            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundGreen")
+            self.socialBackgroundImageView.image = UIImage(named: "img_background_green")
             self.socialCharacterImageView.image = UIImage(named: "CharacterGreen")
             self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
             self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
@@ -139,7 +139,7 @@ class SocialOtherProfileViewController: UIViewController {
             self.socialSecondTagLabel.text = "#치유"
             self.socialThirdTagLabel.text = "#위로"
         } else if self.socialProfileData?.color == "pink" {
-            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundPink")
+            self.socialBackgroundImageView.image = UIImage(named: "img_background_pink")
             self.socialCharacterImageView.image = UIImage(named: "CharacterPink")
             self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
             self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
@@ -149,8 +149,8 @@ class SocialOtherProfileViewController: UIViewController {
             self.socialSecondTagLabel.text = "#사랑"
             self.socialThirdTagLabel.text = "#가치관"
         } else {
-            self.socialBackgroundImageView.image = UIImage(named: "imgBackgroundViolet")
-            self.socialCharacterImageView.image = UIImage(named: "CharacterVilolet")
+            self.socialBackgroundImageView.image = UIImage(named: "img_background_purple")
+            self.socialCharacterImageView.image = UIImage(named: "CharacterViolet")
             self.socialCharacterNicknameLabel.text = "\(self.socialProfileData!.color_tag)"
             self.socialUserContentLabel.text = "\(self.socialProfileData!.introduce)"
             self.socialUserNicknameContentLabel.text = "\(self.socialProfileData!.nickName)"

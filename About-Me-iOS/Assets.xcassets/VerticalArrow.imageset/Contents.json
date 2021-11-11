@@ -1,23 +1,23 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
       "filename" : "icoCommonVerticalArrow.png",
+      "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
       "filename" : "icoCommonVerticalArrow@2x.png",
+      "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "icoCommonVerticalArrow@3x.png",
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "icoCommonVerticalArrow@3x.png"
+      "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

@@ -282,23 +282,23 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
     
     private func setAnswerViewLayout() {
         if self.homeAfterData?.post.color == "red" {
-            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundRed.png")
+            homeAfterBackgroundImageView.image = UIImage(named: "img_background_red.png")
             homeAfterTagView.backgroundColor = UIColor(red: 255/255, green: 98/255, blue: 98/255, alpha: 1.0)
             homeAfterTagView.setTitle("열정충만", for: .normal)
         } else if self.homeAfterData?.post.color == "yellow" {
-            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundYellow.png")
+            homeAfterBackgroundImageView.image = UIImage(named: "img_background_yellow.png")
             homeAfterTagView.backgroundColor = UIColor(red: 242/255, green: 194/255, blue: 23/255, alpha: 1.0)
             homeAfterTagView.setTitle("소소한일상", for: .normal)
         } else if self.homeAfterData?.post.color == "green" {
-            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundGreen.png")
+            homeAfterBackgroundImageView.image = UIImage(named: "img_background_green.png")
             homeAfterTagView.backgroundColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
             homeAfterTagView.setTitle("기억상자", for: .normal)
         } else if self.homeAfterData?.post.color == "pink" {
-            homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundPink.png")
+            homeAfterBackgroundImageView.image = UIImage(named: "img_background_pink.png")
             homeAfterTagView.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             homeAfterTagView.setTitle("관계의미학", for: .normal)
         } else if self.homeAfterData?.post.color == "purple" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "imgBackgroundViolet.png")
+            self.homeAfterBackgroundImageView.image = UIImage(named: "img_background_violet.png")
             homeAfterTagView.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             homeAfterTagView.setTitle("상상플러스", for: .normal)
         }
