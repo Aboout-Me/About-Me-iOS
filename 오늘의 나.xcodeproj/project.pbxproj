@@ -101,7 +101,6 @@
 		18D50732271D532B003E6BD0 /* AlertSettingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D50731271D532B003E6BD0 /* AlertSettingList.swift */; };
 		18F2212126A3EB98008C7C23 /* QuestionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */; };
 		18F2212226A3EB98008C7C23 /* QuestionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */; };
-		70561ECE34B5258E9AD11D60 /* Pods___________.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2D26D61D9A82F0770BD5808 /* Pods___________.framework */; };
 		FF04E01226B66CE3002131DC /* PushModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF04E01126B66CE3002131DC /* PushModelList.swift */; };
 		FF3350542685011400D98DD9 /* MyProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */; };
 		FF3350552685011400D98DD9 /* MyProfileAnswerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF3350502685011400D98DD9 /* MyProfileAnswerDetailViewController.swift */; };
@@ -121,6 +120,7 @@
 		FF6922AC264309B000B0B533 /* LastAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6922AB264309B000B0B533 /* LastAnswerViewController.swift */; };
 		FF6922B726430F8C00B0B533 /* LastAnswerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF6922B526430F8C00B0B533 /* LastAnswerCollectionViewCell.swift */; };
 		FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */; };
+		FF7197FE273D6ED200C5A3C4 /* Pods_오늘의_나.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2FDA8BDD90FD33424898763 /* Pods_오늘의_나.framework */; };
 		FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
 		FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */; };
@@ -259,7 +259,6 @@
 		18D50731271D532B003E6BD0 /* AlertSettingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertSettingList.swift; sourceTree = "<group>"; };
 		18F2211F26A3EB98008C7C23 /* QuestionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsListViewController.swift; sourceTree = "<group>"; };
 		18F2212026A3EB98008C7C23 /* QuestionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionsListViewController.xib; sourceTree = "<group>"; };
-		B2D26D61D9A82F0770BD5808 /* Pods___________.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods___________.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2FDA8BDD90FD33424898763 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF04E01126B66CE3002131DC /* PushModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushModelList.swift; sourceTree = "<group>"; };
 		FF33504F2685011400D98DD9 /* MyProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyProfileDetailViewController.swift; sourceTree = "<group>"; };
@@ -309,7 +308,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70561ECE34B5258E9AD11D60 /* Pods___________.framework in Frameworks */,
+				FF7197FE273D6ED200C5A3C4 /* Pods_오늘의_나.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -587,7 +586,6 @@
 			isa = PBXGroup;
 			children = (
 				E2FDA8BDD90FD33424898763 /* Pods_오늘의_나.framework */,
-				B2D26D61D9A82F0770BD5808 /* Pods___________.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -742,7 +740,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */;
+			buildConfigurationList = 0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -1166,7 +1164,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */ = {
+		0715A339260CD1860077882A /* Build configuration list for PBXProject "오늘의 나" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0715A350260CD1870077882A /* Debug */,
