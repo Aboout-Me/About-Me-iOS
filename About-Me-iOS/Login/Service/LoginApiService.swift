@@ -241,15 +241,15 @@ struct LoginApiService {
     
     // MARK: - 회원정보추가(회원가입 시)
     
-    static func putProfileForSignUp(birthday: String, email: String, nickName: String, gender: String, introduce: String, userId: Int)
+    static func putProfileForSignUp(email: String, nickName: String, introduce: String, userId: Int)
     {
         let url = "\(API_URL)/MyPage/profile"
         // let profileParams = ProfileList(email: email, gender: gender, introduce: introduce, nickName: nickName, userId: userId)
         
         let parameters: Parameters = [
-            "birthday": birthday,
+//            "birthday": birthday,
             "email": email,
-            "gender": gender,
+//            "gender": gender,
             "introduce": introduce,
             "nickName": nickName,
             "userId": userId
