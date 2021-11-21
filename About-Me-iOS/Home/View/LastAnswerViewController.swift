@@ -180,7 +180,7 @@ class LastAnswerViewController: UIViewController {
                     } else if self.lastAnswerData[0].color == "pink" {
                         self.backgroundImageView.image = UIImage(named: "img_background_pink")
                     } else {
-                        self.backgroundImageView.image = UIImage(named: "img_background_violet")
+                        self.backgroundImageView.image = UIImage(named: "img_background_purple")
                     }
                     self.answerCollectionView.reloadData()
                 }

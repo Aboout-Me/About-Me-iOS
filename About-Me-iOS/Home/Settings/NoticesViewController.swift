@@ -68,11 +68,15 @@ extension NoticesViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if indexPath.row == 0 {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let privacyView = storyboard.instantiateViewController(identifier: "PrivacyVC") as? PrivacyViewController
             guard let privacyVC = privacyView else { return }
             self.navigationController?.pushViewController(privacyVC, animated: true)
+        } else if indexPath.row == 1 {
+            let termsView = storyboard.instantiateViewController(identifier: "TermsVC") as? TermsViewController
+            guard let termsVC = termsView else { return }
+            self.navigationController?.pushViewController(termsVC, animated: true)
         }
         
     }
