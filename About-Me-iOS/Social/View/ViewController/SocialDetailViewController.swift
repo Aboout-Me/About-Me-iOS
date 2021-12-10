@@ -123,6 +123,12 @@ class SocialDetailViewController: UIViewController {
                 moreView.closure = {
                     self.dismiss(animated: false, completion: nil)
                 }
+                moreView.closeBoard = { [weak self] in
+                    guard let self = self else { return }
+                    self.dismiss(animated: false) {
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                }
                 moreView.profileClosure = {
                     let otherProfileVC = SocialOtherProfileViewController(nibName: "SocialOtherProfileViewController", bundle: nil)
                     otherProfileVC.otherId = post.userId

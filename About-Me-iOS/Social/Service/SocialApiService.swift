@@ -242,4 +242,8 @@ struct SocialApiService {
             }
         }
     }
+
+    static func postBlock(blockUserId: Int, targetUserId: Int, completion: @escaping (SocialReportResponse) -> Void) {
+        completion(SocialReportResponse(code: 200, body: "OK"))
+    }
 }

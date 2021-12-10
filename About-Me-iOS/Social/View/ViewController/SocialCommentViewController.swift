@@ -169,6 +169,12 @@ extension SocialCommentViewController: UITableViewDataSource {
                 moreView.closure = {
                     self.dismiss(animated: false, completion: nil)
                 }
+                moreView.closeBoard = { [weak self] in
+                    guard let self = self else { return }
+                    self.dismiss(animated: false) {
+                        self.navigationController?.popViewController(animated: false)
+                    }
+                }
                 moreView.profileClosure = {
                     self.dismiss(animated: true) {
                         self.otherProfileClosure?(comments[indexPath.row].authorId)
