@@ -241,22 +241,16 @@ class SideOnlyViewController: UIViewController {
     public func getUserProfileInfo(){
         ProfileServerApi.getUserProfileProgress(userId: USER_ID) { [self] result in
             if case let .success(data) = result, let list = data {
-                if list.data.isEmpty == true {
+                if list.data.isEmpty == true || list.data[0].experience.isZero && list.data[1].experience.isZero && list.data[2].experience.isZero && list.data[3].experience.isZero && list.data[4].experience.isZero {
                     myFeedButton.isEnabled = false
                     advisoryAnswerButton.isEnabled = false
                     socialButton.isEnabled = false
                     myProfileButton.isEnabled = false
+                    let userAlert = UIAlertController(title: "", message: "내 피드가 비어있습니다. \n오늘의 질문에 답변해주세요", preferredStyle: .alert)
+                    let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
+                    userAlert.addAction(alertAction)
+                    self.present(userAlert, animated: true, completion: nil)
                 } else {
-                    if list.data[0].experience.isZero && list.data[1].experience.isZero && list.data[2].experience.isZero && list.data[3].experience.isZero && list.data[4].experience.isZero {
-                        myFeedButton.isEnabled = false
-                        advisoryAnswerButton.isEnabled = false
-                        socialButton.isEnabled = false
-                        myProfileButton.isEnabled = false
-                        let userAlert = UIAlertController(title: "", message: "내 피드가 비어있습니다. \n오늘의 질문에 답변해주세요", preferredStyle: .alert)
-                        let alertAction = UIAlertAction(title: "확인", style: .default, handler: nil)
-                        userAlert.addAction(alertAction)
-                        self.present(userAlert, animated: true, completion: nil)
-                    } else {
                         myFeedButton.isEnabled = true
                         advisoryAnswerButton.isEnabled = true
                         socialButton.isEnabled = true
@@ -265,5 +259,4 @@ class SideOnlyViewController: UIViewController {
                 }
             }
         }
-    }
 }
