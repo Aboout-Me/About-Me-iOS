@@ -63,6 +63,21 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         self.navigationController?.view.backgroundColor = .clear
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationController?.navigationBar.topItem?.title = ""
+        
+//        let parameter = [
+//            "id":"aboutme2auth@gmail.com",
+//            "password":"@auth!fun.d"
+//        ]
+//
+//        UtilApi.getAdminLogin(parameter: parameter) { result in
+//            if result.code == 200 {
+//                let storyboard = UIStoryboard(name: "Login", bundle: nil)
+//                let AdminView = storyboard.instantiateViewController(withIdentifier: "AdminVC") as? AdminViewController
+//                guard let AdminVC = AdminView else {return}
+//                self.navigationController?.pushViewController(AdminVC, animated: true)
+//                print("GET Admin Test Call \(result.code) , \(result.body)")
+//            }
+//        }
     }
     
     // segue로 token 및 authType 전달

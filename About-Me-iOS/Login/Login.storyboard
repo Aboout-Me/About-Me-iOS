@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3P-m6-TnK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3P-m6-TnK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -98,6 +98,46 @@
             </objects>
             <point key="canvasLocation" x="857.97101449275374" y="77.678571428571431"/>
         </scene>
+        <!--Admin View Controller-->
+        <scene sceneID="YKF-z0-DEh">
+            <objects>
+                <viewController storyboardIdentifier="AdminVC" id="hOQ-Y3-4XA" customClass="AdminViewController" customModule="__________" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uSa-Qb-Zqc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="AdminCell" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="W1e-uD-Vxm">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdminCell" id="JwQ-I8-GlA">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JwQ-I8-GlA" id="W4G-KO-XlC">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="eCj-eQ-a2c"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W1e-uD-Vxm" firstAttribute="leading" secondItem="eCj-eQ-a2c" secondAttribute="leading" id="W9Y-NW-Wp3"/>
+                            <constraint firstItem="W1e-uD-Vxm" firstAttribute="top" secondItem="eCj-eQ-a2c" secondAttribute="top" id="hBV-we-pEm"/>
+                            <constraint firstItem="eCj-eQ-a2c" firstAttribute="bottom" secondItem="W1e-uD-Vxm" secondAttribute="bottom" id="ux9-sU-xuO"/>
+                            <constraint firstItem="eCj-eQ-a2c" firstAttribute="trailing" secondItem="W1e-uD-Vxm" secondAttribute="trailing" id="yhJ-TC-9wV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="adminTableView" destination="W1e-uD-Vxm" id="Mll-bB-QWl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ERs-UD-DW9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="858" y="810"/>
+        </scene>
         <!--Concierge View Controller-->
         <scene sceneID="J15-Ua-zRz">
             <objects>
@@ -183,7 +223,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="5sK-pY-M9n"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SAr-Ki-IZM">
-                                <rect key="frame" x="146.5" y="138" width="121.5" height="28"/>
+                                <rect key="frame" x="129.5" y="138" width="155.5" height="28"/>
                                 <color key="pageIndicatorTintColor" name="AccentColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="systemRedColor"/>
                             </pageControl>

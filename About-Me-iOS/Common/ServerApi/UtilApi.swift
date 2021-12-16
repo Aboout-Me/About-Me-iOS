@@ -64,6 +64,44 @@ struct UtilApi {
         
     }
     
+    static func getAdminLogin(parameter: Parameters, completionHandler: @escaping(AdminModelList) -> ()) {
+        guard let urlString:URL = URL(string: "http://3.36.188.237:8080/auth/signin/admin") else { return }
+        AF.request(urlString, method: .get, parameters: parameter, encoding: URLEncoding.default)
+            .validate(statusCode: 200...500)
+            .responseData { response in
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let decoder = try JSONDecoder().decode(AdminModelList.self, from: response)
+                        completionHandler(decoder)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
+    static func getAdminBlockList(completionHandler: @escaping(AdminBlockList) -> ()) {
+        guard let urlString:URL = URL(string: "http://3.36.188.237:8080/Message/sueList") else { return }
+        AF.request(urlString, method: .get, encoding: URLEncoding.default)
+            .validate(statusCode: 200...500)
+            .responseData { response in
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let decoder = try JSONDecoder().decode(AdminBlockList.self, from: response)
+                        completionHandler(decoder)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
 }
 
 

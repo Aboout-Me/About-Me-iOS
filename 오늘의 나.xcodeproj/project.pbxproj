@@ -115,6 +115,9 @@
 		FF38D1EB26905699001FD8B1 /* SocialOtherProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF38D1EA26905699001FD8B1 /* SocialOtherProfileViewController.xib */; };
 		FF38D1ED269056BA001FD8B1 /* SocialOtherProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF38D1EC269056BA001FD8B1 /* SocialOtherProfileViewController.swift */; };
 		FF40CC7426496D4A0094651B /* HomeCardSaveList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */; };
+		FF4890F8276AFC3F0033CA29 /* AdminModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4890F7276AFC3F0033CA29 /* AdminModelList.swift */; };
+		FF4890FA276B05460033CA29 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4890F9276B05460033CA29 /* AdminViewController.swift */; };
+		FF489145276B56320033CA29 /* AdminBlockList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF489144276B56320033CA29 /* AdminBlockList.swift */; };
 		FF599C5826A2B4F700A5D9A6 /* EditBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */; };
 		FF599C5926A2B4F700A5D9A6 /* PostBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
@@ -263,6 +266,9 @@
 		FF38D1EA26905699001FD8B1 /* SocialOtherProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SocialOtherProfileViewController.xib; sourceTree = "<group>"; };
 		FF38D1EC269056BA001FD8B1 /* SocialOtherProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialOtherProfileViewController.swift; sourceTree = "<group>"; };
 		FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardSaveList.swift; sourceTree = "<group>"; };
+		FF4890F7276AFC3F0033CA29 /* AdminModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminModelList.swift; sourceTree = "<group>"; };
+		FF4890F9276B05460033CA29 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		FF489144276B56320033CA29 /* AdminBlockList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBlockList.swift; sourceTree = "<group>"; };
 		FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditBottomSheetView.xib; sourceTree = "<group>"; };
 		FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostBottomSheetView.xib; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
@@ -489,6 +495,7 @@
 				07989A0D267F2B0B006C52A0 /* OnboardingViewController.swift */,
 				07989A0E267F2B0B006C52A0 /* LoginViewController.swift */,
 				07989A10267F2B0B006C52A0 /* Service */,
+				FF4890F9276B05460033CA29 /* AdminViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -529,13 +536,9 @@
 		07EE6C96264AB03D00F99643 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				07EE6C97264AB06300F99643 /* BottomSheetView.swift */,
-				07EE6C98264AB06300F99643 /* BottomSheetView.xib */,
-				07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */,
-				07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */,
-				FF3350652688F09D00D98DD9 /* UtilModelList.swift */,
-				FF3350672688F40000D98DD9 /* UtilApi.swift */,
-				1840411126BF86C500035C27 /* UserProfile.swift */,
+				FF4890F6276AFC1D0033CA29 /* Model */,
+				FF4890F4276AFB840033CA29 /* View */,
+				FF4890F3276AFB630033CA29 /* ServerApi */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -640,6 +643,36 @@
 				FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FF4890F3276AFB630033CA29 /* ServerApi */ = {
+			isa = PBXGroup;
+			children = (
+				FF3350672688F40000D98DD9 /* UtilApi.swift */,
+			);
+			path = ServerApi;
+			sourceTree = "<group>";
+		};
+		FF4890F4276AFB840033CA29 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07F33945264D28CC00B5CFC0 /* UIViewExtensions.swift */,
+				07F33947264D298C00B5CFC0 /* UIColorExtensions.swift */,
+				07EE6C97264AB06300F99643 /* BottomSheetView.swift */,
+				07EE6C98264AB06300F99643 /* BottomSheetView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FF4890F6276AFC1D0033CA29 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1840411126BF86C500035C27 /* UserProfile.swift */,
+				FF3350652688F09D00D98DD9 /* UtilModelList.swift */,
+				FF4890F7276AFC3F0033CA29 /* AdminModelList.swift */,
+				FF489144276B56320033CA29 /* AdminBlockList.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FFA7CEF8263C5B690021DD29 /* ProfileXib */ = {
@@ -868,6 +901,7 @@
 				FF3350662688F09E00D98DD9 /* UtilModelList.swift in Sources */,
 				07432F642663BBA6008786B0 /* SocialMoreContentViewController.swift in Sources */,
 				18A07A9626A3E6F400BA151D /* SettingApiService.swift in Sources */,
+				FF4890F8276AFC3F0033CA29 /* AdminModelList.swift in Sources */,
 				07432F6C2663D477008786B0 /* SocialMoreContentCell.swift in Sources */,
 				FF3350682688F40000D98DD9 /* UtilApi.swift in Sources */,
 				0701122F268DDDF7008BD686 /* SocialSearchResponse.swift in Sources */,
@@ -906,6 +940,7 @@
 				07B89EB9268A1002007380A5 /* ShareProgressList.swift in Sources */,
 				0751A66626442EED004E635C /* AdvisoryAnswerViewController.swift in Sources */,
 				0714AE92265D4113005C3C6E /* SocialApiService.swift in Sources */,
+				FF4890FA276B05460033CA29 /* AdminViewController.swift in Sources */,
 				07B89EB0268A1002007380A5 /* CategoryProgressList.swift in Sources */,
 				072931F5267F029D00CCA6A8 /* AdvisoryStageCell.swift in Sources */,
 				FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */,
@@ -922,6 +957,7 @@
 				FF38D1ED269056BA001FD8B1 /* SocialOtherProfileViewController.swift in Sources */,
 				FFE8390326A6B1E800BA27E2 /* NoticeViewController.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
+				FF489145276B56320033CA29 /* AdminBlockList.swift in Sources */,
 				0714AE94265D47C6005C3C6E /* SocialListResponse.swift in Sources */,
 				07F8FDB5269208BA00B306B2 /* SocialCommentDeleteResponse.swift in Sources */,
 				07432F602663A64B008786B0 /* SocialNoContentCell.swift in Sources */,
@@ -1113,7 +1149,7 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SideMenu\"",
 				);
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1140,7 +1176,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XKA22N2KHA;
 				INFOPLIST_FILE = "About-Me-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
