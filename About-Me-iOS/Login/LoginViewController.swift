@@ -25,6 +25,8 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     var authType: String = ""
     var userEmail: String = ""
     
+    var hiddenButton: Int = 0
+
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -64,6 +66,10 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         self.navigationController?.navigationBar.tintColor = .black
         self.navigationController?.navigationBar.topItem?.title = ""
         
+        self.logoImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hiddenButtonClearDidTap)))
+        self.logoImage.isUserInteractionEnabled = true
+        self.logoDescription.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hiddenButtonDidTap)))
+        self.logoDescription.isUserInteractionEnabled = true
 //        let parameter = [
 //            "id":"aboutme2auth@gmail.com",
 //            "password":"@auth!fun.d"
@@ -127,7 +133,11 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     }
     
     @IBAction func naverLoginButtonDidTap(_ sender: Any) {
-        loginInstance?.requestThirdPartyLogin()
+        if self.hiddenButton == 5 {
+            self.hiddenAlert()
+        } else {
+            loginInstance?.requestThirdPartyLogin()
+        }
     }
     
     // RESTful API, id가져오기
@@ -264,6 +274,41 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("애플 로그인 error : \(error)")
+    }
+
+    @objc
+    private func hiddenButtonDidTap(_ sender: UITapGestureRecognizer) {
+        self.hiddenButton += 1
+    }
+    
+    @objc
+    private func hiddenButtonClearDidTap(_ sender: UITapGestureRecognizer) {
+        self.hiddenButton = 0
+    }
+    
+    private func hiddenAlert() {
+        let alert = UIAlertController(title: "관리자 로그인", message: nil, preferredStyle: .alert)
+        alert.addTextField()
+        alert.addTextField()
+        let okButton = UIAlertAction(title: "OK", style: .default) { action in
+            if let id = alert.textFields?[0].text, let pw = alert.textFields?[1].text {
+                let parameter = [
+                    "id": id,
+                    "password": pw
+                ]
+                
+                UtilApi.getAdminLogin(parameter: parameter) { result in
+                    if result.code == 200 {
+                        /// CONNNECT ADMIN VC HERE
+                        print("OK")
+                    }
+                }
+            }
+        }
+        let cancelButton = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alert.addAction(okButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: false, completion: nil)
     }
 }
 
