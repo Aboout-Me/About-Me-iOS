@@ -82,7 +82,9 @@ class SocialMoreView: UIViewController {
         let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
         
         let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
-            SocialApiService.postBlock(blockUserId: 1, targetUserId: 1) { response in
+            guard let suedUserId = self.suedUserId else { return }
+
+            SocialApiService.postBlock(blockUserId: USER_ID, targetUserId: suedUserId) { response in
                 if response.code == 200 {
                     let alert = UIAlertController(title: "차단이 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
                     
