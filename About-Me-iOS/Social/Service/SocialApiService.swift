@@ -244,13 +244,13 @@ struct SocialApiService {
     }
 
     static func postBlock(blockUserId: Int, targetUserId: Int, completion: @escaping (SocialReportResponse) -> Void) {
-        var urlString = "\(API_URL)/Messsage/block?offer_id=\(blockUserId)&other_id=\(targetUserId)"
+        var urlString = "\(API_URL)/Message/block?offer_id=\(blockUserId)&other_id=\(targetUserId)"
 
         let urlComponent = URLComponents(string: urlString)
         guard let url = urlComponent?.url else { return }
         print(url)
 
-        let request = AF.request(url, method: .get)
+        let request = AF.request(url, method: .post)
         request.validate(statusCode: 200...500).responseString { response in
             switch response.result {
             case .success:
