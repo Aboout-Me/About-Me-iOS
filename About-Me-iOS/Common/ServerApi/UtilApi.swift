@@ -102,6 +102,25 @@ struct UtilApi {
             }
     }
     
+    static func postAdminBlock(parameter:Parameters, completionHandler:@escaping(AdminSueModelList) -> ()) {
+        guard let urlString:URL = URL(string: "http://3.36.188.237:8080/Message/judgeSue") else { return }
+        AF.request(urlString, method: .post, parameters: parameter, encoding: JSONEncoding.default)
+            .validate(statusCode: 200...500)
+            .responseData { response in
+                switch response.result {
+                case let .success(response):
+                    do {
+                        let decoder = try JSONDecoder().decode(AdminSueModelList.self, from: response)
+                        completionHandler(decoder)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+    }
+    
 }
 
 

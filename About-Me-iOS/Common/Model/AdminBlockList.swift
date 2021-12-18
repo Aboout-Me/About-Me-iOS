@@ -9,14 +9,16 @@ import Foundation
 
 
 struct AdminBlockList: Codable {
-    var code:Int
-    var body:[AdminBlockModel]
+    var code:Int?
+    var body:[AdminBlockModel]?
+    var errorMessage:String?
+    var errorCode: String?
 }
 
 struct AdminBlockModel: Codable {
-    var boardSeq: Int
-    var title: String
-    var sueReason: String
-    var contents: String
-    var color: String
+    var boardSeq: Int?
+    var title: String?
+    var sueReason: String?
+    var contents: String?
+    var color: String?
 }

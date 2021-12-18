@@ -25,10 +25,16 @@ class AdminBlockViewController: UIViewController {
         setLayoutInit()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
+    }
+    
     
     func setLayoutInit() {
         self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationItem.backButtonTitle = ""
+        self.navigationController?.navigationBar.topItem?.backButtonTitle = ""
         adminContainerView.layer.cornerRadius = 10
         adminBlockContentTitle.text = adminDetailInfo?.title ?? "신고신고신고신고신고신고신고신고"
         adminBlockContentTitle.font = UIFont(name: "GmarketSansMedium", size: 20)
@@ -45,6 +51,7 @@ class AdminBlockViewController: UIViewController {
         adminConfirmButton.backgroundColor = .gray333
         adminBlockTextView.isEditable = false
         adminBlockTextView.isSelectable = false
+        adminBlockTextView.text = adminDetailInfo?.contents ?? "신고신고신고신고신고신고신고신고"
         if adminDetailInfo?.color == "red" {
             adminBackgroundImageView.image = UIImage(named: "img_background_red")
             adminBlockTagView.backgroundColor = .primaryRed
@@ -66,7 +73,48 @@ class AdminBlockViewController: UIViewController {
             adminBlockTagView.backgroundColor = .primaryPurple
             adminBlockTagTitle.text = "상상플러스"
         }
+        adminRejectButton.addTarget(self, action: #selector(rejectButtonDidTap), for: .touchUpInside)
+        adminConfirmButton.addTarget(self, action: #selector(confirmButtonDidTap), for: .touchUpInside)
     }
     
+    @objc
+    private func rejectButtonDidTap() {
+        let parameter:[String:Any] = [
+            "boardSeq":self.adminDetailInfo!.boardSeq,
+            "sueReason":"reject"
+        ]
+        
+        
+        UtilApi.postAdminBlock(parameter: parameter) { result in
+            print(result)
+            if result.code == 200 {
+                let alert = UIAlertController(title: "신고가 반려되었습니다.", message: "", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "확인", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(alertAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @objc
+    private func confirmButtonDidTap() {
+        let parameter:[String:Any] = [
+            "boardSeq":self.adminDetailInfo!.boardSeq,
+            "sueReason":"delete"
+        ]
+        UtilApi.postAdminBlock(parameter: parameter) { result in
+            print("delete",result)
+            if result.code == 200 {
+                let alert = UIAlertController(title: "신고가 승인되었습니다.", message: "", preferredStyle: .alert)
+                let alertAction = UIAlertAction(title: "확인", style: .default) { _ in
+                    self.navigationController?.popViewController(animated: true)
+                }
+                alert.addAction(alertAction)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
+    }
     
 }

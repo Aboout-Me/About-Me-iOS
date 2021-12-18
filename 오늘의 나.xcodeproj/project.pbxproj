@@ -129,6 +129,7 @@
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
 		FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */; };
 		FF9B5A7726A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */; };
+		FFA57398276DD59E00779A51 /* AdminSueModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA57397276DD59E00779A51 /* AdminSueModelList.swift */; };
 		FFA7CEFB263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */; };
 		FFA7CEFC263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */; };
 		FFA8C81D274A9C2800288A78 /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA8C81C274A9C2800288A78 /* TermsViewController.swift */; };
@@ -281,6 +282,7 @@
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
 		FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeEmptyTableViewCell.xib; sourceTree = "<group>"; };
+		FFA57397276DD59E00779A51 /* AdminSueModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSueModelList.swift; sourceTree = "<group>"; };
 		FFA7CEF9263C5B8D0021DD29 /* MyProfileCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFA7CEFA263C5B8D0021DD29 /* MyProfileCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyProfileCollectionViewCell.xib; sourceTree = "<group>"; };
 		FFA8C81C274A9C2800288A78 /* TermsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				FF3350652688F09D00D98DD9 /* UtilModelList.swift */,
 				FF4890F7276AFC3F0033CA29 /* AdminModelList.swift */,
 				FF489144276B56320033CA29 /* AdminBlockList.swift */,
+				FFA57397276DD59E00779A51 /* AdminSueModelList.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
 				0714AE94265D47C6005C3C6E /* SocialListResponse.swift in Sources */,
 				07432F682663C4AD008786B0 /* SocialTagCell.swift in Sources */,
+				FFA57398276DD59E00779A51 /* AdminSueModelList.swift in Sources */,
 				FF38D1ED269056BA001FD8B1 /* SocialOtherProfileViewController.swift in Sources */,
 				FFE8390326A6B1E800BA27E2 /* NoticeViewController.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
