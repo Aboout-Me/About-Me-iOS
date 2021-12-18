@@ -15,6 +15,8 @@ struct AdminBlockList: Codable {
 
 struct AdminBlockModel: Codable {
     var boardSeq: Int
+    var title: String
     var sueReason: String
     var contents: String
+    var color: String
 }

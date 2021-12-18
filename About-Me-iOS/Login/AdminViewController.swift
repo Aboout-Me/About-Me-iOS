@@ -57,6 +57,13 @@ class AdminViewController: UIViewController {
         }
     }
     
+    private func selectCell(indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+        let adminBlockView = storyboard.instantiateViewController(withIdentifier: "AdminBlockVC") as? AdminBlockViewController
+        guard let adminBlockVC = adminBlockView else { return }
+        adminBlockVC.adminDetailInfo = adminBlcokInfo[indexPath.row]
+        self.navigationController?.pushViewController(adminBlockVC, animated: true)
+    }
     
 }
 
@@ -73,8 +80,12 @@ extension AdminViewController: UITableViewDelegate,UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectCell(indexPath: indexPath)
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+        return 88
     }
     
     

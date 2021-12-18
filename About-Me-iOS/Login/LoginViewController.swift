@@ -26,7 +26,7 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
     var userEmail: String = ""
     
     var hiddenButton: Int = 0
-
+    
     // MARK: - viewDidLoad
     
     override func viewDidLoad() {
@@ -70,20 +70,6 @@ class LoginViewController: UIViewController, NaverThirdPartyLoginConnectionDeleg
         self.logoImage.isUserInteractionEnabled = true
         self.logoDescription.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(hiddenButtonDidTap)))
         self.logoDescription.isUserInteractionEnabled = true
-//        let parameter = [
-//            "id":"aboutme2auth@gmail.com",
-//            "password":"@auth!fun.d"
-//        ]
-//
-//        UtilApi.getAdminLogin(parameter: parameter) { result in
-//            if result.code == 200 {
-//                let storyboard = UIStoryboard(name: "Login", bundle: nil)
-//                let AdminView = storyboard.instantiateViewController(withIdentifier: "AdminVC") as? AdminViewController
-//                guard let AdminVC = AdminView else {return}
-//                self.navigationController?.pushViewController(AdminVC, animated: true)
-//                print("GET Admin Test Call \(result.code) , \(result.body)")
-//            }
-//        }
     }
     
     // segue로 token 및 authType 전달
@@ -275,7 +261,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("애플 로그인 error : \(error)")
     }
-
+    
     @objc
     private func hiddenButtonDidTap(_ sender: UITapGestureRecognizer) {
         self.hiddenButton += 1
@@ -299,7 +285,11 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 
                 UtilApi.getAdminLogin(parameter: parameter) { result in
                     if result.code == 200 {
-                        /// CONNNECT ADMIN VC HERE
+                        let storyboard = UIStoryboard(name: "Login", bundle: nil)
+                        let AdminView = storyboard.instantiateViewController(withIdentifier: "AdminVC") as? AdminViewController
+                        guard let AdminVC = AdminView else {return}
+                        self.navigationController?.pushViewController(AdminVC, animated: true)
+                        print("GET Admin Test Call \(result.code) , \(result.body)")
                         print("OK")
                     }
                 }

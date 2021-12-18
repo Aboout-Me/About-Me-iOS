@@ -118,6 +118,7 @@
 		FF4890F8276AFC3F0033CA29 /* AdminModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4890F7276AFC3F0033CA29 /* AdminModelList.swift */; };
 		FF4890FA276B05460033CA29 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF4890F9276B05460033CA29 /* AdminViewController.swift */; };
 		FF489145276B56320033CA29 /* AdminBlockList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF489144276B56320033CA29 /* AdminBlockList.swift */; };
+		FF489147276DB2900033CA29 /* AdminBlockViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF489146276DB28F0033CA29 /* AdminBlockViewController.swift */; };
 		FF599C5826A2B4F700A5D9A6 /* EditBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */; };
 		FF599C5926A2B4F700A5D9A6 /* PostBottomSheetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */; };
 		FF68A72C262D8AC2007253E0 /* HomeAfterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */; };
@@ -269,6 +270,7 @@
 		FF4890F7276AFC3F0033CA29 /* AdminModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminModelList.swift; sourceTree = "<group>"; };
 		FF4890F9276B05460033CA29 /* AdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
 		FF489144276B56320033CA29 /* AdminBlockList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBlockList.swift; sourceTree = "<group>"; };
+		FF489146276DB28F0033CA29 /* AdminBlockViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminBlockViewController.swift; sourceTree = "<group>"; };
 		FF599C5626A2B4F700A5D9A6 /* EditBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditBottomSheetView.xib; sourceTree = "<group>"; };
 		FF599C5726A2B4F700A5D9A6 /* PostBottomSheetView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostBottomSheetView.xib; sourceTree = "<group>"; };
 		FF68A72B262D8AC2007253E0 /* HomeAfterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAfterViewController.swift; sourceTree = "<group>"; };
@@ -496,6 +498,7 @@
 				07989A0E267F2B0B006C52A0 /* LoginViewController.swift */,
 				07989A10267F2B0B006C52A0 /* Service */,
 				FF4890F9276B05460033CA29 /* AdminViewController.swift */,
+				FF489146276DB28F0033CA29 /* AdminBlockViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -948,6 +951,7 @@
 				18BB80CD267F30E100D7FD89 /* EditProfileViewController.swift in Sources */,
 				FFA8C81D274A9C2800288A78 /* TermsViewController.swift in Sources */,
 				07989A19267F2B0B006C52A0 /* LoginViewController.swift in Sources */,
+				FF489147276DB2900033CA29 /* AdminBlockViewController.swift in Sources */,
 				18BB80CC267F30E100D7FD89 /* AlertSettingsViewController.swift in Sources */,
 				07432F682663C4AD008786B0 /* SocialTagCell.swift in Sources */,
 				18BB80CB267F30E100D7FD89 /* QuestionsViewController.swift in Sources */,
