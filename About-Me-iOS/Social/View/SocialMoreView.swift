@@ -22,6 +22,7 @@ class SocialMoreView: UIViewController {
     var targetQuestionId: Int?
     var sueType: String?
     var closure: (() -> Void)?
+    var closeBoard: (() -> Void)?
     var profileClosure: (() -> Void)?
     
     // MARK: - Lifecycle
@@ -75,6 +76,41 @@ class SocialMoreView: UIViewController {
         }
     }
     
+    @IBAction func blockButtonDidTap(_ sender: Any) {
+        let alert = UIAlertController(title: "해당 사용자를\n차단하시겠습니까?", message: nil, preferredStyle: UIAlertController.Style.alert)
+        
+        let cancelAction = UIAlertAction(title: "아니오", style: .default, handler: nil)
+        
+        let quitAction = UIAlertAction(title: "네", style: .destructive) { _ in
+            guard let suedUserId = self.suedUserId else { return }
+
+            SocialApiService.postBlock(blockUserId: USER_ID, targetUserId: suedUserId) { response in
+                if response.code == 200 {
+                    let alert = UIAlertController(title: "차단이 완료되었습니다.", message: nil, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let cancelAction = UIAlertAction(title: "닫기", style: .default) { _ in
+                        self.closeBoard?()
+                    }
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: false, completion: nil)
+                }
+                else {
+                    let alert = UIAlertController(title: "잠시 후 다시 시도해주세요.", message: nil, preferredStyle: UIAlertController.Style.alert)
+                    
+                    let cancelAction = UIAlertAction(title: "닫기", style: .default, handler: nil)
+                    
+                    alert.addAction(cancelAction)
+                    self.present(alert, animated: false, completion: nil)
+                }
+            }
+        }
+        
+        alert.addAction(cancelAction)
+        alert.addAction(quitAction)
+        present(alert, animated: false, completion: nil)
+    }
+    
     @IBAction func reportButtonDidTap(_ sender: Any) {
         let alert = UIAlertController(title: "신고사유", message: nil, preferredStyle: .actionSheet)
         
@@ -121,11 +157,11 @@ class SocialMoreView: UIViewController {
         if sueType == nil {
             self.reportButton.isHidden = true
             self.reportButton.setHeight(height: 0)
-            self.buttonView.setHeight(height: 100)
+            self.buttonView.setHeight(height: 150)
         } else {
             self.reportButton.isHidden = false
             self.reportButton.setHeight(height: 50)
-            self.buttonView.setHeight(height: 150)
+            self.buttonView.setHeight(height: 200)
         }
     }
     

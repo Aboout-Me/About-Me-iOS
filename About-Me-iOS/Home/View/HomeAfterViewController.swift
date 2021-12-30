@@ -298,13 +298,13 @@ class HomeAfterViewController: UIViewController,SideMenuNavigationControllerDele
             homeAfterTagView.backgroundColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
             homeAfterTagView.setTitle("관계의미학", for: .normal)
         } else if self.homeAfterData?.post.color == "purple" {
-            self.homeAfterBackgroundImageView.image = UIImage(named: "img_background_violet.png")
+            self.homeAfterBackgroundImageView.image = UIImage(named: "img_background_purple.png")
             homeAfterTagView.backgroundColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
             homeAfterTagView.setTitle("상상플러스", for: .normal)
         }
         
         if self.homeAfterData?.post.level == 1 {
-            self.homeAfterLastAnswerButton.isHidden = false
+            self.homeAfterLastAnswerButton.isHidden = true
             self.homeAfterLevelLabel.isHidden = true
             self.homeAfterLevelFlexView.isHidden = true
         } else {

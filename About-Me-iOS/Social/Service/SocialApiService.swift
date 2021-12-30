@@ -242,4 +242,56 @@ struct SocialApiService {
             }
         }
     }
+
+    static func postBlock(blockUserId: Int, targetUserId: Int, completion: @escaping (SocialReportResponse) -> Void) {
+        var urlString = "\(API_URL)/Message/block?offer_id=\(blockUserId)&other_id=\(targetUserId)"
+
+        let urlComponent = URLComponents(string: urlString)
+        guard let url = urlComponent?.url else { return }
+        print(url)
+
+        let request = AF.request(url, method: .post)
+        request.validate(statusCode: 200...500).responseString { response in
+            switch response.result {
+            case .success:
+                let stringResponse = String(data: response.data!, encoding: .utf8)
+                print(stringResponse)
+
+                do {
+                    let data = try JSONDecoder().decode(SocialReportResponse.self, from: response.data!)
+                    completion(data)
+                } catch {
+                    print(error.localizedDescription)
+                }
+
+
+            case .failure(let error):
+                print(error)
+            }
+
+//        let urlComponent = URLComponents(string:  "\(API_URL)/Message/block")
+//        let parameters: [String: Any] = [
+//            "offer_id": blockUserId,
+//            "other_id": targetUserId
+//        ]
+//        guard let url = urlComponent?.url else { return }
+//
+//        let request = AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+//        request.validate(statusCode: 200...500).responseString { response in
+//            switch response.result {
+//            case .success:
+//                let stringResponse = String(data: response.data!, encoding: .utf8)
+//                print(stringResponse)
+//
+//                do {
+//                    let data = try JSONDecoder().decode(SocialReportResponse.self, from: response.data!)
+//                    completion(data)
+//                } catch {
+//                    print(error.localizedDescription)
+//                }
+//            case .failure(let error):
+//                print(error)
+//            }
+        }
+    }
 }
