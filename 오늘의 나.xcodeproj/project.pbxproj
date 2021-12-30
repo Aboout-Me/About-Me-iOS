@@ -94,6 +94,8 @@
 		1885E6D1273D73F500B41334 /* Pods_오늘의_나.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1885E6CF273D73F500B41334 /* Pods_오늘의_나.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		18A07A9426A3E64A00BA151D /* SendInquireList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A07A9326A3E64A00BA151D /* SendInquireList.swift */; };
 		18A07A9626A3E6F400BA151D /* SettingApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A07A9526A3E6F400BA151D /* SettingApiService.swift */; };
+		18A9E678277D8BA2008FBE49 /* TermsOfUseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A9E676277D8BA2008FBE49 /* TermsOfUseViewController.swift */; };
+		18A9E679277D8BA2008FBE49 /* TermsOfUseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A9E677277D8BA2008FBE49 /* TermsOfUseViewController.xib */; };
 		18BB80CB267F30E100D7FD89 /* QuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C5267F30E100D7FD89 /* QuestionsViewController.swift */; };
 		18BB80CC267F30E100D7FD89 /* AlertSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C6267F30E100D7FD89 /* AlertSettingsViewController.swift */; };
 		18BB80CD267F30E100D7FD89 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */; };
@@ -253,6 +255,8 @@
 		1885E6CF273D73F500B41334 /* Pods_오늘의_나.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = "Pods_오늘의_나.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A07A9326A3E64A00BA151D /* SendInquireList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendInquireList.swift; sourceTree = "<group>"; };
 		18A07A9526A3E6F400BA151D /* SettingApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingApiService.swift; sourceTree = "<group>"; };
+		18A9E676277D8BA2008FBE49 /* TermsOfUseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseViewController.swift; sourceTree = "<group>"; };
+		18A9E677277D8BA2008FBE49 /* TermsOfUseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsOfUseViewController.xib; sourceTree = "<group>"; };
 		18BB80C5267F30E100D7FD89 /* QuestionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionsViewController.swift; sourceTree = "<group>"; };
 		18BB80C6267F30E100D7FD89 /* AlertSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertSettingsViewController.swift; sourceTree = "<group>"; };
 		18BB80C7267F30E100D7FD89 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -502,6 +506,8 @@
 				07989A0D267F2B0B006C52A0 /* OnboardingViewController.swift */,
 				07989A0E267F2B0B006C52A0 /* LoginViewController.swift */,
 				07989A10267F2B0B006C52A0 /* Service */,
+				18A9E676277D8BA2008FBE49 /* TermsOfUseViewController.swift */,
+				18A9E677277D8BA2008FBE49 /* TermsOfUseViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -802,6 +808,7 @@
 				FF38D1EB26905699001FD8B1 /* SocialOtherProfileViewController.xib in Resources */,
 				FF351AA02668E8A600CB7FF2 /* MyProfileEmptyCollectionViewCell.xib in Resources */,
 				FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */,
+				18A9E679277D8BA2008FBE49 /* TermsOfUseViewController.xib in Resources */,
 				072931EF267EFE3800CCA6A8 /* AdvisoryStageCell.xib in Resources */,
 				074011A52695CCA700AFFA3D /* MyFeedCell.xib in Resources */,
 				0757072C26651D1C009F98B4 /* SocialCommentViewController.xib in Resources */,
@@ -875,6 +882,7 @@
 				072931F4267F025C00CCA6A8 /* AdvisoryStageViewController.swift in Sources */,
 				FF3350702689E59F00D98DD9 /* EditBottomSheetView.swift in Sources */,
 				FFB3164027366169006BE9D6 /* PrivacyViewController.swift in Sources */,
+				18A9E678277D8BA2008FBE49 /* TermsOfUseViewController.swift in Sources */,
 				07B89EB1268A1002007380A5 /* MyProfileLikeScrapList.swift in Sources */,
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
 				FFFDB826261F235100947C44 /* HomeBeforeCollectionViewCell.swift in Sources */,
