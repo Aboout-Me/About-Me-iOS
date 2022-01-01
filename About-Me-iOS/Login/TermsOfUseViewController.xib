@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,15 +13,13 @@
                 <outlet property="agreementButton" destination="kBH-Cb-K6I" id="B9g-hz-k2Y"/>
                 <outlet property="agreementCheckMark" destination="2uG-Oq-pzT" id="ccc-ja-HDo"/>
                 <outlet property="bottomView" destination="m5s-6c-eXu" id="936-mg-pbH"/>
-                <outlet property="cofirmButton" destination="Eqp-yn-vXT" id="ENx-Qw-lLB"/>
+                <outlet property="confirmButton" destination="Eqp-yn-vXT" id="TvY-pB-ueK"/>
                 <outlet property="firstButton" destination="02C-Wz-9Mq" id="9SV-8V-fdm"/>
                 <outlet property="firstCheckMark" destination="kLo-nR-B7b" id="fK2-43-4IQ"/>
                 <outlet property="secondButton" destination="9O3-IK-kvh" id="PaO-O2-RSm"/>
                 <outlet property="secondCheckMark" destination="QR9-Hq-iYr" id="jla-S4-MAB"/>
-                <outlet property="secondView" destination="9O3-IK-kvh" id="5yz-WT-iCE"/>
                 <outlet property="thirdButton" destination="R2c-bb-eIA" id="YbO-lz-bZU"/>
                 <outlet property="thirdCheckMark" destination="kWl-3j-w7Y" id="Fos-9m-6Ra"/>
-                <outlet property="thridView" destination="R2c-bb-eIA" id="GAx-Yz-rBp"/>
                 <outlet property="topView" destination="bYE-1W-s1k" id="XUe-nJ-mnH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -32,7 +30,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nnh-gV-E9A">
-                    <rect key="frame" x="0.0" y="537" width="414" height="325"/>
+                    <rect key="frame" x="0.0" y="571" width="414" height="325"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bYE-1W-s1k" userLabel="topView">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="91"/>
@@ -74,55 +72,54 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5s-6c-eXu" userLabel="bottomView">
                             <rect key="frame" x="0.0" y="211" width="414" height="114"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="114" id="nHM-j8-WRv"/>
-                            </constraints>
                         </view>
                     </subviews>
                     <constraints>
                         <constraint firstItem="bYE-1W-s1k" firstAttribute="top" secondItem="nnh-gV-E9A" secondAttribute="top" id="IU1-9v-cyl"/>
+                        <constraint firstItem="02C-Wz-9Mq" firstAttribute="top" secondItem="bYE-1W-s1k" secondAttribute="bottom" id="SOE-QV-ZdU"/>
                         <constraint firstItem="bYE-1W-s1k" firstAttribute="leading" secondItem="nnh-gV-E9A" secondAttribute="leading" id="oNK-wd-tVd"/>
                         <constraint firstAttribute="trailing" secondItem="bYE-1W-s1k" secondAttribute="trailing" id="si4-Jr-LD0"/>
+                        <constraint firstAttribute="bottom" secondItem="m5s-6c-eXu" secondAttribute="bottom" id="tqm-3e-v7n"/>
                         <constraint firstAttribute="height" constant="325" id="vfS-s3-qre"/>
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2rF-3P-yWj">
-                    <rect key="frame" x="20" y="605.5" width="374" height="1"/>
+                    <rect key="frame" x="20" y="639.5" width="374" height="1"/>
                     <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="458-N6-SRf"/>
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2uG-Oq-pzT" userLabel="agreementCheckMark">
-                    <rect key="frame" x="30" y="570.5" width="24" height="24"/>
+                    <rect key="frame" x="30" y="604.5" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="24" id="65O-aF-2fM"/>
                         <constraint firstAttribute="height" constant="24" id="u7h-he-OmT"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kLo-nR-B7b" userLabel="firstCheckMark">
-                    <rect key="frame" x="30" y="636" width="24" height="24"/>
+                    <rect key="frame" x="30" y="670" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="8EY-pl-BOm"/>
                         <constraint firstAttribute="width" constant="24" id="X8j-tm-toi"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QR9-Hq-iYr" userLabel="secondCheckMark">
-                    <rect key="frame" x="30" y="676" width="24" height="24"/>
+                    <rect key="frame" x="30" y="710" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="Q7b-lt-1T7"/>
                         <constraint firstAttribute="width" constant="24" id="nTz-i4-bDV"/>
                     </constraints>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kWl-3j-w7Y" userLabel="thirdCheckMark">
-                    <rect key="frame" x="30" y="716" width="24" height="24"/>
+                    <rect key="frame" x="30" y="750" width="24" height="24"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="24" id="JxX-R0-ToQ"/>
                         <constraint firstAttribute="height" constant="24" id="rJV-My-yb4"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kBH-Cb-K6I" userLabel="agreementButton">
-                    <rect key="frame" x="0.0" y="557.5" width="414" height="50"/>
+                    <rect key="frame" x="0.0" y="591.5" width="414" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="KjQ-eA-siU"/>
                     </constraints>
@@ -135,25 +132,25 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[필수] 서비스 이용 약관" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTz-9U-Pxp">
-                    <rect key="frame" x="59" y="679" width="140" height="18"/>
+                    <rect key="frame" x="59" y="713" width="140" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모두 동의합니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgj-Wl-K3I">
-                    <rect key="frame" x="59" y="572" width="557" height="21.5"/>
+                    <rect key="frame" x="59" y="606" width="557" height="21.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[필수] 개인정보 수집 및 이용 동의" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGh-ZY-QFz">
-                    <rect key="frame" x="59" y="719" width="200" height="18"/>
+                    <rect key="frame" x="59" y="753" width="200" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.33333333329999998" green="0.33333333329999998" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eqp-yn-vXT" userLabel="cofirmButton">
-                    <rect key="frame" x="20" y="768" width="374" height="50"/>
+                    <rect key="frame" x="20" y="802" width="374" height="50"/>
                     <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="ryn-55-BxI"/>
@@ -167,7 +164,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="만 14세 이상입니다" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sx3-ic-oHq">
-                    <rect key="frame" x="59" y="639" width="115" height="18"/>
+                    <rect key="frame" x="59" y="673" width="115" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -190,7 +187,7 @@
                 <constraint firstItem="kWl-3j-w7Y" firstAttribute="centerY" secondItem="R2c-bb-eIA" secondAttribute="centerY" id="MQP-YM-Hxc"/>
                 <constraint firstItem="Eqp-yn-vXT" firstAttribute="trailing" secondItem="m5s-6c-eXu" secondAttribute="trailing" constant="-20" id="NpI-jU-Kdd"/>
                 <constraint firstItem="QR9-Hq-iYr" firstAttribute="centerY" secondItem="9O3-IK-kvh" secondAttribute="centerY" id="PWr-W0-caR"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="nnh-gV-E9A" secondAttribute="bottom" id="QbJ-QI-MO8"/>
+                <constraint firstAttribute="bottom" secondItem="nnh-gV-E9A" secondAttribute="bottom" id="QbJ-QI-MO8"/>
                 <constraint firstItem="Sx3-ic-oHq" firstAttribute="centerY" secondItem="02C-Wz-9Mq" secondAttribute="centerY" id="Rck-Dg-5Y4"/>
                 <constraint firstItem="nnh-gV-E9A" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ybb-AZ-maM"/>
                 <constraint firstItem="Eqp-yn-vXT" firstAttribute="bottom" secondItem="m5s-6c-eXu" secondAttribute="bottom" constant="-44" id="cKN-Gf-tx0"/>

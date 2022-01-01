@@ -46,6 +46,7 @@ class AdditionalProfileViewController: UIViewController {
         
         nextButtonisEnalbed()
         introduceTextViewSetupView()
+        nextButton.addTarget(self, action: #selector(nextButtonDidTap(_:)), for: .touchUpInside)
         
         // gender button 설정
 //        manButton.layer.borderWidth = 0.25
@@ -154,6 +155,13 @@ class AdditionalProfileViewController: UIViewController {
 //            dateFlag = true
 //        }
 //    }
+        
+    @objc
+    private func nextButtonDidTap(_ sender: UIButton) {
+        let termsView = TermsOfUseViewController(nibName: "TermsOfUseViewController", bundle: nil)
+        termsView.modalPresentationStyle = .overCurrentContext
+        self.present(termsView, animated: true, completion: nil)
+    }
     
     func nextButtonisEnalbed() {
         if emailFlag && nicknameFlag && introduceFlag {

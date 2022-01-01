@@ -30,8 +30,10 @@ class TermsOfUseViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        topView.clipsToBounds = true
         topView.layer.cornerRadius = 10
+        topView.layer.maskedCorners = [.layerMaxXMinYCorner,.layerMinXMinYCorner]
         confirmButton.layer.cornerRadius = 5
         
         agreementCheckMark.image = UIImage(named: "icoCommon24CompleteOff")
@@ -124,7 +126,8 @@ class TermsOfUseViewController: UIViewController {
         }
     }
     @IBAction func confirmButtonDidTapped(_ sender: Any) {
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
+

@@ -419,7 +419,6 @@
                                 </state>
                                 <connections>
                                     <action selector="nextButtonDidTapped:" destination="7UX-8N-gm8" eventType="touchUpInside" id="vPa-Ku-n8e"/>
-                                    <segue destination="1Qt-nU-lk4" kind="show" id="iZM-Ud-SpX"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="R2n-GM-GPm">
