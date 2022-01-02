@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3P-m6-TnK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I3P-m6-TnK">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -116,7 +116,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AdminCell" id="JwQ-I8-GlA">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JwQ-I8-GlA" id="W4G-KO-XlC">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
@@ -177,7 +177,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="신고신고신고신고신고신고신고신고신고신고" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="85w-Ev-Aot">
-                                        <rect key="frame" x="25" y="62" width="275" height="40"/>
+                                        <rect key="frame" x="25" y="62" width="275" height="47"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="275" id="KfF-jf-xDK"/>
                                         </constraints>
@@ -186,14 +186,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고신고" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Uv5-rs-n6q">
-                                        <rect key="frame" x="25" y="148" width="324" height="247"/>
+                                        <rect key="frame" x="25" y="155" width="324" height="240"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y9p-tH-An3">
-                                        <rect key="frame" x="25" y="110" width="1" height="30"/>
+                                        <rect key="frame" x="25" y="117" width="1" height="30"/>
                                         <color key="backgroundColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="1" id="7kJ-M7-7kC"/>
@@ -225,14 +225,12 @@
                                 </constraints>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="신고반려"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXR-0g-mW3">
                                 <rect key="frame" x="212" y="678" width="182" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.96862745100000003" green="0.96862745100000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="신고승인"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8O2-Ic-XEA"/>
@@ -356,7 +354,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="5sK-pY-M9n"/>
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="SAr-Ki-IZM">
-                                <rect key="frame" x="129.5" y="138" width="155.5" height="28"/>
+                                <rect key="frame" x="146.5" y="138" width="121.5" height="28"/>
                                 <color key="pageIndicatorTintColor" name="AccentColor"/>
                                 <color key="currentPageIndicatorTintColor" systemColor="systemRedColor"/>
                             </pageControl>

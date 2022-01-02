@@ -158,9 +158,9 @@ class AdditionalProfileViewController: UIViewController {
         
     @objc
     private func nextButtonDidTap(_ sender: UIButton) {
-        let termsView = TermsOfUseViewController(nibName: "TermsOfUseViewController", bundle: nil)
-        termsView.modalPresentationStyle = .overCurrentContext
-        self.present(termsView, animated: true, completion: nil)
+        let termsOfUseVC = TermsOfUseViewController(nibName: "TermsOfUseViewController", bundle: nil)
+        termsOfUseVC.modalPresentationStyle = .overCurrentContext
+        self.present(termsOfUseVC, animated: true, completion: nil)
     }
     
     func nextButtonisEnalbed() {

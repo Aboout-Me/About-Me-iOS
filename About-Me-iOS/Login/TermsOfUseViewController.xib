@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,8 +18,10 @@
                 <outlet property="firstCheckMark" destination="kLo-nR-B7b" id="fK2-43-4IQ"/>
                 <outlet property="secondButton" destination="9O3-IK-kvh" id="PaO-O2-RSm"/>
                 <outlet property="secondCheckMark" destination="QR9-Hq-iYr" id="jla-S4-MAB"/>
+                <outlet property="secondDetailButton" destination="eZj-bM-TNZ" id="d4v-hb-T5k"/>
                 <outlet property="thirdButton" destination="R2c-bb-eIA" id="YbO-lz-bZU"/>
                 <outlet property="thirdCheckMark" destination="kWl-3j-w7Y" id="Fos-9m-6Ra"/>
+                <outlet property="thirdDetailButton" destination="9PX-jg-2i8" id="HuX-0Z-qQD"/>
                 <outlet property="topView" destination="bYE-1W-s1k" id="XUe-nJ-mnH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -169,14 +171,41 @@
                     <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZj-bM-TNZ" userLabel="secondDetailButton">
+                    <rect key="frame" x="359" y="712" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="4Vy-Py-N0X"/>
+                        <constraint firstAttribute="height" constant="20" id="zm8-d7-D1W"/>
+                    </constraints>
+                    <color key="tintColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="secondDetailButtonDidTapped:" destination="-1" eventType="touchUpInside" id="uqR-Sn-J0M"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9PX-jg-2i8" userLabel="thirdDetailButton">
+                    <rect key="frame" x="359" y="752" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="IFs-X2-wiB"/>
+                        <constraint firstAttribute="height" constant="20" id="ZIw-L9-HFd"/>
+                    </constraints>
+                    <color key="tintColor" red="0.61176470589999998" green="0.61176470589999998" blue="0.61176470589999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="thirdDetailButtonDidTapped:" destination="-1" eventType="touchUpInside" id="Sde-a4-iIG"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" white="0.0" alpha="0.50322531356292521" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="KTz-9U-Pxp" firstAttribute="centerY" secondItem="9O3-IK-kvh" secondAttribute="centerY" id="0kI-8f-fju"/>
+                <constraint firstItem="9PX-jg-2i8" firstAttribute="centerY" secondItem="hGh-ZY-QFz" secondAttribute="centerY" id="4eJ-G6-0g1"/>
                 <constraint firstItem="kBH-Cb-K6I" firstAttribute="centerY" secondItem="bYE-1W-s1k" secondAttribute="centerY" id="5Jr-ek-Rlk"/>
                 <constraint firstItem="QR9-Hq-iYr" firstAttribute="leading" secondItem="nnh-gV-E9A" secondAttribute="leading" constant="30" id="5Rb-R6-YWT"/>
                 <constraint firstItem="2uG-Oq-pzT" firstAttribute="centerY" secondItem="dgj-Wl-K3I" secondAttribute="centerY" id="5UO-7T-Df2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="9PX-jg-2i8" secondAttribute="trailing" constant="35" id="Cdf-L2-Xcg"/>
+                <constraint firstItem="eZj-bM-TNZ" firstAttribute="centerY" secondItem="KTz-9U-Pxp" secondAttribute="centerY" id="Doe-1O-hn0"/>
                 <constraint firstItem="kBH-Cb-K6I" firstAttribute="trailing" secondItem="bYE-1W-s1k" secondAttribute="trailing" id="Epi-Pp-Agk"/>
                 <constraint firstItem="kBH-Cb-K6I" firstAttribute="leading" secondItem="bYE-1W-s1k" secondAttribute="leading" id="Gwb-Cr-6qF"/>
                 <constraint firstItem="Sx3-ic-oHq" firstAttribute="leading" secondItem="02C-Wz-9Mq" secondAttribute="leading" constant="59" id="IFU-qM-ybf"/>
@@ -197,6 +226,7 @@
                 <constraint firstItem="2rF-3P-yWj" firstAttribute="leading" secondItem="nnh-gV-E9A" secondAttribute="leading" constant="20" id="gfo-9P-uJ4"/>
                 <constraint firstItem="2uG-Oq-pzT" firstAttribute="leading" secondItem="bYE-1W-s1k" secondAttribute="leading" constant="30" id="hjZ-HV-QbY"/>
                 <constraint firstItem="hGh-ZY-QFz" firstAttribute="centerY" secondItem="R2c-bb-eIA" secondAttribute="centerY" id="j8b-2Y-bg8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="eZj-bM-TNZ" secondAttribute="trailing" constant="35" id="lPE-Mf-t3s"/>
                 <constraint firstItem="kLo-nR-B7b" firstAttribute="centerY" secondItem="02C-Wz-9Mq" secondAttribute="centerY" id="qjG-18-7sp"/>
                 <constraint firstItem="2rF-3P-yWj" firstAttribute="trailing" secondItem="nnh-gV-E9A" secondAttribute="trailing" constant="-20" id="sQH-xw-Ui6"/>
                 <constraint firstItem="2rF-3P-yWj" firstAttribute="top" secondItem="dgj-Wl-K3I" secondAttribute="bottom" constant="12" id="xVr-fq-FeO"/>

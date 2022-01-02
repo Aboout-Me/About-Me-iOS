@@ -8,7 +8,7 @@
 import UIKit
 
 class TermsOfUseViewController: UIViewController {
-
+    
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var bottomView: UIView!
     
@@ -22,6 +22,9 @@ class TermsOfUseViewController: UIViewController {
     @IBOutlet weak var firstCheckMark: UIImageView!
     @IBOutlet weak var secondCheckMark: UIImageView!
     @IBOutlet weak var thirdCheckMark: UIImageView!
+    
+    @IBOutlet weak var secondDetailButton: UIButton!
+    @IBOutlet weak var thirdDetailButton: UIButton!
     
     var agreementFlag = false
     var firstButtonFlag = false
@@ -40,6 +43,10 @@ class TermsOfUseViewController: UIViewController {
         firstCheckMark.image = UIImage(named: "icoCommon24CheckedOff")
         secondCheckMark.image = UIImage(named: "icoCommon24CheckedOff")
         thirdCheckMark.image = UIImage(named: "icoCommon24CheckedOff")
+        
+        secondDetailButton.setImage(UIImage(named: "02Element01Icon20Arrow"), for: .normal)
+        thirdDetailButton.setImage(UIImage(named: "02Element01Icon20Arrow"), for: .normal)
+        
     }
     
     @IBAction func agreementButtonDidTapped(_ sender: Any) {
@@ -125,9 +132,32 @@ class TermsOfUseViewController: UIViewController {
             confirmButton.isEnabled = false
         }
     }
-    @IBAction func confirmButtonDidTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func confirmButtonDidTapped(_ sender: UIButton) {
+        let storyboard: UIStoryboard? = UIStoryboard(name: "Login", bundle: Bundle.main)
+        
+        guard let onboardingVC = storyboard?.instantiateViewController(identifier: "OnboardingViewController") else {
+            return
+        }
+        onboardingVC.modalPresentationStyle = .fullScreen
+        
+        guard let termsOfUseVC = self.presentingViewController else { return }
+        self.dismiss(animated: true) {
+            termsOfUseVC.present(onboardingVC, animated: true, completion: nil)
+        }
     }
     
+    
+    @IBAction func secondDetailButtonDidTapped(_ sender: UIButton) {
+        let termsConditionVC = TermsConditionsViewController(nibName: "TermsConditionsViewController", bundle: nil)
+        
+        termsConditionVC.modalPresentationStyle = .fullScreen
+        self.present(termsConditionVC, animated: true, completion: nil)
+    
+    }
+    @IBAction func thirdDetailButtonDidTapped(_ sender: UIButton) {
+        let privacyPolicyVC = PrivacyPolicyViewController(nibName: "PrivacyPolicyViewController", bundle: nil)
+        
+        privacyPolicyVC.modalPresentationStyle = .fullScreen
+        self.present(privacyPolicyVC, animated: true, completion: nil)
+    }
 }
-
