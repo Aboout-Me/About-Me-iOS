@@ -10,6 +10,7 @@ class AdditionalProfileViewController: UIViewController {
     @IBOutlet weak var introduceTextView: UITextView!
     @IBOutlet weak var limitNum: UILabel!
     @IBOutlet weak var nextButton: UIButton!
+    
 
     var emailFlag: Bool = false
     var nicknameFlag: Bool = false
