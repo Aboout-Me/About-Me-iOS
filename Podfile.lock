@@ -89,6 +89,12 @@ PODS:
   - nanopb/encode (2.30908.0)
   - naveridlogin-sdk-ios (4.1.3)
   - PromisesObjC (2.0.0)
+  - RxCocoa (6.0.0):
+    - RxRelay (= 6.0.0)
+    - RxSwift (= 6.0.0)
+  - RxRelay (6.0.0):
+    - RxSwift (= 6.0.0)
+  - RxSwift (6.0.0)
   - SideMenu (6.5.0)
   - SwiftKeychainWrapper (4.0.1)
 
@@ -98,6 +104,8 @@ DEPENDENCIES:
   - Floaty (~> 4.2.0)
   - KakaoSDK
   - naveridlogin-sdk-ios
+  - RxCocoa (= 6.0.0)
+  - RxSwift (= 6.0.0)
   - SideMenu
   - SwiftKeychainWrapper
 
@@ -124,6 +132,9 @@ SPEC REPOS:
     - nanopb
     - naveridlogin-sdk-ios
     - PromisesObjC
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SideMenu
     - SwiftKeychainWrapper
 
@@ -149,9 +160,12 @@ SPEC CHECKSUMS:
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   naveridlogin-sdk-ios: b9d7c20677981177ed994ecb1c8c2b49f223277d
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
+  RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
+  RxRelay: 8d593be109c06ea850df027351beba614b012ffb
+  RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 44742747452a4c14b7d128ba6648e49047d7a8a5
+PODFILE CHECKSUM: 2f6c0525e36d471d568de24b43ef97e3c1e37196
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.2
