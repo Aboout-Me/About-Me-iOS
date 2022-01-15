@@ -13,6 +13,7 @@ target '오늘의 나' do
   pod 'Firebase/Messaging'
   pod 'RxSwift', '6.0.0'
   pod 'RxCocoa', '6.0.0'
+  pod 'RxTest', '6.0.0'
 
   # Pods for 오늘의 나
 

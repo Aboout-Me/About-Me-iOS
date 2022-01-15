@@ -132,6 +132,7 @@
 		FF6922B826430F8C00B0B533 /* LastAnswerCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */; };
 		FF7437FA268A226100FB4C9A /* PostBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */; };
 		FF89606A2616066000CB6492 /* SocialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8960692616066000CB6492 /* SocialViewController.swift */; };
+		FF9B0F6B2792C5B4008364AC /* HomeBeforeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B0F6A2792C5B4008364AC /* HomeBeforeViewModel.swift */; };
 		FF9B5A7626A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */; };
 		FF9B5A7726A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */; };
 		FFA57398276DD59E00779A51 /* AdminSueModelList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA57397276DD59E00779A51 /* AdminSueModelList.swift */; };
@@ -143,6 +144,7 @@
 		FFB60F3D264AE82E0050286A /* HomeCardDeleteList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */; };
 		FFC1752526A5BF260000F946 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFC1752426A5BF260000F946 /* GoogleService-Info.plist */; };
 		FFC4DA82264C2C0B00C4D4BE /* HomeCardEditList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */; };
+		FFD6726027933BA100754ABE /* HomeServiceLayerApi+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD6725F27933BA100754ABE /* HomeServiceLayerApi+Rx.swift */; };
 		FFE8390326A6B1E800BA27E2 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */; };
 		FFE8390626A6B2F500BA27E2 /* NoticeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8390426A6B2F500BA27E2 /* NoticeTableViewCell.swift */; };
 		FFE8390726A6B2F500BA27E2 /* NoticeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFE8390526A6B2F500BA27E2 /* NoticeTableViewCell.xib */; };
@@ -290,6 +292,7 @@
 		FF6922B626430F8C00B0B533 /* LastAnswerCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastAnswerCollectionViewCell.xib; sourceTree = "<group>"; };
 		FF7437F9268A226100FB4C9A /* PostBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBottomSheetView.swift; sourceTree = "<group>"; };
 		FF8960692616066000CB6492 /* SocialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialViewController.swift; sourceTree = "<group>"; };
+		FF9B0F6A2792C5B4008364AC /* HomeBeforeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBeforeViewModel.swift; sourceTree = "<group>"; };
 		FF9B5A7426A8323F0094BAD8 /* NoticeEmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		FF9B5A7526A8323F0094BAD8 /* NoticeEmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeEmptyTableViewCell.xib; sourceTree = "<group>"; };
 		FFA57397276DD59E00779A51 /* AdminSueModelList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminSueModelList.swift; sourceTree = "<group>"; };
@@ -301,6 +304,7 @@
 		FFB60F3C264AE82E0050286A /* HomeCardDeleteList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardDeleteList.swift; sourceTree = "<group>"; };
 		FFC1752426A5BF260000F946 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFC4DA81264C2C0B00C4D4BE /* HomeCardEditList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCardEditList.swift; sourceTree = "<group>"; };
+		FFD6725F27933BA100754ABE /* HomeServiceLayerApi+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeServiceLayerApi+Rx.swift"; sourceTree = "<group>"; };
 		FFE8390226A6B1E800BA27E2 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		FFE8390426A6B2F500BA27E2 /* NoticeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeTableViewCell.swift; sourceTree = "<group>"; };
 		FFE8390526A6B2F500BA27E2 /* NoticeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeTableViewCell.xib; sourceTree = "<group>"; };
@@ -645,6 +649,7 @@
 		FF40CC76264AE1840094651B /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				FF9B0F692792C599008364AC /* ViewModel */,
 				18BB80C4267F30E100D7FD89 /* Settings */,
 				FF40CC79264AE1D00094651B /* View */,
 				FFF30AA426467A200076BF44 /* ServerApi */,
@@ -695,6 +700,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		FF9B0F692792C599008364AC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				FF9B0F6A2792C5B4008364AC /* HomeBeforeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		FFA7CEF8263C5B690021DD29 /* ProfileXib */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,6 +724,7 @@
 		FFF30AA426467A200076BF44 /* ServerApi */ = {
 			isa = PBXGroup;
 			children = (
+				FFD6725F27933BA100754ABE /* HomeServiceLayerApi+Rx.swift */,
 				FFF30AA526467C0F0076BF44 /* HomeServerApi.swift */,
 				FFF30AA9264682280076BF44 /* HomeCardList.swift */,
 				FF40CC7326496D4A0094651B /* HomeCardSaveList.swift */,
@@ -918,6 +932,7 @@
 				072931F4267F025C00CCA6A8 /* AdvisoryStageViewController.swift in Sources */,
 				FF3350702689E59F00D98DD9 /* EditBottomSheetView.swift in Sources */,
 				FFB3164027366169006BE9D6 /* PrivacyViewController.swift in Sources */,
+				FFD6726027933BA100754ABE /* HomeServiceLayerApi+Rx.swift in Sources */,
 				18A9E678277D8BA2008FBE49 /* TermsOfUseViewController.swift in Sources */,
 				07B89EB1268A1002007380A5 /* MyProfileLikeScrapList.swift in Sources */,
 				0715A346260CD1860077882A /* HomeBeforeViewController.swift in Sources */,
@@ -983,6 +998,7 @@
 				07432F682663C4AD008786B0 /* SocialTagCell.swift in Sources */,
 				FFA57398276DD59E00779A51 /* AdminSueModelList.swift in Sources */,
 				FF38D1ED269056BA001FD8B1 /* SocialOtherProfileViewController.swift in Sources */,
+				FF9B0F6B2792C5B4008364AC /* HomeBeforeViewModel.swift in Sources */,
 				FFE8390326A6B1E800BA27E2 /* NoticeViewController.swift in Sources */,
 				FFF30AA626467C0F0076BF44 /* HomeServerApi.swift in Sources */,
 				FF489145276B56320033CA29 /* AdminBlockList.swift in Sources */,

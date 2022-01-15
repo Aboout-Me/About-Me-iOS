@@ -43,7 +43,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         getHomeCardList()
         setLayoutInit()
         setSideMenuLayoutInit()
-        print("homeBefore 뷰 계층 \(self.navigationController?.viewControllers)")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +58,6 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
         self.navigationController?.navigationBar.standardAppearance.shadowColor = nil
         getWriteCardList()
-        print("homeBefore ViewwillApper \(self.navigationController?.viewControllers)")
     }
     
     deinit {

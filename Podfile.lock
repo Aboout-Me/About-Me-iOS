@@ -95,6 +95,8 @@ PODS:
   - RxRelay (6.0.0):
     - RxSwift (= 6.0.0)
   - RxSwift (6.0.0)
+  - RxTest (6.0.0):
+    - RxSwift (= 6.0.0)
   - SideMenu (6.5.0)
   - SwiftKeychainWrapper (4.0.1)
 
@@ -106,6 +108,7 @@ DEPENDENCIES:
   - naveridlogin-sdk-ios
   - RxCocoa (= 6.0.0)
   - RxSwift (= 6.0.0)
+  - RxTest (= 6.0.0)
   - SideMenu
   - SwiftKeychainWrapper
 
@@ -135,6 +138,7 @@ SPEC REPOS:
     - RxCocoa
     - RxRelay
     - RxSwift
+    - RxTest
     - SideMenu
     - SwiftKeychainWrapper
 
@@ -163,9 +167,10 @@ SPEC CHECKSUMS:
   RxCocoa: 3f79328fafa3645b34600f37c31e64c73ae3a80e
   RxRelay: 8d593be109c06ea850df027351beba614b012ffb
   RxSwift: c14e798c59b9f6e9a2df8fd235602e85cc044295
+  RxTest: ddef4052e63cb116f5b73510488c3113c37c62e5
   SideMenu: f583187d21c5b1dd04c72002be544b555a2627a2
   SwiftKeychainWrapper: 807ba1d63c33a7d0613288512399cd1eda1e470c
 
-PODFILE CHECKSUM: 2f6c0525e36d471d568de24b43ef97e3c1e37196
+PODFILE CHECKSUM: 084417cecd51e0ace5e8892310ca9a8f7f010c4d
 
 COCOAPODS: 1.11.2
