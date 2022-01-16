@@ -32,12 +32,16 @@ class HomeBeforeViewModel: HomeBeforeViewModelType {
     //MARK: Property
     var input = Input()
     var ouput = Ouput()
+    var ServerResponse = PublishRelay<HomeCardList>()
+    private var disposeBag = DisposeBag()
     
     
-    init() {
-        
-    }
     //MARK: initalize
+    init() {
+        _ = HomeServiceLayerApi.shared.requestCardList(userId: USER_ID)
+            .subscribe(onNext:{ self.ServerResponse.accept($0)})
+            .disposed(by: disposeBag)
+    }
     
     
 }

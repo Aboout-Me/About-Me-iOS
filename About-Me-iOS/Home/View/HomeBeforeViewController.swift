@@ -8,6 +8,8 @@
 import UIKit
 import SideMenu
 import Floaty
+import RxCocoa
+import RxSwift
 
 class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDelegate {
     @IBOutlet weak var homeBeforeBackgroundImageView: UIImageView!
@@ -25,6 +27,7 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     private var screenSize = UIScreen.main.bounds.size
     public var isshare = "Y"
     private var rightBarButtonName = "Bell"
+    private var viewModel = HomeBeforeViewModel()
     
     
     lazy var editAnswerSheetView: PostBottomSheetView = {
@@ -100,8 +103,8 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
         layout.itemSize = CGSize(width: cellWidth, height: 420)
         layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         homeBeforeCollectionView.collectionViewLayout = layout
-        homeBeforeCollectionView.delegate = self
-        homeBeforeCollectionView.dataSource = self
+//        homeBeforeCollectionView.delegate = self
+//        homeBeforeCollectionView.dataSource = self
         homeBeforeCollectionView.backgroundColor = .clear
         homeBeforeCollectionView.register(mainNib, forCellWithReuseIdentifier: "homeBeforeCell")
         homeBeforeCollectionView.showsHorizontalScrollIndicator = false
@@ -199,25 +202,37 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
     
     private func getHomeCardList() {
-        HomeServerApi.getHomeCardList(userId: USER_ID) { result in
-            if case let .success(data) = result, let list = data {
-                print(self.homeData)
-                DispatchQueue.main.async {
-                    self.homeData = list.dailyLists
-                    if self.homeData[0].color != "red" {
-                        self.homeData.reverse()
-                    }
-                    self.homeBeforeCollectionView.reloadData()
-                    self.homeBeforeCollectionView.layoutIfNeeded()
-                }
-            } else if case let .failure(error) = result {
-                let alert = UIAlertController(title: "Error Message", message: error, preferredStyle: .alert)
-                let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
-                alert.addAction(alertButton)
-                self.present(alert, animated: true, completion: nil)
-                print(error)
-            }
-        }
+        
+//        HomeServerApi.getHomeCardList(userId: USER_ID) { result in
+//            if case let .success(data) = result, let list = data {
+//                print(self.homeData)
+//                DispatchQueue.main.async {
+//                    self.homeData = list.dailyLists
+//                    if self.homeData[0].color != "red" {
+//                        self.homeData.reverse()
+//                    }
+//                    self.homeBeforeCollectionView.reloadData()
+//                    self.homeBeforeCollectionView.layoutIfNeeded()
+//                }
+//            } else if case let .failure(error) = result {
+//                let alert = UIAlertController(title: "Error Message", message: error, preferredStyle: .alert)
+//                let alertButton = UIAlertAction(title: "확인", style: .default, handler: nil)
+//                alert.addAction(alertButton)
+//                self.present(alert, animated: true, completion: nil)
+//                print(error)
+//            }
+//        }
+        viewModel.ServerResponse
+            .observe(on: MainScheduler.instance)
+            .map { $0.dailyLists}
+            .bind(to: homeBeforeCollectionView.rx.items(
+                    cellIdentifier: "homeBeforeCell",
+                    cellType: HomeBeforeCollectionViewCell.self)
+                ) { [weak self] row, element, cell in
+                cell.homeBeforeTitleLabel.text = element.question
+                print("Rx Test \(element.color)")
+                
+            }.disposed(by: DisposeBag())
     }
     
     
@@ -363,144 +378,144 @@ class HomeBeforeViewController: UIViewController, SideMenuNavigationControllerDe
     }
 }
 
-extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.homeData.count
-    }
+//extension HomeBeforeViewController : UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return self.homeData.count
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeBeforeCell", for: indexPath) as! HomeBeforeCollectionViewCell
+//        let ParagraphStyle = NSMutableParagraphStyle()
+//        ParagraphStyle.lineSpacing = 6
+//        print("색상 테스트\(homeData[indexPath.item].color)")
+//            if homeData[indexPath.item].lev == "1" {
+//                homeBeforeLastAnswerButton.isHidden = true
+//                homeBeforeLastAnswerButtonHeightConstraint.constant = 0
+//                homeBeforeLastAnswerButtonTopConstraint.constant = 0
+//            } else {
+//                homeBeforeLastAnswerButton.isHidden = false
+//                homeBeforeLastAnswerButtonHeightConstraint.constant = 60
+//                homeBeforeLastAnswerButtonTopConstraint.constant = 16
+//            }
+//        if homeData[indexPath.item].color == "red" {
+//            cell.homeBeforeCharacterLabel.text = "열정 충만"
+//            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
+//            cell.homeBeforeFirstTagLabel.text = "#열정"
+//            cell.homeBeforeSecondTagLabel.text = "#진로"
+//            cell.homeBeforeThirdTagLabel.text = "#미래"
+//            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryRed
+//            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryRed
+//            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryRed
+//        } else if homeData[indexPath.item].color == "yellow" {
+//            cell.homeBeforeCharacterLabel.text = "소소한 일상"
+//            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
+//            cell.homeBeforeFirstTagLabel.text = "#일상"
+//            cell.homeBeforeSecondTagLabel.text = "#추억"
+//            cell.homeBeforeThirdTagLabel.text = "#취향"
+//            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryYellow
+//            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryYellow
+//            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryYellow
+//
+//        } else if homeData[indexPath.item].color == "green" {
+//            cell.homeBeforeCharacterLabel.text = "기억상자"
+//            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
+//            cell.homeBeforeFirstTagLabel.text = "#힐링"
+//            cell.homeBeforeSecondTagLabel.text = "#치유"
+//            cell.homeBeforeThirdTagLabel.text = "#위로"
+//            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryGreen
+//            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryGreen
+//            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryGreen
+//        } else if homeData[indexPath.item].color == "pink" {
+//            cell.homeBeforeCharacterLabel.text = "관계의 미학"
+//            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
+//            cell.homeBeforeFirstTagLabel.text = "#연애"
+//            cell.homeBeforeSecondTagLabel.text = "#사랑"
+//            cell.homeBeforeThirdTagLabel.text = "#가치관"
+//            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryPink
+//            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryPink
+//            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPink
+//        } else {
+//            cell.homeBeforeCharacterLabel.text = "상상 플러스"
+//            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
+//            cell.homeBeforeFirstTagLabel.text = "#만약에"
+//            cell.homeBeforeSecondTagLabel.text = "#상상"
+//            cell.homeBeforeThirdTagLabel.text = "#희망"
+//            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryPurple
+//            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryPurple
+//            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPurple
+//        }
+//        if homeData[indexPath.item].lev == "1" {
+//            cell.homeBeforeLevelLabel.isHidden = true
+//            cell.homeBeforeLevelBoxView.isHidden = true
+//            let attributedString = NSMutableAttributedString(string: "LV. \(homeData[indexPath.item].lev)", attributes: [
+//              .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
+//              .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
+//            ])
+//            attributedString.addAttribute(.font, value: UIFont(name: "GmarketSansBold", size: 13.0)!, range: NSRange(location: 3, length: 2))
+//            cell.homeBeforeLevelLabel.attributedText = attributedString
+//        } else {
+//            cell.homeBeforeLevelLabel.isHidden = false
+//            cell.homeBeforeLevelBoxView.isHidden = false
+//            let attributedString = NSMutableAttributedString(string: "LV. \(homeData[indexPath.item].lev)", attributes: [
+//              .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
+//              .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
+//            ])
+//            attributedString.addAttribute(.font, value: UIFont(name: "GmarketSansBold", size: 13.0)!, range: NSRange(location: 3, length: 2))
+//            cell.homeBeforeLevelLabel.attributedText = attributedString
+//        }
+//
+//        cell.homeBeforeTitleLabel.attributedText = NSAttributedString(string: homeData[indexPath.item].question, attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
+//        cell.homeBeforeTitleLabel.text = homeData[indexPath.item].question
+//        cell.homeBeforeTitleLabel.textAlignment = .center
+//        return cell
+//    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "homeBeforeCell", for: indexPath) as! HomeBeforeCollectionViewCell
-        let ParagraphStyle = NSMutableParagraphStyle()
-        ParagraphStyle.lineSpacing = 6
-        print("색상 테스트\(homeData[indexPath.item].color)")
-            if homeData[indexPath.item].lev == "1" {
-                homeBeforeLastAnswerButton.isHidden = true
-                homeBeforeLastAnswerButtonHeightConstraint.constant = 0
-                homeBeforeLastAnswerButtonTopConstraint.constant = 0
-            } else {
-                homeBeforeLastAnswerButton.isHidden = false
-                homeBeforeLastAnswerButtonHeightConstraint.constant = 60
-                homeBeforeLastAnswerButtonTopConstraint.constant = 16
-            }
-        if homeData[indexPath.item].color == "red" {
-            cell.homeBeforeCharacterLabel.text = "열정 충만"
-            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 244/255, green: 82/255, blue: 82/255, alpha: 1.0)
-            cell.homeBeforeFirstTagLabel.text = "#열정"
-            cell.homeBeforeSecondTagLabel.text = "#진로"
-            cell.homeBeforeThirdTagLabel.text = "#미래"
-            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryRed
-            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryRed
-            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryRed
-        } else if homeData[indexPath.item].color == "yellow" {
-            cell.homeBeforeCharacterLabel.text = "소소한 일상"
-            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 220/255, green: 174/255, blue: 9/255, alpha: 1.0)
-            cell.homeBeforeFirstTagLabel.text = "#일상"
-            cell.homeBeforeSecondTagLabel.text = "#추억"
-            cell.homeBeforeThirdTagLabel.text = "#취향"
-            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryYellow
-            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryYellow
-            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryYellow
-        
-        } else if homeData[indexPath.item].color == "green" {
-            cell.homeBeforeCharacterLabel.text = "기억상자"
-            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 31/255, green: 176/255, blue: 115/255, alpha: 1.0)
-            cell.homeBeforeFirstTagLabel.text = "#힐링"
-            cell.homeBeforeSecondTagLabel.text = "#치유"
-            cell.homeBeforeThirdTagLabel.text = "#위로"
-            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryGreen
-            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryGreen
-            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryGreen
-        } else if homeData[indexPath.item].color == "pink" {
-            cell.homeBeforeCharacterLabel.text = "관계의 미학"
-            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 231/255, green: 79/255, blue: 152/255, alpha: 1.0)
-            cell.homeBeforeFirstTagLabel.text = "#연애"
-            cell.homeBeforeSecondTagLabel.text = "#사랑"
-            cell.homeBeforeThirdTagLabel.text = "#가치관"
-            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryPink
-            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryPink
-            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPink
-        } else {
-            cell.homeBeforeCharacterLabel.text = "상상 플러스"
-            cell.homeBeforeCharacterLabel.textColor = UIColor(red: 159/255, green: 88/255, blue: 251/255, alpha: 1.0)
-            cell.homeBeforeFirstTagLabel.text = "#만약에"
-            cell.homeBeforeSecondTagLabel.text = "#상상"
-            cell.homeBeforeThirdTagLabel.text = "#희망"
-            cell.homeBeforeFirstTagLabel.textColor = UIColor.primaryPurple
-            cell.homeBeforeSecondTagLabel.textColor = UIColor.primaryPurple
-            cell.homeBeforeThirdTagLabel.textColor = UIColor.primaryPurple
-        }
-        if homeData[indexPath.item].lev == "1" {
-            cell.homeBeforeLevelLabel.isHidden = true
-            cell.homeBeforeLevelBoxView.isHidden = true
-            let attributedString = NSMutableAttributedString(string: "LV. \(homeData[indexPath.item].lev)", attributes: [
-              .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
-              .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
-            ])
-            attributedString.addAttribute(.font, value: UIFont(name: "GmarketSansBold", size: 13.0)!, range: NSRange(location: 3, length: 2))
-            cell.homeBeforeLevelLabel.attributedText = attributedString
-        } else {
-            cell.homeBeforeLevelLabel.isHidden = false
-            cell.homeBeforeLevelBoxView.isHidden = false
-            let attributedString = NSMutableAttributedString(string: "LV. \(homeData[indexPath.item].lev)", attributes: [
-              .font: UIFont(name: "GmarketSansBold", size: 12.0)!,
-              .foregroundColor: UIColor(white: 0.0, alpha: 1.0)
-            ])
-            attributedString.addAttribute(.font, value: UIFont(name: "GmarketSansBold", size: 13.0)!, range: NSRange(location: 3, length: 2))
-            cell.homeBeforeLevelLabel.attributedText = attributedString
-        }
-        
-        cell.homeBeforeTitleLabel.attributedText = NSAttributedString(string: homeData[indexPath.item].question, attributes: [NSAttributedString.Key.paragraphStyle: ParagraphStyle])
-        cell.homeBeforeTitleLabel.text = homeData[indexPath.item].question
-        cell.homeBeforeTitleLabel.textAlignment = .center
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath) as? HomeBeforeCollectionViewCell
-        let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
-        selectIndex = indexPath.item
-        questionTitleText = (cell?.homeBeforeTitleLabel.text)!
-        let window = UIApplication.shared.windows.first
-        window?.addSubview(self.editAnswerSheetView)
-        homeBeforeBottomSheetLayoutInit()
-        DispatchQueue.global(qos: .userInteractive).async {
-            DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
-                    self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height - (self.screenSize.height - height - 12), width: self.screenSize.width, height: self.screenSize.height + height + 12)
-                })
-            }
-        }
-    }
-
-    func scrollViewDidScroll(_ scrollView:UIScrollView) {
-        let midX:CGFloat = scrollView.bounds.midX
-        let midY:CGFloat = scrollView.bounds.midY
-        let point:CGPoint = CGPoint(x:midX, y:midY)
-        guard let indexPath = homeBeforeCollectionView.indexPathForItem(at: point) else { return  }
-        currentPage = indexPath.item
-        if homeData[currentPage].lev == "1" {
-            homeBeforeLastAnswerButton.isHidden = true
-            homeBeforeLastAnswerButtonHeightConstraint.constant = 0
-            homeBeforeLastAnswerButtonTopConstraint.constant = 0
-        } else {
-            homeBeforeLastAnswerButton.isHidden = false
-            homeBeforeLastAnswerButtonHeightConstraint.constant = 60
-            homeBeforeLastAnswerButtonTopConstraint.constant = 16
-        }
-        print("colletionView point\(point)")
-        if homeData[currentPage].color == "red" {
-            homeBeforeBackgroundImageView.image = UIImage(named: "img_background_red.png")
-        } else if homeData[currentPage].color == "yellow" {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_yellow.png")
-        } else if homeData[currentPage].color == "green" {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_green.png")
-        } else if homeData[currentPage].color == "pink" {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_pink.png")
-        } else {
-            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_purple.png")
-        }
-    }
-}
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        let cell = collectionView.cellForItem(at: indexPath) as? HomeBeforeCollectionViewCell
+//        let height = self.view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+//        selectIndex = indexPath.item
+//        questionTitleText = (cell?.homeBeforeTitleLabel.text)!
+//        let window = UIApplication.shared.windows.first
+//        window?.addSubview(self.editAnswerSheetView)
+//        homeBeforeBottomSheetLayoutInit()
+//        DispatchQueue.global(qos: .userInteractive).async {
+//            DispatchQueue.main.async {
+//                UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+//                    self.editAnswerSheetView.frame = CGRect(x: 0, y: self.screenSize.height - (self.screenSize.height - height - 12), width: self.screenSize.width, height: self.screenSize.height + height + 12)
+//                })
+//            }
+//        }
+//    }
+//
+//    func scrollViewDidScroll(_ scrollView:UIScrollView) {
+//        let midX:CGFloat = scrollView.bounds.midX
+//        let midY:CGFloat = scrollView.bounds.midY
+//        let point:CGPoint = CGPoint(x:midX, y:midY)
+//        guard let indexPath = homeBeforeCollectionView.indexPathForItem(at: point) else { return  }
+//        currentPage = indexPath.item
+//        if homeData[currentPage].lev == "1" {
+//            homeBeforeLastAnswerButton.isHidden = true
+//            homeBeforeLastAnswerButtonHeightConstraint.constant = 0
+//            homeBeforeLastAnswerButtonTopConstraint.constant = 0
+//        } else {
+//            homeBeforeLastAnswerButton.isHidden = false
+//            homeBeforeLastAnswerButtonHeightConstraint.constant = 60
+//            homeBeforeLastAnswerButtonTopConstraint.constant = 16
+//        }
+//        print("colletionView point\(point)")
+//        if homeData[currentPage].color == "red" {
+//            homeBeforeBackgroundImageView.image = UIImage(named: "img_background_red.png")
+//        } else if homeData[currentPage].color == "yellow" {
+//            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_yellow.png")
+//        } else if homeData[currentPage].color == "green" {
+//            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_green.png")
+//        } else if homeData[currentPage].color == "pink" {
+//            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_pink.png")
+//        } else {
+//            self.homeBeforeBackgroundImageView.image = UIImage(named: "img_background_purple.png")
+//        }
+//    }
+//}
 
 class HomeCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private var previousOffset: CGFloat = 0

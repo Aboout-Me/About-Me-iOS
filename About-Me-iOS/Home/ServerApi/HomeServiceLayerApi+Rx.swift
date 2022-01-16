@@ -22,12 +22,15 @@ protocol NetworkCenterProtocol {
     static func fetchHomeCardList(userId: Int) -> Observable<HomeCardList>
 }
 
-struct HomeServiceLayerApi: HomeServiceLayer {
-
+class HomeServiceLayerApi: HomeServiceLayer {
+  
+    static let shared = HomeServiceLayerApi()
+    private init() {}
     private let disposeBag = DisposeBag()
     
-    func requestCardList(userId: Int) -> Observable<HomeCardList> {
-        return Observable<HomeCardList>.create { ob in
+    
+     func requestCardList(userId: Int) -> Observable<HomeCardList> {
+        return Observable<HomeCardList>.create { [self] ob in
             NetworkCenterLayer.fetchHomeCardList(userId: USER_ID)
                 .subscribe { res in
                     ob.onNext(res)
